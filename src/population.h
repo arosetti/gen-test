@@ -1,23 +1,24 @@
 #include <list>
 
+#include "individual.h"
+
 #ifndef POPULATION_H
 #define POPULATION_H
 
 
 class population
 {   
-    int pop_size;
+    uint size;
     list<individual> pool;
 
 
     pubilic:
-    population();
+    population(uint);
     ~population();
 
     get_random();
 
-    void crossover();
-    void mutate();
+    void crossover(individual*, individual*);
     void kill();
 }
 

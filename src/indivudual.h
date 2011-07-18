@@ -2,6 +2,8 @@
 #include <vector>
 #include <boost>
 
+#include "defines.h"
+
 using namespace std;
 using namespace boost;
 
@@ -13,18 +15,22 @@ class individual
     int gene_len;
     int chrom_len;
 
-    vector<bitset> chromosome;
+    vector<bool> chromosome;  // in attesa della struttura di dati adatta
     float fitness;
 
     public:
-    individual();
-    individual(const individual&);
+    individual(int,int);
     ~individual();
+    individual(const individual&);
 
-
-    float calc_fitness();
-    void mutate();      // muta gene
-    void init_gene();   // gene random 
+    void  set_gene(int,int,bool*);
+    bool* get_gene(int,int);
+    int   get_gene_len(int,int);
+    
+    float get_fitness();
+    
+    void  mutate();         // muta gene/cromosoma??
+    void  random_gene();    // gene random 
 }
 
 #endif

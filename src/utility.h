@@ -1,7 +1,9 @@
+#include<types.h>  // uint uint32 eccc...
+
+#include "defines.h"
+
 #ifndef UTILITY_H
 #define UTILITY_H
 
-
-void parse_config(string,struct *config); // da vedere come interfacciare utility e il main
 
 #endif
