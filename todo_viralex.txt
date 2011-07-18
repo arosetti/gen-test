@@ -1,0 +1,49 @@
+#####generali#####
+-usare l'inglese almeno per il nome delle variabili :P
+-coding style ( va bene il tuo )
+-suddividere meglio le strutture dati. il main conterrà come negli esempi le inizializzazioni e la funzione evolve();
+-utilizzare pesantemente i types std e/o iteratori.
+-utilizzare quindi gli algoritmi di sorting della std.
+
+#####nomi variabili#####
+-nomi delle variabili autocommentanti. e non alfa beta gamma ^_^
+-nomi delle variabili relative ad un modello univoco 
+ -> genetico (meglio questo)
+ -> circuitale
+ ogni tanto dice cromosomi altre volte n_clock 
+ nei commenti i riferimenti al modello circuitale
+
+
+#####classi-strutture#####
++ classe per la popolazione
+   + quindi con std::vector di individui.
+   + permette di assegnare un thread per individuo, magari attivandone al max N alla volta.
+   contiene la struct ga_global 
+       + tutti i parametri di un ga probabilità mutazione accoppiamento ecc.
+       + le altre classi possono ottenere un riferimento const a questo ga_global
+         (es per sapere che probabilità di mutazione usare)
+         o si mettono tutte le orribili variabili globali :S ????
+         
++ clase individui
+   - accoppiamento(parametri_ga)
+
++ classe per i cromosomi
+   + funzioni di crossover
+   + variabile di fitness
+   
++ classe dei geni 
+   - forse basta una struct
+
++ possibile critica : popolazione[individuo[cromosomi[geni[]]]] 
+   - troppi livelli??
+   + se ogni livello è ben fatto il codice del livello superiore è più semplice e pulito
+
++ classe per l'interazione automatica con il simulatore generato da mobius.
+   + eventuale ricompilazione del simulatore. (se non si fa il discorso dell'input)
+
+#####librerie_utili#####
++pthread
+   + per un minimo di parallelizzazione.
++libconfuse/custom_nostra.
+   + per le configurazioni .conf
+
