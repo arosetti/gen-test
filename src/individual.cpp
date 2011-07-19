@@ -40,7 +40,38 @@ void individual::random_gene()
 
 }
 
-float get_fitness()
+void  individual::set_random_chromosome()
 {
 
+}
+
+string  individual::get_chromosome()
+{
+
+}
+
+void  individual::set_chromosome()
+{
+
+}
+
+
+int   individual::get_chromosome_len()
+{
+
+}
+
+void  individual::set_chromosome_len()
+{
+
+}
+
+unsigned float get_fitness()
+{
+
+}
+
+bool individual::operator < (const population& p)
+{
+    return fitness < p.get_fitness();
 }
