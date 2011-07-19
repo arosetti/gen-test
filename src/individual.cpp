@@ -7,7 +7,7 @@ individual::individual(uint32 g_len, uint32 c_len)
     chromosome_l = g_len;
     fitness = 0;
     
-    chromosome_random();
+    chromosome.RandomizeAll();
 }
 
 individual::~individual()
@@ -39,7 +39,7 @@ void individual::set_chromosome_length(uint32 l)
 
 void individual::chromosome_random()
 {
-    chromosome.random();
+    chromosome.RandomizeAll();
 }
 
 void individual::chromosome_mutate()

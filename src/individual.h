@@ -6,6 +6,7 @@
 #include <string>
 
 #include "defines.h"
+#include "bitmatrix/bitmatrix.h"
 
 using namespace std;
 

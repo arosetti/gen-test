@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 int main()
 {
     ga_engine ga(N);
@@ -13,11 +11,9 @@ int main()
     
     cout << "gentest: Gentetic Algorithm implementation used to generate test patterns for fpga-like circuits" << endl;
 
-    read_config();
+    load_config(&c);
 
-    setup_simulation();
-
-    ga.init();
+    ga.init(&c);
     ga.evolve();
 
     return 0;
