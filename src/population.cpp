@@ -1,8 +1,8 @@
 #include "population.h"
 
-population::population(uint n)
+population::population(uint size)
 {
-    size=n;
+    population::size=size;
 }
 
 population::~population()
@@ -16,7 +16,17 @@ population::~population()
 
 individual* population::get_random_individual()
 {
-
+    individual *i= NULL;
+    int rnd = rand()%size + 1;
+    
+    list<individual*>::iterator it = pool.begin();
+    while((it != pool.end()) || ((it - pool.begin()) == rnd))
+    {
+        i= &*it;
+        it++;
+    }  
+    
+    return i;
 }
 
 individual* population::new_random_individual()
@@ -29,11 +39,47 @@ individual* population::new_random_individual()
     return i;
 }
 
-void population::generate_random_population()
+void population::new_random_population()
 {
-    int created;
+    int created = 0;
     
-    while(created<size)
+    while( (created++) < size )
         pool.pushback(new_random_individual());
+}
+
+
+void population::get_avg_fitness()
+{
+
+}
+
+void population::get_best_fitness()
+{
+
+}
+
+
+void population::sort_by_fitness()
+{
+    pool.sort();
+}
+
+
+    
+void population::mate_individuals(uint32 how_many)
+{
+
+}
+
+
+void population::mutate_individuals(uint32 strength)
+{
+
+}
+
+
+void population::kill_individuals(uint32 how_many)
+{
+
 }
 

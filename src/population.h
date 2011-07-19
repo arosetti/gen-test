@@ -1,12 +1,10 @@
+#ifndef POPULATION_H
+#define POPULATION_H
+
 #include <list>
 #include <assert>
 
 #include "individual.h"
-
-
-
-#ifndef POPULATION_H
-#define POPULATION_H
 
 using namespace std;
 
@@ -16,23 +14,25 @@ class population
     uint gene_len,chromosome_len;
     
     list<individual*> pool;
-    
-    void crossover(individual*, individual*);
+    list<individual*> limbo;
+ 
     individual* get_random_individual();
     individual* new_random_individual();
+    void crossover(individual*, individual*);
     
     public:
-    population(uint);
+    population(uint size);
     ~population();
     
-    void generate_random_population();
+    void new_random_population();
 
-    void get_fitness();
-    
-    void mate();
-    void kill();
-    
-    void sort();
-}
+    void get_avg_fitness();
+    void get_best_fitness();
+    void sort_by_fitness();
+        
+    void mate_individuals(uint32);
+    void mutate_individuals(uint32);
+    void kill_individuals(uint32);
+};
 
 #endif

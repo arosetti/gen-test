@@ -1,13 +1,13 @@
 #include "individual.h"
 
-individual::individual(int g_len, int c_len)
+individual::individual(uint32 g_len, uint32 c_len)
 {
     
-    gene_len = c_len;
-    chrom_len = g_len;
+    gene_l = c_len;
+    chromosome_l = g_len;
     fitness = 0;
     
-    random_init();
+    chromosome_random();
 }
 
 individual::~individual()
@@ -15,63 +15,91 @@ individual::~individual()
 
 }
 
-void individual::set_gene(int i,int j,bool* b)
-{
+/***chromosome***/
 
+string individual::get_chromosome()
+{
+    return chromosome.to_string();
 }
 
-bool* individual::get_gene(int i,int j)
+void individual::set_chromosome(string c)
 {
-    return chromosomes?chromosomes[i][j]:0;
+    chromosome.set(c);
 }
 
-int  individual::get_gene_len(int,int)
+uint32 individual::get_chromosome_length()
 {
-    return gene_len;
+    return chromosome_l;
 }
 
-void individual::mutate()
+void individual::set_chromosome_length(uint32 l)
 {
-
+    chromosome_l = l; /* extend-reduce matrix*/
 }
 
-void individual::random_gene()
+void individual::chromosome_random()
 {
-
+    chromosome.random();
 }
 
-void  individual::set_random_chromosome()
+void individual::chromosome_mutate()
 {
-
+    
+}
+  
+ufloat individual::chromosome_fitness()
+{
+    return fitness;
+}
+  
+void individual::chromosome_update_fitness(bool*)
+{
+    /* chiama puntatore a funzione che calcola la fitness */
+    fitness = function(fitness);
 }
 
-string  individual::get_chromosome()
-{
+/***gene***/
 
+bool* individual::get_gene(uint32 i)
+{
+    return chromosome[i];
 }
 
-void  individual::set_chromosome()
+void individual::set_gene(uint32 i, string s)
 {
+    chromosome[i] = s;
+}
 
+uint32  individual::get_gene_length()
+{
+    return gene_l;
+}
+
+void  individual::set_gene_length(uint32 l)
+{
+    gene_len = l;  /* extend-reduce matrix */
 }
 
 
-int   individual::get_chromosome_len()
+void individual::gene_mutate(uint32 g)
 {
-
+    if ( g<0 || g>= gene_l )
+        return;
+        
+    chromosome[g].flip(rand()%gene_l + 1);
 }
 
-void  individual::set_chromosome_len()
+void individual::gene_random(uint32 g)
 {
-
+    if ( g<0 || g>= gene_l )
+        return;
+    
+    chromosome[g].random();
 }
 
-unsigned float get_fitness()
-{
+/***internal_stuff***/
 
-}
-
-bool individual::operator < (const population& p)
+bool individual::operator < (const individual& p)
 {
     return fitness < p.get_fitness();
 }

@@ -2,7 +2,7 @@
 
 ga_engine::ga_engine()
 {
-
+    srand(time(NULL));
 }
 
 ga_engine::~ga_engine()
