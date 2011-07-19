@@ -78,8 +78,21 @@ void population::mutate_individuals(uint32 strength)
 }
 
 
-void population::kill_individuals(uint32 how_many)
+void population::kill_individuals(uchar rate)
 {
+    list<individual*>::it=pool.begin();
+    int kill_after_this = 
+    it+=size
+li.erase(it, li.end()); // erase elements 3 – 10
+}
 
+uint32  population::count_individuals()
+{
+    return pool.size();
+}
+
+void population::print_best_individual()
+{
+    cout << *pool.begin()->get_chromosome();
 }
 

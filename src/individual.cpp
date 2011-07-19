@@ -47,15 +47,14 @@ void individual::chromosome_mutate()
     
 }
   
-ufloat individual::chromosome_fitness()
+ufloat individual::get_fitness()
 {
     return fitness;
 }
   
-void individual::chromosome_update_fitness(bool*)
+void individual::set_fitness(ufloat f)
 {
-    /* chiama puntatore a funzione che calcola la fitness */
-    fitness = function(fitness);
+    fitness = f;
 }
 
 /***gene***/

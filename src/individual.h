@@ -1,11 +1,7 @@
 #ifndef INDIVIDUAL_H
 #define INDIVIDUAL_H
 
-#include <bitset>
-#include <vector>
-#include <string>
-
-#include "defines.h"
+#include "utility.h"
 #include "bitmatrix/bitmatrix.h"
 
 using namespace std;
@@ -28,10 +24,10 @@ class individual
     uint32  get_chromosome_length();
     void    set_chromosome_length(uint32);    
     void    chromosome_random();
-    void    chromosome_mutate();  
-    ufloat  chromosome_fitness();
-    void    chromosome_update_fitness(bool*);
-    void    update_statistics();
+    void    chromosome_mutate();
+    
+    ufloat  get_fitness();
+    void    set_fitness(ufloat);
               
     string  get_gene(uint32, uint32);        // si potrebbe usare uint16 
     void    set_gene(uint32, string);

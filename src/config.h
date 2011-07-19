@@ -4,11 +4,16 @@
 typedef struct config 
 {
     bool debug;
-    int max_iterations;
-    int pool_size;
-    float mutation_rate, mutation_strength;
-    float kill_rate;
-    int max_stall;
+    
+    uint32 max_iterations;
+    uint32 max_gene_length;
+    
+    uint32 avg_population_size;
+    
+    ufloat mutation_rate, mutation_strength;
+    ufloat kill_rate;
+    uint32 max_stall;
+    
 } config;
 
 bool load_config(string , config *);

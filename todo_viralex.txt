@@ -1,7 +1,6 @@
 #####generali#####
 -usare l'inglese almeno per il nome delle variabili :P
 -coding style ( va bene il tuo )
--suddividere meglio le strutture dati. il main conterrà come negli esempi le inizializzazioni e la funzione evolve();
 -utilizzare pesantemente i types std e/o iteratori.
 -utilizzare quindi gli algoritmi di sorting della std.
 

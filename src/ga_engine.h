@@ -1,23 +1,25 @@
 #ifndef GA_ENGINE_H
 #define GA_ENGINE_H
 
-#include <pthread.h> // or boost (se usiamo boost per altre cose usiamo anche i thread già che ci siamo)
+#include <cmath>
 
-#include "utility.h"
 #include "population.h"
+#include "config.h"
 
-
+using namespace std;
 
 class ga_engine
 {
+    uint32 iteration;
     population p;
-
-    pubilic:
+    config *c;
+    
+    public:
     ga_engine();
     ~ga_engine();
 
-    void init();
-    void evolve();  // avvia il thread o il ciclo di evoluzione.
+    void init(config*);
+    void evolve();
 };
 
 #endif

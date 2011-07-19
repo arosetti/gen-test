@@ -2,8 +2,8 @@
 
 bitmatrix::bitmatrix(uint32 rows, uint32 cols)
 {
-    m_rows = rows;
-    m_cols = cols;
+    m_rows = (rows == 0)?1:rows;
+    m_cols = (cols == 0)?1:cols;
     m_cell = int(cols/8) + (int(cols%8) ? 1 : 0);
     matrix = new uint8*[rows];
     for (int i = 0; i < rows; i++)	
@@ -135,4 +135,20 @@ void bitmatrix::Print()
         }
         printf("\n");
     }
+}
+
+string bitmatrix::ToString()
+{
+    string s;
+    for (int i = 0; i < m_rows; i++)
+    {
+        for (int j = 0; j < m_cols; j++)
+        {
+            s += (matrix[i][int(j/8)] & uint8(1 << int(j%8)))?"1":"0";
+            if(j != (m_cols-1))
+                s +=",";
+        }
+        s+="\n";
+    }
+    return s;
 }

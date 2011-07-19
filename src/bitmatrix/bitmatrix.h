@@ -3,10 +3,13 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <string>
 
 typedef unsigned char uint8;
 typedef unsigned short int uint16;
 typedef unsigned long int uint32;
+
+using namespace std;
 
 class bitmatrix
 {    
@@ -24,21 +27,22 @@ class bitmatrix
             return m_cols;        
         }
    
-        void Randomize(uint32 rows, uint32 cols);        
-        bool Get(uint32 rows, uint32 cols);
-        void Set(uint32 rows, uint32 cols);        
-        void Unset(uint32 rows, uint32 cols);
-        void Flip(uint32 rows, uint32 cols);
+        void    Randomize(uint32 rows, uint32 cols);        
+        bool    Get(uint32 rows, uint32 cols);
+        void    Set(uint32 rows, uint32 cols);        
+        void    Unset(uint32 rows, uint32 cols);
+        void    Flip(uint32 rows, uint32 cols);
         
-        void RandomizeAll();
-        void SetAll();        
-        void UnsetAll();
-        void FlipAll();
+        void    RandomizeAll();
+        void    SetAll();        
+        void    UnsetAll();
+        void    FlipAll();
         
-        void SetCol(bitmatrix& bin_mat, uint32 cols);
-        void SetRow(bitmatrix& bin_mat, uint32 rows);
+        void    SetCol(bitmatrix& bin_mat, uint32 cols);
+        void    SetRow(bitmatrix& bin_mat, uint32 rows);
         
-        void Print();
+        void    Print();
+        string  ToString();
         
     private:
         uint8** matrix; 
