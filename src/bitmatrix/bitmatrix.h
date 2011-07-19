@@ -1,7 +1,6 @@
-#ifndef bitmatrix_H
-#define bitmatrix_H
+#ifndef BITMATRIX_H
+#define BITMATRIX_H
 
-#include <iostream>
 #include <cstdio>
 #include <cstdlib>
 
@@ -9,13 +8,10 @@ typedef unsigned char uint8;
 typedef unsigned short int uint16;
 typedef unsigned long int uint32;
 
-// Ancora Work in Progress
-
 class bitmatrix
 {    
     public:
-        // Numero Righe e Colonne
-        bitmatrix(uint32 rows, uint32 cols);        
+        bitmatrix(uint32 rows, uint32 cols);   
         ~bitmatrix();
         
         uint32 GetRows()
@@ -27,8 +23,7 @@ class bitmatrix
         {
             return m_cols;        
         }
-            
-        // Posizione Riga e Colonna partendo da 0      
+   
         void Randomize(uint32 rows, uint32 cols);        
         bool Get(uint32 rows, uint32 cols);
         void Set(uint32 rows, uint32 cols);        
@@ -46,11 +41,11 @@ class bitmatrix
         void Print();
         
     private:
-        uint8** Matrix; 
-        uint32 m_rows;
-        uint32 m_cols;
+        uint8** matrix; 
+        uint32  m_rows;
+        uint32  m_cols;
         
-        uint32 m_cell;
+        uint32  m_cell;
 };
 
-#endif //bitmatrix_H
+#endif
