@@ -1,12 +1,11 @@
 CC=g++
-CFLAGS=-Wall -g -c -O2
+CFLAGS=-Wall -g -O2
+OBJ=ga_engine.o individual.o population.o utility.o config.o bitmatrix/bitmatrix.o main.o
 
+LIB=-lconfuse
 
-#libraries
-LIB=  -lpthread boost?
-
-gentest: main.o individual.o population.o utility
-	$(CC) $(CFLAGS) $(LIB) -o $@ main.o individual.o population.o utility.o
+gentest:  $(OBJ)
+	$(CC) $(CFLAGS) $(LIB) -o $@ $(OBJ) 
 
 clean:
-	rm -f gentest *.o
+	rm -rf gentest *.o *~

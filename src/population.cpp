@@ -14,15 +14,16 @@ population::~population()
     }
 }
 
-individual* population::get_random_individual()
+individual* population::get_random_individual() const
 {
     individual *i= NULL;
-    int rnd = rand()%size + 1;
+    int rnd = rand()%size + 1,count=0;
     
-    list<individual*>::iterator it = pool.begin();
-    while((it != pool.end()) || ((it - pool.begin()) == rnd))
+    
+    list<individual*>::const_iterator it = pool.begin();
+    while((it != pool.end()) || (++count == rnd))
     {
-        i= &*it;
+        i= *it;
         it++;
     }  
     
@@ -34,7 +35,7 @@ individual* population::new_random_individual()
     individual *i = new individual(gene_len,chromosome_len);
     
     if(i)
-        i->set_random_chromosome();
+        i->chromosome_random();
 
     return i;
 }
@@ -44,16 +45,16 @@ void population::new_random_population()
     int created = 0;
     
     while( (created++) < size )
-        pool.pushback(new_random_individual());
+        pool.push_back(new_random_individual());
 }
 
 
-void population::get_avg_fitness()
+float population::get_avg_fitness() const
 {
 
 }
 
-void population::get_best_fitness()
+float population::get_best_fitness() const
 {
 
 }
@@ -78,21 +79,24 @@ void population::mutate_individuals(uint32 strength)
 }
 
 
-void population::kill_individuals(uchar rate)
+void population::kill_individuals(uint32 rate)
 {
+    /*
     list<individual*>::it=pool.begin();
     int kill_after_this = 
     it+=size
-li.erase(it, li.end()); // erase elements 3 – 10
+    pool.erase(it, pool.end());
+    */
 }
 
-uint32  population::count_individuals()
+uint32  population::count_individuals() const
 {
     return pool.size();
 }
 
 void population::print_best_individual()
 {
-    cout << *pool.begin()->get_chromosome();
+    list<individual*>::iterator it = pool.begin();
+    cout << (*it)->get_chromosome();
 }
 

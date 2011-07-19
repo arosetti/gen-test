@@ -15,14 +15,17 @@ void ga_engine::init(config *c)
 {   
     ga_engine::c = c;
     
-    cout << "Selecting " << size << " random individuals..." << endl;
-    p.new_random_population();
+    cout << "Init population" << endl;
+    p = new population(c->avg_population_size);
+    
+    cout << "Selecting " << c->avg_population_size << " random individuals..." << endl;
+    p->new_random_population();
 }
 
 
 void ga_engine::evolve()
 {
-    ufloat best_fitness = 0;
+    float best_fitness = 0;
     
     if(!c)
     {
@@ -30,15 +33,15 @@ void ga_engine::evolve()
         return;
     }
     
-	while ( iteration++ < max_iterations ) 
+	while ( iteration++ < c->max_iterations ) 
 	{
-		best_fitness = p.get_best_fitness();
+		best_fitness = p->get_best_fitness();
 		cout << "fitness: " << best_fitness << endl;
-		p.sort_by_fitness();
-		p.print_best_individual();
-		p.mate_individuals(c->mate_rate);
-		p.kill_individuals();
-		p.mutate_individuals();
+		p->sort_by_fitness();
+		p->print_best_individual();
+		p->mate_individuals(c->mate_rate);
+		p->kill_individuals(c->kill_rate);
+		p->mutate_individuals(c->mutation_rate);
 		
 	}
 

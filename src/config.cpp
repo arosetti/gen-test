@@ -6,27 +6,39 @@ bool load_config(string conf_filename, config *c)
     
     cfg_opt_t opts[] =
     {
-        CFG_BOOL("debug", 0, CFGF_NONE),
+        CFG_BOOL("debug", (cfg_bool_t)false, CFGF_NONE),
+        CFG_BOOL("verbose",(cfg_bool_t)true, CFGF_NONE),
         CFG_INT("avg_population_size", 4096, CFGF_NONE),
         CFG_INT("max_iterations",  8192, CFGF_NONE),
         CFG_INT("max_stall", 100, CFGF_NONE),
-        CFG_FLOAT("mutation_rate", 0.01f, CFGF_NONE),
-        CFG_FLOAT("mutation_strength", 0.01f, CFGF_NONE),
+        CFG_FLOAT("mutation_rate", 0.06f, CFGF_NONE),
+        CFG_FLOAT("mutation_strength", 2.0f, CFGF_NONE),
+        CFG_FLOAT("mate_rate", 0.1f, CFGF_NONE),
+        CFG_FLOAT("kill_rate", 0.1f, CFGF_NONE),
         CFG_END()
     };
-    cfg_t *cfg;
     
-    cfg = cfg_init(opts, CFGF_NONE);
-	if(cfg_parse(cfg, conf_filename) == CFG_PARSE_ERROR)
-	    return 1;
-	    
-	c->debug = cfg_getbool(cfg, "debug");
-	c->population_size = cfg_getint(cfg, "avg_population_size");
-	c->max_iterations = cfg_getint(cfg, "max_iterations");
-	c->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
-	c->mutation_strength = cfg_getfloat(cfg, "mutation_strength");	
-	
-	cfg_free(cfg);
-	    
+    cfg_t *cfg = cfg_init(opts, CFGF_NONE);
+    if(cfg_parse(cfg, conf_filename.c_str()) == CFG_PARSE_ERROR)
+        return 1;
+        
+    c->debug = cfg_getbool(cfg, "debug");
+    c->verbose = cfg_getbool(cfg, "verbose");
+    c->avg_population_size = cfg_getint(cfg, "avg_population_size");
+    c->max_iterations = cfg_getint(cfg, "max_iterations");
+    
+    c->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
+    c->mutation_strength = cfg_getfloat(cfg, "mutation_strength");    
+    c->mate_rate = cfg_getfloat(cfg, "mate_rate");
+    c->kill_rate = cfg_getfloat(cfg, "kill_rate");
+    
+    cfg_free(cfg);
+        
     return 0;    
+}
+
+void help_config()
+{
+
+
 }

@@ -1,7 +1,8 @@
 #ifndef GA_ENGINE_H
 #define GA_ENGINE_H
 
-#include <cmath>
+#include <cstdio>
+#include <iostream>
 
 #include "population.h"
 #include "config.h"
@@ -11,7 +12,7 @@ using namespace std;
 class ga_engine
 {
     uint32 iteration;
-    population p;
+    population *p;
     config *c;
     
     public:
