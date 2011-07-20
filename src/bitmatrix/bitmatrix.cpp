@@ -138,6 +138,23 @@ void bitmatrix::Resize(uint32 rows, uint32 cols)
 
 }
 
+string bitmatrix::GetCol(uint32 cols)
+{
+    string str;
+
+    if (cols >= m_cols)
+        return str;
+
+    
+    for (int i = 0; i < m_rows; i++)
+    {
+        str += (matrix[i][int(cols/8)] & uint8(1 << int(cols%8))) ? "1" : "0";
+        if (i < m_rows)
+            str +=",";
+    }
+    return str;
+}
+
 void bitmatrix::UnsetCol(uint32 cols)
 {
     if (cols >= m_cols)
@@ -197,6 +214,22 @@ void bitmatrix::SetCol(const string& str, uint32 cols)
 
         rows++;
     }
+}
+
+string bitmatrix::GetRow(uint32 rows)
+{
+    string str;
+
+    if (rows >= m_cols)
+        return str;
+
+    for (int i = 0; i < m_cols; i++)
+    {
+        str += (matrix[rows][int(i/8)] & uint8(1 << int(i%8))) ? "1" : "0";
+        if (i < m_cols)
+            str +=",";
+    }
+    return str;
 }
 
 void bitmatrix::UnsetRow(uint32 rows)
@@ -339,7 +372,7 @@ string bitmatrix::ToString() const
     {
         for (int j = 0; j < m_cols; j++)
         {
-            s += (matrix[i][int(j/8)] & uint8(1 << int(j%8)))?"1":"0";
+            s += (matrix[i][int(j/8)] & uint8(1 << int(j%8))) ? "1" : "0";
             if (j != (m_cols-1))
                 s +=",";
         }
