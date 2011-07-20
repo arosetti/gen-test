@@ -14,17 +14,14 @@ individual::~individual()
     delete chromosome;
 }
 
-/***chromosome***/
-
 string individual::get_chromosome() const
 {
     return chromosome->ToString();
 }
 
-void individual::set_chromosome(string c)
+void individual::set_chromosome(string str)
 {
-    //chromosome->Set(c); 
-    //da aggiungere la possibilità di passare stringhe in formato 0,1;1,0
+    chromosome->Import(str); 
 }
 
 uint32 individual::get_chromosome_length()  const
@@ -34,7 +31,8 @@ uint32 individual::get_chromosome_length()  const
 
 void individual::set_chromosome_length(uint32 l)
 {
-    chromosome_l = l; /* extend-reduce matrix*/
+    chromosome_l = l;
+    chromosome->Resize(chromosome->GetRows(), chromosome_l);
 }
 
 void individual::chromosome_random()
@@ -42,9 +40,16 @@ void individual::chromosome_random()
     chromosome->RandomizeAll();
 }
 
-void individual::chromosome_mutate()
+void individual::chromosome_mutate(uint32 mutation_strength)
 {
-    
+    uint8 count = mutation_strength>gene_l?gene_l:mutation_strength;
+    uint32 row_r,col_r;
+
+    row_r = rand()%chromosome_l + 1;
+    col_r = rand()%gene_l + 1;
+
+    while (count-- != 0)
+        chromosome->Flip(row_r,col_r);
 }
   
 float individual::get_fitness()  const
@@ -56,8 +61,6 @@ void individual::set_fitness(float f)
 {
     fitness = f;
 }
-
-/***gene***/
 
 string individual::get_gene(uint32 g)  const
 {
@@ -82,33 +85,31 @@ uint32  individual::get_gene_length()  const
 
 void  individual::set_gene_length(uint32 l)
 {
-    gene_l = l;  /* extend-reduce matrix */
+    gene_l = l;
+    chromosome->Resize(gene_l, chromosome->GetCols());
 }
 
 void individual::gene_mutate(uint32 g, uint32 mutation_strength)
 {
     uint8 count = mutation_strength>gene_l?gene_l:mutation_strength;
-    uint32 row_r,col_r;
-    
-    if ( g<0 || g>= gene_l )
+    uint32 col_r;
+
+    if (g<0 || g>= gene_l)
         return;
-    
-    row_r = rand()%chromosome_l + 1;
+
     col_r = rand()%gene_l + 1;
-    
+
     while (count-- != 0)
-        chromosome->Flip(row_r,col_r);
+        chromosome->Flip(g,col_r);
 }
 
 void individual::gene_random(uint32 g)
 {
-    if ( g>= gene_l )
+    if (g>= gene_l)
         return;
-    
+
     chromosome->RandomizeRow(g);
 }
-
-/***internal_stuff***/
 
 bool individual::operator < (const individual& i)
 {

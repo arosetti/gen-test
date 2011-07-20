@@ -1,5 +1,10 @@
-changeset:   44:b1cdf04e5a02
+changeset:   45:f8bba97ce8e0
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 19:31:40 2011 +0200
+sommario:    classe individual, utilizzo delle nuove funzioni di bitmatrix
+
+changeset:   44:b1cdf04e5a02
 utente:      Lazzalf
 data:        Wed Jul 20 19:22:31 2011 +0200
 sommario:    Bitmatrix
