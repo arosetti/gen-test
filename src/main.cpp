@@ -13,7 +13,7 @@ int main()
     
     cout << "gentest: Gentetic Algorithm implementation used to generate test patterns for fpga-like circuits" << endl << endl;
 
-    load_config("gentest.conf", &c);
+    load_config("config.conf", &c);
 
     cout << "do you want to change GA params? (y/n) ";
     cin  >> response;
