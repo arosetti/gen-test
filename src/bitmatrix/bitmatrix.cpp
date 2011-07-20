@@ -173,7 +173,7 @@ void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 cols)
 
 void bitmatrix::SetCol(string& str, uint32 cols)
 {
-    if (cols >= m_cols || str.length() < m_rows)
+    if (cols >= m_cols)
         return;
         
     const char* c_str = str.c_str();
@@ -183,6 +183,9 @@ void bitmatrix::SetCol(string& str, uint32 cols)
     for (int i = 0; c_str[i] != '\0'; i++)
     {
         if (i >= m_rows)
+            break;
+
+        if (i % 2)
             break;
             
         if (c_str[i] == '0')
@@ -223,7 +226,7 @@ void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 rows)
 
 void bitmatrix::SetRow(string& str, uint32 rows)
 {
-    if (rows >= m_rows || str.length() < m_cols)
+    if (rows >= m_rows)
         return;
         
     const char* c_str = str.c_str();
@@ -233,6 +236,9 @@ void bitmatrix::SetRow(string& str, uint32 rows)
     for (int i = 0; c_str[i] != '\0'; i++)
     {
         if (i >= m_cols)
+            break;
+
+        if (i % 2)
             break;
             
         if (c_str[i] == '0')
