@@ -5,7 +5,6 @@
 #include <iostream>
 
 #include "population.h"
-#include "config.h"
 
 using namespace std;
 

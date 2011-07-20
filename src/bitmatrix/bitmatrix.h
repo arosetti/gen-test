@@ -2,6 +2,7 @@
 #define BITMATRIX_H
 
 #include <cstdio>
+#include <iostream>
 #include <cstdlib>
 #include <string>
 

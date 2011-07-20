@@ -6,6 +6,7 @@
 #include <list>
 
 #include "individual.h"
+#include "config.h"
 
 using namespace std;
 
@@ -16,13 +17,15 @@ class population
 
     list<individual*> pool;
     list<individual*> limbo;
- 
+
+    config *conf;
+
     individual* get_random_individual() const;
     individual* new_random_individual();
     void crossover(individual*, individual*);
 
     public:
-    population(uint32 size, uint32 c_l, uint32 g_l);
+    population(config *c);
     ~population();
 
     void    new_random_population();
@@ -32,7 +35,7 @@ class population
     void    sort_by_fitness();
 
     void    mate_individuals(uint32);
-    void    mutate_individuals(uint32);
+    void    mutate_individuals(uint32) const;
     void    kill_individuals(uint32);
 
     uint32  count_individuals() const;

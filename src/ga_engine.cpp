@@ -17,7 +17,7 @@ void ga_engine::init(config *c)
 
     if (conf->verbose)
         cout << "init population" << endl;
-    pop = new population(conf->avg_population_size, conf->gene_length, conf->chromosome_length);
+    pop = new population(conf);
     
     if (conf->verbose)
         cout << "selecting " << conf->avg_population_size << " random individuals..." << endl;

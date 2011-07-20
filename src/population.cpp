@@ -1,19 +1,27 @@
 #include "population.h"
 
-population::population(uint32 size, uint32 c_l, uint32 g_l)
+population::population(config *c)
 {
-    population::size=size;
-    
-    if (g_l > 0)
-        gene_l = g_l;
+    if (c)
+        conf = c;
+    else
+    {
+        cout << "null config pointer!" << endl;
+        exit(0);
+    }
+
+    size = conf->avg_population_size;
+
+    if (conf->gene_length > 0)
+        gene_l = conf->gene_length;
     else
     {
         cout << "can't use zero gene length" << endl;
         exit(0);
     }
-    
-    if (g_l > 0)
-        chromosome_l = c_l;
+
+    if (conf->chromosome_length > 0)
+        chromosome_l = conf->chromosome_length;
     else
     {
         cout << "can't use zero chromosome length" << endl;
@@ -102,9 +110,30 @@ void population::mate_individuals(uint32 how_many)
 }
 
 
-void population::mutate_individuals(uint32 strength)
+void population::mutate_individuals(uint32 strength) const
 {
+    list<individual*>::const_iterator it = pool.begin();
+    float mutate_probability = conf->mutation_rate*100;
+    float rnd;
+    
+    while (it++ != pool.end())
+    {
+        rnd = rand()%100 + 1; 
+        
+        if (conf->debug)
+            cout << "mutation_iteration: " << mutate_probability << ">" << rnd << "?" << endl;
+        
+        if (mutate_probability > rnd)
+        {
+            if (conf->debug)
+                cout << "mutation_before:"<< endl << (*it)->get_chromosome();
 
+            (*it)->chromosome_mutate(conf->mutation_strength);
+
+            if (conf->debug)
+                cout << "mutation_after:"<< endl << (*it)->get_chromosome();
+        }
+    }  
 }
 
 void population::kill_individuals(uint32 rate)
