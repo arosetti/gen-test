@@ -63,14 +63,16 @@ string individual::get_gene(uint32 g)  const
 {
     if (g>= chromosome_l)
         return "";
-    //return chromosome->GetRow(g);
+        
+    return chromosome->GetRow(g);
 }
 
 void individual::set_gene(uint32 g, string s)
 {
     if (g>= chromosome_l)
         return;
-    //chromosome[i] = s;
+        
+    chromosome->SetRow(s,g);
 }
 
 uint32  individual::get_gene_length()  const
@@ -82,7 +84,6 @@ void  individual::set_gene_length(uint32 l)
 {
     gene_l = l;  /* extend-reduce matrix */
 }
-
 
 void individual::gene_mutate(uint32 g, uint32 mutation_strength)
 {
@@ -104,7 +105,7 @@ void individual::gene_random(uint32 g)
     if ( g>= gene_l )
         return;
     
-    // chromosome[g].Random();
+    chromosome->RandomizeRow(g);
 }
 
 /***internal_stuff***/

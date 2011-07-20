@@ -18,7 +18,7 @@ class individual
     individual(uint32,uint32);
     ~individual();
     individual(const individual&);
-    
+
     string  get_chromosome() const;
     void    set_chromosome(string);
     uint32  get_chromosome_length() const;
