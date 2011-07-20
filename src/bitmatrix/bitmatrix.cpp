@@ -157,7 +157,7 @@ void bitmatrix::StringToRow(string& str, uint32 rows)
     if (rows >= m_rows || str.length() < m_cols)
         return;
         
-    char* c_str = code.c_str();
+    const char* c_str = str.c_str();
     if (!c_str)
         return;
     
@@ -178,7 +178,7 @@ void bitmatrix::StringToCol(string& str, uint32 cols)
     if (cols >= m_cols || str.length() < m_rows)
         return;
         
-    char* c_str = code.c_str();
+    const char* c_str = str.c_str();
     if (!c_str)
         return;
     
