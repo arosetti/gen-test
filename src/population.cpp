@@ -4,7 +4,7 @@ population::population(uint32 size, uint32 c_l, uint32 g_l)
 {
     population::size=size;
     
-    if(g_l > 0)
+    if (g_l > 0)
         gene_l = g_l;
     else
     {
@@ -12,7 +12,7 @@ population::population(uint32 size, uint32 c_l, uint32 g_l)
         exit(0);
     }
     
-    if(g_l > 0)
+    if (g_l > 0)
         chromosome_l = c_l;
     else
     {
@@ -23,9 +23,9 @@ population::population(uint32 size, uint32 c_l, uint32 g_l)
 
 population::~population()
 {
-    for(list<individual*>::iterator it = pool.begin(); it != pool.end(); it++)
+    for (list<individual*>::iterator it = pool.begin(); it != pool.end(); it++)
     {
-        if(*it) 
+        if (*it) 
             delete *it;
     }
 }
@@ -37,7 +37,7 @@ individual* population::get_random_individual() const
     
     
     list<individual*>::const_iterator it = pool.begin();
-    while(it != pool.end())
+    while (it != pool.end())
     {
         if (count == rnd)
         {
@@ -65,7 +65,7 @@ void population::new_random_population()
 {
     int created = 0;
     
-    while( (created++) < size )
+    while (created++ < size)
         pool.push_back(new_random_individual());
 }
 
@@ -74,12 +74,15 @@ float population::get_avg_fitness() const
     float sum_fitness = 0;
     list<individual*>::const_iterator it = pool.begin();
     
-    while(it++ != pool.end())
+    while (it++ != pool.end())
     {
         sum_fitness+=(*it)->get_fitness();
     }  
     
-    return sum_fitness/pool.size();
+    if (pool.size() == 0)
+        return 0;
+    else 
+        return sum_fitness/pool.size();
 }
 
 float population::get_best_fitness() const

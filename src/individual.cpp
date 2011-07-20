@@ -96,7 +96,7 @@ void individual::gene_mutate(uint32 g, uint32 mutation_strength)
     row_r = rand()%chromosome_l + 1;
     col_r = rand()%gene_l + 1;
     
-    while(count-- != 0)
+    while (count-- != 0)
         chromosome->Flip(row_r,col_r);
 }
 
