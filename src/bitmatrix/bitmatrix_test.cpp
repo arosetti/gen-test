@@ -32,7 +32,7 @@ int main()
     printf("\n");
     
     b2.FlipAll();
-    b2.Print();*/
+    b2.Print();
     
     printf("\n");        
     b2.RandomizeAll();
@@ -51,6 +51,14 @@ int main()
     printf("\n");
     b2.Print();    
     printf("\n");
+
+    */
+    b1.RandomizeAll();
+    b1.Print();
+    printf("\n");
+    b1.Resize(5,2);
+    b1.Print();
+    printf("\n");    
     
     // s = b2.ToString();
     // printf("%s\n",s.c_str());
