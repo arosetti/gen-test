@@ -23,7 +23,7 @@ int main()
     cout << endl;
     
     // sistema di input temporaneo
-    if(response == "y") 
+    if (response == "y" || response == "Y") 
     {
         cout << "chromosome_length: ";
         cin  >> value;
