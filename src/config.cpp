@@ -8,7 +8,8 @@ bool load_config(string conf_filename, config *c)
     {
         CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
-        CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),    
+        CFG_BOOL((char*)"print_best_chromosome",(cfg_bool_t)false, CFGF_NONE),
+        CFG_BOOL((char*)"print_best_fitness",(cfg_bool_t)true, CFGF_NONE),
         
         CFG_INT((char*)"avg_population_size", 4096, CFGF_NONE),
         CFG_INT((char*)"max_iterations",  8192, CFGF_NONE),
@@ -24,11 +25,14 @@ bool load_config(string conf_filename, config *c)
     
     cfg_t *cfg = cfg_init(opts, CFGF_NONE);
     if(cfg_parse(cfg, conf_filename.c_str()) == CFG_PARSE_ERROR)
-        return 1;
+    {
+        exit(0);    
+    }
         
     c->debug = cfg_getbool(cfg, "debug");
     c->verbose = cfg_getbool(cfg, "verbose");
-    c->print_best = cfg_getbool(cfg, "print_best");
+    c->print_best_chromosome = cfg_getbool(cfg, "print_best_chromosome");
+    c->print_best_fitness = cfg_getbool(cfg, "print_best_fitness");
     
     c->avg_population_size = cfg_getint(cfg, "avg_population_size");
     c->max_iterations = cfg_getint(cfg, "max_iterations");

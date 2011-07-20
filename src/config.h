@@ -1,14 +1,15 @@
+#include <cstdlib>
 #include <string>
 #include <confuse.h>
 
-#include "typedefs.h"
+#include "common/typedefs.h"
 
 using namespace std;
 
 typedef struct config 
 {
-    bool debug,verbose;
-    bool print_best;
+    bool debug, verbose;
+    bool print_best_chromosome, print_best_fitness;
     
     uint32 max_iterations;
     

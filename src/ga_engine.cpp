@@ -43,12 +43,14 @@ void ga_engine::evolve()
 	{
 		best_fitness = p->get_best_fitness();
 		
-		if(c->verbose)
+		if(c->verbose && c->print_best_fitness)
 		    cout << "best_fitness: " << best_fitness << endl;
-		
+
 		p->sort_by_fitness();
-		if(c->print_best)
+		
+		if(c->verbose && c->print_best_chromosome)
 		    p->print_best_individual();
+		    
 		p->mate_individuals(c->mate_rate);
 		p->kill_individuals(c->kill_rate);
 		p->mutate_individuals(c->mutation_rate);
