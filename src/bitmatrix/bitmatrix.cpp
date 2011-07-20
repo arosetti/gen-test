@@ -4,10 +4,10 @@ bitmatrix::bitmatrix(uint32 rows, uint32 cols)
 {        
     m_rows = (rows ? rows : 1);
     m_cols = (cols ? cols : 1);
-    m_cell = int(m_cols/8) + (int(m_cols%8) ? 1 : 0);
+    m_cells = int(m_cols/8) + (int(m_cols%8) ? 1 : 0);
     matrix = new uint8*[m_rows];
     for (int i = 0; i < m_rows; i++)	
-       matrix[i] = new uint8[m_cell];
+       matrix[i] = new uint8[m_cells];
 }
 
 bitmatrix::~bitmatrix()
@@ -66,7 +66,7 @@ void bitmatrix::Flip(uint32 rows, uint32 cols)
 void bitmatrix::RandomizeAll()
 {
     for (int i = 0; i < m_rows; i++)
-        for (int j = 0; j < m_cell; j++)
+        for (int j = 0; j < m_cells; j++)
         {
              matrix[i][j] = uint8(rand()%256);
         }
@@ -75,7 +75,7 @@ void bitmatrix::RandomizeAll()
 void bitmatrix::SetAll()
 {
     for (int i = 0; i < m_rows; i++)
-        for (int j = 0; j < m_cell; j++)
+        for (int j = 0; j < m_cells; j++)
         {
              matrix[i][j] = uint8(255); // 11111111
         }
@@ -84,7 +84,7 @@ void bitmatrix::SetAll()
 void bitmatrix::UnsetAll()
 {
     for (int i = 0; i < m_rows; i++)
-        for (int j = 0; j < m_cell; j++)
+        for (int j = 0; j < m_cells; j++)
         {
              matrix[i][j] = uint8(0); // 00000000
         }
@@ -93,7 +93,7 @@ void bitmatrix::UnsetAll()
 void bitmatrix::FlipAll()
 {
     for (int i = 0; i < m_rows; i++)
-        for (int j = 0; j < m_cell; j++)
+        for (int j = 0; j < m_cells; j++)
         {
              matrix[i][j] = ~uint8(matrix[i][j]);
         }
@@ -119,9 +119,36 @@ void bitmatrix::SetRow(bitmatrix& bin_mat, uint32 rows)
     if (bin_mat.GetRows() < m_rows || rows >= m_rows)
         return;
 
-    for (int j = 0; j < m_cell; j++) 
+    for (int j = 0; j < m_cells; j++) 
     {    
         matrix[rows][j] = bin_mat.matrix[rows][j];
+    }
+}
+
+void bitmatrix::Import(bitmatrix& bin_mat)
+{
+    uint32 max_rows = (m_rows > bin_mat.GetRows() ? bin_mat.GetRows() : m_rows);
+    uint32 max_cells  = (m_cells > bin_mat.GetCells() ? bin_mat.GetCells() : m_cells);
+    uint8 mask = 0;
+    
+    if ((bin_mat.GetCols() < m_cols)
+    {
+        for (int i = 0; i < (bin_mat.GetCols()%8); i++) 
+            mask |= uint8(1 << i);
+    }    
+    
+    for (int i = 0; i < max_rows; i++) 
+    {
+        for (int j = 0; j < max_cells; j++)
+        {
+            if (mask && (j == max_cells - 1))
+            {   
+                matrix[i][j] &= ~mask;
+                matrix[i][j] |= bin_mat.matrix[i][j] & mask;                
+            }           
+            else
+                matrix[i][j] = bin_mat.matrix[i][j];
+        }        
     }
 }
 
