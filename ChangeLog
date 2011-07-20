@@ -1,5 +1,23 @@
-changeset:   45:f8bba97ce8e0
+changeset:   48:f7d0f93474b3
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 21:11:53 2011 +0200
+sommario:    bitmatrix cleanup variabili e una piccola ottimizzazione
+
+changeset:   47:3dc5f108e87b
+genitore:    46:8457f0736bac
+genitore:    45:f8bba97ce8e0
+utente:      Lazzalf
+data:        Wed Jul 20 19:52:54 2011 +0200
+sommario:    Merge
+
+changeset:   46:8457f0736bac
+genitore:    44:b1cdf04e5a02
+utente:      Lazzalf
+data:        Wed Jul 20 19:52:17 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   45:f8bba97ce8e0
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 19:31:40 2011 +0200
 sommario:    classe individual, utilizzo delle nuove funzioni di bitmatrix
