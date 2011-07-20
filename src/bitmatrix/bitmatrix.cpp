@@ -131,7 +131,20 @@ void bitmatrix::FlipAll()
 
 void bitmatrix::Resize(uint32 rows, uint32 cols)
 {
+    bitmatrix temp(*this);
+    
+     for (int i = 0; i < m_rows; i++)	
+        delete matrix[i];
+    delete matrix;
 
+    m_rows = (rows ? rows : 1);
+    m_cols = (cols ? cols : 1);
+    m_cells = int(m_cols/8) + (int(m_cols%8) ? 1 : 0);
+    matrix = new uint8*[m_rows];
+    for (int i = 0; i < m_rows; i++)	
+       matrix[i] = new uint8[m_cells];
+
+   Import(temp);   
 }
 
 string bitmatrix::GetCol(uint32 cols)
@@ -375,4 +388,22 @@ string bitmatrix::ToString() const
         s+="\n";
     }
     return s;
+}
+
+const bitmatrix& bitmatrix::operator=(const bitmatrix& bit_mat) 
+{
+    for (int i = 0; i < m_rows; i++)	
+        delete matrix[i];
+    delete matrix;
+
+    m_rows = bit_mat.m_rows;
+    m_cols = bit_mat.m_cols;
+    m_cells = bit_mat.m_cells;
+    matrix = new uint8*[m_rows];
+    for (int i = 0; i < m_rows; i++)	
+       matrix[i] = new uint8[m_cells];
+
+    Import(bit_mat);
+
+    return bit_mat;
 }

@@ -67,6 +67,8 @@ class bitmatrix
         
         void    Print() const;
         string  ToString() const;
+
+        const bitmatrix& operator=(const bitmatrix& bit_mat);
         
     private:
         uint8** matrix; 
