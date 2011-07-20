@@ -45,7 +45,7 @@ individual* population::get_random_individual() const
     
     
     list<individual*>::const_iterator it = pool.begin();
-    while (it != pool.end())
+    for (it = pool.begin(); it!=pool.end(); ++it)
     {
         if (count == rnd)
         {
@@ -53,7 +53,6 @@ individual* population::get_random_individual() const
             break;
         }
         count++;
-        it++;
     }  
     
     return i;
@@ -82,7 +81,7 @@ float population::get_avg_fitness() const
     float sum_fitness = 0;
     list<individual*>::const_iterator it = pool.begin();
     
-    while (it++ != pool.end())
+    for (it = pool.begin(); it!=pool.end(); ++it)
     {
         sum_fitness+=(*it)->get_fitness();
     }  
@@ -115,8 +114,9 @@ void population::mutate_individuals(uint32 strength) const
     list<individual*>::const_iterator it = pool.begin();
     float mutate_probability = conf->mutation_rate*100;
     float rnd;
+    uint32 count = 0 ;
     
-    while (it++ != pool.end())
+    for (it = pool.begin(); it!=pool.end(); ++it)
     {
         rnd = rand()%100 + 1; 
         
@@ -133,6 +133,7 @@ void population::mutate_individuals(uint32 strength) const
             if (conf->debug)
                 cout << "mutation_after:"<< endl << (*it)->get_chromosome();
         }
+        count++;
     }  
 }
 

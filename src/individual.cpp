@@ -45,11 +45,17 @@ void individual::chromosome_mutate(uint32 mutation_strength)
     uint8 count = mutation_strength>gene_l?gene_l:mutation_strength;
     uint32 row_r,col_r;
 
-    row_r = rand()%chromosome_l + 1;
-    col_r = rand()%gene_l + 1;
+
 
     while (count-- != 0)
+    {
+        row_r = rand()%chromosome_l + 1;
+        col_r = rand()%gene_l + 1;
+        
+        //cout "mutation at "<< row_r << "-" <<col_r << endl;
+        
         chromosome->Flip(row_r,col_r);
+    }
 }
   
 float individual::get_fitness()  const
