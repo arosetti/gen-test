@@ -117,26 +117,18 @@ void population::mutate_individuals(uint32 strength) const
     list<individual*>::const_iterator it = pool.begin();
     float mutate_probability = conf->mutation_rate*100;
     float rnd;
-    uint32 count = 0 ;
     
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
         rnd = rand()%100 + 1; 
         
-        //if (conf->debug)
-        //    cout << "mutation_iteration: " << mutate_probability << ">" << rnd << "?" << endl;
-        
         if (mutate_probability > rnd)
         {
-            //if (conf->debug)
-            //    cout << "mutation_before:"<< endl << (*it)->get_chromosome();
+            if (conf->verbose && conf->print_mutations)
+                cout << "mutation event!"<<endl;
 
             (*it)->chromosome_mutate(conf->mutation_strength);
-
-            //if (conf->debug)
-            //    cout << "mutation_after:"<< endl << (*it)->get_chromosome();
         }
-        count++;
     }  
 }
 

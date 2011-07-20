@@ -1,5 +1,10 @@
-changeset:   56:05ac5c60d8ae
+changeset:   57:a23818a2b607
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 01:10:54 2011 +0200
+sommario:    implementeta population::kill_individuals versione semplice
+
+changeset:   56:05ac5c60d8ae
 genitore:    55:dfc79ba499cf
 genitore:    54:5a9f9917dcd4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

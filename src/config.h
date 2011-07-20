@@ -11,6 +11,7 @@ typedef struct config
     bool debug, verbose;
     bool print_best_chromosome, print_best_fitness;
     bool print_population_size, print_kills;
+    bool print_mutations;
     
     uint32 max_iterations;
     
