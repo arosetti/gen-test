@@ -34,27 +34,27 @@ class bitmatrix
             return m_cells;        
         }
    
-        void    Randomize(uint32 rows, uint32 cols);        
-        bool    Get(uint32 rows, uint32 cols) const;
-        void    Set(uint32 rows, uint32 cols);        
-        void    Unset(uint32 rows, uint32 cols);
-        void    Flip(uint32 rows, uint32 cols);          
+        void    Randomize(uint32 row, uint32 col);        
+        bool    Get(uint32 row, uint32 col) const;
+        void    Set(uint32 row, uint32 col);        
+        void    Unset(uint32 row, uint32 col);
+        void    Flip(uint32 row, uint32 col);          
        
-        string  GetCol(uint32 cols);
-        void    UnsetCol(uint32 cols);
-        void    SetCol(uint32 cols);
-        void    SetCol(const bitmatrix& bin_mat, uint32 cols);
+        string  GetCol(uint32 col);
+        void    UnsetCol(uint32 col);
+        void    SetCol(uint32 col);
+        void    SetCol(const bitmatrix& bin_mat, uint32 col);
         // Formato Stringa 0,1,0,1,0,0
-        void    SetCol(const string& str, uint32 rows);
-        void    RandomizeCol(uint32 cols);
+        void    SetCol(const string& str, uint32 row);
+        void    RandomizeCol(uint32 col);
 
-        string  GetRow(uint32 rows);
-        void    UnsetRow(uint32 rows);      
-        void    SetRow(uint32 rows);        
-        void    SetRow(const bitmatrix& bin_mat, uint32 rows);
+        string  GetRow(uint32 row);
+        void    UnsetRow(uint32 row);      
+        void    SetRow(uint32 row);        
+        void    SetRow(const bitmatrix& bin_mat, uint32 row);
         // Formato Stringa 0,1,0,1,0,0      
-        void    SetRow(const string& str, uint32 cols);
-        void    RandomizeRow(uint32 rows);
+        void    SetRow(const string& str, uint32 col);
+        void    RandomizeRow(uint32 row);
 
         void    RandomizeAll();
         void    SetAll();        

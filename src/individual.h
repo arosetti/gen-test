@@ -24,7 +24,7 @@ class individual
     uint32  get_chromosome_length() const;
     void    set_chromosome_length(uint32);
     void    chromosome_random();
-    void    chromosome_mutate();
+    void    chromosome_mutate(uint32);
 
     float   get_fitness() const;
     void    set_fitness(float);

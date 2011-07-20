@@ -29,68 +29,65 @@ bitmatrix::~bitmatrix()
     delete matrix;
 }
 
-void bitmatrix::Randomize(uint32 rows, uint32 cols)
+void bitmatrix::Randomize(uint32 row, uint32 col)
 {
-    if (rows >= m_rows || cols >= m_cols)
+    if (row >= m_rows || col >= m_cols)
         return;
     
     if (rand()%2)
-        Unset(rows, cols);
+        Unset(row, col);
     else
-        Set(rows, cols);    
+        Set(row, col);    
 }
 
-bool bitmatrix::Get(uint32 rows, uint32 cols) const
+bool bitmatrix::Get(uint32 row, uint32 col) const
 {
-    if (rows >= m_rows || cols >= m_cols)
+    if (row >= m_rows || col >= m_cols)
         return false;
           
-    return matrix[rows][int(cols/8)] & uint8(1 << int(cols%8));
+    return matrix[row][int(col/8)] & uint8(1 << int(col%8));
 }
 
-void bitmatrix::Set(uint32 rows, uint32 cols)
+void bitmatrix::Set(uint32 row, uint32 col)
 {
-    if (rows >= m_rows || cols >= m_cols)
+    if (row >= m_rows || col >= m_cols)
         return;
         
-    matrix[rows][int(cols/8)] |= uint8(1 << int(cols%8));
+    matrix[row][int(col/8)] |= uint8(1 << int(col%8));
 }
 
-void bitmatrix::Unset(uint32 rows, uint32 cols)
+void bitmatrix::Unset(uint32 row, uint32 col)
 {
-    if (rows >= m_rows || cols >= m_cols)
+    if (row >= m_rows || col >= m_cols)
         return;
         
-    matrix[rows][int(cols/8)] &= ~uint8(1 << int(cols%8));
+    matrix[row][int(col/8)] &= ~uint8(1 << int(col%8));
 }
 
-void bitmatrix::Flip(uint32 rows, uint32 cols)
+void bitmatrix::Flip(uint32 row, uint32 col)
 {
-    if (rows >= m_rows || cols >= m_cols)
+    if (row >= m_rows || col >= m_cols)
         return;
         
-    if (matrix[rows][int(cols/8)] & uint8(1 << int(cols%8)))
-        Unset(rows, cols);
-    else
-        Set(rows, cols);
+    matrix[row][int(col/8)] &= ~matrix[row][int(col/8)];
 }
 
-void bitmatrix::RandomizeCol(uint32 cols)
+void bitmatrix::RandomizeCol(uint32 col)
 {
-    if (cols >= m_cols)
+    if (col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++)
-        Randomize(i, cols);
+        Randomize(i, col);
 }
 
-void bitmatrix::RandomizeRow(uint32 rows)
+void bitmatrix::RandomizeRow(uint32 row)
 {
-    if (rows >= m_rows)
+    if (row >= m_rows)
         return;
 
     for (uint32 i = 0; i < m_cells; i++)
-        matrix[rows][i] = uint8(rand()%256);
+        matrix[row][i] = uint8(rand()%256);
 }
 
 void bitmatrix::RandomizeAll()
@@ -147,153 +144,153 @@ void bitmatrix::Resize(uint32 rows, uint32 cols)
    Import(temp);   
 }
 
-string bitmatrix::GetCol(uint32 cols)
+string bitmatrix::GetCol(uint32 col)
 {
     string str;
 
-    if (cols >= m_cols)
+    if (col >= m_cols)
         return str;
     
     for (uint32 i = 0; i < m_rows; i++)
     {
-        str += (matrix[i][int(cols/8)] & uint8(1 << int(cols%8))) ? "1" : "0";
+        str += (matrix[i][int(col/8)] & uint8(1 << int(col%8))) ? "1" : "0";
         if (i < (m_rows - 1))
             str +=",";
     }
     return str;
 }
 
-void bitmatrix::UnsetCol(uint32 cols)
+void bitmatrix::UnsetCol(uint32 col)
 {
-    if (cols >= m_cols)
+    if (col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++)
-        Unset(i, cols);
+        Unset(i, col);
 }
 
-void bitmatrix::SetCol(uint32 cols)
+void bitmatrix::SetCol(uint32 col)
 {
-    if (cols >= m_cols)
+    if (col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++)
-        Set(i, cols);
+        Set(i, col);
 }
 
-void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 cols)
+void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 col)
 {
-    if (bin_mat.GetRows() < m_rows || cols >= m_cols)
+    if (bin_mat.GetRows() < m_rows || col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++) 
     {    
-        uint8 mask = bin_mat.matrix[i][int(cols/8)] & uint8(1 << int(cols%8));
+        uint8 mask = bin_mat.matrix[i][int(col/8)] & uint8(1 << int(col%8));
         if (mask)
-            matrix[i][int(cols/8)] |= uint8(1 << int(cols%8));
+            matrix[i][int(col/8)] |= uint8(1 << int(col%8));
         else 
-            matrix[i][int(cols/8)] &= ~uint8(1 << int(cols%8));
+            matrix[i][int(col/8)] &= ~uint8(1 << int(col%8));
     }
 }
 
-void bitmatrix::SetCol(const string& str, uint32 cols)
+void bitmatrix::SetCol(const string& str, uint32 col)
 {
-    if (cols >= m_cols)
+    if (col >= m_cols)
         return;
         
     const char* c_str = str.c_str();
     if (!c_str)
         return;
 
-    uint32 rows = 0;
+    uint32 row = 0;
     
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {    
         if (c_str[i] == ',')
             continue;        
 
-        if (rows >= m_rows)
+        if (row >= m_rows)
             break;
             
         if (c_str[i] == '0')
-            Unset(rows, cols);
+            Unset(row, col);
         else // qualsiasi cifra che non sia 0 viene considerata 1
-            Set(rows, cols);
+            Set(row, col);
 
-        rows++;
+        row++;
     }
 }
 
-string bitmatrix::GetRow(uint32 rows)
+string bitmatrix::GetRow(uint32 row)
 {
     string str;
 
-    if (rows >= m_cols)
+    if (row >= m_cols)
         return str;
 
     for (uint32 i = 0; i < m_cols; i++)
     {
-        str += (matrix[rows][int(i/8)] & uint8(1 << int(i%8))) ? "1" : "0";
+        str += (matrix[row][int(i/8)] & uint8(1 << int(i%8))) ? "1" : "0";
         if (i < (m_cols - 1))
             str +=",";
     }
     return str;
 }
 
-void bitmatrix::UnsetRow(uint32 rows)
+void bitmatrix::UnsetRow(uint32 row)
 {
-    if (rows >= m_rows)
+    if (row >= m_rows)
         return;
 
     for (uint32 i = 0; i < m_cells; i++)
-        matrix[rows][i] = uint8(0); // 00000000
+        matrix[row][i] = uint8(0); // 00000000
 }
 
-void bitmatrix::SetRow(uint32 rows)
+void bitmatrix::SetRow(uint32 row)
 {
-    if (rows >= m_rows)
+    if (row >= m_rows)
         return;
 
     for (uint32 i = 0; i < m_cells; i++)
-        matrix[rows][i] = uint8(255); // 11111111
+        matrix[row][i] = uint8(255); // 11111111
 }
 
-void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 rows)
+void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 row)
 {
-    if (bin_mat.GetCols() < m_cols || rows >= m_rows)
+    if (bin_mat.GetCols() < m_cols || row >= m_rows)
         return;
 
     for (uint32 j = 0; j < m_cells; j++) 
     {    
-        matrix[rows][j] = bin_mat.matrix[rows][j];
+        matrix[row][j] = bin_mat.matrix[row][j];
     }
 }
 
-void bitmatrix::SetRow(const string& str, uint32 rows)
+void bitmatrix::SetRow(const string& str, uint32 row)
 {
-    if (rows >= m_rows)
+    if (row >= m_rows)
         return;
         
     const char* c_str = str.c_str();
     if (!c_str)
         return;
 
-    uint32 cols = 0;
+    uint32 col = 0;
     
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
         if (c_str[i] == ',')
             continue;        
 
-        if (cols >= m_cols)
+        if (col >= m_cols)
             break;        
             
         if (c_str[i] == '0')
-            Unset(rows, cols);
+            Unset(row, col);
         else // qualsiasi cifra che non sia 0 viene considerata 1
-            Set(rows, cols);
+            Set(row, col);
 
-        cols++;
+        col++;
     }
 }
 
@@ -303,8 +300,8 @@ void bitmatrix::Import(const string& str)
     if (!c_str)
         return;
 
-    uint32 rows = 0;
-    uint32 cols = 0;
+    uint32 row = 0;
+    uint32 col = 0;
     
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
@@ -313,24 +310,24 @@ void bitmatrix::Import(const string& str)
      
         if (c_str[i] == '\n')
         {
-            rows++;
+            row++;
 
-            if (rows >= m_rows)
+            if (row >= m_rows)
                 break;
 
-            cols = 0;
+            col = 0;
             continue;
         }
         
-        if (cols >= m_cols)
+        if (col >= m_cols)
             continue;       
             
         if (c_str[i] == '0')
-            Unset(rows, cols);
+            Unset(row, col);
         else // qualsiasi cifra che non sia 0 viene considerata 1
-            Set(rows, cols);
+            Set(row, col);
 
-        cols++;
+        col++;
     }
 }
 

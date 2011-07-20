@@ -13,7 +13,7 @@ int main()
     string s("1,1\n1,1,1,1\n0,0");
     
     srand(time(NULL));
-   /* 
+
     b1.Set(0,0);
     b1.Unset(0,1);
     b1.Set(0,2);
@@ -52,7 +52,7 @@ int main()
     b2.Print();    
     printf("\n");
 
-    */
+
     b1.RandomizeAll();
     b1.Print();
     printf("\n");
