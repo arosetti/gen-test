@@ -20,11 +20,16 @@ class bitmatrix
         uint32 GetRows()
         {
             return m_rows;        
-        }
+        }  
         
         uint32 GetCols()
         {
             return m_cols;        
+        }
+        
+        uint32 GetCells()
+        {
+            return m_cells;        
         }
    
         void    Randomize(uint32 rows, uint32 cols);        
@@ -40,6 +45,7 @@ class bitmatrix
         
         void    SetCol(bitmatrix& bin_mat, uint32 cols);
         void    SetRow(bitmatrix& bin_mat, uint32 rows);
+        void    Import(bitmatrix& bin_mat)
         
         void    Print();
         string  ToString();
@@ -49,7 +55,7 @@ class bitmatrix
         uint32  m_rows;
         uint32  m_cols;
         
-        uint32  m_cell;
+        uint32  m_cells;
 };
 
 #endif
