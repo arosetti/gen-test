@@ -101,7 +101,7 @@ void bitmatrix::FlipAll()
 
 void bitmatrix::SetCol(bitmatrix& bin_mat, uint32 cols)
 {
-    if (bin_mat.GetCols() < m_cols || cols >= m_cols)
+    if (bin_mat.GetRows() < m_rows || cols >= m_cols)
         return;
 
     for (int i = 0; i < m_rows; i++) 
@@ -116,7 +116,7 @@ void bitmatrix::SetCol(bitmatrix& bin_mat, uint32 cols)
 
 void bitmatrix::SetRow(bitmatrix& bin_mat, uint32 rows)
 {
-    if (bin_mat.GetRows() < m_rows || rows >= m_rows)
+    if (bin_mat.GetCols() < m_cols || rows >= m_rows)
         return;
 
     for (int j = 0; j < m_cells; j++) 
@@ -149,6 +149,48 @@ void bitmatrix::Import(bitmatrix& bin_mat)
             else
                 matrix[i][j] = bin_mat.matrix[i][j];
         }        
+    }
+}
+
+void bitmatrix::StringToRow(string& str, uint32 rows)
+{
+    if (rows >= m_rows || str.length() < m_cols)
+        return;
+        
+    char* c_str = code.c_str();
+    if (!c_str)
+        return;
+    
+    for (int i = 0; c_str[i] != '\0'; i++)
+    {
+        if (i >= m_cols)
+            break;
+            
+        if (c_str[i] == '0')
+            Unset(rows, i);
+        else // qualsiasi cifra che non sia 0 viene considerata 1
+            Set(rows, i);
+    }
+}
+
+void bitmatrix::StringToCol(string& str, uint32 cols)
+{
+    if (cols >= m_cols || str.length() < m_rows)
+        return;
+        
+    char* c_str = code.c_str();
+    if (!c_str)
+        return;
+    
+    for (int i = 0; c_str[i] != '\0'; i++)
+    {
+        if (i >= m_rows)
+            break;
+            
+        if (c_str[i] == '0')
+            Unset(i, cols);
+        else // qualsiasi cifra che non sia 0 viene considerata 1
+            Set(i, cols);
     }
 }
 
