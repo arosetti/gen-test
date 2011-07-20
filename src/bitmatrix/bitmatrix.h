@@ -14,6 +14,7 @@ using namespace std;
 class bitmatrix
 {    
     public:
+
         bitmatrix(uint32 rows, uint32 cols);
         bitmatrix(const bitmatrix &bit_mat);   
         ~bitmatrix();
@@ -37,16 +38,7 @@ class bitmatrix
         bool    Get(uint32 rows, uint32 cols) const;
         void    Set(uint32 rows, uint32 cols);        
         void    Unset(uint32 rows, uint32 cols);
-        void    Flip(uint32 rows, uint32 cols);
-
-        void    RandomizeCol(uint32 cols);
-        void    RandomizeRow(uint32 rows);
-        
-        void    RandomizeAll();
-        void    SetAll();        
-        void    UnsetAll();
-        void    FlipAll();
-        void    Resize(uint32 rows, uint32 cols);
+        void    Flip(uint32 rows, uint32 cols);          
        
         string  GetCol(uint32 cols);
         void    UnsetCol(uint32 cols);
@@ -54,6 +46,7 @@ class bitmatrix
         void    SetCol(const bitmatrix& bin_mat, uint32 cols);
         // Formato Stringa 0,1,0,1,0,0
         void    SetCol(const string& str, uint32 rows);
+        void    RandomizeCol(uint32 cols);
 
         string  GetRow(uint32 rows);
         void    UnsetRow(uint32 rows);      
@@ -61,20 +54,25 @@ class bitmatrix
         void    SetRow(const bitmatrix& bin_mat, uint32 rows);
         // Formato Stringa 0,1,0,1,0,0      
         void    SetRow(const string& str, uint32 cols);
+        void    RandomizeRow(uint32 rows);
 
+        void    RandomizeAll();
+        void    SetAll();        
+        void    UnsetAll();
+        void    FlipAll();
+        void    Resize(uint32 rows, uint32 cols);
         void    Import(const string& str);  
-        void    Import(const bitmatrix& bin_mat);
-        
+        void    Import(const bitmatrix& bin_mat);        
         void    Print() const;
         string  ToString() const;
 
         const bitmatrix& operator=(const bitmatrix& bit_mat);
         
     private:
+
         uint8** matrix; 
         uint32  m_rows;
-        uint32  m_cols;
-        
+        uint32  m_cols;        
         uint32  m_cells;
 };
 
