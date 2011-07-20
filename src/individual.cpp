@@ -7,7 +7,7 @@ individual::individual(uint32 g_len, uint32 c_len)
     chromosome_l = g_len;
     fitness = 0;
     
-    chromosome = new bitmatrix(chromosome_l,gene_l);
+    chromosome = new bitmatrix(chromosome_l, gene_l);
 }
 
 individual::~individual()
