@@ -68,8 +68,11 @@ void bitmatrix::Flip(uint32 row, uint32 col)
 {
     if (row >= m_rows || col >= m_cols)
         return;
-        
-    matrix[row][int(col/8)] = ~matrix[row][int(col/8)];
+       
+    if (matrix[rows][int(cols/8)] & uint8(1 << int(cols%8)))
+        Unset(rows, cols);
+    else
+        Set(rows, cols);
 }
 
 void bitmatrix::RandomizeCol(uint32 col)
