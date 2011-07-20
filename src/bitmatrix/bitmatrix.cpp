@@ -171,7 +171,7 @@ void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 cols)
     }
 }
 
-void bitmatrix::SetCol(string& str, uint32 cols)
+void bitmatrix::SetCol(const string& str, uint32 cols)
 {
     if (cols >= m_cols)
         return;
@@ -179,19 +179,23 @@ void bitmatrix::SetCol(string& str, uint32 cols)
     const char* c_str = str.c_str();
     if (!c_str)
         return;
+
+    uint32 rows = 0;
     
     for (int i = 0; c_str[i] != '\0'; i++)
-    {
-        if (i >= m_rows)
-            break;
+    {    
+        if (c_str[i] == ',')
+            continue;        
 
-        if (i % 2)
+        if (rows >= m_rows)
             break;
             
         if (c_str[i] == '0')
-            Unset(i, cols);
+            Unset(rows, cols);
         else // qualsiasi cifra che non sia 0 viene considerata 1
-            Set(i, cols);
+            Set(rows, cols);
+
+        rows++;
     }
 }
 
@@ -224,7 +228,7 @@ void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 rows)
     }
 }
 
-void bitmatrix::SetRow(string& str, uint32 rows)
+void bitmatrix::SetRow(const string& str, uint32 rows)
 {
     if (rows >= m_rows)
         return;
@@ -232,19 +236,60 @@ void bitmatrix::SetRow(string& str, uint32 rows)
     const char* c_str = str.c_str();
     if (!c_str)
         return;
+
+    uint32 cols = 0;
     
     for (int i = 0; c_str[i] != '\0'; i++)
     {
-        if (i >= m_cols)
-            break;
+        if (c_str[i] == ',')
+            continue;        
 
-        if (i % 2)
-            break;
+        if (cols >= m_cols)
+            break;        
             
         if (c_str[i] == '0')
-            Unset(rows, i);
+            Unset(rows, cols);
         else // qualsiasi cifra che non sia 0 viene considerata 1
-            Set(rows, i);
+            Set(rows, cols);
+
+        cols++;
+    }
+}
+
+void bitmatrix::Import(const string& str)
+{        
+    const char* c_str = str.c_str();
+    if (!c_str)
+        return;
+
+    int rows = 0;
+    int cols = 0;
+    
+    for (int i = 0; c_str[i] != '\0'; i++)
+    {
+        if (c_str[i] == ',')
+            continue;
+     
+        if (c_str[i] == '\n')
+        {
+            rows++;
+
+            if (rows >= m_rows)
+                break;
+
+            cols = 0;
+            continue;
+        }
+        
+        if (cols >= m_cols)
+            continue;       
+            
+        if (c_str[i] == '0')
+            Unset(rows, cols);
+        else // qualsiasi cifra che non sia 0 viene considerata 1
+            Set(rows, cols);
+
+        cols++;
     }
 }
 
