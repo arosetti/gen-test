@@ -1,5 +1,10 @@
-changeset:   23:a9112927beba
+changeset:   24:26dd84bc3e50
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:13:22 2011 +0200
+sommario:    inserita compilazione con autotools!
+
+changeset:   23:a9112927beba
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 14:30:36 2011 +0200
 sommario:    gentest.conf->config.conf
