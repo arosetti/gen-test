@@ -149,7 +149,7 @@ void bitmatrix::Resize(uint32 rows, uint32 cols)
 
 string bitmatrix::GetCol(uint32 col)
 {
-    string str;
+    string str = "";
 
     if (col >= m_cols)
         return str;
@@ -226,7 +226,7 @@ void bitmatrix::SetCol(const string& str, uint32 col)
 
 string bitmatrix::GetRow(uint32 row)
 {
-    string str;
+    string str = "";
 
     if (row >= m_cols)
         return str;
@@ -375,7 +375,7 @@ void bitmatrix::Print() const
 
 string bitmatrix::ToString() const
 {
-    string s;
+    string s = "";
     for (uint32 i = 0; i < m_rows; i++)
     {
         for (uint32 j = 0; j < m_cols; j++)
