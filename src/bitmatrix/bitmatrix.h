@@ -46,8 +46,8 @@ class bitmatrix
         void    SetCol(bitmatrix& bin_mat, uint32 cols);
         void    SetRow(bitmatrix& bin_mat, uint32 rows);
         void    Import(bitmatrix& bin_mat);
-        void    StringToRow(string& str, uint32 rows)
-        void    StringToCol(string& str, uint32 cols)
+        void    StringToRow(string& str, uint32 rows);
+        void    StringToCol(string& str, uint32 cols);
         
         void    Print();
         string  ToString();
