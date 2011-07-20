@@ -1,0 +1,239 @@
+changeset:   44:b1cdf04e5a02
+tag:         tip
+utente:      Lazzalf
+data:        Wed Jul 20 19:22:31 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   43:20842212332c
+genitore:    42:60a69836ad9c
+genitore:    41:ad184484057a
+utente:      Lazzalf
+data:        Wed Jul 20 19:17:03 2011 +0200
+sommario:    Merge
+
+changeset:   42:60a69836ad9c
+genitore:    40:664dad50abd6
+utente:      Lazzalf
+data:        Wed Jul 20 19:16:38 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   41:ad184484057a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 19:00:48 2011 +0200
+sommario:    cambio nomi variabili corte ; cleanups
+
+changeset:   40:664dad50abd6
+utente:      Lazzalf
+data:        Wed Jul 20 18:57:56 2011 +0200
+sommario:    Bitmatrix:
+
+changeset:   39:52ab388233a4
+utente:      Lazzalf
+data:        Wed Jul 20 18:55:05 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   38:57e79a8912e5
+utente:      Lazzalf
+data:        Wed Jul 20 18:44:22 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   37:97bf8963b606
+utente:      Lazzalf
+data:        Wed Jul 20 18:26:37 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   36:bae80ef4d06e
+utente:      Lazzalf
+data:        Wed Jul 20 18:21:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   35:af8b546a034b
+utente:      Lazzalf
+data:        Wed Jul 20 18:06:25 2011 +0200
+sommario:    Bitmatrix:
+
+changeset:   34:5a116a9e8bdd
+utente:      Lazzalf
+data:        Wed Jul 20 17:51:28 2011 +0200
+sommario:    BitMatrix
+
+changeset:   33:963e6af14cef
+utente:      lazzalf
+data:        Wed Jul 20 16:36:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   32:f2e4dbc0ee55
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 16:03:56 2011 +0200
+sommario:    update script di compilazione
+
+changeset:   31:904d2135aa68
+genitore:    30:610027fe86e7
+genitore:    29:677b8f995a6a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:53:26 2011 +0200
+sommario:    Merge
+
+changeset:   30:610027fe86e7
+genitore:    27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:50:19 2011 +0200
+sommario:    remove old Makefile
+
+changeset:   29:677b8f995a6a
+utente:      Lazzalf
+data:        Wed Jul 20 15:44:40 2011 +0200
+sommario:    Fix compile
+
+changeset:   28:12ec81e75969
+genitore:    26:6275ed899571
+utente:      Lazzalf
+data:        Wed Jul 20 15:36:57 2011 +0200
+sommario:    BitMatrix:
+
+changeset:   27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:44:39 2011 +0200
+sommario:    fix nome in AUTHORS
+
+changeset:   26:6275ed899571
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:32:18 2011 +0200
+sommario:    lettura della versione da config.h generato dagli autotools
+
+changeset:   25:782b2d20f041
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:22:43 2011 +0200
+sommario:    adding build.sh
+
+changeset:   24:26dd84bc3e50
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:13:22 2011 +0200
+sommario:    inserita compilazione con autotools!
+
+changeset:   23:a9112927beba
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 14:30:36 2011 +0200
+sommario:    gentest.conf->config.conf
+
+changeset:   22:69c6885da387
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:34:47 2011 +0200
+sommario:    coding style
+
+changeset:   21:f3a08e235552
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:29:39 2011 +0200
+sommario:    implementata population::get_avg_fitness ; fix ~ga_engine();
+
+changeset:   20:975661fa3cd8
+genitore:    17:d79479101e14
+genitore:    19:5ed28da5f18a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:08:59 2011 +0200
+sommario:    Merge
+
+changeset:   19:5ed28da5f18a
+utente:      Lazzalf
+data:        Wed Jul 20 12:26:03 2011 +0200
+sommario:    Fix compile
+
+changeset:   18:958eb6479635
+genitore:    16:daa63abd1dc5
+utente:      Lazzalf
+data:        Wed Jul 20 12:22:14 2011 +0200
+sommario:    BitMatrix: Inserita funzione Import
+
+changeset:   17:d79479101e14
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 12:40:28 2011 +0200
+sommario:    creata cartella common ; inserimento nuovi parametri per la configurazione
+
+changeset:   16:daa63abd1dc5
+genitore:    15:736aee0e74d7
+genitore:    14:7fd15bc6af39
+utente:      Lazzalf
+data:        Wed Jul 20 11:33:16 2011 +0200
+sommario:    Merge
+
+changeset:   15:736aee0e74d7
+genitore:    13:ecdf04bfe25c
+utente:      Lazzalf
+data:        Wed Jul 20 11:30:12 2011 +0200
+sommario:    Aggiustati check righe in bitmatrix
+
+changeset:   14:7fd15bc6af39
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 11:30:34 2011 +0200
+sommario:    fix generici ; implementata la modalità verbose in alcuni cout
+
+changeset:   13:ecdf04bfe25c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 11:02:23 2011 +0200
+sommario:    migliorato il sistema di input dei dati; possibilità di configurare
+
+changeset:   12:dfb489ebef7b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 01:21:50 2011 +0200
+sommario:    update TODO viralex
+
+changeset:   11:3bbad753c392
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 01:01:23 2011 +0200
+sommario:    update globale, adesso compila ma crasha su RandomizeAll
+
+changeset:   10:956ee92bf4e4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 23:16:27 2011 +0200
+sommario:    implementata tostring in bitmatrix ; update generici nelle classi genetiche
+
+changeset:   9:1dcf53e9e9f0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 16:51:09 2011 +0200
+sommario:    hgignore update ; cleanups
+
+changeset:   8:2fcf7f5d0152
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 16:36:39 2011 +0200
+sommario:    clean bitmatrix.h bitmatrix.cpp
+
+changeset:   7:16967f72c7e5
+utente:      Lazzalf
+data:        Tue Jul 19 16:26:35 2011 +0200
+sommario:    Inserita classe bit_matrix per gestione di matrici di bit
+
+changeset:   6:6758032a1f75
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:59:49 2011 +0200
+sommario:    non rileva automaticamente i file rimossi ...
+
+changeset:   5:7ed679fc476f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:57:59 2011 +0200
+sommario:    errore di spelling nel nome del file ...
+
+changeset:   4:0ecd10f85e57
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:53:47 2011 +0200
+sommario:    update2 classi individual/population/ga_engine
+
+changeset:   3:e5aca8759ff4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 09:50:09 2011 +0200
+sommario:    update classi individual/population/ga_engine
+
+changeset:   2:956664702b6f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 22:18:08 2011 +0200
+sommario:    random stuff
+
+changeset:   1:6e8c484f4876
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 16:39:35 2011 +0200
+sommario:    system skeleton
+
+changeset:   0:6c2efb8a173f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 13:18:36 2011 +0200
+sommario:    primo commit
+
