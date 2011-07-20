@@ -8,6 +8,7 @@ using namespace std;
 typedef struct config 
 {
     bool debug,verbose;
+    bool print_best;
     
     uint32 max_iterations;
     

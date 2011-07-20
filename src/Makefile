@@ -8,4 +8,4 @@ gentest:  $(OBJ)
 	$(CC) $(CFLAGS) $(LIB) -o ../$@ $(OBJ) 
 
 clean:
-	rm -rf gentest *.o *~
+	rm -rf gentest *.o *~ bitmatrix/*~ bitmatrix/*.o

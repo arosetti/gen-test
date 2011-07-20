@@ -36,7 +36,7 @@ class population
     void    kill_individuals(uint32);
     
     uint32  count_individuals() const;
-    void    print_best_individual();
+    void    print_best_individual() const;
 };
 
 #endif

@@ -77,7 +77,8 @@ float population::get_avg_fitness() const
 
 float population::get_best_fitness() const
 {
-
+    list<individual*>::const_iterator it = pool.begin();
+    return (float)(*it)->get_fitness();
 }
 
 
@@ -115,9 +116,9 @@ uint32  population::count_individuals() const
     return pool.size();
 }
 
-void population::print_best_individual()
+void population::print_best_individual() const
 {
-    list<individual*>::iterator it = pool.begin();
+    list<individual*>::const_iterator it = pool.begin();
     cout << (*it)->get_chromosome();
 }
 

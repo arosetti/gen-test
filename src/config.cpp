@@ -8,6 +8,8 @@ bool load_config(string conf_filename, config *c)
     {
         CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
+        CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),    
+        
         CFG_INT((char*)"avg_population_size", 4096, CFGF_NONE),
         CFG_INT((char*)"max_iterations",  8192, CFGF_NONE),
         CFG_INT((char*)"gene_length", 15 , CFGF_NONE),
@@ -26,6 +28,8 @@ bool load_config(string conf_filename, config *c)
         
     c->debug = cfg_getbool(cfg, "debug");
     c->verbose = cfg_getbool(cfg, "verbose");
+    c->print_best = cfg_getbool(cfg, "print_best");
+    
     c->avg_population_size = cfg_getint(cfg, "avg_population_size");
     c->max_iterations = cfg_getint(cfg, "max_iterations");
     c->gene_length = cfg_getint(cfg, "gene_length");
