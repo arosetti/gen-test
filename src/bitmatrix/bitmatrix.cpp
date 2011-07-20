@@ -12,10 +12,6 @@ bitmatrix::bitmatrix(uint32 rows, uint32 cols)
 
 bitmatrix::bitmatrix(const bitmatrix &bit_mat)
 {
-    for (int i = 0; i < m_rows; i++)	
-        delete matrix[i];
-    delete matrix;
-
     m_rows = bit_mat.m_rows;
     m_cols = bit_mat.m_cols;
     m_cells = bit_mat.m_cells;
