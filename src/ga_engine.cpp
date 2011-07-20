@@ -8,7 +8,7 @@ ga_engine::ga_engine()
 
 ga_engine::~ga_engine()
 {
-
+    delete p;
 }
 
 void ga_engine::init(config *c)
@@ -41,6 +41,9 @@ void ga_engine::evolve()
     
 	while ( iteration++ < c->max_iterations ) 
 	{
+		if(c->verbose)
+		    cout << endl << "iteration: " << iteration << endl;
+	
 		best_fitness = p->get_best_fitness();
 		
 		if(c->verbose && c->print_best_fitness)

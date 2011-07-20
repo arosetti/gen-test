@@ -37,7 +37,7 @@ individual* population::get_random_individual() const
     
     
     list<individual*>::const_iterator it = pool.begin();
-    while((it != pool.end()))
+    while(it != pool.end())
     {
         if (count == rnd)
         {
@@ -69,10 +69,17 @@ void population::new_random_population()
         pool.push_back(new_random_individual());
 }
 
-
 float population::get_avg_fitness() const
 {
-
+    float sum_fitness = 0;
+    list<individual*>::const_iterator it = pool.begin();
+    
+    while(it++ != pool.end())
+    {
+        sum_fitness+=(*it)->get_fitness();
+    }  
+    
+    return sum_fitness/pool.size();
 }
 
 float population::get_best_fitness() const
@@ -81,14 +88,11 @@ float population::get_best_fitness() const
     return (float)(*it)->get_fitness();
 }
 
-
 void population::sort_by_fitness()
 {
     pool.sort();
 }
 
-
-    
 void population::mate_individuals(uint32 how_many)
 {
 
@@ -99,7 +103,6 @@ void population::mutate_individuals(uint32 strength)
 {
 
 }
-
 
 void population::kill_individuals(uint32 rate)
 {
