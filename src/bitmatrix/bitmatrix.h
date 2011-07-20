@@ -46,13 +46,16 @@ class bitmatrix
         void    SetAll();        
         void    UnsetAll();
         void    FlipAll();
-        void    Resize(uint32 rows, uint32 cols);
+        void    Resize(uint32 rows, uint32 cols); // TODO
        
+        string  GetCol(uint32 cols);
         void    UnsetCol(uint32 cols);
         void    SetCol(uint32 cols);
         void    SetCol(const bitmatrix& bin_mat, uint32 cols);
         // Formato Stringa 0,1,0,1,0,0
         void    SetCol(const string& str, uint32 rows);
+
+        string  GetRow(uint32 rows);
         void    UnsetRow(uint32 rows);      
         void    SetRow(uint32 rows);        
         void    SetRow(const bitmatrix& bin_mat, uint32 rows);
