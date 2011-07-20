@@ -131,7 +131,7 @@ void bitmatrix::Import(bitmatrix& bin_mat)
     uint32 max_cells  = (m_cells > bin_mat.GetCells() ? bin_mat.GetCells() : m_cells);
     uint8 mask = 0;
     
-    if ((bin_mat.GetCols() < m_cols)
+    if (bin_mat.GetCols() < m_cols)
     {
         for (int i = 0; i < (bin_mat.GetCols()%8); i++) 
             mask |= uint8(1 << i);
