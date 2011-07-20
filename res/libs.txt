@@ -1,3 +1,0 @@
-libConfuse
-Boost ?
-pthread ?
