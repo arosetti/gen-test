@@ -14,26 +14,27 @@ using namespace std;
 class bitmatrix
 {    
     public:
-        bitmatrix(uint32 rows, uint32 cols);   
+        bitmatrix(uint32 rows, uint32 cols);
+        bitmatrix(const bitmatrix &bit_mat);   
         ~bitmatrix();
         
-        uint32 GetRows()
+        uint32 GetRows() const
         {
             return m_rows;        
         }  
         
-        uint32 GetCols()
+        uint32 GetCols() const
         {
             return m_cols;        
         }
         
-        uint32 GetCells()
+        uint32 GetCells() const
         {
             return m_cells;        
         }
    
         void    Randomize(uint32 rows, uint32 cols);        
-        bool    Get(uint32 rows, uint32 cols);
+        bool    Get(uint32 rows, uint32 cols) const;
         void    Set(uint32 rows, uint32 cols);        
         void    Unset(uint32 rows, uint32 cols);
         void    Flip(uint32 rows, uint32 cols);
@@ -42,15 +43,16 @@ class bitmatrix
         void    SetAll();        
         void    UnsetAll();
         void    FlipAll();
+        void    Resize(uint32 rows, uint32 cols);
         
-        void    SetCol(bitmatrix& bin_mat, uint32 cols);
-        void    SetRow(bitmatrix& bin_mat, uint32 rows);
-        void    Import(bitmatrix& bin_mat);
-        void    StringToRow(string& str, uint32 rows);
-        void    StringToCol(string& str, uint32 cols);
+        void    SetCol(const bitmatrix& bin_mat, uint32 cols);
+        void    SetCol(string& str, uint32 rows);
+        void    SetRow(const bitmatrix& bin_mat, uint32 rows);        
+        void    SetRow(string& str, uint32 cols);
+        void    Import(const bitmatrix& bin_mat);        
         
-        void    Print();
-        string  ToString();
+        void    Print() const;
+        string  ToString() const;
         
     private:
         uint8** matrix; 
