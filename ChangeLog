@@ -1,5 +1,18 @@
-changeset:   54:5a9f9917dcd4
+changeset:   56:05ac5c60d8ae
 tag:         tip
+genitore:    55:dfc79ba499cf
+genitore:    54:5a9f9917dcd4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 00:29:10 2011 +0200
+sommario:    Merge
+
+changeset:   55:dfc79ba499cf
+genitore:    52:d4318765d7d1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 00:25:07 2011 +0200
+sommario:    fix bug iteratori e funzione di mutazione
+
+changeset:   54:5a9f9917dcd4
 genitore:    53:0431c0fac6dc
 genitore:    52:d4318765d7d1
 utente:      Lazzalf

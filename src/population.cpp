@@ -105,7 +105,10 @@ void population::sort_by_fitness()
 
 void population::mate_individuals(uint32 how_many)
 {
-
+    for(int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
+    {
+        pool.push_back(new_random_individual());    
+    }
 }
 
 
@@ -120,18 +123,18 @@ void population::mutate_individuals(uint32 strength) const
     {
         rnd = rand()%100 + 1; 
         
-        if (conf->debug)
-            cout << "mutation_iteration: " << mutate_probability << ">" << rnd << "?" << endl;
+        //if (conf->debug)
+        //    cout << "mutation_iteration: " << mutate_probability << ">" << rnd << "?" << endl;
         
         if (mutate_probability > rnd)
         {
-            if (conf->debug)
-                cout << "mutation_before:"<< endl << (*it)->get_chromosome();
+            //if (conf->debug)
+            //    cout << "mutation_before:"<< endl << (*it)->get_chromosome();
 
             (*it)->chromosome_mutate(conf->mutation_strength);
 
-            if (conf->debug)
-                cout << "mutation_after:"<< endl << (*it)->get_chromosome();
+            //if (conf->debug)
+            //    cout << "mutation_after:"<< endl << (*it)->get_chromosome();
         }
         count++;
     }  
@@ -139,12 +142,15 @@ void population::mutate_individuals(uint32 strength) const
 
 void population::kill_individuals(uint32 rate)
 {
-    /*
-    list<individual*>::it=pool.begin();
-    int kill_after_this = 
-    it+=size
-    pool.erase(it, pool.end());
-    */
+    list<individual*>::iterator it = pool.begin();
+    if (pool.size() > size)
+    {
+        if (conf->verbose && conf->print_kills)
+            cout << "killing: " << (pool.size()-size) << endl;
+        
+        advance(it,size);
+        pool.erase(it, pool.end());
+    }
 }
 
 uint32  population::count_individuals() const
