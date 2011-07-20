@@ -38,6 +38,9 @@ class bitmatrix
         void    Set(uint32 rows, uint32 cols);        
         void    Unset(uint32 rows, uint32 cols);
         void    Flip(uint32 rows, uint32 cols);
+
+        void    RandomizeCol(uint32 cols);
+        void    RandomizeRow(uint32 rows);
         
         void    RandomizeAll();
         void    SetAll();        
