@@ -1,5 +1,7 @@
 #!/bin/sh
 
+make clean 
+
 rm -Rf *~ *.o
 
 rm -Rf autom4te.cache/ stamp-h1 config.status install-sh \
