@@ -35,7 +35,7 @@ bitmatrix::~bitmatrix()
 
 void bitmatrix::Randomize(uint32 rows, uint32 cols)
 {
-    if ((rows + 1) > m_rows || (cols + 1) > m_cols)
+    if (rows >= m_rows || cols >= m_cols)
         return;
     
     if (rand()%2)
@@ -77,6 +77,24 @@ void bitmatrix::Flip(uint32 rows, uint32 cols)
         Unset(rows, cols);
     else
         Set(rows, cols);
+}
+
+void bitmatrix::RandomizeCol(uint32 cols)
+{
+    if (cols >= m_cols)
+        return;
+
+    for (int i = 0; i < m_rows; i++)
+        Randomize(i, cols);
+}
+
+void bitmatrix::RandomizeRow(uint32 rows)
+{
+    if (rows >= m_rows)
+        return;
+
+    for (int i = 0; i < m_cells; i++)
+        matrix[rows][i] = uint8(rand()%256);
 }
 
 void bitmatrix::RandomizeAll()
