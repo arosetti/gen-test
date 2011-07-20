@@ -39,24 +39,26 @@ void ga_engine::evolve()
         cout << "the population is going to evolve for " << conf->max_iterations << \
             " generations!" << endl << endl;
 
-	while ( iteration++ < conf->max_iterations ) 
-	{
-		if (conf->verbose)
-		    cout << endl << "iteration: " << iteration << endl;
-	
-		best_fitness = pop->get_best_fitness();
-		
-		if (conf->verbose && conf->print_best_fitness)
-		    cout << "best_fitness: " << best_fitness << endl;
+    while ( iteration++ < conf->max_iterations ) 
+    {
+        if (conf->verbose)
+            cout << endl << "iteration: " << iteration << endl;
+        if (conf->verbose && conf->print_population_size)
+            cout << endl << "population: " << pop->count_individuals() << endl;
+            
+        best_fitness = pop->get_best_fitness();
+        
+        if (conf->verbose && conf->print_best_fitness)
+            cout << "best_fitness: " << best_fitness << endl;
 
-		pop->sort_by_fitness();
-		
-		if (conf->verbose && conf->print_best_chromosome)
-		    pop->print_best_individual();
-		    
-		pop->mate_individuals(conf->mate_rate);
-		pop->kill_individuals(conf->kill_rate);
-		pop->mutate_individuals(conf->mutation_rate);
-		
-	}
+        pop->sort_by_fitness();
+        
+        if (conf->verbose && conf->print_best_chromosome)
+            pop->print_best_individual();
+            
+        pop->mate_individuals(conf->mate_rate);
+        pop->kill_individuals(conf->kill_rate);
+        pop->mutate_individuals(conf->mutation_rate);
+        
+    }
 }
