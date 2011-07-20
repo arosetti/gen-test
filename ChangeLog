@@ -1,5 +1,39 @@
-changeset:   25:782b2d20f041
+changeset:   31:904d2135aa68
 tag:         tip
+genitore:    30:610027fe86e7
+genitore:    29:677b8f995a6a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:53:26 2011 +0200
+sommario:    Merge
+
+changeset:   30:610027fe86e7
+genitore:    27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:50:19 2011 +0200
+sommario:    remove old Makefile
+
+changeset:   29:677b8f995a6a
+utente:      Lazzalf
+data:        Wed Jul 20 15:44:40 2011 +0200
+sommario:    Fix compile
+
+changeset:   28:12ec81e75969
+genitore:    26:6275ed899571
+utente:      Lazzalf
+data:        Wed Jul 20 15:36:57 2011 +0200
+sommario:    BitMatrix:
+
+changeset:   27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:44:39 2011 +0200
+sommario:    fix nome in AUTHORS
+
+changeset:   26:6275ed899571
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:32:18 2011 +0200
+sommario:    lettura della versione da config.h generato dagli autotools
+
+changeset:   25:782b2d20f041
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 15:22:43 2011 +0200
 sommario:    adding build.sh
