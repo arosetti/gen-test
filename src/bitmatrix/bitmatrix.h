@@ -46,7 +46,7 @@ class bitmatrix
         void    SetAll();        
         void    UnsetAll();
         void    FlipAll();
-        void    Resize(uint32 rows, uint32 cols); // TODO
+        void    Resize(uint32 rows, uint32 cols);
        
         string  GetCol(uint32 cols);
         void    UnsetCol(uint32 cols);

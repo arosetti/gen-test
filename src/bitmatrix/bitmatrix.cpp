@@ -158,7 +158,7 @@ string bitmatrix::GetCol(uint32 cols)
     for (int i = 0; i < m_rows; i++)
     {
         str += (matrix[i][int(cols/8)] & uint8(1 << int(cols%8))) ? "1" : "0";
-        if (i < m_rows)
+        if (i < (m_rows - 1))
             str +=",";
     }
     return str;
@@ -235,7 +235,7 @@ string bitmatrix::GetRow(uint32 rows)
     for (int i = 0; i < m_cols; i++)
     {
         str += (matrix[rows][int(i/8)] & uint8(1 << int(i%8))) ? "1" : "0";
-        if (i < m_cols)
+        if (i < (m_cols - 1))
             str +=",";
     }
     return str;

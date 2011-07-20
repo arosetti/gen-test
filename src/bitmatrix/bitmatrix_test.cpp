@@ -58,7 +58,10 @@ int main()
     printf("\n");
     b1.Resize(5,2);
     b1.Print();
-    printf("\n");    
+    printf("\n");   
+ 
+    string s1 =  b1.GetCol(1);
+    printf("%s\n",s1.c_str());
     
     // s = b2.ToString();
     // printf("%s\n",s.c_str());
