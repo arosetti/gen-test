@@ -8,7 +8,6 @@ individual::individual(uint32 g_len, uint32 c_len)
     fitness = 0;
     
     chromosome = new bitmatrix(chromosome_l,gene_l);
-    chromosome->RandomizeAll();
 }
 
 individual::~individual()

@@ -1,8 +1,24 @@
 #include "population.h"
 
-population::population(uint size)
+population::population(uint32 size, uint32 c_l, uint32 g_l)
 {
     population::size=size;
+    
+    if(g_l > 0)
+        gene_l = g_l;
+    else
+    {
+        cout << "can't use zero gene length" << endl;
+        exit(0);
+    }
+    
+    if(g_l > 0)
+        chromosome_l = c_l;
+    else
+    {
+        cout << "can't use zero chromosome length" << endl;
+        exit(0);
+    }
 }
 
 population::~population()
@@ -16,14 +32,19 @@ population::~population()
 
 individual* population::get_random_individual() const
 {
-    individual *i= NULL;
-    int rnd = rand()%size + 1,count=0;
+    individual *i = NULL;
+    int rnd = rand()%pool.size() + 1, count = 0;
     
     
     list<individual*>::const_iterator it = pool.begin();
-    while((it != pool.end()) || (++count == rnd))
+    while((it != pool.end()))
     {
-        i= *it;
+        if (count == rnd)
+        {
+            i= *it;
+            break;
+        }
+        count++;
         it++;
     }  
     
@@ -32,7 +53,7 @@ individual* population::get_random_individual() const
 
 individual* population::new_random_individual()
 {
-    individual *i = new individual(gene_len,chromosome_len);
+    individual *i = new individual(gene_l, chromosome_l);
     
     if(i)
         i->chromosome_random();

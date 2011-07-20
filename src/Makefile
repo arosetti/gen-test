@@ -5,7 +5,7 @@ OBJ=ga_engine.o individual.o population.o utility.o config.o bitmatrix/bitmatrix
 LIB=-lconfuse
 
 gentest:  $(OBJ)
-	$(CC) $(CFLAGS) $(LIB) -o $@ $(OBJ) 
+	$(CC) $(CFLAGS) $(LIB) -o ../$@ $(OBJ) 
 
 clean:
 	rm -rf gentest *.o *~

@@ -6,15 +6,17 @@ bool load_config(string conf_filename, config *c)
     
     cfg_opt_t opts[] =
     {
-        CFG_BOOL("debug", (cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL("verbose",(cfg_bool_t)true, CFGF_NONE),
-        CFG_INT("avg_population_size", 4096, CFGF_NONE),
-        CFG_INT("max_iterations",  8192, CFGF_NONE),
-        CFG_INT("max_stall", 100, CFGF_NONE),
-        CFG_FLOAT("mutation_rate", 0.06f, CFGF_NONE),
-        CFG_FLOAT("mutation_strength", 2.0f, CFGF_NONE),
-        CFG_FLOAT("mate_rate", 0.1f, CFGF_NONE),
-        CFG_FLOAT("kill_rate", 0.1f, CFGF_NONE),
+        CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
+        CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
+        CFG_INT((char*)"avg_population_size", 4096, CFGF_NONE),
+        CFG_INT((char*)"max_iterations",  8192, CFGF_NONE),
+        CFG_INT((char*)"gene_length", 15 , CFGF_NONE),
+        CFG_INT((char*)"chromosome_length",  10, CFGF_NONE),        
+        CFG_INT((char*)"max_stall", 100, CFGF_NONE),
+        CFG_FLOAT((char*)"mutation_rate", 0.06f, CFGF_NONE),
+        CFG_FLOAT((char*)"mutation_strength", 2.0f, CFGF_NONE),
+        CFG_FLOAT((char*)"mate_rate", 0.1f, CFGF_NONE),
+        CFG_FLOAT((char*)"kill_rate", 0.1f, CFGF_NONE),
         CFG_END()
     };
     
@@ -26,6 +28,8 @@ bool load_config(string conf_filename, config *c)
     c->verbose = cfg_getbool(cfg, "verbose");
     c->avg_population_size = cfg_getint(cfg, "avg_population_size");
     c->max_iterations = cfg_getint(cfg, "max_iterations");
+    c->gene_length = cfg_getint(cfg, "gene_length");
+    c->chromosome_length = cfg_getint(cfg, "chromosome_length");
     
     c->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
     c->mutation_strength = cfg_getfloat(cfg, "mutation_strength");    

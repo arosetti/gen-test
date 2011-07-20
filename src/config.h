@@ -10,8 +10,10 @@ typedef struct config
     bool debug,verbose;
     
     uint32 max_iterations;
-    uint32 max_gene_length;
     
+    uint32 gene_length;
+    uint32 chromosome_length;
+        
     uint32 avg_population_size;
     
     float mutation_rate, mutation_strength;

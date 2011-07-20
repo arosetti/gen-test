@@ -15,10 +15,10 @@ void ga_engine::init(config *c)
 {   
     ga_engine::c = c;
     
-    cout << "Init population" << endl;
-    p = new population(c->avg_population_size);
+    cout << "init population" << endl;
+    p = new population(c->avg_population_size, c->gene_length, c->chromosome_length);
     
-    cout << "Selecting " << c->avg_population_size << " random individuals..." << endl;
+    cout << "selecting " << c->avg_population_size << " random individuals..." << endl;
     p->new_random_population();
 }
 

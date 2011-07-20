@@ -12,7 +12,7 @@ using namespace std;
 class population
 {   
     uint size;
-    uint gene_len, chromosome_len;
+    uint gene_l, chromosome_l;
     
     list<individual*> pool;
     list<individual*> limbo;
@@ -22,7 +22,7 @@ class population
     void crossover(individual*, individual*);
     
     public:
-    population(uint size);
+    population(uint32 size, uint32 c_l, uint32 g_l);
     ~population();
     
     void    new_random_population();
