@@ -37,7 +37,10 @@ int main()
     printf("\n");
         
     b2.RandomizeAll();
+    b2.RandomizeAll();
     b2.Print();
+    
+    printf("\n");
     
     s = b2.ToString();
     printf("%s\n",s.c_str());
