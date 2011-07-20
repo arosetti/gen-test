@@ -138,6 +138,24 @@ void bitmatrix::Resize(uint32 rows, uint32 cols)
 
 }
 
+void bitmatrix::UnsetCol(uint32 cols)
+{
+    if (cols >= m_cols)
+        return;
+
+    for (int i = 0; i < m_rows; i++)
+        Unset(i, cols);
+}
+
+void bitmatrix::SetCol(uint32 cols)
+{
+    if (cols >= m_cols)
+        return;
+
+    for (int i = 0; i < m_rows; i++)
+        Set(i, cols);
+}
+
 void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 cols)
 {
     if (bin_mat.GetRows() < m_rows || cols >= m_cols)
@@ -172,6 +190,24 @@ void bitmatrix::SetCol(string& str, uint32 cols)
         else // qualsiasi cifra che non sia 0 viene considerata 1
             Set(i, cols);
     }
+}
+
+void bitmatrix::UnsetRow(uint32 rows)
+{
+    if (rows >= m_rows)
+        return;
+
+    for (int i = 0; i < m_cells; i++)
+        matrix[rows][i] = uint8(0); // 00000000
+}
+
+void bitmatrix::SetRow(uint32 rows)
+{
+    if (rows >= m_rows)
+        return;
+
+    for (int i = 0; i < m_cells; i++)
+        matrix[rows][i] = uint8(255); // 11111111
 }
 
 void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 rows)
