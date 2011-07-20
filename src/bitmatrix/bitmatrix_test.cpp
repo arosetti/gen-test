@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     bitmatrix b1(4,4),b2(5,5);
-    string s("00110010");
+    string s("0,0,1,1,0,0,1,0");
     
     srand(time(NULL));
    /* 
