@@ -1,12 +1,12 @@
 #include "bitmatrix.h"
 
 bitmatrix::bitmatrix(uint32 rows, uint32 cols)
-{
-    m_rows = (rows == 0)?1:rows;
-    m_cols = (cols == 0)?1:cols;
-    m_cell = int(cols/8) + (int(cols%8) ? 1 : 0);
-    matrix = new uint8*[rows];
-    for (int i = 0; i < rows; i++)	
+{        
+    m_rows = (rows ? rows : 1);
+    m_cols = (cols ? cols : 1);
+    m_cell = int(m_cols/8) + (int(m_cols%8) ? 1 : 0);
+    matrix = new uint8*[m_rows];
+    for (int i = 0; i < m_rows; i++)	
        matrix[i] = new uint8[m_cell];
 }
 
@@ -19,7 +19,7 @@ bitmatrix::~bitmatrix()
 
 void bitmatrix::Randomize(uint32 rows, uint32 cols)
 {
-    if (rows > m_rows || cols > m_cols)
+    if ((rows + 1) > m_rows || (cols + 1) > m_cols)
         return;
     
     if (rand()%2)
@@ -30,7 +30,7 @@ void bitmatrix::Randomize(uint32 rows, uint32 cols)
 
 bool bitmatrix::Get(uint32 rows, uint32 cols)
 {
-    if (rows > m_rows || cols > m_cols)
+    if (rows >= m_rows || cols >= m_cols)
         return false;
           
     return matrix[rows][int(cols/8)] & uint8(1 << int(cols%8));
@@ -38,7 +38,7 @@ bool bitmatrix::Get(uint32 rows, uint32 cols)
 
 void bitmatrix::Set(uint32 rows, uint32 cols)
 {
-    if (rows > m_rows || cols > m_cols)
+    if (rows >= m_rows || cols >= m_cols)
         return;
         
     matrix[rows][int(cols/8)] |= uint8(1 << int(cols%8));
@@ -46,7 +46,7 @@ void bitmatrix::Set(uint32 rows, uint32 cols)
 
 void bitmatrix::Unset(uint32 rows, uint32 cols)
 {
-    if (rows > m_rows || cols > m_cols)
+    if (rows >= m_rows || cols >= m_cols)
         return;
         
     matrix[rows][int(cols/8)] &= ~uint8(1 << int(cols%8));
@@ -54,7 +54,7 @@ void bitmatrix::Unset(uint32 rows, uint32 cols)
 
 void bitmatrix::Flip(uint32 rows, uint32 cols)
 {
-    if (rows > m_rows || cols > m_cols)
+    if (rows >= m_rows || cols >= m_cols)
         return;
         
     if (matrix[rows][int(cols/8)] & uint8(1 << int(cols%8)))
@@ -101,7 +101,7 @@ void bitmatrix::FlipAll()
 
 void bitmatrix::SetCol(bitmatrix& bin_mat, uint32 cols)
 {
-    if (bin_mat.GetCols() < m_cols || cols > m_cols)
+    if (bin_mat.GetCols() < m_cols || cols >= m_cols)
         return;
 
     for (int i = 0; i < m_rows; i++) 
@@ -116,7 +116,7 @@ void bitmatrix::SetCol(bitmatrix& bin_mat, uint32 cols)
 
 void bitmatrix::SetRow(bitmatrix& bin_mat, uint32 rows)
 {
-    if (bin_mat.GetRows() < m_rows || rows > m_rows)
+    if (bin_mat.GetRows() < m_rows || rows >= m_rows)
         return;
 
     for (int j = 0; j < m_cell; j++) 
@@ -145,7 +145,7 @@ string bitmatrix::ToString()
         for (int j = 0; j < m_cols; j++)
         {
             s += (matrix[i][int(j/8)] & uint8(1 << int(j%8)))?"1":"0";
-            if(j != (m_cols-1))
+            if (j != (m_cols-1))
                 s +=",";
         }
         s+="\n";
