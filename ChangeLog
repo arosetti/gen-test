@@ -1,5 +1,30 @@
-changeset:   31:904d2135aa68
+changeset:   36:bae80ef4d06e
 tag:         tip
+utente:      Lazzalf
+data:        Wed Jul 20 18:21:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   35:af8b546a034b
+utente:      Lazzalf
+data:        Wed Jul 20 18:06:25 2011 +0200
+sommario:    Bitmatrix:
+
+changeset:   34:5a116a9e8bdd
+utente:      Lazzalf
+data:        Wed Jul 20 17:51:28 2011 +0200
+sommario:    BitMatrix
+
+changeset:   33:963e6af14cef
+utente:      lazzalf
+data:        Wed Jul 20 16:36:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   32:f2e4dbc0ee55
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 16:03:56 2011 +0200
+sommario:    update script di compilazione
+
+changeset:   31:904d2135aa68
 genitore:    30:610027fe86e7
 genitore:    29:677b8f995a6a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

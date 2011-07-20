@@ -3,6 +3,7 @@
 cp gentest gentest_tmp
 make clean
 mv gentest_tmp gentest
+
 rm -Rf *~ *.o
 
 rm -Rf autom4te.cache/ stamp-h1 config.status install-sh \

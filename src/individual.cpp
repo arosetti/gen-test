@@ -2,7 +2,6 @@
 
 individual::individual(uint32 g_len, uint32 c_len)
 {
-    
     gene_l = c_len;
     chromosome_l = g_len;
     fitness = 0;
@@ -64,7 +63,7 @@ string individual::get_gene(uint32 g)  const
 {
     if (g>= chromosome_l)
         return "";
-    //return chromosome[i];
+    //return chromosome->GetRow(g);
 }
 
 void individual::set_gene(uint32 g, string s)

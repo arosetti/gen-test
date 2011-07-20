@@ -12,9 +12,9 @@ using namespace std;
 class ga_engine
 {
     uint32 iteration;
-    population *p;
-    config *c;
-    
+    population *pop;
+    config *conf;
+
     public:
     ga_engine();
     ~ga_engine();
