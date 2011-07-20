@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <iostream>
 #include "ga_engine.h"
+#include "../config.h"
 
 using namespace std;
 
@@ -11,7 +12,9 @@ int main()
     string response;
     uint32 value;
     
-    cout << "gentest: Gentetic Algorithm implementation used to generate test patterns for fpga-like circuits" << endl << endl;
+    cout << PACKAGE_STRING << ": a gentetic algorithm program ";
+    cout << "used to generate test patterns for simulated circuits." << endl;
+    cout << endl;
 
     load_config("config.conf", &c);
 
