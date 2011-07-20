@@ -45,7 +45,7 @@ int main()
     b2.Print();    
     printf("\n");
 
-    b2.StringToCol(s, 0);
+    b2.SetCol(s, 0);
     
     printf("%s\n",s.c_str());
     printf("\n");
