@@ -12,7 +12,10 @@ typedef struct config
     bool print_best_dna, print_best_fitness;
     bool print_population_size, print_kills;
     bool print_mutations;
-    
+
+    string simulator_dir, simulator_bin, simulator_patch;
+    string test_file_outpath, test_file_inpath;
+
     uint32 max_iterations;
     
     uint32 dna_length;
