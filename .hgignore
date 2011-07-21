@@ -23,3 +23,6 @@ src/bitmatrix/.dirstamp
 src/common/.dirstamp
 src/ga/.dirstamp
 src/simulation/.dirstamp
+src/simulation/.deps
+src/ga/.deps
+src/*.spw
