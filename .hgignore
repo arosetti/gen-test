@@ -20,9 +20,11 @@ Makefile.in
 INSTALL
 src/.dirstamp
 src/bitmatrix/.dirstamp
+src/bitmatrix/.deps
 src/common/.dirstamp
+src/common/.deps
 src/ga/.dirstamp
+src/ga/.deps
 src/simulation/.dirstamp
 src/simulation/.deps
-src/ga/.deps
 src/*.spw
