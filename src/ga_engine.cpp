@@ -53,8 +53,8 @@ void ga_engine::evolve()
 
         pop->sort_by_fitness();
         
-        if (conf->verbose && conf->print_best_chromosome)
-            pop->print_best_individual();
+        if (conf->verbose && conf->print_best_dna)
+            pop->print_best_dna();
             
         pop->mate_individuals(conf->mate_rate);
         pop->kill_individuals(conf->kill_rate);

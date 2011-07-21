@@ -12,9 +12,6 @@ using namespace std;
 
 class population
 {
-    uint size;
-    uint gene_l, chromosome_l;
-
     list<individual*> pool;
     list<individual*> limbo;
 
@@ -39,7 +36,7 @@ class population
     void    kill_individuals(uint32);
 
     uint32  count_individuals() const;
-    void    print_best_individual() const;
+    void    print_best_dna() const;
 };
 
 #endif

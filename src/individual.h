@@ -8,10 +8,10 @@ using namespace std;
 
 class individual
 {
-    uint32    gene_l;
-    uint32    chromosome_l;
+    uint32    chromosome_length;
+    uint32    dna_length;
 
-    bitmatrix *chromosome;
+    bitmatrix *dna;
     float    fitness;
 
     public:
@@ -19,22 +19,22 @@ class individual
     ~individual();
     individual(const individual&);
 
-    string  get_chromosome() const;
-    void    set_chromosome(string);
-    uint32  get_chromosome_length() const;
-    void    set_chromosome_length(uint32);
-    void    chromosome_random();
-    void    chromosome_mutate(uint32);
+    string  get_dna() const;
+    void    set_dna(string);
+    uint32  get_dna_length() const;
+    void    set_dna_length(uint32);
+    void    dna_random();
+    void    dna_mutate(uint32);
 
     float   get_fitness() const;
     void    set_fitness(float);
 
-    string  get_gene(uint32) const;
-    void    set_gene(uint32, string);
-    uint32  get_gene_length() const;
-    void    set_gene_length(uint32);
-    void    gene_mutate(uint32,uint32);
-    void    gene_random(uint32);
+    string  get_chromosome(uint32) const;
+    void    set_chromosome(uint32, string);
+    uint32  get_chromosome_length() const;
+    void    set_chromosome_length(uint32);
+    void    chromosome_mutate(uint32,uint32);
+    void    chromosome_random(uint32);
 
     bool operator < (const individual&);    // necessario per std::sort() std::list<individual>
 };
