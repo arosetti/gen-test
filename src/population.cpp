@@ -62,7 +62,7 @@ individual* population::new_random_individual()
 {
     individual *i = new individual(gene_l, chromosome_l);
     
-    if(i)
+    if (i)
         i->chromosome_random();
 
     return i;
