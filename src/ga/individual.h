@@ -1,8 +1,8 @@
 #ifndef INDIVIDUAL_H
 #define INDIVIDUAL_H
 
-#include "common/utility.h"
-#include "bitmatrix/bitmatrix.h"
+#include "../common/utility.h"
+#include "../bitmatrix/bitmatrix.h"
 
 using namespace std;
 

@@ -1,5 +1,21 @@
-changeset:   59:ed4e063be361
+changeset:   62:ce03a0b4cb2c
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:25:44 2011 +0200
+sommario:    Inserita l'etichetta 0.0.2 per il changeset 0a42aa6ac566
+
+changeset:   61:0a42aa6ac566
+tag:         0.0.2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:25:15 2011 +0200
+sommario:    version 0.0.2
+
+changeset:   60:202b7cbd41b3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:22:23 2011 +0200
+sommario:    fix globali, rinominazioni: gene->chromosome ; chromosome->dna
+
+changeset:   59:ed4e063be361
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 21 09:11:06 2011 +0200
 sommario:    inserita classe tests
