@@ -18,7 +18,7 @@ void ga_engine::init()
     pop = new population();
     
     if (conf->verbose)
-        cout << "selecting " << conf->avg_population_size << " random individuals..." << endl;
+        cout << "selecting " << conf->population_size << " random individuals..." << endl;
     pop->new_random_population();
 }
 
@@ -42,7 +42,7 @@ void ga_engine::evolve()
         if (conf->verbose)
             cout << endl << "iteration: " << iteration << endl;
         if (conf->verbose && conf->print_population_size)
-            cout << endl << "population: " << pop->count_individuals() << endl;
+            cout << endl << "population: " << pop->size() << endl;
             
         best_fitness = pop->get_best_fitness();
         
@@ -50,15 +50,16 @@ void ga_engine::evolve()
             cout << "best_fitness: " << best_fitness << endl;
 
         if (conf->verbose && conf->print_best_dna)
-            pop->print_best_dna();
+            pop->print_best();
             
         pop->mate_individuals();
-        pop->kill_individuals();
+        pop->kill_individuals(pop->size()-conf->population_size);
 
         pop->mutate_individuals();
 
-       if(conf->verbose)
-          cout << 
+        if (conf->verbose)
+            cout << "starting calc_fitness" << endl;
+
         pop->calc_fitness();
         pop->sort_by_fitness();
     }
