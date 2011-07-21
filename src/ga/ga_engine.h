@@ -8,17 +8,18 @@
 
 using namespace std;
 
+extern config *conf;
+
 class ga_engine
 {
     uint32 iteration;
     population *pop;
-    config *conf;
 
     public:
     ga_engine();
     ~ga_engine();
 
-    void init(config*);
+    void init();
     void evolve();
 };
 

@@ -1,5 +1,10 @@
-changeset:   63:1fef1ef321f2
+changeset:   64:078150f63de8
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 12:45:19 2011 +0200
+sommario:    update clean.sh .hgignore
+
+changeset:   63:1fef1ef321f2
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 21 12:40:56 2011 +0200
 sommario:    ristrutturazione dell'architettura.

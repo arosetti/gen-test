@@ -6,23 +6,22 @@
 #include <list>
 
 #include "individual.h"
-#include "../config.h"
 
 using namespace std;
+
+extern config *conf;
 
 class population
 {
     list<individual*> pool;
     list<individual*> limbo;
 
-    config *conf;
-
     individual* get_random_individual() const;
     individual* new_random_individual();
     void crossover(individual*, individual*);
 
     public:
-    population(config *c);
+    population();
     ~population();
 
     void    new_random_population();
