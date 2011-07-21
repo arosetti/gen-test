@@ -6,10 +6,11 @@
 
 using namespace std;
 
+config *conf = new config;
+
 int main()
 {
     ga_engine ga;
-    config conf;
     string response;
     uint32 value;
 
@@ -17,23 +18,25 @@ int main()
     cout << "used to generate test patterns for simulated circuits." << endl;
     cout << endl;
 
-    load_config("config.conf", &conf);
+    load_config("config.conf", conf);
 
-    if (conf.interactive) 
+    if (conf->interactive) 
     {
         cout << "dna_length: ";
         cin  >> value;
-        conf.dna_length = value;
+        conf->dna_length = value;
     
         cout << "chromosome_length: ";
         cin  >> value;
-        conf.chromosome_length = value;
+        conf->chromosome_length = value;
         
         cout << endl;
     }
 
-    ga.init(&conf);
+    ga.init();
     ga.evolve();
+
+    delete conf;
 
     return 0;
 }

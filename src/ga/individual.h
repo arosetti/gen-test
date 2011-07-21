@@ -3,8 +3,11 @@
 
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
+#include "../config.h"
 
 using namespace std;
+
+extern config *conf;
 
 class individual
 {

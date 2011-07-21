@@ -1,15 +1,7 @@
 #include "population.h"
 
-population::population(config *c)
+population::population()
 {
-    if (c)
-        conf = c;
-    else
-    {
-        cout << "null config pointer!" << endl;
-        exit(0);
-    }
-
     if (conf->avg_population_size == 0)
     {
         cout << "can't use zero population size" << endl;

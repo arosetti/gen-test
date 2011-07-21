@@ -11,13 +11,11 @@ ga_engine::~ga_engine()
     delete pop;
 }
 
-void ga_engine::init(config *c)
+void ga_engine::init()
 {   
-    conf = c;
-
     if (conf->verbose)
         cout << "init population" << endl;
-    pop = new population(conf);
+    pop = new population();
     
     if (conf->verbose)
         cout << "selecting " << conf->avg_population_size << " random individuals..." << endl;
