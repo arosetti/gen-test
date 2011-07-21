@@ -1,5 +1,26 @@
-changeset:   66:e8477e0945d1
+changeset:   70:4b42f21d5150
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:45:00 2011 +0200
+sommario:    Inserita l'etichetta 0.0.3 per il changeset 445a09c1e064
+
+changeset:   69:445a09c1e064
+tag:         0.0.3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:44:30 2011 +0200
+sommario:    version 0.0.3
+
+changeset:   68:7ec0ed15900a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:24:53 2011 +0200
+sommario:    hgignore update
+
+changeset:   67:84675d078e00
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:17:50 2011 +0200
+sommario:    update config per supportare le classi della cartella simulation
+
+changeset:   66:e8477e0945d1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 21 13:43:40 2011 +0200
 sommario:    update ignore
