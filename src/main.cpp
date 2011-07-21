@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <iostream>
 
-#include "ga_engine.h"
+#include "ga/ga_engine.h"
 #include "../config.h"
 
 using namespace std;

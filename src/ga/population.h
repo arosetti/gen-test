@@ -6,7 +6,7 @@
 #include <list>
 
 #include "individual.h"
-#include "config.h"
+#include "../config.h"
 
 using namespace std;
 
