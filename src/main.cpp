@@ -22,13 +22,17 @@ int main()
 
     if (conf->interactive) 
     {
-        cout << "dna_length: ";
+        cout << "iterations: ";
         cin  >> value;
-        conf->dna_length = value;
+        conf->max_iterations = value;
+       
+        cout << "chromosome_num: ";
+        cin  >> value;
+        conf->chromosome_num = value;
     
-        cout << "chromosome_length: ";
+        cout << "chromosome_start_len: ";
         cin  >> value;
-        conf->chromosome_length = value;
+        conf->chromosome_start_len = value;
         
         cout << endl;
     }

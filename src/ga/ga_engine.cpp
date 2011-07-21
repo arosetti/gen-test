@@ -49,14 +49,17 @@ void ga_engine::evolve()
         if (conf->verbose && conf->print_best_fitness)
             cout << "best_fitness: " << best_fitness << endl;
 
-        pop->sort_by_fitness();
-        
         if (conf->verbose && conf->print_best_dna)
             pop->print_best_dna();
             
-        pop->mate_individuals(conf->mate_rate);
-        pop->kill_individuals(conf->kill_rate);
-        pop->mutate_individuals(conf->mutation_rate);
-        
+        pop->mate_individuals();
+        pop->kill_individuals();
+
+        pop->mutate_individuals();
+
+       if(conf->verbose)
+          cout << 
+        pop->calc_fitness();
+        pop->sort_by_fitness();
     }
 }

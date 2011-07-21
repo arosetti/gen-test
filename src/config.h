@@ -17,16 +17,16 @@ typedef struct config
     string test_file_outpath, test_file_inpath;
 
     uint32 max_iterations;
-    
-    uint32 dna_length;
-    uint32 chromosome_length;
-        
-    uint32 avg_population_size;
-    
-    float mutation_rate, mutation_strength;
-    float mate_rate, kill_rate;
     uint32 max_stall;
-    
+
+    uint32 population_size;
+
+    uint32 chromosome_num;
+    uint32 chromosome_start_len;
+        
+    float  mating_fraction;
+    float  mating_rate;
+    float  mutation_rate, mutation_strength;
 } config;
 
 bool load_config(string , config *);
