@@ -30,6 +30,11 @@ class bitmatrix
             return m_cols;        
         }
         
+        uint32 GetSize() const
+        {
+            return m_cols*m_rows;
+        }
+
         uint32 GetCells() const
         {
             return m_cells;        
