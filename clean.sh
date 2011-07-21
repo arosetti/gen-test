@@ -12,3 +12,4 @@ rm -Rf autom4te.cache/ stamp-h1 config.status install-sh \
        
 rm -Rf src/.deps src/bitmatrix/.deps src/common/.deps
 rm -Rf src/.dirstamp src/bitmatrix/.dirstamp src/common/.dirstamp
+rm -Rf src/ga/.dirstamp src/simulation/.dirstamp

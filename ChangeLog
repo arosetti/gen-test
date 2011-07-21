@@ -1,5 +1,10 @@
-changeset:   62:ce03a0b4cb2c
+changeset:   63:1fef1ef321f2
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 12:40:56 2011 +0200
+sommario:    ristrutturazione dell'architettura.
+
+changeset:   62:ce03a0b4cb2c
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 21 11:25:44 2011 +0200
 sommario:    Inserita l'etichetta 0.0.2 per il changeset 0a42aa6ac566
