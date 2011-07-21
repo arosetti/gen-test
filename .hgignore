@@ -21,3 +21,5 @@ INSTALL
 src/.dirstamp
 src/bitmatrix/.dirstamp
 src/common/.dirstamp
+src/ga/.dirstamp
+src/simulation/.dirstamp
