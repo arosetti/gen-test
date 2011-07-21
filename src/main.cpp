@@ -19,23 +19,18 @@ int main()
 
     load_config("config.conf", &conf);
 
-    cout << "do you want to change GA params? (y/n) ";
-    cin  >> response;
-    cout << endl;
-
-    // sistema di input temporaneo
-    if (response == "y" || response == "Y") 
+    if (conf.interactive) 
     {
+        cout << "dna_length: ";
+        cin  >> value;
+        conf.dna_length = value;
+    
         cout << "chromosome_length: ";
         cin  >> value;
         conf.chromosome_length = value;
-    
-        cout << "gene_length: ";
-        cin  >> value;
-        conf.gene_length = value;
         
+        cout << endl;
     }
-    cout << endl;
 
     ga.init(&conf);
     ga.evolve();

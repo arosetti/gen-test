@@ -8,14 +8,14 @@ using namespace std;
 
 typedef struct config 
 {
-    bool debug, verbose;
-    bool print_best_chromosome, print_best_fitness;
+    bool debug, verbose, interactive;
+    bool print_best_dna, print_best_fitness;
     bool print_population_size, print_kills;
     bool print_mutations;
     
     uint32 max_iterations;
     
-    uint32 gene_length;
+    uint32 dna_length;
     uint32 chromosome_length;
         
     uint32 avg_population_size;

@@ -10,19 +10,19 @@ population::population(config *c)
         exit(0);
     }
 
-    size = conf->avg_population_size;
-
-    if (conf->gene_length > 0)
-        gene_l = conf->gene_length;
-    else
+    if (conf->avg_population_size == 0)
+    {
+        cout << "can't use zero population size" << endl;
+        exit(0);
+    }
+    
+    if (conf->chromosome_length == 0)
     {
         cout << "can't use zero gene length" << endl;
         exit(0);
     }
 
-    if (conf->chromosome_length > 0)
-        chromosome_l = conf->chromosome_length;
-    else
+    if (conf->chromosome_length == 0)
     {
         cout << "can't use zero chromosome length" << endl;
         exit(0);
@@ -60,10 +60,10 @@ individual* population::get_random_individual() const
 
 individual* population::new_random_individual()
 {
-    individual *i = new individual(gene_l, chromosome_l);
+    individual *i = new individual(conf->chromosome_length, conf->chromosome_length);
     
     if (i)
-        i->chromosome_random();
+        i->dna_random();
 
     return i;
 }
@@ -72,7 +72,7 @@ void population::new_random_population()
 {
     int created = 0;
     
-    while (created++ < size)
+    while (created++ < conf->avg_population_size)
         pool.push_back(new_random_individual());
 }
 
@@ -105,7 +105,7 @@ void population::sort_by_fitness()
 
 void population::mate_individuals(uint32 how_many)
 {
-    for(int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
+    for (int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
     {
         pool.push_back(new_random_individual());    
     }
@@ -127,7 +127,7 @@ void population::mutate_individuals(uint32 strength) const
             if (conf->verbose && conf->print_mutations)
                 cout << "mutation event!"<<endl;
 
-            (*it)->chromosome_mutate(conf->mutation_strength);
+            (*it)->dna_mutate(conf->mutation_strength);
         }
     }  
 }
@@ -135,12 +135,12 @@ void population::mutate_individuals(uint32 strength) const
 void population::kill_individuals(uint32 rate)
 {
     list<individual*>::iterator it = pool.begin();
-    if (pool.size() > size)
+    if (pool.size() > conf->avg_population_size)
     {
         if (conf->verbose && conf->print_kills)
-            cout << "killing: " << (pool.size()-size) << endl;
+            cout << "killing: " << (pool.size() - conf->avg_population_size) << endl;
         
-        advance(it,size);
+        advance(it, conf->avg_population_size);
         pool.erase(it, pool.end());
     }
 }
@@ -150,9 +150,9 @@ uint32  population::count_individuals() const
     return pool.size();
 }
 
-void population::print_best_individual() const
+void population::print_best_dna() const
 {
     list<individual*>::const_iterator it = pool.begin();
-    cout << (*it)->get_chromosome();
+    cout << (*it)->get_dna();
 }
 

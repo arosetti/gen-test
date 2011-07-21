@@ -8,7 +8,8 @@ bool load_config(string conf_filename, config *c)
     {
         CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
-        CFG_BOOL((char*)"print_best_chromosome",(cfg_bool_t)false, CFGF_NONE),
+        CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
+        CFG_BOOL((char*)"print_best_dna",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_best_fitness",(cfg_bool_t)true, CFGF_NONE),
         CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_kills",(cfg_bool_t)false, CFGF_NONE),
@@ -16,7 +17,7 @@ bool load_config(string conf_filename, config *c)
 
         CFG_INT((char*)"avg_population_size", 4096, CFGF_NONE),
         CFG_INT((char*)"max_iterations",  8192, CFGF_NONE),
-        CFG_INT((char*)"gene_length", 15 , CFGF_NONE),
+        CFG_INT((char*)"dna_length", 15 , CFGF_NONE),
         CFG_INT((char*)"chromosome_length",  10, CFGF_NONE),        
         CFG_INT((char*)"max_stall", 100, CFGF_NONE),
         CFG_FLOAT((char*)"mutation_rate", 0.06f, CFGF_NONE),
@@ -34,7 +35,9 @@ bool load_config(string conf_filename, config *c)
         
     c->debug = cfg_getbool(cfg, "debug");
     c->verbose = cfg_getbool(cfg, "verbose");
-    c->print_best_chromosome = cfg_getbool(cfg, "print_best_chromosome");
+    c->interactive = cfg_getbool(cfg, "interactive");
+
+    c->print_best_dna= cfg_getbool(cfg, "print_best_dna");
     c->print_best_fitness = cfg_getbool(cfg, "print_best_fitness");
     c->print_population_size = cfg_getbool(cfg, "print_population_size");
     c->print_kills = cfg_getbool(cfg, "print_kills");
@@ -42,7 +45,7 @@ bool load_config(string conf_filename, config *c)
 
     c->avg_population_size = cfg_getint(cfg, "avg_population_size");
     c->max_iterations = cfg_getint(cfg, "max_iterations");
-    c->gene_length = cfg_getint(cfg, "gene_length");
+    c->dna_length = cfg_getint(cfg, "dna_length");
     c->chromosome_length = cfg_getint(cfg, "chromosome_length");
 
     c->mutation_rate = cfg_getfloat(cfg, "mutation_rate");

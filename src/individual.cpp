@@ -1,60 +1,60 @@
 #include "individual.h"
 
-individual::individual(uint32 g_len, uint32 c_len)
+individual::individual(uint32 crom_len, uint32 dna_len)
 {
-    gene_l = c_len;
-    chromosome_l = g_len;
+    chromosome_length = crom_len;
+    dna_length = dna_len;
     fitness = 0;
     
-    chromosome = new bitmatrix(chromosome_l, gene_l);
+    dna = new bitmatrix(dna_length, chromosome_length);
 }
 
 individual::~individual()
 {
-    delete chromosome;
+    delete dna;
 }
 
-string individual::get_chromosome() const
+string individual::get_dna() const
 {
-    return chromosome->ToString();
+    return dna->ToString();
 }
 
-void individual::set_chromosome(string str)
+void individual::set_dna(string str)
 {
-    chromosome->Import(str); 
+    dna->Import(str); 
 }
 
-uint32 individual::get_chromosome_length()  const
+uint32 individual::get_dna_length()  const
 {
-    return chromosome_l;
+    return dna_length;
 }
 
-void individual::set_chromosome_length(uint32 l)
+void individual::set_dna_length(uint32 l)
 {
-    chromosome_l = l;
-    chromosome->Resize(chromosome->GetRows(), chromosome_l);
+    dna_length = l;
+    dna->Resize(dna->GetRows(), dna_length);
 }
 
-void individual::chromosome_random()
+void individual::dna_random()
 {
-    chromosome->RandomizeAll();
+    dna->RandomizeAll();
 }
 
-void individual::chromosome_mutate(uint32 mutation_strength)
+void individual::dna_mutate(uint32 mutation_strength)
 {
-    uint8 count = mutation_strength>gene_l?gene_l:mutation_strength;
+    uint8 count = mutation_strength>chromosome_length?chromosome_length:mutation_strength;
     uint32 row_r,col_r;
 
 
 
     while (count-- != 0)
     {
-        row_r = rand()%chromosome_l + 1;
-        col_r = rand()%gene_l + 1;
+        row_r = rand()%dna_length + 1;
+        col_r = rand()%chromosome_length + 1;
         
         //cout "mutation at "<< row_r << "-" <<col_r << endl;
         
-        chromosome->Flip(row_r,col_r);
+        dna->Flip(row_r,col_r);
     }
 }
   
@@ -68,56 +68,56 @@ void individual::set_fitness(float f)
     fitness = f;
 }
 
-string individual::get_gene(uint32 g)  const
+string individual::get_chromosome(uint32 crom)  const
 {
-    if (g>= chromosome_l)
+    if (crom >= dna_length)
         return "";
         
-    return chromosome->GetRow(g);
+    return dna->GetRow(crom);
 }
 
-void individual::set_gene(uint32 g, string s)
+void individual::set_chromosome(uint32 crom, string str)
 {
-    if (g>= chromosome_l)
+    if (crom>= dna_length)
         return;
         
-    chromosome->SetRow(s,g);
+    dna->SetRow(str, crom);
 }
 
-uint32  individual::get_gene_length()  const
+uint32  individual::get_chromosome_length()  const
 {
-    return gene_l;
+    return chromosome_length;
 }
 
-void  individual::set_gene_length(uint32 l)
+void  individual::set_chromosome_length(uint32 len)
 {
-    gene_l = l;
-    chromosome->Resize(gene_l, chromosome->GetCols());
+    chromosome_length = len;
+    dna->Resize(chromosome_length, dna->GetCols());
 }
 
-void individual::gene_mutate(uint32 g, uint32 mutation_strength)
+void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
 {
-    uint8 count = mutation_strength>gene_l?gene_l:mutation_strength;
+    uint8 count = mutation_strength>chromosome_length?chromosome_length:mutation_strength;
     uint32 col_r;
 
-    if (g<0 || g>= gene_l)
+    if (crom == 0 || crom >= chromosome_length)
         return;
 
-    col_r = rand()%gene_l + 1;
+    col_r = rand()%chromosome_length + 1;
 
     while (count-- != 0)
-        chromosome->Flip(g,col_r);
+        dna->Flip(crom, col_r);
 }
 
-void individual::gene_random(uint32 g)
+void individual::chromosome_random(uint32 crom)
 {
-    if (g>= gene_l)
+    if (crom >= chromosome_length)
         return;
 
-    chromosome->RandomizeRow(g);
+    dna->RandomizeRow(crom);
 }
 
-bool individual::operator < (const individual& i)
+bool individual::operator < (const individual& ind)
 {
-    return fitness < i.get_fitness();
+    return fitness < ind.get_fitness();
 }
