@@ -17,10 +17,8 @@
    + prevedere ricompilazione del simulatore.
    
 + classe bitmatrix
-   +++ ridefinizione di [] [][] ...
-   +++ utilizzare output string per dialogare con l'esterno
-   ~~~ crash RandomizeAll()
-
+   + ottimizzare i return di stringhe con puntatori
+    
 #####librerie_utili#####
 
 +pthread
