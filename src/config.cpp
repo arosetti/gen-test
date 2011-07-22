@@ -21,7 +21,7 @@ bool load_config(string conf_filename, config *c)
         CFG_STR((char*)"test_file_outpath",(char*)"",CFGF_NONE),
         CFG_STR((char*)"test_file_inpath",(char*)"",CFGF_NONE),
 
-        CFG_INT((char*)"max_iterations",  8192, CFGF_NONE),
+        CFG_INT((char*)"max_generations",  8192, CFGF_NONE),
         CFG_INT((char*)"max_stall", 100, CFGF_NONE),
        
         CFG_INT((char*)"population_size", 4096, CFGF_NONE),
@@ -62,7 +62,7 @@ bool load_config(string conf_filename, config *c)
     c->test_file_inpath = cfg_getstr(cfg, "test_file_inpath");
 
 
-    c->max_iterations = cfg_getint(cfg, "max_iterations");
+    c->max_generations = cfg_getint(cfg, "max_generations");
     c->max_stall = cfg_getint(cfg, "max_stall");
     
     c->population_size = cfg_getint(cfg, "population_size");

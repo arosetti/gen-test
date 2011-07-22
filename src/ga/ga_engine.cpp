@@ -2,7 +2,7 @@
 
 ga_engine::ga_engine()
 {
-    iteration = 0;
+    generation = 0;
     srand(time(NULL));
 }
 
@@ -34,13 +34,13 @@ void ga_engine::evolve()
     }
 
     if (conf->verbose)
-        cout << "the population is going to evolve for " << conf->max_iterations << \
+        cout << "the population is going to evolve for " << conf->max_generations << \
             " generations!" << endl << endl;
 
-    while ( iteration++ < conf->max_iterations ) 
+    while ( generation++ < conf->max_generations ) 
     {
         if (conf->verbose)
-            cout << endl << "iteration: " << iteration << endl;
+            cout << endl << "generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
             cout << endl << "population: " << pop->size() << endl;
             

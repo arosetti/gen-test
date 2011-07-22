@@ -17,7 +17,7 @@ extern config *conf;
 
 class ga_engine
 {
-    uint32 iteration;
+    uint32 generation;
     population *pop;
 
     public:

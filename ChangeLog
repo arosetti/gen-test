@@ -1,5 +1,15 @@
-changeset:   91:c01e6663f1d0
+changeset:   93:243f4d034071
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 18:19:39 2011 +0200
+sommario:    update README
+
+changeset:   92:bd504bc306de
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 17:54:16 2011 +0200
+sommario:    generazione della documentazione latex
+
+changeset:   91:c01e6663f1d0
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 22 17:32:45 2011 +0200
 sommario:    inserito Doxyfile
