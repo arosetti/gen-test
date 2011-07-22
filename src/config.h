@@ -16,7 +16,7 @@ typedef struct config
     string simulator_dir, simulator_bin, simulator_patch;
     string test_file_outpath, test_file_inpath;
 
-    uint32 max_iterations;
+    uint32 max_generations;
     uint32 max_stall;
 
     uint32 population_size;
