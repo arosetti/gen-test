@@ -27,8 +27,10 @@ bool load_config(string conf_filename, config *c)
         CFG_INT((char*)"population_size", 4096, CFGF_NONE),
 
         CFG_INT((char*)"chromosome_num", 15 , CFGF_NONE),
-        CFG_INT((char*)"chromosome_start_len",  10, CFGF_NONE),        
-        
+        CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
+        CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),        
+        CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE), 
+                
         CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
         CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
 
@@ -66,8 +68,10 @@ bool load_config(string conf_filename, config *c)
     c->population_size = cfg_getint(cfg, "population_size");
 
     c->chromosome_num = cfg_getint(cfg, "chromosome_num");
-    c->chromosome_start_len = cfg_getint(cfg, "chromosome_start_len");
-
+    c->chromosome_max_len = cfg_getint(cfg, "chromosome_max_len");
+    c->chromosome_start_len_min = cfg_getint(cfg, "chromosome_start_len_min");
+    c->chromosome_start_len_max = cfg_getint(cfg, "chromosome_start_len_max");
+    
     c->mating_rate = cfg_getfloat(cfg, "mating_rate");
     c->mating_fraction = cfg_getfloat(cfg, "mating_fraction");
 

@@ -22,7 +22,8 @@ typedef struct config
     uint32 population_size;
 
     uint32 chromosome_num;
-    uint32 chromosome_start_len;
+    uint32 chromosome_max_len;
+    uint32 chromosome_start_len_min, chromosome_start_len_max;
         
     float  mating_fraction;
     float  mating_rate;

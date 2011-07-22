@@ -8,15 +8,15 @@ population::population()
         exit(0);
     }
     
-    if (conf->chromosome_start_len == 0)
-    {
-        cout << "can't use zero gene length" << endl;
-        exit(0);
-    }
-
-    if (conf->chromosome_start_len == 0)
+    if (conf->chromosome_start_len_min == 0 || conf->chromosome_start_len_max == 0)
     {
         cout << "can't use zero chromosome length" << endl;
+        exit(0);
+    }
+    
+    if (conf->chromosome_start_len_min > conf->chromosome_start_len_max)
+    {
+        cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
         exit(0);
     }
 }
