@@ -10,9 +10,7 @@ using namespace std;
 
 extern config *conf;
 
-//! La classe ga_engine è il componente principale dell'algoritmo genetico. \
-    Contiene il ciclo che esegue le iterazioni, chiama le operazioni \
-    base come mutazione, accoppiamento e calcolo delle fitness. 
+//! La classe ga_engine è il componente principale dell'algoritmo genetico.
 /**
  *
  */
