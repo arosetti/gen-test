@@ -10,7 +10,7 @@ using namespace std;
 
 extern config *conf;
 
-//! La classe ga_engine è il componente principale dell'algoritmo genetico.
+//! Il componente principale dell'algoritmo genetico.
 /**
  *
  */
