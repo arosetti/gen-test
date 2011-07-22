@@ -12,7 +12,7 @@ class tests
         tests();
         ~tests();
 
-        uint32 GetFaults();
+        uint32 GetFaultsSize();
 
         set<uint32> const& GetFaultsList() const;
         bool   DeleteFault(uint32 fault);   
