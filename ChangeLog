@@ -1,5 +1,15 @@
-changeset:   80:50c614ff14ac
+changeset:   82:70f49e5d68bf
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:26:20 2011 +0200
+sommario:    fix doxygen classe ga_engine.h
+
+changeset:   81:faec6edafb78
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:25:15 2011 +0200
+sommario:    commenti doxygen della ga_engine.h
+
+changeset:   80:50c614ff14ac
 utente:      Lazzalf
 data:        Fri Jul 22 13:51:11 2011 +0200
 sommario:    General_test
