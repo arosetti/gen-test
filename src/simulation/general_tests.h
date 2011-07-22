@@ -1,5 +1,5 @@
-#ifndef TESTS_H
-#define TESTS_H
+#ifndef GEN_TESTS_H
+#define GEN_TESTS_H
 
 #include "../common/typedefs.h"
 #include <set>

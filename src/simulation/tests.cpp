@@ -10,7 +10,7 @@ tests::~tests()
 
 }
 
-uint32 tests::GetFaults()
+uint32 tests::GetFaultsSize()
 {
     return m_faults_set.size();
 }
