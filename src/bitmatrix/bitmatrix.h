@@ -128,40 +128,102 @@ class bitmatrix
 
         //! Copia una colonna da una bitmatrix alla bitmatrix locale (non serve che siano delle stesse dimensioni)
         /**
+        * @param const bitmatrix& bin_mat Bitmatrix da cui copiare la colonna
         * @param uint32 col Numero della colonna (partendo da 0)
         */ 
         void    SetCol(const bitmatrix& bin_mat, uint32 col);
 
-        //! Copia una colonna da una stringa alla bitmatrix
+        //! Copia una stringa in una colonna della bitmatrix
         /**
         * @param uint32 str Stringa da copiare nel formato 0,0,1,0,1
         * @param uint32 col Numero della colonna (partendo da 0)
         */ 
         void    SetCol(const string& str, uint32 col);
+
         //! Randomizza una colonna della bitmatrix
         /**
         * @param uint32 col Numero della colonna (partendo da 0)
         */ 
         void    RandomizeCol(uint32 col);
 
+
+        //! Ritorna una riga come stringa
+        /**
+        * @param uint32 row Numero della riga (partendo da 0)
+        * @return string La riga convertita in stringa
+        */  
         string  GetRow(uint32 row);
-        void    UnsetRow(uint32 row);      
-        void    SetRow(uint32 row);        
+
+        //! Resetta una riga cioè la mette tutta a 0
+        /**
+        * @param uint32 row Numero della riga (partendo da 0)
+        */  
+        void    UnsetRow(uint32 row);    
+
+        //! Setta una riga cioè la mette tutta a 1
+        /**
+        * @param uint32 row Numero della riga (partendo da 0)
+        */    
+        void    SetRow(uint32 row);  
+
+        //! Copia una riga da una bitmatrix alla bitmatrix locale (non serve che siano delle stesse dimensioni)
+        /**
+        * @param const bitmatrix& bin_mat Bitmatrix da cui copiare la riga
+        * @param uint32 row Numero della riga (partendo da 0)
+        */       
         void    SetRow(const bitmatrix& bin_mat, uint32 row);
-        // Formato Stringa 0,1,0,1,0,0      
-        void    SetRow(const string& str, uint32 col);
+        
+        //! Copia una stringa in una riga della bitmatrix
+        /**
+        * @param uint32 str Stringa da copiare nel formato 0,0,1,0,1
+        * @param uint32 row Numero della riga (partendo da 0)
+        */     
+        void    SetRow(const string& str, uint32 row);
+
+        //! Randomizza una riga della bitmatrix
+        /**
+        * @param uint32 col Numero della riga (partendo da 0)
+        */ 
         void    RandomizeRow(uint32 row);
 
+
+        //! Randomizza l'intera bitmatrix
         void    RandomizeAll();
+        //! Setta l'intera bitmatrix (la mette a 1)
         void    SetAll();        
+        //! Resetta l'intera bitmatrix (la mette a 0)
         void    UnsetAll();
+        //! Flip l'intera bitmatrix (inverte il valore dei bit)
         void    FlipAll();
+        
+        //! Ridimensiona la bitmatrix
+        /**
+        * @param uint32 rows Numero delle righe
+        * @param uint32 cols Numero delle colonne
+        */
         void    Resize(uint32 rows, uint32 cols);
+
+        //! Importa i valori da una stringa nella bitmatrix
+        /**
+        * @param const string& str Stringa da cui importare, formato 0,0,0\n1,0,0,1\n0
+        */
         void    Import(const string& str);  
-        void    Import(const bitmatrix& bin_mat);        
+
+        //! Importa una bitmatrix dentro la bitmatrix locale manenendo la sua dimensione attuale
+        /**
+        * @param const bitmatrix& bin_mat Bitmatrix da cui importare
+        */
+        void    Import(const bitmatrix& bin_mat);  
+
+        //! Stampa la bitmatrix a video    
         void    Print() const;
+        //! Converte la bitmatrix in una stringa uguale a quella del formato di importazione
         string  ToString() const;
 
+        //! Copia una bitmatrix dentro la bitmatrix locale modificandoli le dimensioni
+        /**
+        * @param const bitmatrix& bin_mat Bitmatrix da cui copiare
+        */
         const bitmatrix& operator=(const bitmatrix& bit_mat);
         
     private:
