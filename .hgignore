@@ -3,7 +3,7 @@ syntax: glob
 *.o
 *~
 gentest
-autom4te.cache/
+autom4te.cache/*
 stamp-h1
 config.status
 install-sh
@@ -29,3 +29,4 @@ src/simulation/.dirstamp
 src/simulation/.deps
 src/*.spw
 doxygen-html/*
+doxygen-latex/*

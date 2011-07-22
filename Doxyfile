@@ -177,8 +177,8 @@ SERVER_BASED_SEARCH    = NO
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
 #---------------------------------------------------------------------------
-GENERATE_LATEX         = NO
-LATEX_OUTPUT           = latex
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = doxygen-latex
 LATEX_CMD_NAME         = latex
 MAKEINDEX_CMD_NAME     = makeindex
 COMPACT_LATEX          = NO

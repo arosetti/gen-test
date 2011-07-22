@@ -13,7 +13,7 @@ typedef unsigned long int uint32;
 using namespace std;
 
 
-//! La classe bitmatrix è una struttura di memorizzazione di una matrice di bit
+//! Struttura di memorizzazione di una matrice di bit
 /**
  *
  */
