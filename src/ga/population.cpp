@@ -52,25 +52,38 @@ individual* population::get_random_individual() const
 
 individual* population::new_random_individual()
 {
-    individual *i = new individual(conf->chromosome_start_len, conf->chromosome_start_len);
-    
-    if (i)
-        i->dna_random();
+    individual *ind ;
+    uint32 len = rand()%(conf->chromosome_start_len_max - \
+                         conf->chromosome_start_len_min + 1 )  \
+                         + conf->chromosome_start_len_min;
 
-    return i;
+    ind = new individual(len, conf->chromosome_num);
+
+    if(conf->verbose && conf->debug)
+        cout << "new individual, chromosome_len = " << len << endl;
+
+    if (ind)
+        ind->dna_random();
+
+    return ind;
 }
 
 void population::new_random_population()
 {
     int created = 0;
-    
+
     while (created++ < conf->population_size)
         pool.push_back(new_random_individual());
 }
 
 void population::calc_fitness()
 {
-
+    list<individual*>::const_iterator it = pool.begin();
+    
+    for (it = pool.begin(); it!=pool.end(); ++it)
+    {
+        (*it)->calc_fitness();
+    }  
 }
 
 float population::get_avg_fitness() const
@@ -82,7 +95,7 @@ float population::get_avg_fitness() const
     {
         sum_fitness+=(*it)->get_fitness();
     }  
-    
+
     if (pool.size() == 0)
         return 0;
     else 

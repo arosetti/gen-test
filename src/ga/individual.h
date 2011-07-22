@@ -33,7 +33,8 @@ class individual
 
     float   get_fitness() const;
     void    set_fitness(float);
-
+    void    calc_fitness();
+    
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
 
