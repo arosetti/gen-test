@@ -62,5 +62,8 @@ void ga_engine::evolve()
 
         pop->calc_fitness();
         pop->sort_by_fitness();
+        
+        if (conf->verbose && conf->debug)
+            pop->print_all();
     }
 }

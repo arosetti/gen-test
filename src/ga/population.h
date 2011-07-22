@@ -40,6 +40,7 @@ class population
 
     uint32  size() const;
     void    print_best() const;
+    void    print_all() const; // per debug
 };
 
 #endif
