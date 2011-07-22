@@ -1,9 +1,9 @@
 #include "individual.h"
 
-individual::individual(uint32 crom_len, uint32 dna_len)
+individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
-    chromosome_length = crom_len;
-    chromosome_number = dna_len;
+    chromosome_length = chrom_len;
+    chromosome_number = chrom_num;
     fitness = 0;
     
     dna = new bitmatrix(chromosome_number, chromosome_length);
@@ -72,6 +72,11 @@ void individual::set_fitness(float f)
     fitness = f;
 }
 
+void individual::calc_fitness()
+{
+
+}
+
 string individual::get_chromosome(uint32 crom)  const
 {
     if (crom >= chromosome_number)
@@ -101,7 +106,8 @@ void  individual::set_chromosome_length(uint32 len)
 
 void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
 {
-    uint8 count = mutation_strength>chromosome_length?chromosome_length:mutation_strength;
+    uint8 count = mutation_strength>chromosome_length? \
+                  chromosome_length:mutation_strength;
     uint32 col_r;
 
     if (crom == 0 || crom >= chromosome_length)

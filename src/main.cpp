@@ -29,10 +29,18 @@ int main()
         cout << "chromosome_num: ";
         cin  >> value;
         conf->chromosome_num = value;
-    
-        cout << "chromosome_start_len: ";
+        
+        cout << "chromosome_max_len: ";
         cin  >> value;
-        conf->chromosome_start_len = value;
+        conf->chromosome_max_len = value;
+    
+        cout << "chromosome_start_len_min: ";
+        cin  >> value;
+        conf->chromosome_start_len_min = value;
+        
+        cout << "chromosome_start_len_max: ";
+        cin  >> value;
+        conf->chromosome_start_len_max = value;
         
         cout << endl;
     }
