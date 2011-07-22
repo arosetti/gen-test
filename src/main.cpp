@@ -22,9 +22,9 @@ int main()
 
     if (conf->interactive) 
     {
-        cout << "iterations: ";
+        cout << "generations: ";
         cin  >> value;
-        conf->max_iterations = value;
+        conf->max_generations = value;
        
         cout << "chromosome_num: ";
         cin  >> value;
