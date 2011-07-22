@@ -1,5 +1,25 @@
-changeset:   76:76411a25f485
+changeset:   80:50c614ff14ac
 tag:         tip
+utente:      Lazzalf
+data:        Fri Jul 22 13:51:11 2011 +0200
+sommario:    General_test
+
+changeset:   79:121e1aae8b10
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 13:46:52 2011 +0200
+sommario:    inserimento classe parser, per in/out con il simulatore
+
+changeset:   78:33494023362c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 13:46:32 2011 +0200
+sommario:    aggiornamento nomi variabili in individual e population
+
+changeset:   77:09f5c5146e11
+utente:      Lazzalf
+data:        Fri Jul 22 13:08:06 2011 +0200
+sommario:    bitmatrix
+
+changeset:   76:76411a25f485
 utente:      Lazzalf
 data:        Fri Jul 22 12:35:43 2011 +0200
 sommario:    Test
