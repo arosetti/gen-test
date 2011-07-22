@@ -1,5 +1,10 @@
-changeset:   85:9e26102cd30d
+changeset:   86:12f67450daba
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:24:52 2011 +0200
+sommario:    generazione di individual con lunghezza compresa tra due valori, uno di max e uno di min.
+
+changeset:   85:9e26102cd30d
 genitore:    83:697965025251
 genitore:    84:d99fef23453c
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

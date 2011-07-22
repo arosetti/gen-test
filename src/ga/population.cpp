@@ -166,3 +166,18 @@ void population::print_best() const
     cout << (*it)->get_dna();
 }
 
+void population::print_all() const
+{
+    list<individual*>::const_iterator it = pool.begin();
+    uint32 count = 0;
+
+    for (it = pool.begin(); it!=pool.end(); ++it)
+    {   
+        cout << "individual: #" << count << endl;
+        cout << "fitness:     " << (*it)->get_fitness() << endl;
+        cout << "dna: " << endl;
+        cout << (*it)->get_dna();
+        cout << endl << endl;
+        count++;
+    }  
+}
