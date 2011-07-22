@@ -28,3 +28,4 @@ src/ga/.deps
 src/simulation/.dirstamp
 src/simulation/.deps
 src/*.spw
+doxygen-html/*

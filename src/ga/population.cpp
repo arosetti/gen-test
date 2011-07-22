@@ -121,7 +121,6 @@ void population::mate_individuals()
     }
 }
 
-
 void population::mutate_individuals() const
 {
     list<individual*>::const_iterator it = pool.begin();
