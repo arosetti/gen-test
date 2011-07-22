@@ -1,21 +1,27 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-#include<list>
-
-#include"../common/typedefs.h"
+#include "../common/typedefs.h"
+#include <set>
 
 using namespace std;
 
 class tests
-{
-    list<uint32> faults;
-    
+{    
     public:
-    tests();
-    ~tests();
-    
+        tests();
+        ~tests();
 
+        uint32 GetFaults();
+
+        //set<uint32> const& GetFaultsList() const;
+        bool   DeleteFault(uint32 fault);   
+        bool   InsertFault(uint32 fault);    
+        bool   FindFault(uint32 fault);                  
+    
+    private:
+
+        set<uint32> m_faults_set;
 };
 
 #endif
