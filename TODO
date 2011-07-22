@@ -6,6 +6,7 @@
 -nomi variabili con lettere minuscole e parole separate da _
 
 #####classi-strutture#####
++ documentazioni doxygen
 
 + classe ga_engine
 
@@ -15,9 +16,12 @@
 
 + classe per l'interazione automatica con il simulatore generato da mobius.
    + prevedere ricompilazione del simulatore.
-   
+   + parallelizzare l'esecuzione di più simulatori
+
 + classe bitmatrix
    + ottimizzare i return di stringhe con puntatori
+   
++ funzione check_conf (nuovi file check_conf.h/cpp)
     
 #####librerie_utili#####
 
