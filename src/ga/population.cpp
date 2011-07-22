@@ -124,7 +124,7 @@ void population::mutate_individuals() const
             if (conf->verbose && conf->print_mutations)
                 cout << "mutation event!"<<endl;
 
-            (*it)->dna_mutate(conf->mutation_strength);
+            (*it)->dna_mutate();
         }
     }  
 }

@@ -3,10 +3,10 @@
 individual::individual(uint32 crom_len, uint32 dna_len)
 {
     chromosome_length = crom_len;
-    dna_length = dna_len;
+    chromosome_number = dna_len;
     fitness = 0;
     
-    dna = new bitmatrix(dna_length, chromosome_length);
+    dna = new bitmatrix(chromosome_number, chromosome_length);
 }
 
 individual::~individual()
@@ -26,13 +26,18 @@ void individual::set_dna(string str)
 
 uint32 individual::get_dna_length()  const
 {
-    return dna_length;
+    return chromosome_number * chromosome_length;
 }
 
-void individual::set_dna_length(uint32 l)
+uint32 individual::get_chromosome_number()  const
 {
-    dna_length = l;
-    dna->Resize(dna->GetRows(), dna_length);
+    return chromosome_number;
+}
+
+void individual::set_chromosome_number(uint32 l)
+{
+    chromosome_number = l;
+    dna->Resize(dna->GetRows(), chromosome_number);
 }
 
 void individual::dna_random()
@@ -40,16 +45,15 @@ void individual::dna_random()
     dna->RandomizeAll();
 }
 
-void individual::dna_mutate(uint32 mutation_strength)
+void individual::dna_mutate()
 {
-    uint8 count = mutation_strength>chromosome_length?chromosome_length:mutation_strength;
+    uint8 count = conf->mutation_strength>chromosome_length? \
+                  chromosome_length:conf->mutation_strength;
     uint32 row_r,col_r;
-
-
 
     while (count-- != 0)
     {
-        row_r = rand()%dna_length + 1;
+        row_r = rand()%chromosome_number + 1;
         col_r = rand()%chromosome_length + 1;
         
         //cout "mutation at "<< row_r << "-" <<col_r << endl;
@@ -70,7 +74,7 @@ void individual::set_fitness(float f)
 
 string individual::get_chromosome(uint32 crom)  const
 {
-    if (crom >= dna_length)
+    if (crom >= chromosome_number)
         return "";
         
     return dna->GetRow(crom);
@@ -78,7 +82,7 @@ string individual::get_chromosome(uint32 crom)  const
 
 void individual::set_chromosome(uint32 crom, string str)
 {
-    if (crom>= dna_length)
+    if (crom>= chromosome_number)
         return;
         
     dna->SetRow(str, crom);
