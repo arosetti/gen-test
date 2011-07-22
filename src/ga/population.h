@@ -6,6 +6,7 @@
 #include <list>
 
 #include "individual.h"
+#include "../simulation/general_tests.h"
 
 using namespace std;
 
@@ -15,6 +16,8 @@ class population
 {
     list<individual*> pool;
     list<individual*> mating_pool;
+    
+    general_tests test;
 
     individual* get_random_individual() const;
     individual* new_random_individual();
