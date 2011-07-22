@@ -22,7 +22,8 @@
    + ottimizzare i return di stringhe con puntatori
    
 + funzione check_conf (nuovi file check_conf.h/cpp)
-    
++ funzione di log su file
+
 #####librerie_utili#####
 
 +pthread
