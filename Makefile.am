@@ -7,6 +7,7 @@ gentest_SOURCES = src/ga/ga_engine.h src/ga/ga_engine.cpp   \
                 src/ga/individual.h src/ga/individual.cpp \
 		src/simulation/simulation.h src/simulation/simulation.cpp \
 		src/simulation/tests.h src/simulation/tests.cpp \
+        src/simulation/general_tests.h src/simulation/general_tests.cpp \
                 src/bitmatrix/bitmatrix.h src/bitmatrix/bitmatrix.cpp \
                 src/common/utility.h src/common/utility.cpp \
                 src/config.h src/config.cpp \
