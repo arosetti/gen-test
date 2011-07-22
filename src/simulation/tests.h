@@ -14,7 +14,7 @@ class tests
 
         uint32 GetFaults();
 
-        //set<uint32> const& GetFaultsList() const;
+        set<uint32> const& GetFaultsList() const;
         bool   DeleteFault(uint32 fault);   
         bool   InsertFault(uint32 fault);    
         bool   FindFault(uint32 fault);                  

@@ -15,12 +15,10 @@ uint32 tests::GetFaults()
     return m_faults_set.size();
 }
 
-/*
-set<uint32> const& GetFaultsList() const
+set<uint32> const& tests::GetFaultsList() const
 {
     return m_faults_set;
 }
-*/
 
 bool tests::DeleteFault(uint32 fault)
 {
