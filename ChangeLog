@@ -1,5 +1,15 @@
-changeset:   73:61b9f3c62f5f
+changeset:   75:6f7f8a937a90
 tag:         tip
+utente:      Lazzalf
+data:        Fri Jul 22 12:34:17 2011 +0200
+sommario:    General_tests
+
+changeset:   74:3bff82abd388
+utente:      Lazzalf
+data:        Fri Jul 22 12:33:31 2011 +0200
+sommario:    Tests
+
+changeset:   73:61b9f3c62f5f
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 22 00:54:46 2011 +0200
 sommario:    fix compile
