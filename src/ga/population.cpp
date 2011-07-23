@@ -200,14 +200,14 @@ void population::create_mating_pool()
 }
 
 void population::print_best() const
-{
+{   
+    individual_map::const_iterator itr;
     individual* ind = NULL;
     float best_fitness = 0;
    
     if (!pool->size())
         return;
     
-    individual_map::const_iterator itr = pool->begin();
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
         if (best_fitness < (*itr).second->get_fitness())
@@ -216,8 +216,9 @@ void population::print_best() const
             ind  = (*itr).second;
         }
     }
-
-    cout << ind->get_dna();
+    
+    if(ind)
+        cout << ind->get_dna();
 }
 
 void population::print_all(string logfile) const
