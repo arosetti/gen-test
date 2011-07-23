@@ -33,7 +33,8 @@ class population
     ~population();
 
     void    new_random_population();
-
+    void    empty_population();
+    
     void    calc_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
@@ -43,7 +44,6 @@ class population
 
     void    mate_individuals();
     void    mutate_individuals() const;
-    void    kill_individuals(uint32);
 
     uint32  size() const;
     void    print_best() const;
