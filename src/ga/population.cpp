@@ -59,7 +59,7 @@ void population::new_random_population()
     int created = 0;
 
     while (created++ < conf->population_size)
-        pool->insert(pool->end(), \
+        pool->insert(pool->end(),
                     individual_pair(created, new_random_individual()));
 }
 
@@ -121,11 +121,39 @@ void population::sort_by_fitness()
 
 void population::mate_individuals()
 {
-    for (int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
+    individual_map *temp_pool = new individual_map;
+    individual_id_list::const_iterator itr = mating_pool.begin();
+    uint32 rnd_a, rnd_b;
+    individual *ind_a, *ind_b;
+
+    while (mating_pool.size())
     {
-        pool->insert(pool->end(), \
-                    individual_pair(pool->size(), new_random_individual()));
+        rnd_a = rand()%mating_pool.size();
+        rnd_b = rand()%mating_pool.size();
+        
+        // devo scorrere la lista e trovare gli id corrispondenti nella posizine rnd
+        //rnd_a = (*mating_pool.find(mating_pool.begin(), mating_pool.end(),rnd_a));
+        //rnd_b = (*mating_pool.find(mating_pool.begin(), mating_pool.end(),rnd_b));
+        
+        ind_a = (*pool->find(rnd_a)).second;
+        ind_b = (*pool->find(rnd_b)).second;
+        
+        // TODO non si può usare i soliti puntatori devo essere ricreati gli oggetti
+        crossover(ind_a, ind_b); 
+
+        temp_pool->insert(temp_pool->end(),
+                 individual_pair(temp_pool->size(), ind_a));
+        temp_pool->insert(temp_pool->end(),
+                 individual_pair(temp_pool->size(), ind_b));
     }
+
+    delete pool;
+    pool = temp_pool;
+}
+
+void population::crossover(individual *& ind_a, individual *& ind_b)
+{
+
 }
 
 void population::mutate_individuals() const
@@ -137,7 +165,7 @@ void population::mutate_individuals() const
     for (; itr != pool->end(); ++itr)
     {
         rnd = rand()%100 + 1; 
-        
+
         if (mutate_probability > rnd)
         {
             if (conf->verbose && conf->print_mutations)
@@ -147,8 +175,6 @@ void population::mutate_individuals() const
         }
     }  
 }
-
-
 
 uint32  population::size() const
 {

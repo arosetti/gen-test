@@ -17,7 +17,9 @@ extern config *conf;
 
 class ga_engine
 {
+    /*! il numero di generazione */
     uint32 generation;
+    /*! puntatore alla popolazione */
     population *pop;
 
     public:

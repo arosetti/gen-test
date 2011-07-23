@@ -26,7 +26,8 @@ class population
 
     individual* get_random_individual() const;
     individual* new_random_individual();
-    void crossover(individual*, individual*);
+
+    void crossover(individual*&, individual*&);
 
     public:
     population();
