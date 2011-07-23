@@ -14,7 +14,7 @@ individual::individual(const individual &ind)
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
-    dna = ind.dna;
+    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??
     test = ind.test;
 }
 

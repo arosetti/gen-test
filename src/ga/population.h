@@ -51,6 +51,7 @@ class population
     uint32  size() const;
     void    print_best() const;
     void    print_all(string logfile) const;
+    void    cout_all(string logfile) const;
 };
 
 #endif
