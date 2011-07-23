@@ -169,14 +169,22 @@ void population::print_all() const
 {
     list<individual*>::const_iterator it = pool.begin();
     uint32 count = 0;
+    string str;
 
     for (it = pool.begin(); it!=pool.end(); ++it)
     {   
-        cout << "individual: #" << count << endl;
-        cout << "fitness:     " << (*it)->get_fitness() << endl;
-        cout << "dna: " << endl;
-        cout << (*it)->get_dna();
-        cout << endl << endl;
+        str+= "individual: #";
+        str+= count; 
+        str+= "\n";
+        str+= "fitness:     ";
+        str+= (*it)->get_fitness();
+        str+= "\n";
+        str+= "dna: ";
+        str+= "\n";
+        str+= (*it)->get_dna();
+        str+= "\n\n";
         count++;
     }  
+    
+    LOG("logs/generation.log", str, true); 
 }
