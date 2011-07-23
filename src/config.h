@@ -10,7 +10,7 @@ typedef struct config
 {
     bool debug, verbose, interactive;
     bool print_best_dna, print_best_fitness;
-    bool print_population_size, print_kills;
+    bool print_population_size, print_mating;
     bool print_mutations;
 
     string simulator_dir, simulator_bin, simulator_patch;

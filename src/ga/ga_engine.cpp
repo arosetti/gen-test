@@ -78,7 +78,7 @@ void ga_engine::evolve()
             generations_logfile.append(out.str());          
             generations_logfile.append(".log");
             
-            pop->print_all(generations_logfile);
+            pop->cout_all(generations_logfile);
         }
         cout << "iteration end" << endl;
     }
