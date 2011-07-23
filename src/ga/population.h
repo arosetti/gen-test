@@ -19,7 +19,7 @@ extern config *conf;
 
 class population
 {
-    individual_map      pool;
+    individual_map*     pool;
     individual_id_list  mating_pool;
     
     general_tests test;
