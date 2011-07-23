@@ -1,5 +1,15 @@
-changeset:   93:243f4d034071
+changeset:   95:1be41f1955cf
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 00:50:52 2011 +0200
+sommario:    fix compile
+
+changeset:   94:995b99bc954f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 22:25:47 2011 +0200
+sommario:    iteration rinominato, generation
+
+changeset:   93:243f4d034071
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 22 18:19:39 2011 +0200
 sommario:    update README

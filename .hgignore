@@ -23,6 +23,8 @@ src/bitmatrix/.dirstamp
 src/bitmatrix/.deps
 src/common/.dirstamp
 src/common/.deps
+src/common/logger/.dirstamp
+src/common/logger/.deps
 src/ga/.dirstamp
 src/ga/.deps
 src/simulation/.dirstamp
@@ -30,3 +32,4 @@ src/simulation/.deps
 src/*.spw
 doxygen-html/*
 doxygen-latex/*
+logs/*

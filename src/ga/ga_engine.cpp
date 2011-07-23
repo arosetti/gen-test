@@ -32,6 +32,8 @@ void ga_engine::evolve()
         cout << "GA parameters aren't configured." << endl;
         return;
     }
+    
+
 
     if (conf->verbose)
         cout << "the population is going to evolve for " << conf->max_generations << \
@@ -43,7 +45,7 @@ void ga_engine::evolve()
             cout << endl << "generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
             cout << endl << "population: " << pop->size() << endl;
-            
+   
         best_fitness = pop->get_best_fitness();
         
         if (conf->verbose && conf->print_best_fitness)
