@@ -10,21 +10,22 @@
 
 using namespace std;
 
-//typedef map<uint32, individual*> individual_map;
-typedef std::map<uint32, uint32> WheightMap;
-typedef std::map<uint32, individual> PopulationMap;
+typedef std::map<uint32, uint32>      weight_map;
+typedef std::map<uint32, individual>  individual_map;
+typedef std::pair<uint32, individual> individual_pair;
+typedef std::list<uint32>             individual_id_list;
 
 extern config *conf;
 
 class population
 {
-    list<individual*> pool;
-    list<uint32> mating_pool;
+    individual_map      pool;
+    individual_id_list  mating_pool;
     
     general_tests test;
 
     individual* get_random_individual() const;
-    individual* new_random_individual();
+    individual new_random_individual();
     void crossover(individual*, individual*);
 
     public:
