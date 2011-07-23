@@ -23,7 +23,7 @@ population::population()
 
 population::~population()
 {
-    for (list<individual*>::iterator it = pool.begin(); it != pool.end(); it++)
+    for (individual_map::iterator it = pool.begin(); it != pool.end(); it++)
     {
         if (*it) 
             delete *it;
@@ -36,7 +36,7 @@ individual* population::get_random_individual() const
     int rnd = rand()%pool.size() + 1, count = 0;
     
     
-    list<individual*>::const_iterator it = pool.begin();
+    individual_map::const_iterator it = pool.begin();
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
         if (count == rnd)
@@ -50,20 +50,17 @@ individual* population::get_random_individual() const
     return i;
 }
 
-individual* population::new_random_individual()
-{
-    individual *ind ;
+individual population::new_random_individual()
+{   
     uint32 len = rand()%(conf->chromosome_start_len_max - \
                          conf->chromosome_start_len_min + 1 )  \
                          + conf->chromosome_start_len_min;
-
-    ind = new individual(len, conf->chromosome_num);
+                         
+    individual ind(len,conf->chromosome_num);
+    ind.dna_random();
 
     if(conf->verbose && conf->debug)
         cout << "new individual, chromosome_len = " << len << endl;
-
-    if (ind)
-        ind->dna_random();
 
     return ind;
 }
@@ -73,27 +70,29 @@ void population::new_random_population()
     int created = 0;
 
     while (created++ < conf->population_size)
-        pool.push_back(new_random_individual());
+        pool.insert(pool.end(), \
+                    individual_pair(new_random_individual(),created));
+
 }
 
 void population::calc_fitness()
 {
-    list<individual*>::const_iterator it = pool.begin();
+    individual_map::const_iterator it = pool.begin();
     
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
-        (*it)->calc_fitness();
+        (*it).second.calc_fitness();
     }  
 }
 
 float population::get_avg_fitness() const
 {
     float sum_fitness = 0;
-    list<individual*>::const_iterator it = pool.begin();
+    individual_map::const_iterator it = pool.begin();
     
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
-        sum_fitness+=(*it)->get_fitness();
+        sum_fitness+=(*it).second.get_fitness();
     }  
 
     if (pool.size() == 0)
@@ -104,8 +103,8 @@ float population::get_avg_fitness() const
 
 float population::get_best_fitness() const
 {
-    list<individual*>::const_iterator it = pool.begin();
-    return (float)(*it)->get_fitness();
+    individual_map::const_iterator it = pool.begin();
+    return (float)(*it).second.get_fitness();
 }
 
 void population::sort_by_fitness()
@@ -117,13 +116,14 @@ void population::mate_individuals()
 {
     for (int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
     {
-        pool.push_back(new_random_individual());    
+        pool.insert(pool.end(), \
+                    individual_pair(new_random_individual(),pool.size()));
     }
 }
 
 void population::mutate_individuals() const
 {
-    list<individual*>::const_iterator it = pool.begin();
+    individual_map::const_iterator it = pool.begin();
     float mutate_probability = conf->mutation_rate*100;
     float rnd;
     
@@ -136,14 +136,14 @@ void population::mutate_individuals() const
             if (conf->verbose && conf->print_mutations)
                 cout << "mutation event!"<<endl;
 
-            (*it)->dna_mutate();
+            (*it).second.dna_mutate();
         }
     }  
 }
 
 void population::kill_individuals(uint32 howmany)
 {
-    list<individual*>::iterator it = pool.begin();
+    individual_map::iterator it = pool.begin();
     if (pool.size() > conf->population_size)
     {
         if (conf->verbose && conf->print_kills)
@@ -161,50 +161,51 @@ uint32  population::size() const
 
 void population::create_mating_pool()
 {
-
-    WheightMap m_WheightMap;
-     
+/*
+    weight_map m_weight_map;
+    uint32 total_weight = 0;
+    uint32 selected_weight = 0;
+    uint32 id = 0;
+    uint32 weight;
+    
     // inserisci i vari elementi nella mappa con la fitness o un numero dipendente da essa
-    m_WheightMap[ID] = selectionWeight;
+    m_weight_map[id] = selected_weight;
      
     // se non ci sono elementi
-    if (m_WheightMap.size())
+    if (m_weight_map.size())
       return;
-      
-    uint32 TotalWeight = 0;
-    uint32 selectedWeight = 0;
-    uint32 Id = 0;
 
     // Somma tutti i vari pesi (può essere anche calcolato prima per ottimizzare quando viene aggiunto alla mappa)
-    for (WheightMap::const_iterator it = m_WheightMap.begin(); it != m_WheightMap.end(); ++it)
-        TotalWeight += it->second;
+    for (weight_map::const_iterator it = m_weight_map.begin(); it != m_weight_map.end(); ++it)
+        total_weight += it->second;
 
     // Peso totale 0 si ritorna, non si sa mai
-    if (!TotalWeight)
+    if (!total_weight)
         return;
         
-    selectedWeight = urand(0, Weight-1);
-    Weight = 0;
-    for (WheightMap::const_iterator it = m_WheightMap.begin(); it != m_WheightMap.end(); ++it)
+    selected_weight = rand(0, weight-1);
+    weight = 0;
+    for (weight_map::const_iterator it = m_weight_map.begin(); it != m_weight_map.end(); ++it)
     {
-        Weight += it->second;
-        if (selectedWeight < Weight)
+        weight += it->second;
+        if (selected_weight < weight)
         {
-            Id = it->first;
+            id = it->first;
             break;
         }
-    }   
+    }  
+*/ 
 }
 
 void population::print_best() const
 {
-    list<individual*>::const_iterator it = pool.begin();
-    cout << (*it)->get_dna();
+    individual_map::const_iterator it = pool.begin();
+    cout << (*it).second.get_dna();
 }
 
 void population::print_all(string logfile) const
 {
-    list<individual*>::const_iterator it = pool.begin();
+    individual_map::const_iterator it = pool.begin();
     uint32 count = 0;
     string str;
 
@@ -214,11 +215,11 @@ void population::print_all(string logfile) const
         str+= count; 
         str+= "\n";
         str+= "fitness:     ";
-        str+= (*it)->get_fitness();
+        str+= (*it).second.get_fitness();
         str+= "\n";
         str+= "dna: ";
         str+= "\n";
-        str+= (*it)->get_dna();
+        str+= (*it).second.get_dna();
         str+= "\n\n";
         count++;
     }

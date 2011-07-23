@@ -45,7 +45,7 @@ class individual
     void    chromosome_mutate(uint32,uint32);
     void    chromosome_random(uint32);
 
-    bool operator < (const individual&);    // necessario per std::sort() std::list<individual>
+    bool operator < (const individual&);
 };
 
 #endif
