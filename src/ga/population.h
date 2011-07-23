@@ -10,6 +10,8 @@
 
 using namespace std;
 
+//typedef map<uint32, individual*> individual_map;
+
 extern config *conf;
 
 class population
@@ -40,7 +42,7 @@ class population
 
     uint32  size() const;
     void    print_best() const;
-    void    print_all() const; // per debug
+    void    print_all(string logfile) const;
 };
 
 #endif

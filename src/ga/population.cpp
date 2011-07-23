@@ -165,7 +165,7 @@ void population::print_best() const
     cout << (*it)->get_dna();
 }
 
-void population::print_all() const
+void population::print_all(string logfile) const
 {
     list<individual*>::const_iterator it = pool.begin();
     uint32 count = 0;
@@ -184,7 +184,7 @@ void population::print_all() const
         str+= (*it)->get_dna();
         str+= "\n\n";
         count++;
-    }  
+    }
     
-    LOG("logs/generation.log", str, true); 
+    LOG(logfile, str, false); 
 }
