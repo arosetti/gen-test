@@ -11,13 +11,15 @@
 using namespace std;
 
 //typedef map<uint32, individual*> individual_map;
+typedef std::map<uint32, uint32> WheightMap;
+typedef std::map<uint32, individual> PopulationMap;
 
 extern config *conf;
 
 class population
 {
     list<individual*> pool;
-    list<individual*> mating_pool;
+    list<uint32> mating_pool;
     
     general_tests test;
 
@@ -35,6 +37,8 @@ class population
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();
+
+    void    create_mating_pool();
 
     void    mate_individuals();
     void    mutate_individuals() const;

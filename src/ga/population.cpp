@@ -159,6 +159,43 @@ uint32  population::size() const
     return pool.size();
 }
 
+void population::create_mating_pool()
+{
+
+    WheightMap m_WheightMap;
+     
+    // inserisci i vari elementi nella mappa con la fitness o un numero dipendente da essa
+    m_WheightMap[ID] = selectionWeight;
+     
+    // se non ci sono elementi
+    if (m_WheightMap.size())
+      return;
+      
+    uint32 TotalWeight = 0;
+    uint32 selectedWeight = 0;
+    uint32 Id = 0;
+
+    // Somma tutti i vari pesi (può essere anche calcolato prima per ottimizzare quando viene aggiunto alla mappa)
+    for (WheightMap::const_iterator it = m_WheightMap.begin(); it != m_WheightMap.end(); ++it)
+        TotalWeight += it->second;
+
+    // Peso totale 0 si ritorna, non si sa mai
+    if (!TotalWeight)
+        return;
+        
+    selectedWeight = urand(0, Weight-1);
+    Weight = 0;
+    for (WheightMap::const_iterator it = m_WheightMap.begin(); it != m_WheightMap.end(); ++it)
+    {
+        Weight += it->second;
+        if (selectedWeight < Weight)
+        {
+            Id = it->first;
+            break;
+        }
+    }   
+}
+
 void population::print_best() const
 {
     list<individual*>::const_iterator it = pool.begin();
