@@ -25,8 +25,8 @@ population::~population()
 {
     for (individual_map::iterator it = pool.begin(); it != pool.end(); it++)
     {
-        if (*it) 
-            delete *it;
+        if ((*it).second) 
+            delete (*it).second;
     }
 }
 
@@ -41,7 +41,7 @@ individual* population::get_random_individual() const
     {
         if (count == rnd)
         {
-            i= *it;
+            i= (*it).second;
             break;
         }
         count++;
@@ -50,14 +50,14 @@ individual* population::get_random_individual() const
     return i;
 }
 
-individual population::new_random_individual()
+individual* population::new_random_individual()
 {   
     uint32 len = rand()%(conf->chromosome_start_len_max - \
                          conf->chromosome_start_len_min + 1 )  \
                          + conf->chromosome_start_len_min;
                          
-    individual ind(len,conf->chromosome_num);
-    ind.dna_random();
+    individual* ind = new individual(len,conf->chromosome_num);
+    ind->dna_random();
 
     if(conf->verbose && conf->debug)
         cout << "new individual, chromosome_len = " << len << endl;
@@ -71,7 +71,7 @@ void population::new_random_population()
 
     while (created++ < conf->population_size)
         pool.insert(pool.end(), \
-                    individual_pair(new_random_individual(),created));
+                    individual_pair(created, new_random_individual()));
 
 }
 
@@ -81,7 +81,7 @@ void population::calc_fitness()
     
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
-        (*it).second.calc_fitness();
+        (*it).second->calc_fitness();
     }  
 }
 
@@ -92,7 +92,7 @@ float population::get_avg_fitness() const
     
     for (it = pool.begin(); it!=pool.end(); ++it)
     {
-        sum_fitness+=(*it).second.get_fitness();
+        sum_fitness+=(*it).second->get_fitness();
     }  
 
     if (pool.size() == 0)
@@ -104,12 +104,12 @@ float population::get_avg_fitness() const
 float population::get_best_fitness() const
 {
     individual_map::const_iterator it = pool.begin();
-    return (float)(*it).second.get_fitness();
+    return (float)(*it).second->get_fitness();
 }
 
 void population::sort_by_fitness()
 {
-    pool.sort();
+    //pool.sort();
 }
 
 void population::mate_individuals()
@@ -117,7 +117,7 @@ void population::mate_individuals()
     for (int i=0; i<(rand()%100+1); i++) // temporaneo per testare kill_individuals
     {
         pool.insert(pool.end(), \
-                    individual_pair(new_random_individual(),pool.size()));
+                    individual_pair(pool.size(), new_random_individual()));
     }
 }
 
@@ -136,7 +136,7 @@ void population::mutate_individuals() const
             if (conf->verbose && conf->print_mutations)
                 cout << "mutation event!"<<endl;
 
-            (*it).second.dna_mutate();
+            (*it).second->dna_mutate();
         }
     }  
 }
@@ -200,7 +200,7 @@ void population::create_mating_pool()
 void population::print_best() const
 {
     individual_map::const_iterator it = pool.begin();
-    cout << (*it).second.get_dna();
+    cout << (*it).second->get_dna();
 }
 
 void population::print_all(string logfile) const
@@ -215,11 +215,11 @@ void population::print_all(string logfile) const
         str+= count; 
         str+= "\n";
         str+= "fitness:     ";
-        str+= (*it).second.get_fitness();
+        str+= (*it).second->get_fitness();
         str+= "\n";
         str+= "dna: ";
         str+= "\n";
-        str+= (*it).second.get_dna();
+        str+= (*it).second->get_dna();
         str+= "\n\n";
         count++;
     }

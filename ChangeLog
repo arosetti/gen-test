@@ -1,5 +1,15 @@
-changeset:   99:63e3157d4527
+changeset:   101:d3f0ac01763e
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 14:35:39 2011 +0200
+sommario:    update log delle generazioni
+
+changeset:   100:958b5d27bc02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 14:35:14 2011 +0200
+sommario:    fix conversione list a map nella classe population
+
+changeset:   99:63e3157d4527
 utente:      Lazzalf
 data:        Sat Jul 23 13:51:24 2011 +0200
 sommario:    Population
