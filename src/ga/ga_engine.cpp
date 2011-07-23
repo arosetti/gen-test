@@ -53,21 +53,33 @@ void ga_engine::evolve()
         if (conf->verbose && conf->print_best_dna)
             pop->print_best();
             
-        pop->mate_individuals();
+        if (conf->verbose && conf->debug)
+        {
+            cout << "mating_individuals" << endl;
+            pop->create_mating_pool();
+            pop->mate_individuals();
+        }       
+            
         pop->mutate_individuals();
 
         if (conf->verbose)
             cout << "starting calc_fitness" << endl;
 
-        pop->calc_fitness();
+        pop->calc_population_fitness();
         pop->sort_by_fitness();
+        
+        cout << "ending cycle" << endl;
         
         if (conf->verbose && conf->debug)
         {
             generations_logfile = "logs/generation";
+            stringstream out;
+            out << generation;
+            generations_logfile.append(out.str());          
             generations_logfile.append(".log");
             
             pop->print_all(generations_logfile);
         }
+        cout << "iteration end" << endl;
     }
 }
