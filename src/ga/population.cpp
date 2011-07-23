@@ -76,12 +76,13 @@ void population::empty_population()
     pool->clear();
 }
 
-void population::calc_fitness()
+void population::calc_population_fitness()
 {
     individual_map::const_iterator itr = pool->begin();    
     for (; itr != pool->end(); ++itr)
     {
-        (*itr).second->calc_fitness();
+        if((*itr).second)
+            (*itr).second->calc_fitness();
     }  
 }
 
@@ -119,36 +120,79 @@ void population::sort_by_fitness()
     //pool->sort();
 }
 
+uint32 population::get_id_from_mating_pool(uint32 pos, individual_id_list::iterator &itr_to_del)
+{
+    individual_id_list::iterator itr;
+    uint32 i = 0;
+    
+    for (itr = mating_pool.begin(); itr!= mating_pool.end(); ++itr)
+    {
+        if (i == pos)
+        {
+            itr_to_del = itr;
+            return (*itr);
+        }
+        i++;
+    }
+    
+    return 0;
+}
+
 void population::mate_individuals()
 {
     individual_map *temp_pool = new individual_map;
-    individual_id_list::const_iterator itr = mating_pool.begin();
+    individual_id_list::iterator itr, itr_del_a, itr_del_b;
+    uint32 m_size = mating_pool.size();
     uint32 rnd_a, rnd_b;
     individual *ind_a, *ind_b;
+    individual *ind_a_copy, *ind_b_copy;
+
+    cout << "mating_pool.size() = " << m_size << endl;
 
     while (mating_pool.size())
     {
         rnd_a = rand()%mating_pool.size();
         rnd_b = rand()%mating_pool.size();
+
+        cout << "mating_pool size: " << mating_pool.size() << "/"<< m_size << endl;
+        cout << "selected rnd: " << rnd_a << "-"<< rnd_b << endl;
         
-        // devo scorrere la lista e trovare gli id corrispondenti nella posizine rnd
-        //rnd_a = (*mating_pool.find(mating_pool.begin(), mating_pool.end(),rnd_a));
-        //rnd_b = (*mating_pool.find(mating_pool.begin(), mating_pool.end(),rnd_b));
+        rnd_a = get_id_from_mating_pool(rnd_a, itr_del_a);
+        rnd_b = get_id_from_mating_pool(rnd_b, itr_del_b);
+        
+        if(itr_del_a != itr_del_b)
+        {        
+            mating_pool.erase(itr_del_a);
+            mating_pool.erase(itr_del_b);
+        }
+        else
+            mating_pool.erase(itr_del_a);
+        
+        cout << "selected id: " << rnd_a << "-"<< rnd_b << endl;
         
         ind_a = (*pool->find(rnd_a)).second;
         ind_b = (*pool->find(rnd_b)).second;
-        
-        // TODO non si può usare i soliti puntatori devo essere ricreati gli oggetti
-        crossover(ind_a, ind_b); 
+
+        crossover(ind_a, ind_b);
+
+        ind_a_copy = new individual(1,1);
+        ind_b_copy = new individual(1,1);
+        cout << "new " << ind_a << "-"<< ind_b << endl;
+        *ind_a_copy = *ind_a;
+        *ind_b_copy = *ind_b;
 
         temp_pool->insert(temp_pool->end(),
-                 individual_pair(temp_pool->size(), ind_a));
+                 individual_pair(temp_pool->size(), ind_a_copy));
         temp_pool->insert(temp_pool->end(),
-                 individual_pair(temp_pool->size(), ind_b));
+                 individual_pair(temp_pool->size(), ind_b_copy));
     }
 
-    delete pool;
-    pool = temp_pool;
+    if (m_size)
+    {
+        empty_population();
+        pool = temp_pool;
+    }
+    cout << "exit_mate " << endl;
 }
 
 void population::crossover(individual *& ind_a, individual *& ind_b)
@@ -170,8 +214,8 @@ void population::mutate_individuals() const
         {
             if (conf->verbose && conf->print_mutations)
                 cout << "mutation event!"<<endl;
-
-            (*itr).second->dna_mutate();
+            if ((*itr).second)
+                (*itr).second->dna_mutate();
         }
     }  
 }
@@ -190,6 +234,8 @@ void population::create_mating_pool()
 
     if (!pool->size())
         return;
+        
+    cout << "create_mating_pool" << endl;
     
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -250,23 +296,16 @@ void population::print_best() const
 void population::print_all(string logfile) const
 {
     uint32 count = 0;
-    string str;
+    stringstream out;
 
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {   
-        str+= "individual: #";
-        str+= count; 
-        str+= "\n";
-        str+= "fitness:     ";
-        str+= (*itr).second->get_fitness();
-        str+= "\n";
-        str+= "dna: ";
-        str+= "\n";
-        str+= (*itr).second->get_dna();
-        str+= "\n\n";
+        out << "individual: #" << count << endl;
+        out << "fitness:     " << (*itr).second->get_fitness() << endl;
+        out << "dna: " << endl << (*itr).second->get_dna() << endl << endl;
         count++;
     }
 
-    LOG(logfile, str, false); 
+    LOG(logfile, out.str(), false); 
 }

@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <iostream>
+#include <sstream>
 #include <list>
 
 #include "individual.h"
@@ -28,7 +29,8 @@ class population
     individual* new_random_individual();
 
     void crossover(individual*&, individual*&);
-
+    uint32 get_id_from_mating_pool(uint32, individual_id_list::iterator &);
+    
     public:
     population();
     ~population();
@@ -36,7 +38,7 @@ class population
     void    new_random_population();
     void    empty_population();
     
-    void    calc_fitness();
+    void    calc_population_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();

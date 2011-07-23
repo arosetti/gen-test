@@ -1,5 +1,10 @@
-changeset:   110:0baf1dee7c6b
+changeset:   111:267f7bff451f
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 17:44:34 2011 +0200
+sommario:    implementata mate_individuals ( ancora da perfezionare )
+
+changeset:   110:0baf1dee7c6b
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 16:29:02 2011 +0200
 sommario:    remove print_kill

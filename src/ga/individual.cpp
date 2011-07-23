@@ -4,7 +4,7 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
     chromosome_length = chrom_len;
     chromosome_number = chrom_num;
-    fitness = 0;
+    fitness = 10;
     
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
