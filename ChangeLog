@@ -1,5 +1,10 @@
-changeset:   112:f52d081db4b0
+changeset:   113:e01b91cde657
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:20:33 2011 +0200
+sommario:    fix della mate_individuals(), commentata completamente.
+
+changeset:   112:f52d081db4b0
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 21:07:36 2011 +0200
 sommario:    aggiornamenti vari su population / individual / ga_engine. ci sono un paio di crash.

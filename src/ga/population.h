@@ -18,6 +18,11 @@ typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 
+//! Il contenitore della popolazione, componente principale dell'algoritmo genetico.
+/**
+ *
+ */
+
 class population
 {
     individual_map*     pool;
@@ -27,9 +32,11 @@ class population
 
     individual* get_random_individual() const;
     individual* new_random_individual();
+    
+    void    create_mating_pool();
+    void    crossover(individual*&, individual*&);
+    uint32  get_id_from_mating_pool(uint32, individual_id_list::iterator &);
 
-    void crossover(individual*&, individual*&);
-    uint32 get_id_from_mating_pool(uint32, individual_id_list::iterator &);
     
     public:
     population();
@@ -41,9 +48,7 @@ class population
     void    calc_population_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
-    void    sort_by_fitness();
-
-    void    create_mating_pool();
+    void    sort_by_fitness();  // deprecated
 
     void    mate_individuals();
     void    mutate_individuals() const;
