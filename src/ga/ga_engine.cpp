@@ -26,14 +26,13 @@ void ga_engine::init()
 void ga_engine::evolve()
 {
     float best_fitness = 0;
-
+    string generations_logfile;
+    
     if (!conf)
     {
         cout << "GA parameters aren't configured." << endl;
         return;
     }
-    
-
 
     if (conf->verbose)
         cout << "the population is going to evolve for " << conf->max_generations << \
@@ -66,6 +65,11 @@ void ga_engine::evolve()
         pop->sort_by_fitness();
         
         if (conf->verbose && conf->debug)
-            pop->print_all();
+        {
+            generations_logfile = "logs/generation";
+            generations_logfile.append(".log");
+            
+            pop->print_all(generations_logfile);
+        }
     }
 }

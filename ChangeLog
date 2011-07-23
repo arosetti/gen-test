@@ -1,5 +1,20 @@
-changeset:   96:beba1946b285
+changeset:   99:63e3157d4527
 tag:         tip
+utente:      Lazzalf
+data:        Sat Jul 23 13:51:24 2011 +0200
+sommario:    Population
+
+changeset:   98:98c4bee2eb40
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 13:23:26 2011 +0200
+sommario:    population update
+
+changeset:   97:2540e86d84e6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 12:14:26 2011 +0200
+sommario:    fix delete classe logger
+
+changeset:   96:beba1946b285
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 12:10:38 2011 +0200
 sommario:    inserita la classe logger con design pattern singleton
