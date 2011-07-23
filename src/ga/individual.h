@@ -10,6 +10,11 @@ using namespace std;
 
 extern config *conf;
 
+//! Il generico individuo della popolazione
+/**
+ *
+ */
+
 class individual
 {
     uint32    chromosome_length;
@@ -40,7 +45,7 @@ class individual
     uint32  get_chromosome_length() const;
     void    set_chromosome_length(uint32);
     uint32  get_chromosome_number() const;
-    void    set_chromosome_number(uint32);
+    void    set_chromosome_number(uint32);   // not used
     void    chromosome_mutate(uint32,uint32);
     void    chromosome_random(uint32);
 

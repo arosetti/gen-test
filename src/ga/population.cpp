@@ -120,6 +120,11 @@ void population::sort_by_fitness()
     //pool->sort();
 }
 
+void population::crossover(individual *& ind_a, individual *& ind_b)
+{
+
+}
+
 uint32 population::get_id_from_mating_pool(uint32 pos, individual_id_list::iterator &itr_to_del)
 {
     individual_id_list::iterator itr;
@@ -136,6 +141,53 @@ uint32 population::get_id_from_mating_pool(uint32 pos, individual_id_list::itera
     }
     
     return 0;
+}
+
+void population::create_mating_pool()
+{
+    weight_map m_weight_map;
+    uint32 total_weight = 0;
+
+    mating_pool.clear();
+
+    if (!pool->size())
+        return;
+        
+    if(conf->debug && conf->verbose && conf->print_mating)
+        cout << "create_mating_pool" << endl;
+    
+    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        uint32 u_fitness = uint32((*itr).second->get_fitness() * 1000);
+        if (!u_fitness)
+            continue;
+  
+        total_weight += u_fitness;
+        m_weight_map[(*itr).first] = u_fitness;
+    }
+
+    if (!m_weight_map.size())
+        return;   
+   
+    uint32 selected_weight;
+    uint32 weight;
+    weight_map::const_iterator itr;
+
+    for (uint32 i = 0; i < conf->population_size * conf->mating_fraction; i++)
+    {
+         selected_weight = rand()%total_weight;
+         weight = 0;
+         
+         for (itr = m_weight_map.begin(); itr != m_weight_map.end(); ++itr)
+         {
+             weight += itr->second;
+             if (selected_weight < weight)
+             {
+                mating_pool.push_front(itr->first);
+                break;
+             }
+         }
+    }
 }
 
 void population::mate_individuals()
@@ -221,18 +273,13 @@ void population::mate_individuals()
         cout << "temp_pool size: " << temp_pool->size() << endl;
 }
 
-void population::crossover(individual *& ind_a, individual *& ind_b)
-{
-
-}
-
 void population::mutate_individuals() const
 {
-    float mutate_probability = conf->mutation_rate*100;
+    individual_map::const_iterator itr;
+    float mutate_probability = conf->mutation_rate * 100;
     float rnd;
-
-    individual_map::const_iterator itr = pool->begin();
-    for (; itr != pool->end(); ++itr)
+ 
+    for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
         rnd = rand()%100 + 1; 
 
@@ -249,52 +296,6 @@ void population::mutate_individuals() const
 uint32  population::size() const
 {
     return pool->size();
-}
-
-void population::create_mating_pool()
-{
-    weight_map m_weight_map;
-    uint32 total_weight = 0;
-
-    mating_pool.clear();
-
-    if (!pool->size())
-        return;
-        
-    cout << "create_mating_pool" << endl;
-    
-    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
-    {
-        uint32 u_fitness = uint32((*itr).second->get_fitness() * 1000);
-        if (!u_fitness)
-            continue;
-  
-        total_weight += u_fitness;
-        m_weight_map[(*itr).first] = u_fitness;
-    }
-
-    if (!m_weight_map.size())
-        return;   
-   
-    uint32 selected_weight;
-    uint32 weight;
-    weight_map::const_iterator itr;
-
-    for (uint32 i = 0; i < conf->population_size * conf->mating_fraction; i++)
-    {
-         selected_weight = rand()%total_weight;
-         weight = 0;
-         
-         for (itr = m_weight_map.begin(); itr != m_weight_map.end(); ++itr)
-         {
-             weight += itr->second;
-             if (selected_weight < weight)
-             {
-                mating_pool.push_front(itr->first);
-                break;
-             }
-         }
-    }
 }
 
 void population::print_best() const
@@ -328,6 +329,7 @@ void population::print_all(string logfile) const
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {   
         out << "individual: #" << count << endl;
+        out << "ptr : " << (*itr).second << endl;
         out << "fitness:     " << (*itr).second->get_fitness() << endl;
         out << "dna: " << endl << (*itr).second->get_dna() << endl << endl;
         count++;
@@ -343,8 +345,9 @@ void population::cout_all(string logfile) const
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {   
-        //cout << "ptr : " << (*itr).second << endl;
+
         cout << "individual: #" << count << endl;
+        cout << "ptr : " << (*itr).second << endl;
         cout << "fitness:     " << (*itr).second->get_fitness() << endl;
         cout << "dna: " << endl << (*itr).second->get_dna() << endl << endl;
         count++;

@@ -11,7 +11,7 @@ using namespace std;
 
 extern config *conf;
 
-//! Il componente principale dell'algoritmo genetico.
+//! Il coordinatore delle operazioni base dell'algoritmo genetico.
 /**
  *
  */

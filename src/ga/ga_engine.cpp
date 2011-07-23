@@ -56,7 +56,6 @@ void ga_engine::evolve()
         if (conf->verbose && conf->debug)
         {
             cout << "mating_individuals" << endl;
-            pop->create_mating_pool();
             pop->mate_individuals();
         }       
             
@@ -78,7 +77,7 @@ void ga_engine::evolve()
             generations_logfile.append(out.str());          
             generations_logfile.append(".log");
             
-            pop->cout_all(generations_logfile);
+            pop->print_all(generations_logfile);
         }
         cout << "iteration end" << endl;
     }

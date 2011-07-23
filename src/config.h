@@ -6,6 +6,11 @@
 
 using namespace std;
 
+//! Questa struct contiene tutti i parametri di configurazione del programma.
+/**
+ *
+ */
+
 typedef struct config 
 {
     bool debug, verbose, interactive;
