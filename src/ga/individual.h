@@ -22,8 +22,8 @@ class individual
 
     public:
     individual(uint32,uint32);
-    ~individual();
     individual(const individual&);
+    ~individual();
 
     string  get_dna() const;
     void    set_dna(string);
@@ -37,7 +37,6 @@ class individual
     
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
-
     uint32  get_chromosome_length() const;
     void    set_chromosome_length(uint32);
     uint32  get_chromosome_number() const;

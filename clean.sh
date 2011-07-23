@@ -1,12 +1,16 @@
 #!/bin/sh
 
-cp gentest gentest_tmp
+if [ -e gentest ] ; then
+    cp gentest gentest_tmp
+fi
 
 if [ -e "Makefile" ] ; then
     make clean
 fi
 
-mv gentest_tmp gentest
+if [ -e gentest_tmp ] ; then
+    mv gentest_tmp gentest
+fi
 
 find -name *~ -exec rm -f {} \;
 find -name *.o -exec rm -f {} \;

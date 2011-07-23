@@ -1,5 +1,10 @@
-changeset:   109:0c0f605a5657
+changeset:   110:0baf1dee7c6b
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 16:29:02 2011 +0200
+sommario:    remove print_kill
+
+changeset:   109:0c0f605a5657
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 16:23:50 2011 +0200
 sommario:    fix crash null pointer

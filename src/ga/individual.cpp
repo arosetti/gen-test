@@ -9,6 +9,15 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
 
+individual::individual(const individual &ind)
+{
+    chromosome_length = ind.chromosome_length;
+    chromosome_number = ind.chromosome_number;
+    fitness = ind.fitness;
+    dna = ind.dna;
+    test = ind.test;
+}
+
 individual::~individual()
 {
     delete dna;
@@ -55,18 +64,16 @@ void individual::dna_mutate()
     {
         row_r = rand()%chromosome_number + 1;
         col_r = rand()%chromosome_length + 1;
-        
-        //cout "mutation at "<< row_r << "-" <<col_r << endl;
-        
+
         dna->Flip(row_r,col_r);
     }
 }
-  
+
 float individual::get_fitness()  const
 {
     return fitness;
 }
-  
+
 void individual::set_fitness(float f)
 {
     fitness = f;
@@ -81,7 +88,7 @@ string individual::get_chromosome(uint32 crom)  const
 {
     if (crom >= chromosome_number)
         return "";
-        
+
     return dna->GetRow(crom);
 }
 
@@ -89,7 +96,7 @@ void individual::set_chromosome(uint32 crom, string str)
 {
     if (crom>= chromosome_number)
         return;
-        
+
     dna->SetRow(str, crom);
 }
 

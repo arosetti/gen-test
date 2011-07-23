@@ -64,7 +64,11 @@ class bitmatrix
         {
             return m_cols*m_rows;
         }
-
+        
+        //! Richiedi il numero di celle
+        /**
+        * @return uint32 Numero di celle
+        */  
         uint32 GetCells() const
         {
             return m_cells;        
@@ -228,9 +232,13 @@ class bitmatrix
         
     private:
 
-        uint8** matrix; 
+        /*! matrice di uint8 */
+        uint8** matrix;
+        /*! numero di righe della matrice */
         uint32  m_rows;
-        uint32  m_cols;        
+        /*! il numero di colonne della matrice */
+        uint32  m_cols;
+        /*! il numero di celle della matrice */
         uint32  m_cells;
 };
 
