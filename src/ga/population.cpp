@@ -36,21 +36,13 @@ population::~population()
 
 individual* population::get_random_individual() const
 {
-    individual* ind = NULL;
-    int rnd = rand()%pool->size() + 1, count = 0;    
+    if (!pool->size())
+        return NULL;
     
     individual_map::const_iterator itr = pool->begin();
-    for (itr = pool->begin(); itr != pool->end(); ++itr)
-    {
-        if (count == rnd)
-        {
-            ind = (*itr).second;
-            break;
-        }
-        count++;
-    }  
+    advance(itr, rand()%pool->size());
     
-    return ind;
+    return (*itr).second;
 }
 
 individual* population::new_random_individual()
@@ -75,7 +67,6 @@ void population::new_random_population()
     while (created++ < conf->population_size)
         pool->insert(pool->end(), \
                     individual_pair(created, new_random_individual()));
-
 }
 
 void population::calc_fitness()
