@@ -12,7 +12,6 @@ bool load_config(string conf_filename, config *c)
         CFG_BOOL((char*)"print_best_dna",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_best_fitness",(cfg_bool_t)true, CFGF_NONE),
         CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_kills",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),
 
         CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
@@ -52,7 +51,6 @@ bool load_config(string conf_filename, config *c)
     c->print_best_dna= cfg_getbool(cfg, "print_best_dna");
     c->print_best_fitness = cfg_getbool(cfg, "print_best_fitness");
     c->print_population_size = cfg_getbool(cfg, "print_population_size");
-    c->print_kills = cfg_getbool(cfg, "print_kills");
     c->print_mutations = cfg_getbool(cfg, "print_mutations");
 
     c->simulator_dir = cfg_getstr(cfg, "simulator_dir");
