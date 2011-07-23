@@ -10,10 +10,10 @@
 
 using namespace std;
 
-typedef std::map<uint32, uint32>      weight_map;
-typedef std::map<uint32, individual>  individual_map;
-typedef std::pair<uint32, individual> individual_pair;
-typedef std::list<uint32>             individual_id_list;
+typedef std::map<uint32, uint32>       weight_map;
+typedef std::map<uint32, individual*>  individual_map;
+typedef std::pair<uint32, individual*> individual_pair;
+typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 
@@ -25,7 +25,7 @@ class population
     general_tests test;
 
     individual* get_random_individual() const;
-    individual new_random_individual();
+    individual* new_random_individual();
     void crossover(individual*, individual*);
 
     public:
