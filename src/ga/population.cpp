@@ -222,7 +222,7 @@ void population::print_best() const
 }
 
 void population::print_all(string logfile) const
-{    
+{
     uint32 count = 0;
     string str;
 
@@ -241,6 +241,6 @@ void population::print_all(string logfile) const
         str+= "\n\n";
         count++;
     }
-    
+
     LOG(logfile, str, false); 
 }

@@ -1,5 +1,10 @@
-changeset:   108:38e4eada7ed2
+changeset:   109:0c0f605a5657
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 16:23:50 2011 +0200
+sommario:    fix crash null pointer
+
+changeset:   108:38e4eada7ed2
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 16:02:42 2011 +0200
 sommario:    kill_individual -> empty_population
