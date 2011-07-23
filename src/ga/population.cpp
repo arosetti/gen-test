@@ -179,7 +179,7 @@ void population::create_mating_pool()
         m_weight_map[(*itr).first] = u_fitness;
     }
 
-    if (m_weight_map.size())
+    if (!m_weight_map.size())
         return;   
    
     uint32 selected_weight;
