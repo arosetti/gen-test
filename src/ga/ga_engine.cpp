@@ -54,8 +54,6 @@ void ga_engine::evolve()
             pop->print_best();
             
         pop->mate_individuals();
-        pop->kill_individuals(pop->size()-conf->population_size);
-
         pop->mutate_individuals();
 
         if (conf->verbose)

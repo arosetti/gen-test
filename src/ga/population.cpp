@@ -25,13 +25,7 @@ population::population()
 
 population::~population()
 {
-    for (individual_map::iterator itr = pool->begin(); itr != pool->end(); itr++)
-    {
-        if ((*itr).second) 
-            delete (*itr).second;
-    }
-
-    delete pool;
+    empty_population();
 }
 
 individual* population::get_random_individual() const
@@ -67,6 +61,19 @@ void population::new_random_population()
     while (created++ < conf->population_size)
         pool->insert(pool->end(), \
                     individual_pair(created, new_random_individual()));
+}
+
+void population::empty_population()
+{
+    individual_map::iterator itr;
+    
+    for (itr = pool->begin(); itr != pool->end(); itr++)
+    {
+        if ((*itr).second) 
+            delete (*itr).second;
+    }
+    
+    pool->clear();
 }
 
 void population::calc_fitness()
@@ -141,18 +148,7 @@ void population::mutate_individuals() const
     }  
 }
 
-void population::kill_individuals(uint32 howmany)
-{
-    individual_map::iterator itr = pool->begin();
-    if (pool->size() > conf->population_size)
-    {
-        if (conf->verbose && conf->print_kills)
-            cout << "killing: " << (pool->size() - conf->population_size) << endl;
-        
-        advance(itr, conf->population_size);
-        pool->erase(itr, pool->end());
-    }
-}
+
 
 uint32  population::size() const
 {
