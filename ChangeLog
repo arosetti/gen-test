@@ -1,5 +1,10 @@
-changeset:   95:1be41f1955cf
+changeset:   96:beba1946b285
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 12:10:38 2011 +0200
+sommario:    inserita la classe logger con design pattern singleton
+
+changeset:   95:1be41f1955cf
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 00:50:52 2011 +0200
 sommario:    fix compile

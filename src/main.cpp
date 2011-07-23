@@ -49,6 +49,7 @@ int main()
     ga.evolve();
 
     delete conf;
+    delete LOG_PTR();
 
     return 0;
 }
