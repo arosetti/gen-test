@@ -1,5 +1,10 @@
-changeset:   102:69b8733ac388
+changeset:   103:4bb1ee3e54e8
 tag:         tip
+utente:      Lazzalf
+data:        Sat Jul 23 15:18:17 2011 +0200
+sommario:    Population
+
+changeset:   102:69b8733ac388
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Jul 23 14:52:48 2011 +0200
 sommario:    fix compile nuova architettura

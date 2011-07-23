@@ -177,15 +177,15 @@ void population::create_mating_pool()
 
     mating_pool.clear();
 
-    individual_map::const_iterator it = pool->begin();
-    for (; it != pool->end(); ++it)
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
     {
-        uint32 u_fitness = uint32((*it).second->get_fitness() * 1000);
+        uint32 u_fitness = uint32((*itr).second->get_fitness() * 1000);
         if (!u_fitness)
             continue;
   
         total_weight += u_fitness;
-        m_weight_map[(*it).first] = u_fitness;
+        m_weight_map[(*itr).first] = u_fitness;
     }
 
     if (m_weight_map.size())
@@ -199,12 +199,13 @@ void population::create_mating_pool()
          selected_weight = rand()%total_weight;
          weight = 0;
 
-         for (weight_map::const_iterator it = m_weight_map.begin(); it != m_weight_map.end(); ++it)
+         weight_map::const_iterator itr = m_weight_map.begin();
+         for (; itr != m_weight_map.end(); ++itr)
          {
-             weight += it->second;
+             weight += itr->second;
              if (selected_weight < weight)
              {
-                mating_pool.push_front((*it).first);
+                mating_pool.push_front(itr->first);
                 break;
              }
          }
