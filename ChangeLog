@@ -1,5 +1,10 @@
-changeset:   117:98c1f376c183
+changeset:   118:c7281a96b2e4
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 03:30:41 2011 +0200
+sommario:    inserita funzione di crossover con punti di taglio singoli verticali.
+
+changeset:   117:98c1f376c183
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sun Jul 24 02:00:36 2011 +0200
 sommario:    alcuni cambi di nomi a variabili
