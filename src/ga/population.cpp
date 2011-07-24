@@ -320,7 +320,7 @@ void population::print_best() const
         cout << ind->get_dna();
 }
 
-void population::print_all(string logfile) const
+void population::log_population(string logfile) const
 {   
     individual_map::const_iterator itr;
     uint32 count = 0;
@@ -338,7 +338,7 @@ void population::print_all(string logfile) const
     LOG(logfile, out.str(), false); 
 }
 
-void population::cout_all(string logfile) const
+void population::cout_population(string logfile) const
 {   
     individual_map::const_iterator itr;
     uint32 count = 0;

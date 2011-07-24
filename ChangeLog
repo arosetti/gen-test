@@ -1,5 +1,21 @@
-changeset:   113:e01b91cde657
+changeset:   116:fd39080636c1
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:39:22 2011 +0200
+sommario:    Inserita l'etichetta 0.0.5 per il changeset 72cd75f1e825
+
+changeset:   115:72cd75f1e825
+tag:         0.0.5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:38:49 2011 +0200
+sommario:    versione 0.0.5
+
+changeset:   114:ef5c1a06adae
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:37:32 2011 +0200
+sommario:    riorganizzazione della posizione delle funzioni
+
+changeset:   113:e01b91cde657
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sun Jul 24 01:20:33 2011 +0200
 sommario:    fix della mate_individuals(), commentata completamente.

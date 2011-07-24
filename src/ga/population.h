@@ -18,7 +18,7 @@ typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 
-//! Il contenitore della popolazione, componente principale dell'algoritmo genetico.
+//! Contenitore della popolazione, e delle funzioni dell'algoritmo genetico.
 /**
  *
  */
@@ -55,8 +55,8 @@ class population
 
     uint32  size() const;
     void    print_best() const;
-    void    print_all(string logfile) const;
-    void    cout_all(string logfile) const;
+    void    log_population(string logfile) const;
+    void    cout_population(string logfile) const;
 };
 
 #endif
