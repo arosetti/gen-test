@@ -69,6 +69,17 @@ void individual::dna_mutate()
     }
 }
 
+void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
+{
+
+}
+
+void individual::dna_merge(string dna_1, string dna_2)
+{
+    string dna;
+    
+}
+
 float individual::get_fitness()  const
 {
     return fitness;

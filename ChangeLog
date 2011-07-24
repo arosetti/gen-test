@@ -1,5 +1,10 @@
-changeset:   116:fd39080636c1
+changeset:   117:98c1f376c183
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 02:00:36 2011 +0200
+sommario:    alcuni cambi di nomi a variabili
+
+changeset:   116:fd39080636c1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sun Jul 24 01:39:22 2011 +0200
 sommario:    Inserita l'etichetta 0.0.5 per il changeset 72cd75f1e825

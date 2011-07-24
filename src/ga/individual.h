@@ -35,6 +35,8 @@ class individual
     uint32  get_dna_length() const;
     void    dna_random();
     void    dna_mutate();
+    void    dna_split(uint32, string&, string&);
+    void    dna_merge(string, string);
 
     float   get_fitness() const;
     void    set_fitness(float);
