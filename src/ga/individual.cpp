@@ -46,7 +46,7 @@ uint32 individual::get_chromosome_number()  const
 void individual::set_chromosome_number(uint32 l)
 {
     chromosome_number = l;
-    dna->Resize(dna->GetRows(), chromosome_number);
+    dna->Resize(dna->GetRowSize(), chromosome_number);
 }
 
 void individual::dna_random()
@@ -71,7 +71,7 @@ void individual::dna_mutate()
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
 {
-
+    
 }
 
 void individual::dna_merge(string dna_1, string dna_2)
@@ -119,7 +119,7 @@ uint32  individual::get_chromosome_length()  const
 void  individual::set_chromosome_length(uint32 len)
 {
     chromosome_length = len;
-    dna->Resize(chromosome_length, dna->GetCols());
+    dna->Resize(chromosome_length, dna->GetColSize());
 }
 
 void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)

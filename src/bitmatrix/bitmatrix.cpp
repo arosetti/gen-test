@@ -183,7 +183,7 @@ void bitmatrix::SetCol(uint32 col)
 
 void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 col)
 {
-    if (bin_mat.GetRows() < m_rows || col >= m_cols)
+    if (bin_mat.GetRowSize() < m_rows || col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++) 
@@ -260,7 +260,7 @@ void bitmatrix::SetRow(uint32 row)
 
 void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 row)
 {
-    if (bin_mat.GetCols() < m_cols || row >= m_rows)
+    if (bin_mat.GetColSize() < m_cols || row >= m_rows)
         return;
 
     for (uint32 j = 0; j < m_cells; j++) 
@@ -336,13 +336,13 @@ void bitmatrix::Import(const string& str)
 
 void bitmatrix::Import(const bitmatrix& bin_mat)
 {
-    uint32 max_rows = (m_rows > bin_mat.GetRows() ? bin_mat.GetRows() : m_rows);
-    uint32 max_cells  = (m_cells > bin_mat.GetCells() ? bin_mat.GetCells() : m_cells);
+    uint32 max_rows = (m_rows > bin_mat.GetRowSize() ? bin_mat.GetRowSize() : m_rows);
+    uint32 max_cells  = (m_cells > bin_mat.GetCellSize() ? bin_mat.GetCellSize() : m_cells);
     uint8 mask = 0;
     
-    if (bin_mat.GetCols() < m_cols)
+    if (bin_mat.GetColSize() < m_cols)
     {
-        for (uint32 i = 0; i < (bin_mat.GetCols()%8); i++) 
+        for (uint32 i = 0; i < (bin_mat.GetColSize()%8); i++) 
             mask |= uint8(1 << i);
     }    
     

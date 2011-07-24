@@ -42,7 +42,7 @@ class bitmatrix
         /**
         * @return uint32 Numero di righe della bitmatrix
         */  
-        uint32 GetRows() const
+        uint32 GetRowSize() const
         {
             return m_rows;        
         }  
@@ -51,11 +51,20 @@ class bitmatrix
         /**
         * @return uint32 Numero di colonne della bitmatrix
         */  
-        uint32 GetCols() const
+        uint32 GetColSize() const
         {
             return m_cols;        
         }
-        
+
+        //! Richiedi il numero di celle
+        /**
+        * @return uint32 Numero di celle
+        */  
+        uint32 GetCellSize() const
+        {
+            return m_cells;        
+        }
+
         //! Richiedi la dimensione
         /**
         * @return uint32 Numero di righe * Numero di colonne
@@ -63,17 +72,8 @@ class bitmatrix
         uint32 GetSize() const
         {
             return m_cols*m_rows;
-        }
-        
-        //! Richiedi il numero di celle
-        /**
-        * @return uint32 Numero di celle
-        */  
-        uint32 GetCells() const
-        {
-            return m_cells;        
-        }
-   
+        }  
+
         //! Randomizza un bit
         /**
         * @param uint32 row Numero della riga (partendo da 0)
