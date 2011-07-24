@@ -117,6 +117,16 @@ class bitmatrix
         * @return string La colonna convertita in stringa
         */  
         string  GetCol(uint32 col);
+        
+        //! Ritorna una sottomatrice ridotta alle colonne scelte
+        /**
+        * @param uint32 col_a Numero della colonna a (partendo da 0)
+        * @param uint32 col_b Numero della colonna b (partendo da 0)
+        * @return string La colonna convertita in stringa
+
+        */  
+        string  GetCols(uint32 col_a, uint32 col_b);
+
 
         //! Resetta una colonna cioè la mette tutta a 0
         /**
@@ -143,6 +153,14 @@ class bitmatrix
         * @param uint32 col Numero della colonna (partendo da 0)
         */ 
         void    SetCol(const string& str, uint32 col);
+
+        //! Copia una stringa in una serie di colonne della bitmatrix
+        /**
+        * @param uint32 str Stringa da copiare nel formato 0,0,1,0,1
+        * @param uint32 col_a Numero della colonna a (partendo da 0)
+        * @param uint32 col_b Numero della colonna b (partendo da 0)
+        */ 
+        void    SetCols(const string& str, uint32 col_a, uint32 col_b);
 
         //! Randomizza una colonna della bitmatrix
         /**

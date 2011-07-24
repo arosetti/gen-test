@@ -163,6 +163,26 @@ string bitmatrix::GetCol(uint32 col)
     return str;
 }
 
+string bitmatrix::GetCols(uint32 col_a, uint32 col_b)
+{
+    string str = "";
+
+    if (col_a >= m_cols || col_b >= m_cols || col_a > col_b)
+        return str;
+
+    for (uint32 j = col_a; j <= col_b; j++)
+    {    
+        for (uint32 i = 0; i < m_rows; i++)
+        {
+            str += (matrix[i][int(j/8)] & uint8(1 << int(j%8))) ? "1" : "0";
+            if (i < (m_rows - 1))
+                str +=",";
+        }
+        str+="\n";
+    }
+    return str;
+}
+
 void bitmatrix::UnsetCol(uint32 col)
 {
     if (col >= m_cols)
@@ -221,6 +241,43 @@ void bitmatrix::SetCol(const string& str, uint32 col)
             Set(row, col);
 
         row++;
+    }
+}
+
+void bitmatrix::SetCols(const string& str, uint32 col_a, uint32 col_b)
+{
+    if (col_a >= m_cols || col_b >= m_cols || col_a > col_b)
+        return;
+        
+    const char* c_str = str.c_str();
+    if (!c_str)
+        return;
+
+    uint32 row;
+    for (uint32 j = col_a; j<=col_b; j++)
+    {   
+        row = 0;
+        uint32 i;
+        for ( i = 0; c_str[i] != '\n'; i++)
+        {    
+            if (c_str[i] == ',')
+                continue;        
+
+            if (row >= m_rows)
+                break;
+                
+            if (c_str[i] == '0')
+                Unset(row, j);
+            else // qualsiasi cifra che non sia 0 viene considerata 1
+                Set(row, j);
+
+            row++;
+        }
+        
+        if (c_str[i] == '\0')
+           break;
+        
+        c_str += i+1;
     }
 }
 
