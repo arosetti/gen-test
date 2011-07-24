@@ -71,7 +71,11 @@ void individual::dna_mutate()
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
 {
-    
+    if(pos == 0 || pos == dna->GetColSize())
+        return;
+
+    dna_1 = dna->GetCols(0, pos);
+    dna_2 = dna->GetCols(pos + 1, dna->GetColSize());
 }
 
 void individual::dna_merge(string dna_1, string dna_2)
