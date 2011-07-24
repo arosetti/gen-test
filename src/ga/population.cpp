@@ -122,7 +122,18 @@ void population::sort_by_fitness()
 
 void population::crossover(individual *& ind_a, individual *& ind_b)
 {
-
+    uint32 cut_a,cut_b;
+    string dna_a_1, dna_a_2;
+    string dna_b_1, dna_b_2;
+    
+    cut_a = rand()%ind_a->get_chromosome_length();
+    cut_b = rand()%ind_b->get_chromosome_length();
+    
+    ind_a->dna_split(cut_a, dna_a_1, dna_a_2);
+    ind_b->dna_split(cut_b, dna_b_1, dna_b_2);
+    
+    ind_a->dna_merge(dna_a_1, dna_b_2);
+    ind_b->dna_merge(dna_b_1, dna_a_2);
 }
 
 uint32 population::get_id_from_mating_pool(uint32 pos, individual_id_list::iterator &itr_to_del)
