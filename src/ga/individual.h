@@ -1,6 +1,8 @@
 #ifndef INDIVIDUAL_H
 #define INDIVIDUAL_H
 
+#include <sstream>
+
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
 #include "../simulation/tests.h"
@@ -50,6 +52,8 @@ class individual
     void    set_chromosome_number(uint32);   // not used
     void    chromosome_mutate(uint32,uint32);
     void    chromosome_random(uint32);
+
+    string  info();
 
     bool operator < (const individual&);
 };

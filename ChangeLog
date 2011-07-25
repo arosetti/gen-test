@@ -1,5 +1,10 @@
-changeset:   121:75fb0d362bce
+changeset:   122:7f0eddb1e90c
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 25 18:41:36 2011 +0200
+sommario:    implementata AttachCols
+
+changeset:   121:75fb0d362bce
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Mon Jul 25 00:00:11 2011 +0200
 sommario:    implementata dna_split
