@@ -7,7 +7,7 @@
 using namespace std;
 
 class tests
-{    
+{
     public:
         tests();
         ~tests();
@@ -15,10 +15,10 @@ class tests
         uint32 GetFaultsSize();
 
         set<uint32> const& GetFaultsList() const;
-        bool   DeleteFault(uint32 fault);   
-        bool   InsertFault(uint32 fault);    
-        bool   FindFault(uint32 fault);                  
-    
+        bool   DeleteFault(uint32 fault);
+        bool   InsertFault(uint32 fault);
+        bool   FindFault(uint32 fault);
+
     private:
 
         set<uint32> m_faults_set;

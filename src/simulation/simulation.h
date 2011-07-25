@@ -1,4 +1,4 @@
-#ifndef SIMULATION_H 
+#ifndef SIMULATION_H
 #define SIMULATION_H
 
 #include <cstdlib>

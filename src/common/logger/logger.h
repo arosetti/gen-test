@@ -13,15 +13,15 @@ using namespace std;
 class logger
 {
     private:
-    
+
     static logger* l_singleton;
-    
+
     logger() { };
 
     public:
 
     static logger* get_instance()
-    { 
+    {
         l_singleton = new logger();
         return l_singleton;
     };

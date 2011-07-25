@@ -24,23 +24,23 @@ class ga_engine
     population *pop;
 
     public:
-    
-    //! Construttore - Inizializza il seed random con la funzione srand 
+
+    //! Construttore - Inizializza il seed random con la funzione srand
     /**
     */
     ga_engine();
     //! Distruttore - elimina la popolazione
     /**
-    */  
+    */
     ~ga_engine();
 
     //! Crea la popolazione e inizializza gli individui casualmente
     /**
-    */  
+    */
     void init();
     //! Crea la popolazione e inizializza gli individui casualmente
     /**
-    */  
+    */
     void evolve();
 };
 
