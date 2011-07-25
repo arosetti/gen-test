@@ -163,6 +163,19 @@ void individual::chromosome_random(uint32 crom)
     dna->RandomizeRow(crom);
 }
 
+string individual::info()
+{
+    stringstream out;
+
+    out << "ptr : " << this << endl;
+    out << "fitness:     " << fitness << endl;
+    out << "dna size (row,col) : (" <<
+           dna->GetRowSize() << "," << dna->GetColSize() << ")" << endl;
+    out << "dna: " << endl << dna->ToString() << endl;
+
+    return out.str();
+}
+
 bool individual::operator < (const individual& ind)
 {
     return fitness < ind.get_fitness();

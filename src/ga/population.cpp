@@ -340,9 +340,7 @@ void population::log_population(string logfile) const
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
         out << "individual: #" << count << endl;
-        out << "ptr : " << (*itr).second << endl;
-        out << "fitness:     " << (*itr).second->get_fitness() << endl;
-        out << "dna: " << endl << (*itr).second->get_dna() << endl << endl;
+        out << (*itr).second->info() << endl;
         count++;
     }
 
@@ -356,11 +354,8 @@ void population::cout_population(string logfile) const
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
-
         cout << "individual: #" << count << endl;
-        cout << "ptr : " << (*itr).second << endl;
-        cout << "fitness:     " << (*itr).second->get_fitness() << endl;
-        cout << "dna: " << endl << (*itr).second->get_dna() << endl << endl;
+        cout << (*itr).second->info() << endl;
         count++;
     }
 }
