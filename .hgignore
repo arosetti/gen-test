@@ -21,6 +21,7 @@ INSTALL
 src/.dirstamp
 src/bitmatrix/.dirstamp
 src/bitmatrix/.deps
+src/bitmatrix/b
 src/common/.dirstamp
 src/common/.deps
 src/common/logger/.dirstamp
