@@ -11,7 +11,7 @@
 + classe ga_engine
 
 + classe population
-         
+
 + classe individual
 
 + classe per l'interazione automatica con il simulatore generato da mobius.
@@ -20,7 +20,9 @@
 
 + classe bitmatrix
    + ottimizzare i return di stringhe con puntatori
-   
+   + rimuovere le , dalla rappresentazione a string
+   + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
+
 + funzione check_conf (nuovi file check_conf.h/cpp)
 + funzione di log su file
 
@@ -28,7 +30,7 @@
 
 +pthread
    + per un minimo di parallelizzazione.
-   
+
 +libconfuse.
 
 

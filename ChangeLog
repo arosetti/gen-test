@@ -1,5 +1,10 @@
-changeset:   122:7f0eddb1e90c
+changeset:   123:91c0b62e80cc
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 25 19:10:47 2011 +0200
+sommario:    inserita la funzione info() su individual,
+
+changeset:   122:7f0eddb1e90c
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Mon Jul 25 18:41:36 2011 +0200
 sommario:    implementata AttachCols
