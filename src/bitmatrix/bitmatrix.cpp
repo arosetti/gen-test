@@ -167,7 +167,7 @@ string bitmatrix::GetCols(uint32 col_a, uint32 col_b)
 {
     string str = "";
 
-    if (col_a >= m_cols || col_b >= m_cols || col_a > col_b)
+    if (col_a > m_cols || col_b > m_cols || col_a > col_b)
         return str;
 
     for (uint32 j = col_a; j <= col_b; j++)
@@ -226,7 +226,6 @@ void bitmatrix::SetCol(const string& str, uint32 col)
         return;
 
     uint32 row = 0;
-
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
         if (c_str[i] == ',')
@@ -246,7 +245,7 @@ void bitmatrix::SetCol(const string& str, uint32 col)
 
 void bitmatrix::SetCols(const string& str, uint32 col_a, uint32 col_b)
 {
-    if (col_a >= m_cols || col_b >= m_cols || col_a > col_b)
+    if (col_a > m_cols || col_b > m_cols || col_a > col_b)
         return;
 
     const char* c_str = str.c_str();
@@ -384,7 +383,7 @@ void bitmatrix::Import(const string& str)
 
         if (c_str[i] == '0')
             Unset(row, col);
-        else // qualsiasi cifra che non sia 0 viene considerata 1
+        else
             Set(row, col);
 
         col++;
@@ -432,10 +431,11 @@ void bitmatrix::AttachCols(const string& str)
         return;
 
     /* ridimensiona la matrice aggiungendo lo spazio per le nuove colonne */
-    Resize(m_rows, m_cols + n_add_cols);
+    cout << "resize " << m_cols << "-" << m_cols + n_add_cols << endl;
+    Resize(m_rows, m_cols + n_add_cols - 1);
     
     /* aggiunge le colonne alla matrice */
-    SetCols(str, old_col_size + 1, n_add_cols + old_col_size);
+    SetCols(str, old_col_size , n_add_cols + old_col_size);
 }
 
 uint32 GetStrColSize(const string& str)
@@ -464,6 +464,30 @@ uint32 GetStrRowSize(const string& str)
     }
 
     return rows + 1;
+}
+
+void StrTranspose(string& str) /*buggata*/
+{   
+    uint32 rows = GetStrRowSize(str), cols = GetStrColSize(str);
+    string temp_string;
+
+    for (uint32 i = 0; i < (cols * 2 ); i++) // i = colonna
+    {
+        if (str[i] == ',' || str[i] == '\n')
+            continue;
+
+        for (uint32 j = 0; j <= rows; j++)
+        {
+            cout << str.c_str()[(j * cols + i) * 2 ] ;
+            temp_string += str.c_str()[(j * cols + i) * 2 ];
+
+            if (j != (cols-1))
+                temp_string += ",";
+        }
+        temp_string += "\n";
+    }
+
+    str = temp_string;
 }
 
 void bitmatrix::Print() const

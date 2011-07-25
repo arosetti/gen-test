@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <string.h>
 
 typedef unsigned char uint8;
 typedef unsigned short int uint16;
@@ -26,6 +27,13 @@ uint32  GetStrColSize(const string& str);
 * @return uint32 il numero di righe della stringa
 */
 uint32  GetStrRowSize(const string& str);
+
+//! Ritorna la matrice trasposta
+/**
+* @param const string& str la matrice da trasporre
+*/
+void StrTranspose(string& str);
+
 
 //! Struttura di memorizzazione di una matrice di bit
 /**

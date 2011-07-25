@@ -76,6 +76,13 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
 
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColSize());
+
+    if (conf->debug && conf->print_mating)
+    {
+        cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
+        cout << "dna_2 (" << pos+1 << ", " << 
+             dna->GetColSize() << ")" << endl << dna_2 << endl;
+    }
 }
 
 void individual::dna_merge(string& dna_1, string& dna_2)
@@ -89,13 +96,20 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         return;
 
     /* ridimensiona il dna alla somma delle colonne di dna_1 */
-    dna->Resize(dna->GetRowSize(), GetStrColSize(dna_1));
+    dna->Resize(dna->GetRowSize(), GetStrColSize(dna_1) + 1);
 
     /* copio dna_1 nel dna */
     dna->Import(dna_1);
+    dna->SetCols(dna_1, 0, GetStrColSize(dna_1));
 
     /* attacco il secondo pezzo di dna */
     dna->AttachCols(dna_2);
+
+    if (conf->debug && conf->print_mating)
+    {
+        dna->Print();
+        cout << endl;
+    }
 }
 
 float individual::get_fitness()  const

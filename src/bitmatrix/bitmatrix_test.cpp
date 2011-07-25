@@ -83,8 +83,17 @@ int main()
     b1.SetCols(s1,1,4);
     b1.Print();
 
-    printf("\nb1 cols: %d\n", (int) b1.GetStrColSize(b1.ToString())); // StrCols non dovrebbero far parte dell'oggetto b1....
-    printf("b1 rows: %d\n", (int) b1.GetStrRowSize(b1.ToString()));
+    printf("\nb1 cols: %d\n", (int) GetStrColSize(b1.ToString()));
+    printf("b1 rows: %d\n", (int) GetStrRowSize(b1.ToString()));
 
+
+    printf("\nb1\n");
+    b1.Print();
+    printf("\n");
+    
+    string t = b1.ToString();
+    StrTranspose(t);
+    printf("b1 trasposta: \n%s\n", t.c_str());
+    
     return 0;
 }

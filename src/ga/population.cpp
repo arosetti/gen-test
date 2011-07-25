@@ -205,11 +205,14 @@ void population::mate_individuals()
 {
     individual_map *temp_pool = new individual_map;
     individual_id_list::iterator itr_del_a, itr_del_b;
-    uint32 m_size = mating_pool.size();
     uint32 rnd_a, rnd_b;
     individual *ind_a, *ind_b;
     individual *ind_a_cloned, *ind_b_cloned;
     individual *ind_a_child, *ind_b_child;
+    uint32 m_size;
+
+    create_mating_pool();
+    m_size = mating_pool.size();
 
     while (mating_pool.size())
     {
