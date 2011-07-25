@@ -15,7 +15,7 @@ uint32 general_tests::GetFaultsSize()
     return m_faults_map.size();
 }
 
-FaultsMap const& general_tests::GetFaultsMap() const  
+FaultsMap const& general_tests::GetFaultsMap() const
 {
     return m_faults_map;
 }
@@ -32,7 +32,7 @@ bool general_tests::DeleteFault(uint32 fault, uint32 numb)
         m_faults_map[fault] -= numb;
 
     return true;
-}    
+}
 
 bool general_tests::InsertFault(uint32 fault, uint32 numb)
 {
@@ -43,7 +43,7 @@ bool general_tests::InsertFault(uint32 fault, uint32 numb)
         m_faults_map[fault] = numb;
 
     return true;
-}  
+}
 
 uint32 general_tests::FindFault(uint32 fault)
 {

@@ -29,7 +29,7 @@ bool tests::DeleteFault(uint32 fault)
     m_faults_set.erase(itr);
 
     return true;
-}    
+}
 
 bool tests::InsertFault(uint32 fault)
 {
@@ -40,7 +40,7 @@ bool tests::InsertFault(uint32 fault)
     m_faults_set.insert(fault);
 
     return true;
-}  
+}
 
 bool tests::FindFault(uint32 fault)
 {
@@ -49,5 +49,5 @@ bool tests::FindFault(uint32 fault)
         return false;
 
     return true;
-}                    
+}
 

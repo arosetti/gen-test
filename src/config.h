@@ -11,7 +11,7 @@ using namespace std;
  *
  */
 
-typedef struct config 
+typedef struct config
 {
     bool debug, verbose, interactive;
     bool print_best_dna, print_best_fitness;
@@ -29,7 +29,7 @@ typedef struct config
     uint32 chromosome_num;
     uint32 chromosome_max_len;
     uint32 chromosome_start_len_min, chromosome_start_len_max;
-        
+
     float  mating_fraction;
     float  mating_rate;
     float  mutation_rate, mutation_strength;

@@ -5,7 +5,7 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
     chromosome_length = chrom_len;
     chromosome_number = chrom_num;
     fitness = 10;
-    
+
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
 
@@ -30,7 +30,7 @@ string individual::get_dna() const
 
 void individual::set_dna(string str)
 {
-    dna->Import(str); 
+    dna->Import(str);
 }
 
 uint32 individual::get_dna_length()  const
@@ -71,17 +71,31 @@ void individual::dna_mutate()
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
 {
-    if(pos == 0 || pos == dna->GetColSize())
+    if (pos == 0 || pos == dna->GetColSize())
         return;
 
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColSize());
 }
 
-void individual::dna_merge(string dna_1, string dna_2)
+void individual::dna_merge(string& dna_1, string& dna_2)
 {
-    string dna;
-    
+    string new_dna;
+
+    /* controlla che le righe siano le stesse in tutti i componenti non nulle */
+    if (dna_1.length() == 0 || dna_2.length() == 0 ||
+        GetStrRowSize(dna_1) != dna->GetRowSize() ||
+        GetStrRowSize(dna_2) != dna->GetRowSize())
+        return;
+
+    /* ridimensiona il dna alla somma delle colonne di dna_1 */
+    dna->Resize(dna->GetRowSize(), GetStrColSize(dna_1));
+
+    /* copio dna_1 nel dna */
+    dna->Import(dna_1);
+
+    /* attacco il secondo pezzo di dna */
+    dna->AttachCols(dna_2);
 }
 
 float individual::get_fitness()  const

@@ -36,12 +36,12 @@ class individual
     void    dna_random();
     void    dna_mutate();
     void    dna_split(uint32, string&, string&);
-    void    dna_merge(string, string);
+    void    dna_merge(string&, string&);
 
     float   get_fitness() const;
     void    set_fitness(float);
     void    calc_fitness();
-    
+
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
     uint32  get_chromosome_length() const;
