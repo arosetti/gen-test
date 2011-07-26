@@ -64,7 +64,7 @@ class bitmatrix
         /**
         * @return uint32 Numero di righe della bitmatrix
         */
-        uint32 GetRowSize() const
+        uint32 GetRowNum() const
         {
             return m_rows;
         }
@@ -73,7 +73,7 @@ class bitmatrix
         /**
         * @return uint32 Numero di colonne della bitmatrix
         */
-        uint32 GetColSize() const
+        uint32 GetColNum() const
         {
             return m_cols;
         }
@@ -177,10 +177,9 @@ class bitmatrix
         //! Copia una stringa in una serie di colonne della bitmatrix
         /**
         * @param uint32 str Stringa da copiare nel formato 0,0,1,0,1
-        * @param uint32 col_a Numero della colonna a (partendo da 0)
-        * @param uint32 col_b Numero della colonna b (partendo da 0)
+        * @param uint32 start_col Colonna da cui iniziare a copiare (partendo da 0)
         */
-        void    SetCols(const string& str, uint32 col_a, uint32 col_b);
+        void    SetCols(const string& str, uint32 start_col);
 
         //! Randomizza una colonna della bitmatrix
         /**

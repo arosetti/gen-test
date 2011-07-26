@@ -46,7 +46,7 @@ uint32 individual::get_chromosome_number()  const
 void individual::set_chromosome_number(uint32 l)
 {
     chromosome_number = l;
-    dna->Resize(dna->GetRowSize(), chromosome_number);
+    dna->Resize(dna->GetRowNum(), chromosome_number);
 }
 
 void individual::dna_random()
@@ -71,17 +71,17 @@ void individual::dna_mutate()
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
 {
-    if (pos == 0 || pos == dna->GetColSize())
+    if (pos > dna->GetColNum())
         return;
 
     dna_1 = dna->GetCols(0, pos);
-    dna_2 = dna->GetCols(pos + 1, dna->GetColSize());
+    dna_2 = dna->GetCols(pos + 1, dna->GetColNum() - 1);
 
     if (conf->debug && conf->print_mating)
     {
         cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
         cout << "dna_2 (" << pos+1 << ", " << 
-             dna->GetColSize() << ")" << endl << dna_2 << endl;
+             dna->GetColNum() << ")" << endl << dna_2 << endl;
     }
 }
 
@@ -91,16 +91,16 @@ void individual::dna_merge(string& dna_1, string& dna_2)
 
     /* controlla che le righe siano le stesse in tutti i componenti non nulle */
     if (dna_1.length() == 0 || dna_2.length() == 0 ||
-        GetStrRowSize(dna_1) != dna->GetRowSize() ||
-        GetStrRowSize(dna_2) != dna->GetRowSize())
+        GetStrColSize(dna_1) != dna->GetRowNum() ||
+        GetStrColSize(dna_2) != dna->GetRowNum())
         return;
+    cout << "MERGING DNA " << endl; 
 
     /* ridimensiona il dna alla somma delle colonne di dna_1 */
-    dna->Resize(dna->GetRowSize(), GetStrColSize(dna_1) + 1);
+    set_chromosome_length(GetStrRowSize(dna_1));
 
     /* copio dna_1 nel dna */
-    dna->Import(dna_1);
-    dna->SetCols(dna_1, 0, GetStrColSize(dna_1));
+    dna->SetCols(dna_1, 0);
 
     /* attacco il secondo pezzo di dna */
     dna->AttachCols(dna_2);
@@ -143,15 +143,15 @@ void individual::set_chromosome(uint32 crom, string str)
     dna->SetRow(str, crom);
 }
 
-uint32  individual::get_chromosome_length()  const
+uint32  individual::get_chromosome_length()  const  /* chromosome_length superfluo */
 {
-    return chromosome_length;
+    return dna->GetColNum();
 }
 
 void  individual::set_chromosome_length(uint32 len)
 {
     chromosome_length = len;
-    dna->Resize(chromosome_length, dna->GetColSize());
+    dna->Resize(chromosome_number, len);
 }
 
 void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
@@ -184,7 +184,7 @@ string individual::info()
     out << "ptr : " << this << endl;
     out << "fitness:     " << fitness << endl;
     out << "dna size (row,col) : (" <<
-           dna->GetRowSize() << "," << dna->GetColSize() << ")" << endl;
+           dna->GetRowNum() << "," << dna->GetColNum() << ")" << endl;
     out << "dna: " << endl << dna->ToString() << endl;
 
     return out.str();

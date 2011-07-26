@@ -1,5 +1,10 @@
-changeset:   128:0b585887fd84
+changeset:   129:4bc86ea8e3ce
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 08:45:53 2011 +0200
+sommario:    fix StrTranspose
+
+changeset:   128:0b585887fd84
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Jul 26 01:27:49 2011 +0200
 sommario:    corretto .hgtags
