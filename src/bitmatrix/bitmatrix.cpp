@@ -466,22 +466,23 @@ uint32 GetStrRowSize(const string& str)
     return rows + 1;
 }
 
-void StrTranspose(string& str) /*buggata*/
+void StrTranspose(string& str)
 {   
-    uint32 rows = GetStrRowSize(str), cols = GetStrColSize(str);
+    uint32 rows = GetStrColSize(str), cols = GetStrRowSize(str);
     string temp_string;
 
-    for (uint32 i = 0; i < (cols * 2 ); i++) // i = colonna
+    cout << rows << "-" << cols << endl;
+
+    for (uint32 i = 0; i < cols * 2; i++) // i = colonna
     {
         if (str[i] == ',' || str[i] == '\n')
             continue;
-
-        for (uint32 j = 0; j <= rows; j++)
+        
+        for (uint32 j = 0; j < rows; j++)
         {
-            cout << str.c_str()[(j * cols + i) * 2 ] ;
-            temp_string += str.c_str()[(j * cols + i) * 2 ];
+            temp_string += str.c_str()[2 * j * cols + i];
 
-            if (j != (cols-1))
+            if (j != (rows - 1))
                 temp_string += ",";
         }
         temp_string += "\n";
