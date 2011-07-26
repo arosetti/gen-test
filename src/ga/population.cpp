@@ -128,12 +128,14 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 
     cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
     cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
-
-    cout << "split " << cut_a << "/" << ind_a->get_chromosome_length();
-    cout << "," << cut_b << "/" << ind_b->get_chromosome_length() << endl;
-    cout << ind_a->info() << endl;
-    cout << ind_b->info() << endl;
     
+    if ( conf->debug && conf->print_mating)
+    {
+        cout << "split " << cut_a << "/" << ind_a->get_chromosome_length();
+        cout << "," << cut_b << "/" << ind_b->get_chromosome_length() << endl;
+        cout << ind_a->info() << endl;
+        cout << ind_b->info() << endl;
+    }
     
     ind_a->dna_split(cut_a, dna_a_1, dna_a_2);
     ind_b->dna_split(cut_b, dna_b_1, dna_b_2);

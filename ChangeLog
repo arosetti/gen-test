@@ -1,5 +1,10 @@
-changeset:   129:4bc86ea8e3ce
+changeset:   130:84b621da104a
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 15:35:19 2011 +0200
+sommario:    adesso le sottomatrici colonna sono messe in colonna.
+
+changeset:   129:4bc86ea8e3ce
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Jul 26 08:45:53 2011 +0200
 sommario:    fix StrTranspose
