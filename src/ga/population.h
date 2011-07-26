@@ -37,14 +37,15 @@ class population
     void    crossover(individual*&, individual*&);
     uint32  get_id_from_mating_pool(uint32, individual_id_list::iterator &);
 
+
+    void    empty_population();
     
     public:
     population();
     ~population();
-
-    void    new_random_population();
-    void    empty_population();
     
+    void    new_random_population();
+
     void    calc_population_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;

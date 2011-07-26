@@ -162,7 +162,7 @@ string bitmatrix::GetCol(uint32 col)
 }
 
 string bitmatrix::GetCols(uint32 col_a, uint32 col_b)
-{   /* da trasporre */
+{   
     string str = "";
 
     if (col_a > m_cols || col_b > m_cols || col_a > col_b)
@@ -222,7 +222,7 @@ void bitmatrix::SetCol(const string& str, uint32 col)
     if (!c_str)
         return;
 
-    uint32 row = 0; /* row superfluo */
+    uint32 row = 0; 
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
         if (row >= m_rows)
@@ -233,7 +233,7 @@ void bitmatrix::SetCol(const string& str, uint32 col)
 
         if (c_str[i] == '0')
             Unset(row, col);
-        else // qualsiasi cifra che non sia 0 viene considerata 1
+        else 
             Set(row, col);
 
         row++;
@@ -401,7 +401,7 @@ void bitmatrix::AttachCols(const string& str)
     if (!c_str)
         return;
 
-    cout << "resize " << m_cols << "-" << m_cols + n_add_cols << endl;
+    //cout << "resize " << m_cols << "-" << m_cols + n_add_cols << endl;
 
     /* se non stiamo usando lo stesso numero di righe o colonne nulle termina */
     if(n_add_cols == 0 || GetStrColSize(str) != GetRowNum())

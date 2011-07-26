@@ -35,7 +35,7 @@ void individual::set_dna(string str)
 
 uint32 individual::get_dna_length()  const
 {
-    return chromosome_number * chromosome_length;
+    return chromosome_number * get_chromosome_length();
 }
 
 uint32 individual::get_chromosome_number()  const
@@ -57,7 +57,7 @@ void individual::dna_random()
 void individual::dna_mutate()
 {
     uint8 count = conf->mutation_strength>chromosome_length? \
-                  chromosome_length:conf->mutation_strength;
+                  get_chromosome_length():conf->mutation_strength;
     uint32 row_r,col_r;
 
     while (count-- != 0)
@@ -94,7 +94,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         GetStrColSize(dna_1) != dna->GetRowNum() ||
         GetStrColSize(dna_2) != dna->GetRowNum())
         return;
-    cout << "MERGING DNA " << endl; 
+    //cout << "MERGING DNA " << endl; 
 
     /* ridimensiona il dna alla somma delle colonne di dna_1 */
     set_chromosome_length(GetStrRowSize(dna_1));
@@ -143,7 +143,7 @@ void individual::set_chromosome(uint32 crom, string str)
     dna->SetRow(str, crom);
 }
 
-uint32  individual::get_chromosome_length()  const  /* chromosome_length superfluo */
+uint32  individual::get_chromosome_length()  const  /* get_chromosome_length() superfluo */
 {
     return dna->GetColNum();
 }
@@ -157,10 +157,10 @@ void  individual::set_chromosome_length(uint32 len)
 void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
 {
     uint8 count = mutation_strength>chromosome_length? \
-                  chromosome_length:mutation_strength;
+                  get_chromosome_length():mutation_strength;
     uint32 col_r;
 
-    if (crom == 0 || crom >= chromosome_length)
+    if (crom == 0 || crom >= get_chromosome_length())
         return;
 
     col_r = rand()%chromosome_length + 1;
@@ -171,7 +171,7 @@ void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
 
 void individual::chromosome_random(uint32 crom)
 {
-    if (crom >= chromosome_length)
+    if (crom >= get_chromosome_length())
         return;
 
     dna->RandomizeRow(crom);

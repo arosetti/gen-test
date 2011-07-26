@@ -20,12 +20,12 @@
 
 + classe bitmatrix
    + ottimizzare i return di stringhe con puntatori
-   + rimuovere le , dalla rappresentazione a string
    + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
 
 + funzione check_conf (nuovi file check_conf.h/cpp)
 + funzione di log su file
-
+   LOG va a leggere conf per vedere se deve printare o no.
+   log to stderr o file.
 #####librerie_utili#####
 
 +pthread

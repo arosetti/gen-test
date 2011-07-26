@@ -14,11 +14,11 @@ ga_engine::~ga_engine()
 void ga_engine::init()
 {
     if (conf->verbose)
-        cout << "init population" << endl;
+        cout << "* init population" << endl;
     pop = new population();
 
     if (conf->verbose)
-        cout << "selecting " << conf->population_size << " random individuals..." << endl;
+        cout << "* selecting " << conf->population_size << " random individuals..." << endl;
     pop->new_random_population();
 }
 
@@ -35,38 +35,38 @@ void ga_engine::evolve()
     }
 
     if (conf->verbose)
-        cout << "the population is going to evolve for " << conf->max_generations << \
+        cout << "* the population is going to evolve for " << conf->max_generations << \
             " generations!" << endl << endl;
 
     while ( generation++ < conf->max_generations )
     {
         if (conf->verbose)
-            cout << endl << "generation: " << generation << endl;
+            cout << endl << "* generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
-            cout << endl << "population: " << pop->size() << endl;
+            cout << endl << "* population: " << pop->size() << endl;
 
         best_fitness = pop->get_best_fitness();
 
         if (conf->verbose && conf->print_best_fitness)
-            cout << "best_fitness: " << best_fitness << endl;
+            cout << "* best_fitness: " << best_fitness << endl;
 
         if (conf->verbose && conf->print_best_dna)
             pop->print_best();
 
         if (conf->verbose)
-            cout << "mating_individuals" << endl;
+            cout << "* mating_individuals" << endl;
         pop->mate_individuals();
 
         if (conf->verbose)
-            cout << "mutate_individuals" << endl;
+            cout << "* mutate_individuals" << endl;
         pop->mutate_individuals();
 
         if (conf->verbose)
-            cout << "calc_population_fitness" << endl;
+            cout << "* calc_population_fitness" << endl;
         pop->calc_population_fitness();
 
         if (conf->verbose)
-            cout << "logging generation to file" << endl;
+            cout << "* logging generation to file" << endl;
         if (conf->verbose)
         {
             generations_logfile = "logs/generation";
@@ -79,6 +79,6 @@ void ga_engine::evolve()
         }
 
         if (conf->verbose)
-            cout << "iteration end" << endl;
+            cout << "* iteration end" << endl;
     }
 }
