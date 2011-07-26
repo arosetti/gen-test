@@ -144,27 +144,25 @@ void bitmatrix::Resize(uint32 rows, uint32 cols)
     for (uint32 i = 0; i < m_rows; i++)	
        matrix[i] = new uint8[m_cells];
 
-   Import(temp);
+    Import(temp);
 }
 
 string bitmatrix::GetCol(uint32 col)
-{
+{  
     string str = "";
 
     if (col >= m_cols)
         return str;
 
     for (uint32 i = 0; i < m_rows; i++)
-    {
         str += (matrix[i][int(col/8)] & uint8(1 << int(col%8))) ? "1" : "0";
-        if (i < (m_rows - 1))
-            str +=",";
-    }
+    
+    StrTranspose(str);
     return str;
 }
 
 string bitmatrix::GetCols(uint32 col_a, uint32 col_b)
-{
+{   /* da trasporre */
     string str = "";
 
     if (col_a > m_cols || col_b > m_cols || col_a > col_b)
@@ -173,13 +171,12 @@ string bitmatrix::GetCols(uint32 col_a, uint32 col_b)
     for (uint32 j = col_a; j <= col_b; j++)
     {
         for (uint32 i = 0; i < m_rows; i++)
-        {
             str += (matrix[i][int(j/8)] & uint8(1 << int(j%8))) ? "1" : "0";
-            if (i < (m_rows - 1))
-                str +=",";
-        }
+        
         str+="\n";
     }
+
+    StrTranspose(str);
     return str;
 }
 
@@ -203,7 +200,7 @@ void bitmatrix::SetCol(uint32 col)
 
 void bitmatrix::SetCol(const bitmatrix& bin_mat, uint32 col)
 {
-    if (bin_mat.GetRowSize() < m_rows || col >= m_cols)
+    if (bin_mat.GetRowNum() < m_rows || col >= m_cols)
         return;
 
     for (uint32 i = 0; i < m_rows; i++)
@@ -225,14 +222,14 @@ void bitmatrix::SetCol(const string& str, uint32 col)
     if (!c_str)
         return;
 
-    uint32 row = 0;
+    uint32 row = 0; /* row superfluo */
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
-        if (c_str[i] == ',')
-            continue;
-
         if (row >= m_rows)
             break;
+
+        if(c_str[i] == '\n')
+            continue;
 
         if (c_str[i] == '0')
             Unset(row, col);
@@ -243,40 +240,27 @@ void bitmatrix::SetCol(const string& str, uint32 col)
     }
 }
 
-void bitmatrix::SetCols(const string& str, uint32 col_a, uint32 col_b)
+void bitmatrix::SetCols(const string& str, uint32 start_col)
 {
-    if (col_a > m_cols || col_b > m_cols || col_a > col_b)
+    int row_size = GetStrRowSize(str);
+    int col_size = GetStrColSize(str);
+
+    if (start_col > m_cols)
         return;
 
     const char* c_str = str.c_str();
     if (!c_str)
         return;
 
-    uint32 row;
-    for (uint32 j = col_a; j<=col_b; j++)
+    for (uint32 i = 0; i < col_size; i++)
     {
-        row = 0;
-        uint32 i;
-        for ( i = 0; c_str[i] != '\n'; i++)
+        for (uint32 j = 0; j < (row_size + 1); j++)
         {
-            if (c_str[i] == ',')
-                continue;
-
-            if (row >= m_rows)
-                break;
-
-            if (c_str[i] == '0')
-                Unset(row, j);
-            else // qualsiasi cifra che non sia 0 viene considerata 1
-                Set(row, j);
-
-            row++;
+            if (c_str[j + i * (row_size + 1)] == '0')
+                Unset(i, start_col + j);
+            else
+                Set(i, start_col + j);
         }
-
-        if (c_str[i] == '\0')
-           break;
-
-        c_str += i+1;
     }
 }
 
@@ -288,11 +272,8 @@ string bitmatrix::GetRow(uint32 row)
         return str;
 
     for (uint32 i = 0; i < m_cols; i++)
-    {
         str += (matrix[row][int(i/8)] & uint8(1 << int(i%8))) ? "1" : "0";
-        if (i < (m_cols - 1))
-            str +=",";
-    }
+    
     return str;
 }
 
@@ -316,7 +297,7 @@ void bitmatrix::SetRow(uint32 row)
 
 void bitmatrix::SetRow(const bitmatrix& bin_mat, uint32 row)
 {
-    if (bin_mat.GetColSize() < m_cols || row >= m_rows)
+    if (bin_mat.GetColNum() < m_cols || row >= m_rows)
         return;
 
     for (uint32 j = 0; j < m_cells; j++)
@@ -338,9 +319,6 @@ void bitmatrix::SetRow(const string& str, uint32 row)
 
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
-        if (c_str[i] == ',')
-            continue;
-
         if (col >= m_cols)
             break;
 
@@ -364,9 +342,6 @@ void bitmatrix::Import(const string& str)
 
     for (uint32 i = 0; c_str[i] != '\0'; i++)
     {
-        if (c_str[i] == ',')
-            continue;
-
         if (c_str[i] == '\n')
         {
             row++;
@@ -392,13 +367,13 @@ void bitmatrix::Import(const string& str)
 
 void bitmatrix::Import(const bitmatrix& bin_mat)
 {
-    uint32 max_rows = (m_rows > bin_mat.GetRowSize() ? bin_mat.GetRowSize() : m_rows);
+    uint32 max_rows = (m_rows > bin_mat.GetRowNum() ? bin_mat.GetRowNum() : m_rows);
     uint32 max_cells  = (m_cells > bin_mat.GetCellSize() ? bin_mat.GetCellSize() : m_cells);
     uint8 mask = 0;
 
-    if (bin_mat.GetColSize() < m_cols)
+    if (bin_mat.GetColNum() < m_cols)
     {
-        for (uint32 i = 0; i < (bin_mat.GetColSize()%8); i++)
+        for (uint32 i = 0; i < (bin_mat.GetColNum()%8); i++)
             mask |= uint8(1 << i);
     }
 
@@ -419,72 +394,58 @@ void bitmatrix::Import(const bitmatrix& bin_mat)
 
 void bitmatrix::AttachCols(const string& str)
 {
-    uint32 n_add_cols = GetStrColSize(str);
+    uint32 n_add_cols = GetStrRowSize(str);
     uint32 old_col_size = m_cols;
     const char *c_str = str.c_str();
     
     if (!c_str)
         return;
 
+    cout << "resize " << m_cols << "-" << m_cols + n_add_cols << endl;
+
     /* se non stiamo usando lo stesso numero di righe o colonne nulle termina */
-    if(n_add_cols == 0 || GetStrRowSize(str) != GetRowSize())
+    if(n_add_cols == 0 || GetStrColSize(str) != GetRowNum())
         return;
 
     /* ridimensiona la matrice aggiungendo lo spazio per le nuove colonne */
-    cout << "resize " << m_cols << "-" << m_cols + n_add_cols << endl;
-    Resize(m_rows, m_cols + n_add_cols - 1);
+    Resize(m_rows, m_cols + n_add_cols);
     
     /* aggiunge le colonne alla matrice */
-    SetCols(str, old_col_size , n_add_cols + old_col_size);
+    SetCols(str, old_col_size);
 }
 
 uint32 GetStrColSize(const string& str)
 {
     /* conta i \n */
     uint32 cols = 0;
+    uint32 row_size = GetStrRowSize(str);
 
-    for (uint32 i = 0; str[i] != '\0'; i++)
-    {
-        if(str[i] == '\n')
-            cols++;
-    }
+    for (uint32 i = row_size + 1 ; str[i] != '\0'; i += (row_size + 1))
+        cols++;
 
-    return cols;
+    return cols + 1;
 }
 
 uint32 GetStrRowSize(const string& str)
 {
     /* controlla solo quanto è alta la prima colonna */
-    uint32 rows = 0;
+    uint32 rows ;
 
-    for (uint32 i = 0; str[i] != '\n'; i++)
-    {
-        if(str[i] == ',')
-            rows++;
-    }
+    for (rows = 0; str[rows] != '\n'; rows++);
 
-    return rows + 1;
+    return rows;
 }
 
 void StrTranspose(string& str)
 {   
-    uint32 rows = GetStrColSize(str), cols = GetStrRowSize(str);
+    uint32 rows = GetStrRowSize(str), cols = GetStrColSize(str);
     string temp_string;
 
-    cout << rows << "-" << cols << endl;
-
-    for (uint32 i = 0; i < cols * 2; i++) // i = colonna
+    for (uint32 i = 0; i < rows ; i++)
     {
-        if (str[i] == ',' || str[i] == '\n')
-            continue;
+        for (uint32 j = 0; j < cols; j++)
+            temp_string += str.c_str()[j * (rows + 1) + i];
         
-        for (uint32 j = 0; j < rows; j++)
-        {
-            temp_string += str.c_str()[2 * j * cols + i];
-
-            if (j != (rows - 1))
-                temp_string += ",";
-        }
         temp_string += "\n";
     }
 
@@ -496,7 +457,7 @@ void bitmatrix::Print() const
     for (uint32 i = 0; i < m_rows; i++)
     {
         for (uint32 j = 0; j < m_cols; j++)
-             printf("%d ", (matrix[i][int(j/8)] & uint8(1 << int(j%8)) ? 1 : 0 ));
+             printf("%d", (matrix[i][int(j/8)] & uint8(1 << int(j%8)) ? 1 : 0 ));
         printf("\n");
     }
 }
@@ -507,11 +468,8 @@ string bitmatrix::ToString() const
     for (uint32 i = 0; i < m_rows; i++)
     {
         for (uint32 j = 0; j < m_cols; j++)
-        {
             s += (matrix[i][int(j/8)] & uint8(1 << int(j%8))) ? "1" : "0";
-            if (j != (m_cols-1))
-                s +=",";
-        }
+        
         s+="\n";
     }
     return s;
