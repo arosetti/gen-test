@@ -1,4 +1,4 @@
-AC_INIT([gentest], [0.0.6], [alessandro.rosetti@gmail.com], [gentest], [http://null.com/])
+AC_INIT([gentest], [0.0.7], [alessandro.rosetti@gmail.com], [gentest], [http://null.com/])
 AC_PREREQ([2.59])
 AM_INIT_AUTOMAKE([1.10 no-define])
 AC_CONFIG_HEADERS([config.h])
