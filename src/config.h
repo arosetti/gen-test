@@ -19,7 +19,7 @@ typedef struct config
     bool print_mutations;
 
     string simulator_dir, simulator_bin, simulator_patch;
-    string simulator_params;
+    string simulator_args;
     string test_file_outpath, test_file_inpath;
 
     uint32 max_generations;

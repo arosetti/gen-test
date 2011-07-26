@@ -17,7 +17,7 @@ bool load_config(string conf_filename, config *c)
 
         CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"simulator_params",(char*)"",CFGF_NONE),
+        CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
         CFG_STR((char*)"test_file_outpath",(char*)"",CFGF_NONE),
         CFG_STR((char*)"test_file_inpath",(char*)"",CFGF_NONE),
@@ -58,7 +58,7 @@ bool load_config(string conf_filename, config *c)
 
     c->simulator_dir = cfg_getstr(cfg, "simulator_dir");
     c->simulator_bin = cfg_getstr(cfg, "simulator_bin");
-    c->simulator_params = cfg_getstr(cfg, "simulator_params");
+    c->simulator_args = cfg_getstr(cfg, "simulator_args");
     c->simulator_patch = cfg_getstr(cfg, "simulator_patch");
     c->test_file_outpath = cfg_getstr(cfg, "test_file_outpath");
     c->test_file_inpath = cfg_getstr(cfg, "test_file_inpath");
