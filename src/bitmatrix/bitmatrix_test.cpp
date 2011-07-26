@@ -86,12 +86,11 @@ int main()
     printf("\nb1 cols: %d\n", (int) GetStrColSize(b1.ToString()));
     printf("b1 rows: %d\n", (int) GetStrRowSize(b1.ToString()));
 
+    b1.Resize(5,3);
 
     printf("\nb1\n");
-    b1.Print();
-    printf("\n");
-    
     string t = b1.ToString();
+    printf("%s\n",t.c_str());
     StrTranspose(t);
     printf("b1 trasposta: \n%s\n", t.c_str());
     
