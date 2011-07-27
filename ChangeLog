@@ -1,5 +1,10 @@
-changeset:   153:1fa6588dc571
+changeset:   154:8727b3577925
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 23:38:59 2011 +0200
+sommario:    adesso la fitness è un vero float e non int...
+
+changeset:   153:1fa6588dc571
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 21:12:35 2011 +0200
 sommario:    Inserita l'etichetta 0.0.9 per il changeset 7e6b571e32c7

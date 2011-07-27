@@ -26,6 +26,7 @@ void ga_engine::init()
 void ga_engine::evolve()
 {
     float best_fitness = 0;
+    timer time;
 
     if (!conf)
     {
@@ -39,6 +40,7 @@ void ga_engine::evolve()
 
     while ( generation++ < conf->max_generations )
     {
+        time_start(time);
         if (conf->verbose)
             cout << endl << "* generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
@@ -68,5 +70,8 @@ void ga_engine::evolve()
             cout << "* logging generation to file" << endl;
             pop->log_population(generation);
         }
+        time_stop(time);
+        if (conf->verbose)
+            cout << "* iteration time: " << time_diff(time) << "s" << endl;
     }
 }
