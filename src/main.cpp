@@ -10,6 +10,7 @@ config *conf = new config;
 
 int main()
 {
+    srand(time(NULL));
     ga_engine ga;
     string response;
     uint32 value;

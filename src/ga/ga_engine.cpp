@@ -43,10 +43,13 @@ void ga_engine::evolve()
         if (conf->verbose)
             cout << endl << "* generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
-            cout << endl << "* population: " << pop->size() << endl;
-
+            cout << "* population: " << pop->size() << endl;
+            
+        if (conf->verbose)
+            cout << "* calc_population_fitness" << endl;
+        pop->calc_population_fitness();
+        
         best_fitness = pop->get_best_fitness();
-
         if (conf->verbose && conf->print_best_fitness)
             cout << "* best_fitness: " << best_fitness << endl;
 
@@ -60,10 +63,6 @@ void ga_engine::evolve()
         if (conf->verbose)
             cout << "* mutate_individuals" << endl;
         pop->mutate_individuals();
-
-        if (conf->verbose)
-            cout << "* calc_population_fitness" << endl;
-        pop->calc_population_fitness();
 
         if (conf->verbose)
             cout << "* logging generation to file" << endl;
