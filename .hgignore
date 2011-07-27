@@ -26,6 +26,8 @@ src/common/.dirstamp
 src/common/.deps
 src/common/logger/.dirstamp
 src/common/logger/.deps
+src/common/timer/.dirstamp
+src/common/timer/.deps
 src/ga/.dirstamp
 src/ga/.deps
 src/simulation/.dirstamp
