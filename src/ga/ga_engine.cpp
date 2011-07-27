@@ -25,7 +25,7 @@ void ga_engine::init()
 
 void ga_engine::evolve()
 {
-    float best_fitness = 0;
+    float best_fitness = 0, avg_fitness = 0;
     timer time;
 
     if (!conf)
@@ -44,25 +44,33 @@ void ga_engine::evolve()
         if (conf->verbose)
             cout << endl << "* generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
-            cout << "* population: " << pop->size() << endl;
+            cout << "* population size: " << pop->size() << endl;
             
         if (conf->verbose)
-            cout << "* calc_population_fitness" << endl;
+            cout << "* calculating population fitnesses" << endl;
         pop->calc_population_fitness();
-        
-        best_fitness = pop->get_best_fitness();
+
+        if (conf->verbose && conf->print_avg_fitness)
+        {
+            avg_fitness = pop->get_avg_fitness();
+            cout << "* avg fitness: " << avg_fitness << endl;
+        }
+
         if (conf->verbose && conf->print_best_fitness)
-            cout << "* best_fitness: " << best_fitness << endl;
+        {
+            best_fitness = pop->get_best_fitness();
+            cout << "* best fitness: " << best_fitness << endl;
+        }
 
         if (conf->verbose && conf->print_best_dna)
             pop->print_best();
 
         if (conf->verbose)
-            cout << "* mating_individuals" << endl;
+            cout << "* mating individuals" << endl;
         pop->mate_individuals();
 
         if (conf->verbose)
-            cout << "* mutate_individuals" << endl;
+            cout << "* mutating individuals" << endl;
         pop->mutate_individuals();
 
         if (conf->debug)
