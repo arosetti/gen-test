@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DOXYGEN=`which doxygen`
+
 if [ -e gentest ] ; then
     rm -f gentest
 fi
@@ -9,8 +11,12 @@ fi
 make
 ./clean.sh
 
+if [ "$1" = "strip" ] ; then
+    strip gentest
+fi
+
 echo "* generazione doxygen"
-doxygen Doxyfile > /dev/null 2>&1
+$DOXYGEN Doxyfile > /dev/null 2>&1
 
 if [ ! -d "logs" ] ; then 
     mkdir "logs"
