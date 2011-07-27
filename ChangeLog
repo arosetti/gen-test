@@ -1,5 +1,10 @@
-changeset:   145:51076e3935fb
+changeset:   146:56485953b0a3
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 19:25:29 2011 +0200
+sommario:    prima versione "funzionante"
+
+changeset:   145:51076e3935fb
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 18:04:32 2011 +0200
 sommario:    clean simulation.cpp
