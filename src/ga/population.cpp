@@ -342,11 +342,18 @@ void population::print_best() const
         cout << ind->get_dna();
 }
 
-void population::log_population(string logfile) const
+void population::log_population(uint32 generation) const
 {
+    string generations_logfile;
     individual_map::const_iterator itr;
     uint32 count = 0;
     stringstream out;
+    
+    generations_logfile = "logs/generation";
+    out << generation;
+    generations_logfile.append(out.str());
+    generations_logfile.append(".log");
+    out.str("");
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -355,7 +362,7 @@ void population::log_population(string logfile) const
         count++;
     }
 
-    LOG(logfile, out.str(), false);
+    LOG(generations_logfile, out.str(), false);
 }
 
 void population::cout_population(string logfile) const

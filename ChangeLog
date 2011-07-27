@@ -1,5 +1,15 @@
-changeset:   147:3c0cce719672
+changeset:   149:485bf6ce75b5
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 20:59:02 2011 +0200
+sommario:    creato script di test per la classe logger come per gli altri componenti.
+
+changeset:   148:c34540e92a0b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 20:57:51 2011 +0200
+sommario:    fix bug cambio directory
+
+changeset:   147:3c0cce719672
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 19:52:05 2011 +0200
 sommario:    fix prima si calcolano le fitness poi il resto...
