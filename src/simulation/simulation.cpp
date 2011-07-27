@@ -179,7 +179,7 @@ string simulation::read_output()
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
-    remove(get_output_file_path().c_str()); // DEBUG mi assicuro che il vecchio file venga rimosso
+    remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
 
     content = buffer;
     delete[] buffer;

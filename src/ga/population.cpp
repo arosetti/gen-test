@@ -202,8 +202,8 @@ void population::create_mating_pool()
              weight += itr->second;
              if (selected_weight < weight)
              {
-                mating_pool.push_front(itr->first);
-                break;
+                 mating_pool.push_front(itr->first);
+                 break;
              }
          }
     }

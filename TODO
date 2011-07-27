@@ -11,10 +11,12 @@
 + classe ga_engine
 
 + classe population
+   + preservare i dna migliori
+   + 
 
 + classe individual
 
-+ classe per l'interazione automatica con il simulatore generato da mobius.
++ classe simulator
    + prevedere ricompilazione del simulatore.
    + parallelizzare l'esecuzione di più simulatori
 
@@ -23,19 +25,27 @@
    + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
 
 + funzione check_conf (nuovi file check_conf.h/cpp)
-+ funzione di log su file
-   LOG va a leggere conf per vedere se deve printare o no.
-   log to stderr o file.
+
++ classe astrazione random (std_random, /dev/random, altri algoritmi)
+
 #####librerie_utili#####
 
 +pthread
    + per un minimo di parallelizzazione.
 
 +libconfuse.
+   + scrittura dei parametri da "shell" nella modalità interattiva
 
-PATCHARE
 
+patchare il simulatore
 init riassunto parametri del GA utilizzati
 timing di ogni iterazione
 ottimizzare
 dove leggere il numero di piedini?
+parametrizzare con una patch anche il nome del file input_signals
+
+
+
+CLEAN
+revisione nomi variabili
+commenti doxygen
