@@ -7,10 +7,14 @@
 
 using namespace std;
 
+config *conf = new config;
+
 int main()
 {
-    bitmatrix b1(5,5);
+    bitmatrix b1(5,30);
     simulation s;
+
+    load_config("../../config.conf", conf);
 
     if (!s.check_env())
         exit(0);
@@ -18,7 +22,7 @@ int main()
     b1.RandomizeAll();
     b1.Print();
     
-    s.execute();
+    s.execute(b1.ToString());
     
     cout << endl;
 
