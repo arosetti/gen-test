@@ -2,7 +2,6 @@
 
 simulation::simulation()
 {
-    //chdir((char *)conf->simulator_dir.c_str()); // getcwd(3)
     srand(time(NULL));
     init_env();
 
@@ -93,13 +92,16 @@ bool simulation::execute(string dna)
 
     chdir((char *)conf->simulator_dir.c_str());
     system(path.c_str());
-    
+
     //strtok e arg-voilà-bella-come-una-string
     //int execl(path.c_str(), argvs);
-    
+
     //controllo esecuzione terminata
-    cout << endl;
-    cout << read_output()    << endl;
+    if (conf->debug && conf->print_simulation)
+    {
+        cout << endl;
+        cout << read_output()    << endl;
+    }
 
     return true;
 }
@@ -115,8 +117,6 @@ bool simulation::setup_input_file(string dna)
         perror("setup_input_file");
         exit(0);
     }
-    else
-        cout << "printing simulator input file to " << get_input_file_path().c_str() << endl;
 
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
@@ -161,8 +161,6 @@ string simulation::read_output()
         perror("setup_output_file");
         exit(0);
     }
-    else
-        cout << endl << "retrieving simulator output file" << endl;
 
     sim_out_file.seekg (0, ios::end);
     length = sim_out_file.tellg();
