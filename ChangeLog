@@ -1,5 +1,26 @@
-changeset:   149:485bf6ce75b5
+changeset:   153:1fa6588dc571
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:12:35 2011 +0200
+sommario:    Inserita l'etichetta 0.0.9 per il changeset 7e6b571e32c7
+
+changeset:   152:7e6b571e32c7
+tag:         0.0.9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:12:25 2011 +0200
+sommario:    versione 0.0.9
+
+changeset:   151:f1ad54b31db5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:11:27 2011 +0200
+sommario:    test.sh
+
+changeset:   150:0a0e5ee6b418
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:11:16 2011 +0200
+sommario:    clean della funzione evolve()
+
+changeset:   149:485bf6ce75b5
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 20:59:02 2011 +0200
 sommario:    creato script di test per la classe logger come per gli altri componenti.

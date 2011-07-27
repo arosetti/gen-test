@@ -199,7 +199,7 @@ float simulation::get_results()
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
     else
-        val = (n_faults * 100) / n_total_faults;  // check div by 0
+        val = (float)(n_faults * 100) / (float)n_total_faults;  // check div by 0
 
     if (conf->debug && conf->print_simulation)
     {
