@@ -1,5 +1,20 @@
-changeset:   135:2b08a1837de0
+changeset:   138:9183f5d92d4d
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 14:55:27 2011 +0200
+sommario:    patch per far compilare il simulatore.
+
+changeset:   137:70a8c72b7ef3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 13:29:55 2011 +0200
+sommario:    inserite le funzioni base che permettono di misurare i tempi di esecuzione di
+
+changeset:   136:175e0c7f2c02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 13:29:01 2011 +0200
+sommario:    continuano i lavori sulla classe simulation
+
+changeset:   135:2b08a1837de0
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 00:18:17 2011 +0200
 sommario:    abbozzate execute_simulation, setup_simulator_input_file
