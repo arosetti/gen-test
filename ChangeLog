@@ -1,5 +1,10 @@
-changeset:   134:a0c9c1d2748a
+changeset:   135:2b08a1837de0
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 00:18:17 2011 +0200
+sommario:    abbozzate execute_simulation, setup_simulator_input_file
+
+changeset:   134:a0c9c1d2748a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Jul 26 19:26:57 2011 +0200
 sommario:    inizio dei lavori sulla classe simulation

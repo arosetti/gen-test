@@ -19,8 +19,8 @@ bool load_config(string conf_filename, config *c)
         CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
-        CFG_STR((char*)"test_file_outpath",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"test_file_inpath",(char*)"",CFGF_NONE),
+        CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
+        CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
 
         CFG_INT((char*)"max_generations",  8192, CFGF_NONE),
         CFG_INT((char*)"max_stall", 100, CFGF_NONE),
@@ -60,8 +60,8 @@ bool load_config(string conf_filename, config *c)
     c->simulator_bin = cfg_getstr(cfg, "simulator_bin");
     c->simulator_args = cfg_getstr(cfg, "simulator_args");
     c->simulator_patch = cfg_getstr(cfg, "simulator_patch");
-    c->test_file_outpath = cfg_getstr(cfg, "test_file_outpath");
-    c->test_file_inpath = cfg_getstr(cfg, "test_file_inpath");
+    c->test_file_out = cfg_getstr(cfg, "test_file_out");
+    c->test_file_in = cfg_getstr(cfg, "test_file_in");
 
 
     c->max_generations = cfg_getint(cfg, "max_generations");

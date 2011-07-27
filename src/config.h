@@ -20,7 +20,7 @@ typedef struct config
 
     string simulator_dir, simulator_bin, simulator_patch;
     string simulator_args;
-    string test_file_outpath, test_file_inpath;
+    string test_file_out, test_file_in;
 
     uint32 max_generations;
     uint32 max_stall;
