@@ -1,5 +1,10 @@
-changeset:   154:8727b3577925
+changeset:   155:70fed7edf6e2
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 00:02:38 2011 +0200
+sommario:    aggiornati i file time.cpp e time.h.
+
+changeset:   154:8727b3577925
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 23:38:59 2011 +0200
 sommario:    adesso la fitness è un vero float e non int...
