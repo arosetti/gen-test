@@ -15,6 +15,8 @@ bool load_config(string conf_filename, config *c)
         CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),
 
+        CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE),
+
         CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
         CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
@@ -55,6 +57,8 @@ bool load_config(string conf_filename, config *c)
     c->print_population_size = cfg_getbool(cfg, "print_population_size");
     c->print_mating = cfg_getbool(cfg, "print_mating");
     c->print_mutations = cfg_getbool(cfg, "print_mutations");
+
+    c->print_simulation = cfg_getbool(cfg, "print_simulation");
 
     c->simulator_dir = cfg_getstr(cfg, "simulator_dir");
     c->simulator_bin = cfg_getstr(cfg, "simulator_bin");

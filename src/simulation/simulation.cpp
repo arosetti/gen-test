@@ -3,12 +3,8 @@
 simulation::simulation()
 {
     //chdir((char *)conf->simulator_dir.c_str()); // getcwd(3)
-    string sim_bin = get_bin_path();
-
-    if (chmod((char *) sim_bin.c_str(),775))
-    {
-        perror("chmod");
-    }
+    srand(time(NULL));
+    init_env();
 
 }
 
@@ -55,8 +51,27 @@ string simulation::get_input_file_path()
     return path;
 }
 
-bool simulation::check_env()
+string simulation::get_output_file_path()
 {
+    string path = conf->simulator_dir;
+
+    if (path.c_str()[path.length()] != '/')
+        path += "/";
+    path+= conf->test_file_out;
+    
+    return path;
+}
+
+bool simulation::init_env()
+{
+    string sim_bin = get_bin_path();
+
+    if (chmod((char *) sim_bin.c_str(),775))
+    {
+        perror("chmod");
+        return false;
+    }
+
     return true;
 }
 
@@ -83,7 +98,9 @@ bool simulation::execute(string dna)
     //int execl(path.c_str(), argvs);
     
     //controllo esecuzione terminata
-    
+    cout << endl;
+    cout << read_output()    << endl;
+
     return true;
 }
 
@@ -95,17 +112,17 @@ bool simulation::setup_input_file(string dna)
 
     if (!sim_file.is_open())
     {
-        perror("setup_input_file: ");
+        perror("setup_input_file");
         exit(0);
     }
     else
-        printf("printing simulator input file to %s\n", get_input_file_path().c_str());
+        cout << "printing simulator input file to " << get_input_file_path().c_str() << endl;
 
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    printf("clocks: %d\n", clocks);
-    printf("inputs: %d\n", inputs);
+    cout << "clocks: " << clocks << endl;
+    cout << "inputs: " << inputs << endl;
     
     stringstream out;
     out << clocks;
@@ -126,4 +143,38 @@ bool simulation::setup_input_file(string dna)
 
     sim_file.close();
     return true;
+}
+
+string simulation::read_output()
+{
+    uint32 length;
+    ifstream sim_out_file;
+    string content;
+    char *buffer = NULL;
+
+    sim_out_file.open (get_output_file_path().c_str(), ios::binary );
+
+    cout << "out : " << get_output_file_path().c_str();
+
+    if (!sim_out_file.is_open())
+    {
+        perror("setup_output_file");
+        exit(0);
+    }
+    else
+        cout << endl << "retrieving simulator output file" << endl;
+
+    sim_out_file.seekg (0, ios::end);
+    length = sim_out_file.tellg();
+    sim_out_file.seekg (0, ios::beg);
+
+    buffer = new char[length];
+
+    sim_out_file.read (buffer,length);
+    sim_out_file.close();
+    
+    content = buffer;
+    delete[] buffer;
+    
+    return content;
 }

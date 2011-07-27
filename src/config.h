@@ -18,6 +18,8 @@ typedef struct config
     bool print_population_size, print_mating;
     bool print_mutations;
 
+    bool print_simulation;
+
     string simulator_dir, simulator_bin, simulator_patch;
     string simulator_args;
     string test_file_out, test_file_in;
