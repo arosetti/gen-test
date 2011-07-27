@@ -2,7 +2,6 @@
 
 simulation::simulation()
 {
-    srand(time(NULL));
     init_env();
 
 }
@@ -77,6 +76,7 @@ bool simulation::init_env()
 bool simulation::execute(string dna)
 {
     string path = get_bin_path();
+    char *buffer = new char[1024];
     //char *args[];
 
     if (!file_exists(path))
@@ -91,9 +91,11 @@ bool simulation::execute(string dna)
 
     setup_input_file(dna);
 
+    getcwd(buffer,1024);
     chdir((char *)conf->simulator_dir.c_str());
     system(path.c_str());
-
+    chdir(buffer);
+    
     //strtok e arg-voilà-bella-come-una-string
     //int execl(path.c_str(), argvs);
 
@@ -103,7 +105,7 @@ bool simulation::execute(string dna)
         cout << endl;
         cout << read_output()    << endl;
     }
-
+    delete[] buffer;
     return true;
 }
 
@@ -177,7 +179,8 @@ string simulation::read_output()
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
-    
+    remove(get_output_file_path().c_str()); // DEBUG mi assicuro che il vecchio file venga rimosso
+
     content = buffer;
     delete[] buffer;
     

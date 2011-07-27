@@ -64,9 +64,9 @@ void ga_engine::evolve()
             cout << "* mutate_individuals" << endl;
         pop->mutate_individuals();
 
-        if (conf->verbose)
+        if (conf->debug)
             cout << "* logging generation to file" << endl;
-        if (conf->verbose)
+        if (conf->debug)
         {
             generations_logfile = "logs/generation";
             stringstream out;
