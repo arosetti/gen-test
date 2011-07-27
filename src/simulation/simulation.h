@@ -17,18 +17,20 @@ extern config *conf;
 class simulation
 {
     bool setup_input_file(string);
+    string read_output();
     
     string get_bin_path();
     string get_patch_path();
     string get_input_file_path();
-
+    string get_output_file_path();
+    
     public:
     simulation();
     ~simulation();
     
     void rebuild();
     void patch();
-    bool check_env();
+    bool init_env();
     bool execute(string);
 };
 
