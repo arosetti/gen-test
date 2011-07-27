@@ -65,11 +65,11 @@ bool simulation::init_env()
 {
     string sim_bin = get_bin_path();
 
-    if (chmod((char *) sim_bin.c_str(),775))
+    /*if (chmod((char *) sim_bin.c_str(),775))
     {
         perror("chmod");
         return false;
-    }
+    }*/
 
     return true;
 }
@@ -87,7 +87,8 @@ bool simulation::execute(string dna)
 
     path += " ";
     path += conf->simulator_args;
-    
+    path += " > /dev/null 2>&1";
+
     setup_input_file(dna);
 
     chdir((char *)conf->simulator_dir.c_str());
@@ -121,8 +122,11 @@ bool simulation::setup_input_file(string dna)
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    cout << "clocks: " << clocks << endl;
-    cout << "inputs: " << inputs << endl;
+    if (conf->debug && conf->print_simulation)
+    {
+        cout << "clocks: " << clocks << endl;
+        cout << "inputs: " << inputs << endl;
+    }
     
     stringstream out;
     out << clocks;
@@ -154,8 +158,11 @@ string simulation::read_output()
 
     sim_out_file.open (get_output_file_path().c_str(), ios::binary );
 
-    cout << "out : " << get_output_file_path().c_str();
-
+    if (conf->debug && conf->print_simulation)
+    {
+        cout << "out : " << get_output_file_path().c_str() << endl;
+    }
+    
     if (!sim_out_file.is_open())
     {
         perror("setup_output_file");
@@ -175,4 +182,28 @@ string simulation::read_output()
     delete[] buffer;
     
     return content;
+}
+
+float simulation::get_results()
+{
+    int ret, n_total_faults = 0 , n_faults = 0;
+    float val = 0;
+    string str = read_output();
+
+    // orribile cosa, da fare per bene una regex
+    ret = sscanf(str.c_str(), "#MOBIUS_SIM_ASCII_FILE,MOBIUS_VER=Version 2.3,FILE_VER=1,EXPERIMENTS=0\n#FORMAT: (PV ID Number),(PV Value)\n0,%d.0\n1,%d.0", &n_total_faults, &n_faults);
+
+    if (ret != 2)
+        cout << "parsing error... ret " << ret << endl;
+    else
+        val = (n_faults * 100) / n_total_faults;  // check div by 0
+
+    if (conf->debug && conf->print_simulation)
+    {
+        cout << "#total_faults " << n_total_faults << endl;
+        cout << "#faults_detected " << n_faults << endl;
+        cout << "fitness " << val << endl;
+    }
+
+    return val;
 }

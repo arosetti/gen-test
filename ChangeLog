@@ -1,5 +1,41 @@
-changeset:   138:9183f5d92d4d
+changeset:   145:51076e3935fb
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 18:04:32 2011 +0200
+sommario:    clean simulation.cpp
+
+changeset:   144:f3cea022c78f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:59:34 2011 +0200
+sommario:    Inserita l'etichetta 0.0.8 per il changeset 87870aa953a4
+
+changeset:   143:87870aa953a4
+tag:         0.0.8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:59:23 2011 +0200
+sommario:    versione 0.0.8
+
+changeset:   142:f89ee4184e3d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:56:58 2011 +0200
+sommario:    eseguita con successo una prima simulazione con il programma di test
+
+changeset:   141:2c72473aa5c7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:02:29 2011 +0200
+sommario:    scriptino compilazione bitmatrix_test
+
+changeset:   140:d1d262e48d19
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:01:53 2011 +0200
+sommario:    fix simulation_test
+
+changeset:   139:8fe9296e9ffc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:01:20 2011 +0200
+sommario:    eseguita prima simulazione con il programma di test.
+
+changeset:   138:9183f5d92d4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 14:55:27 2011 +0200
 sommario:    patch per far compilare il simulatore.

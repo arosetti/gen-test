@@ -36,5 +36,7 @@ int main(int argc, char ** argv)
     
     cout << endl;
 
+    s.get_results();
+
     return 0;
 }

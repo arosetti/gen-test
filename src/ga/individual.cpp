@@ -4,7 +4,7 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
     chromosome_length = chrom_len;
     chromosome_number = chrom_num;
-    fitness = 10;
+    fitness = 0;
 
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
@@ -124,7 +124,8 @@ void individual::set_fitness(float f)
 
 void individual::calc_fitness()
 {
-
+    test.execute(get_dna());
+    fitness = test.get_results();
 }
 
 string individual::get_chromosome(uint32 crom)  const

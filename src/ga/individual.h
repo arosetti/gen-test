@@ -5,8 +5,7 @@
 
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
-#include "../simulation/tests.h"
-#include "../config.h"
+#include "../simulation/simulation.h"
 
 using namespace std;
 
@@ -25,7 +24,7 @@ class individual
     bitmatrix *dna;
     float    fitness;
 
-    tests test;
+    simulation test;
 
     public:
     individual(uint32,uint32);
