@@ -1,5 +1,10 @@
-changeset:   146:56485953b0a3
+changeset:   147:3c0cce719672
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 19:52:05 2011 +0200
+sommario:    fix prima si calcolano le fitness poi il resto...
+
+changeset:   146:56485953b0a3
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 27 19:25:29 2011 +0200
 sommario:    prima versione "funzionante"

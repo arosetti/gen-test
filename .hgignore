@@ -41,3 +41,4 @@ src/simulation/uscita0
 src/simulation/simulation_test
 src/simulation/input_signals
 gentest.log
+src/common/logger/logger_test

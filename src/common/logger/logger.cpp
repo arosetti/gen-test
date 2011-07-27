@@ -15,7 +15,10 @@ bool logger::log(string file, string log, bool append)
         ff.close();
     }
     else
+    {
+        cout << file << endl;
+        perror("logger");
         return true;
-
+    }
     return false;
 }
