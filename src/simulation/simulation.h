@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 #include "../common/utility.h"
 #include "../config.h"
@@ -15,14 +16,20 @@ extern config *conf;
 
 class simulation
 {
-    void setup_simulator_input_file(string);
+    bool setup_input_file(string);
     
+    string get_bin_path();
+    string get_patch_path();
+    string get_input_file_path();
+
     public:
     simulation();
     ~simulation();
-   
-    void rebuild_simulator();
-    bool execute_simulation(string);
+    
+    void rebuild();
+    void patch();
+    bool check_env();
+    bool execute(string);
 };
 
 #endif
