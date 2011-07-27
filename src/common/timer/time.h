@@ -4,6 +4,15 @@
 #include <sys/time.h>
 #include <time.h>
 
-double time_diff(struct timeval *, struct timeval *);
+typedef struct timer
+{
+    struct timeval start;
+    struct timeval stop;
+} timer;
+
+void time_start(timer &time);
+void time_stop(timer &time);
+
+double time_diff(timer &time);
 
 #endif
