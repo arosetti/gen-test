@@ -26,7 +26,6 @@ void ga_engine::init()
 void ga_engine::evolve()
 {
     float best_fitness = 0;
-    string generations_logfile;
 
     if (!conf)
     {
@@ -65,19 +64,9 @@ void ga_engine::evolve()
         pop->mutate_individuals();
 
         if (conf->debug)
-            cout << "* logging generation to file" << endl;
-        if (conf->debug)
         {
-            generations_logfile = "logs/generation";
-            stringstream out;
-            out << generation;
-            generations_logfile.append(out.str());
-            generations_logfile.append(".log");
-
-            pop->log_population(generations_logfile);
+            cout << "* logging generation to file" << endl;
+            pop->log_population(generation);
         }
-
-        if (conf->verbose)
-            cout << "* iteration end" << endl;
     }
 }
