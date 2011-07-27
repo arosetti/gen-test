@@ -10,7 +10,7 @@ logger *logger::l_singleton = NULL;
 int main ()
 {
   for(int i = 0 ; i<10; i++)
-      LOG("logger.log", "***log***", true);
+      LOG("logger.log", "***log***", false);
 
   delete LOG_PTR();
 
