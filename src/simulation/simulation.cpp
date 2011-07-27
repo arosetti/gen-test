@@ -2,6 +2,13 @@
 
 simulation::simulation()
 {
+    //chdir((char *)conf->simulator_dir.c_str()); // getcwd(3)
+    string sim_bin = get_bin_path();
+
+    if (chmod((char *) sim_bin.c_str(),775))
+    {
+        perror("chmod");
+    }
 
 }
 
@@ -17,7 +24,7 @@ void simulation::rebuild()
 
 string simulation::get_bin_path()
 {
-    string path = conf->simulator_dir;
+    string path = conf->simulator_dir; 
 
     if (path.c_str()[path.length()] != '/')
         path += "/";
@@ -69,6 +76,7 @@ bool simulation::execute(string dna)
     
     setup_input_file(dna);
 
+    chdir((char *)conf->simulator_dir.c_str());
     system(path.c_str());
     
     //strtok e arg-voilà-bella-come-una-string
@@ -90,10 +98,15 @@ bool simulation::setup_input_file(string dna)
         perror("setup_input_file: ");
         exit(0);
     }
+    else
+        printf("printing simulator input file to %s\n", get_input_file_path().c_str());
 
-    int clocks = GetStrColSize(dna);
-    int inputs = GetStrRowSize(dna);
-
+    int clocks = GetStrRowSize(dna);
+    int inputs = GetStrColSize(dna);
+    
+    printf("clocks: %d\n", clocks);
+    printf("inputs: %d\n", inputs);
+    
     stringstream out;
     out << clocks;
 
@@ -104,10 +117,11 @@ bool simulation::setup_input_file(string dna)
     {
         for (uint32 j = 0 ; j < clocks; j++)
         {
-            sim_file << dna.c_str()[j * (clocks +1) + i];
-            sim_file << "; ";
+            sim_file << dna.c_str()[i * (clocks +1) + j];
+            if (j != (clocks - 1))
+                sim_file << ",";
         }
-        sim_file << endl;
+        sim_file << ";" << endl;
     }
 
     sim_file.close();
