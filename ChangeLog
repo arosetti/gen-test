@@ -1,5 +1,21 @@
-changeset:   159:8342ab16c75d
+changeset:   162:82d7feadb957
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:55:48 2011 +0200
+sommario:    Inserita l'etichetta 0.1.0 per il changeset 475c0dca925c
+
+changeset:   161:475c0dca925c
+tag:         0.1.0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:55:37 2011 +0200
+sommario:    versione 0.1.0
+
+changeset:   160:2dc6fd33fad4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:54:40 2011 +0200
+sommario:    fix bug nel costruttore di individual
+
+changeset:   159:8342ab16c75d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 28 10:39:55 2011 +0200
 sommario:    updated build.sh clean.sh

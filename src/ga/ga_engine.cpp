@@ -73,7 +73,8 @@ void ga_engine::evolve()
             pop->log_population(generation);
         }
         time_stop(time);
+        
         if (conf->verbose)
-            cout << "* iteration time: " << time_diff(time) << "s" << endl;
+            cout << "* iteration time: " << time_format(time_diff(time)) << endl;
     }
 }
