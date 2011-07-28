@@ -1,5 +1,15 @@
-changeset:   157:3fab6d59d7e8
+changeset:   159:8342ab16c75d
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 10:39:55 2011 +0200
+sommario:    updated build.sh clean.sh
+
+changeset:   158:8a590d00f490
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 10:39:34 2011 +0200
+sommario:    adesso la fintess si calcola nell'individual
+
+changeset:   157:3fab6d59d7e8
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 28 00:45:18 2011 +0200
 sommario:    cleanup vari

@@ -4,6 +4,7 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
     chromosome_length = chrom_len;
     chromosome_number = chrom_num;
+    n_tests = detected = 0;
     fitness = 0;
 
     dna = new bitmatrix(chromosome_number, chromosome_length);
@@ -14,6 +15,8 @@ individual::individual(const individual &ind)
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
+    n_tests = ind.n_tests;
+    detected = ind.detected;
     dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??
     test = ind.test;
 }
@@ -56,14 +59,13 @@ void individual::dna_random()
 
 void individual::dna_mutate()
 {
-    uint8 count = conf->mutation_strength>chromosome_length? \
-                  get_chromosome_length():conf->mutation_strength;
+    uint8 count = (get_chromosome_length()/10) * (conf->mutation_strength) / (fitness);
     uint32 row_r,col_r;
 
     while (count-- != 0)
     {
         row_r = rand()%chromosome_number + 1;
-        col_r = rand()%chromosome_length + 1;
+        col_r = rand()%get_chromosome_length() + 1;
 
         dna->Flip(row_r,col_r);
     }
@@ -145,7 +147,7 @@ void individual::set_chromosome(uint32 crom, string str)
     dna->SetRow(str, crom);
 }
 
-uint32  individual::get_chromosome_length()  const  /* get_chromosome_length() superfluo */
+uint32  individual::get_chromosome_length()  const
 {
     return dna->GetColNum();
 }
@@ -185,7 +187,7 @@ string individual::info()
 
     //out << "ptr : " << this << endl;
     out << "tests   : " << detected << "/" << n_tests 
-        << " (" << (float)(100*detected)/(float)n_tests << "%)" << endl;
+        << " (" << ((n_tests > 0)?((float)(100*detected)/(float)n_tests):n_tests) << "%)" << endl;
     out << "fitness : " << fitness << endl;
     out << "dna     : (" <<
            dna->GetRowNum() << "," << dna->GetColNum() << ")" << endl;

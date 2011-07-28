@@ -299,7 +299,7 @@ void population::mutate_individuals() const
 {
     individual_map::const_iterator itr;
     float mutate_probability = conf->mutation_rate * 100;
-    float rnd;
+    float rnd, count = 0;
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -307,12 +307,14 @@ void population::mutate_individuals() const
 
         if (mutate_probability > rnd)
         {
-            if (conf->verbose && conf->print_mutations)
-                cout << "mutation event!"<<endl;
+            count++;
             if ((*itr).second)
                 (*itr).second->dna_mutate();
         }
     }
+
+    if (conf->verbose && conf->print_mutations)
+        cout << count <<" mutation events!"<<endl;
 }
 
 uint32  population::size() const

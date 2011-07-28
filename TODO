@@ -43,8 +43,7 @@ timing di ogni iterazione
 ottimizzare
 dove leggere il numero di piedini?
 parametrizzare con una patch anche il nome del file input_signals
-
-
+dal simulatore una reward che mi dica fino a che punto il pattern è utile 
 
 CLEAN
 revisione nomi variabili
