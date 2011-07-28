@@ -95,16 +95,10 @@ bool simulation::execute(string dna)
     chdir((char *)conf->simulator_dir.c_str());
     system(path.c_str());
     chdir(buffer);
-    
-    //strtok e arg-voilà-bella-come-una-string
-    //int execl(path.c_str(), argvs);
 
+    //int execl(path.c_str(), argvs);
     //controllo esecuzione terminata
-    if (conf->debug && conf->print_simulation)
-    {
-        cout << endl;
-        cout << read_output()    << endl;
-    }
+
     delete[] buffer;
     return true;
 }
@@ -175,38 +169,38 @@ string simulation::read_output()
     length = sim_out_file.tellg();
     sim_out_file.seekg (0, ios::beg);
 
-    buffer = new char[length];
+    buffer = new char[length + 1];
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
-    remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
-
+    //remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
+    buffer[length] = 0;
     content = buffer;
     delete[] buffer;
     
     return content;
 }
 
-float simulation::get_results()
+void simulation::get_results(uint32 *n_total_faults, uint32 *n_faults)
 {
-    int ret, n_total_faults = 0 , n_faults = 0;
-    float val = 0;
+    int ret;
     string str = read_output();
+    char *str_s = strstr ((char *)str.c_str(),"0,");
 
-    // orribile cosa, da fare per bene una regex
-    ret = sscanf(str.c_str(), "#MOBIUS_SIM_ASCII_FILE,MOBIUS_VER=Version 2.3,FILE_VER=1,EXPERIMENTS=0\n#FORMAT: (PV ID Number),(PV Value)\n0,%d.0\n1,%d.0", &n_total_faults, &n_faults);
-
+    *n_total_faults = 0; // se si rimuove questo nn funziona nulla
+    *n_faults = 0;       // da vedere molto bene ......
+    
+    ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)n_total_faults, (int*)n_faults);
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
-    else
-        val = (float)(n_faults * 100) / (float)n_total_faults;  // check div by 0
 
     if (conf->debug && conf->print_simulation)
     {
-        cout << "#total_faults " << n_total_faults << endl;
-        cout << "#faults_detected " << n_faults << endl;
-        cout << "fitness " << val << endl;
+        cout << "#total_faults " << *n_total_faults << endl;
+        cout << "#faults_detected " << *n_faults << endl;
     }
+    if (*n_total_faults > 1000)
+        exit(0);
 
-    return val;
+    remove(get_output_file_path().c_str());
 }

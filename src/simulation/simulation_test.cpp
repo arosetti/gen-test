@@ -15,7 +15,9 @@ config *conf = new config;
 int main(int argc, char ** argv)
 {
     int clocks = 30;
-    
+
+    srand(time(NULL));
+
     if (argc > 1)
         clocks = atoi(argv[1]);
         

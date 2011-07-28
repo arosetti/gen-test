@@ -9,8 +9,7 @@ bool load_config(string conf_filename, config *c)
         CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
         CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_best_dna",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_best_fitness",(cfg_bool_t)true, CFGF_NONE),
+        CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
         CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
         CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),
@@ -53,8 +52,7 @@ bool load_config(string conf_filename, config *c)
     c->verbose = cfg_getbool(cfg, "verbose");
     c->interactive = cfg_getbool(cfg, "interactive");
 
-    c->print_best_dna= cfg_getbool(cfg, "print_best_dna");
-    c->print_best_fitness = cfg_getbool(cfg, "print_best_fitness");
+    c->print_best = cfg_getbool(cfg, "print_best");
     c->print_avg_fitness = cfg_getbool(cfg, "print_avg_fitness");
     c->print_population_size = cfg_getbool(cfg, "print_population_size");
     c->print_mating = cfg_getbool(cfg, "print_mating");
