@@ -9,6 +9,11 @@ fi
 ./autogen.sh
 ./configure
 make
+
+if [ "$1" = "dist" ] ; then
+    make dist-bzip2
+fi
+
 ./clean.sh
 
 if [ "$1" = "strip" ] ; then
