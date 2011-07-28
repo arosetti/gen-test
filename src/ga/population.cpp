@@ -339,7 +339,7 @@ void population::print_best() const
     }
 
     if (ind)
-        cout << ind->get_dna();
+        cout << ind->info();
 }
 
 void population::log_population(uint32 generation) const

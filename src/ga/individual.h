@@ -23,6 +23,8 @@ class individual
 
     bitmatrix *dna;
     float    fitness;
+    uint32   n_tests;
+    uint32   detected;
 
     simulation test;
 

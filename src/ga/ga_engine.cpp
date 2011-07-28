@@ -25,7 +25,7 @@ void ga_engine::init()
 
 void ga_engine::evolve()
 {
-    float best_fitness = 0, avg_fitness = 0;
+    float avg_fitness = 0;
     timer time;
 
     if (!conf)
@@ -56,13 +56,7 @@ void ga_engine::evolve()
             cout << "* avg fitness: " << avg_fitness << endl;
         }
 
-        if (conf->verbose && conf->print_best_fitness)
-        {
-            best_fitness = pop->get_best_fitness();
-            cout << "* best fitness: " << best_fitness << endl;
-        }
-
-        if (conf->verbose && conf->print_best_dna)
+        if (conf->verbose && conf->print_best)
             pop->print_best();
 
         if (conf->verbose)

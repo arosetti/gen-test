@@ -125,7 +125,8 @@ void individual::set_fitness(float f)
 void individual::calc_fitness()
 {
     test.execute(get_dna());
-    fitness = test.get_results();
+    test.get_results(&n_tests, &detected);
+    fitness = (float)(100 * detected) / (float)(n_tests);
 }
 
 string individual::get_chromosome(uint32 crom)  const
@@ -182,11 +183,13 @@ string individual::info()
 {
     stringstream out;
 
-    out << "ptr : " << this << endl;
-    out << "fitness:     " << fitness << endl;
-    out << "dna size (row,col) : (" <<
+    //out << "ptr : " << this << endl;
+    out << "tests   : " << detected << "/" << n_tests 
+        << " (" << (float)(100*detected)/(float)n_tests << "%)" << endl;
+    out << "fitness : " << fitness << endl;
+    out << "dna     : (" <<
            dna->GetRowNum() << "," << dna->GetColNum() << ")" << endl;
-    out << "dna: " << endl << dna->ToString() << endl;
+    out << dna->ToString() << endl;
 
     return out.str();
 }

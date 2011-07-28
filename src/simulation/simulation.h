@@ -33,7 +33,7 @@ class simulation
     simulation();
     ~simulation();
     
-    float get_results();
+    void get_results(uint32*, uint32*);
 
     void rebuild();
     void patch();

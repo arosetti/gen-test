@@ -14,7 +14,7 @@ using namespace std;
 typedef struct config
 {
     bool debug, verbose, interactive;
-    bool print_best_dna, print_best_fitness, print_avg_fitness;
+    bool print_best, print_avg_fitness;
     bool print_population_size, print_mating;
     bool print_mutations;
 
