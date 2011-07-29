@@ -24,9 +24,19 @@ bitmatrix::bitmatrix(const bitmatrix &bit_mat)
 
 bitmatrix::~bitmatrix()
 {
-    for (uint32 i = 0; i < m_rows; i++)	
-        delete[] matrix[i];
-    delete[] matrix;
+    delete_matrix();
+}
+
+void bitmatrix::delete_matrix()
+{
+    for (uint32 i = 0; i < m_rows; i++)
+    {
+        if(matrix[i])
+            delete[] matrix[i];
+    }
+
+    if(matrix)
+        delete[] matrix;
 }
 
 void bitmatrix::Randomize(uint32 row, uint32 col)
@@ -132,10 +142,7 @@ void bitmatrix::FlipAll()
 void bitmatrix::Resize(uint32 rows, uint32 cols)
 {
     bitmatrix temp(*this);
-
-     for (uint32 i = 0; i < m_rows; i++)
-        delete[] matrix[i];
-    delete[] matrix;
+    delete_matrix();
 
     m_rows = (rows ? rows : 1);
     m_cols = (cols ? cols : 1);
@@ -475,9 +482,7 @@ string bitmatrix::ToString() const
 
 const bitmatrix& bitmatrix::operator=(const bitmatrix& bit_mat)
 {
-    for (uint32 i = 0; i < m_rows; i++)
-        delete[] matrix[i];
-    delete[] matrix;
+    delete_matrix();
 
     m_rows = bit_mat.m_rows;
     m_cols = bit_mat.m_cols;

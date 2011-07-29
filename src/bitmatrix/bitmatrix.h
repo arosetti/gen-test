@@ -263,6 +263,9 @@ class bitmatrix
         //! Stampa la bitmatrix a video
         void    Print() const;
         //! Converte la bitmatrix in una stringa uguale a quella del formato di importazione
+        /**
+        * @return string la matrice convertita a stringa
+        */
         string  ToString() const;
 
         //! Copia una bitmatrix dentro la bitmatrix locale modificandoli le dimensioni
@@ -272,6 +275,9 @@ class bitmatrix
         const bitmatrix& operator=(const bitmatrix& bit_mat);
 
     private:
+
+        //! elimina la matrice dalla memoria
+        void delete_matrix();
 
         /*! matrice di uint8 */
         uint8** matrix;
