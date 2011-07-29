@@ -8,7 +8,7 @@ using namespace std;
 
 config *conf = new config;
 
-int main()
+int main(int argc, char **argv)
 {
     srand(time(NULL));
     ga_engine ga;
@@ -20,7 +20,8 @@ int main()
     cout << endl;
 
     load_config("config.conf", conf);
-
+    parse_options(argc, argv);
+    
     if (conf->interactive)
     {
         cout << "generations: ";

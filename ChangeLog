@@ -1,5 +1,10 @@
-changeset:   162:82d7feadb957
+changeset:   163:58268aafc854
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 20:26:07 2011 +0200
+sommario:    inserita funzione per l'output dei secondi in formato   year day hour min sec
+
+changeset:   162:82d7feadb957
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 28 18:55:48 2011 +0200
 sommario:    Inserita l'etichetta 0.1.0 per il changeset 475c0dca925c
