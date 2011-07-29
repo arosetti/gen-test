@@ -18,7 +18,7 @@ typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 
-//! Contenitore della popolazione, e delle funzioni dell'algoritmo genetico.
+//! Contenitore della popolazione
 /**
  *
  */

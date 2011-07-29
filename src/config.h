@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//! Questa struct contiene tutti i parametri di configurazione del programma.
+//! Contiene i parametri di configurazione
 /**
  *
  */

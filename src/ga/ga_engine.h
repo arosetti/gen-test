@@ -12,7 +12,7 @@ using namespace std;
 
 extern config *conf;
 
-//! Il coordinatore delle operazioni base dell'algoritmo genetico.
+//! Coordina le operazioni base dell'algoritmo genetico.
 /**
  *
  */

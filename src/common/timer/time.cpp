@@ -24,43 +24,45 @@ string time_format(uint32 sec)
 {
     stringstream out;
 
+    uint32 sec_res, min, hours, hours_res, days, days_res, years, years_res;
+
     if (sec < 60)
         out << sec << " second(s)"; 
     else if (sec < 3600)
     {
-        uint32 min = (uint32)sec/60;
-        uint32 sec_res = (uint32)sec%60;
+        min = (uint32)sec/60;
+        sec_res = (uint32)sec%60;
         out << min << " minute(s), " << sec_res << " second(s)"; 
     }
     else if ( sec < 86400 )
     {
-        uint32 hours = (uint32) sec/3600;
-        uint32 hour_res = (uint32)sec%3600;
-        uint32 min = (uint32)hour_res/60;
-        uint32 sec= (uint32)sec%60;
+        hours = (uint32) sec/3600;
+        hours_res = (uint32)sec%3600;
+        min = (uint32)hours_res/60;
+        sec_res = (uint32)sec%60;
         out << hours << " hour(s), " << min << " minute(s), " << sec << " second(s)"; 
     }
     else if ( sec < 31536000 )
     {
-        uint32 days = (uint32) sec/86400;
-        uint32 days_res = (uint32)sec%86400;
-        uint32 hours = (uint32) days_res/3600;
-        uint32 hour_res = (uint32)(sec - 86400)%3600;
-        uint32 min = (uint32)hour_res/60;
-        uint32 sec= (uint32)sec%60;
+        days = (uint32) sec/86400;
+        days_res = (uint32)sec%86400;
+        hours = (uint32) days_res/3600;
+        hours_res = (uint32)(sec - 86400)%3600;
+        min = (uint32)hours_res/60;
+        sec= (uint32)sec%60;
         
         out << days<<" day(s), "<<hours<< " hour(s), "<< min<< " minute(s), "<<sec<< " second(s)"; 
     }
     else
     {
-        uint32 years = (uint32) sec/31536000;
-        uint32 years_res = (uint32) sec%31536000;
-        uint32 days = (uint32) years_res/86400;
-        uint32 days_res = (uint32)sec%86400;
-        uint32 hours = (uint32) days_res/3600;
-        uint32 hour_res = (uint32)(sec - 86400)%3600;
-        uint32 min = (uint32)hour_res/60;
-        uint32 sec= (uint32)sec%60;
+        years = (uint32) sec/31536000;
+        years_res = (uint32) sec%31536000;
+        days = (uint32) years_res/86400;
+        days_res = (uint32)sec%86400;
+        hours = (uint32) days_res/3600;
+        hours_res = (uint32)(sec - 86400)%3600;
+        min = (uint32)hours_res/60;
+        sec= (uint32)sec%60;
         out << years << " year(s), " << days << " day(s), " << hours << " hour(s), " << min << " minute(s), " << sec << " second(s)"; 
     }
 
