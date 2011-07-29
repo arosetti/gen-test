@@ -11,41 +11,16 @@ config *conf = new config;
 int main(int argc, char **argv)
 {
     srand(time(NULL));
+
     ga_engine ga;
-    string response;
-    uint32 value;
 
     cout << PACKAGE_STRING << ": a gentetic algorithm program ";
     cout << "used to generate test patterns for simulated circuits." << endl;
     cout << endl;
 
-    load_config("config.conf", conf);
-    parse_options(argc, argv);
-    
-    if (conf->interactive)
-    {
-        cout << "generations: ";
-        cin  >> value;
-        conf->max_generations = value;
-
-        cout << "chromosome_num: ";
-        cin  >> value;
-        conf->chromosome_num = value;
-
-        cout << "chromosome_max_len: ";
-        cin  >> value;
-        conf->chromosome_max_len = value;
-
-        cout << "chromosome_start_len_min: ";
-        cin  >> value;
-        conf->chromosome_start_len_min = value;
-
-        cout << "chromosome_start_len_max: ";
-        cin  >> value;
-        conf->chromosome_start_len_max = value;
-
-        cout << endl;
-    }
+    init_config();
+    load_config();
+    load_args(argc, argv);
 
     ga.init();
     ga.evolve();
