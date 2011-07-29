@@ -1,5 +1,15 @@
-changeset:   163:58268aafc854
+changeset:   165:973a3fecd69d
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 02:39:35 2011 +0200
+sommario:    memory leak trovati da valgrind fixati! :)
+
+changeset:   164:f99ef899f367
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 02:37:15 2011 +0200
+sommario:    inserita funzione per gestire i parametri da linea di comando.
+
+changeset:   163:58268aafc854
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Jul 28 20:26:07 2011 +0200
 sommario:    inserita funzione per l'output dei secondi in formato   year day hour min sec
