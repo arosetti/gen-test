@@ -1,5 +1,15 @@
-changeset:   165:973a3fecd69d
+changeset:   167:0a6ce4815655
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 11:26:17 2011 +0200
+sommario:    modificati alcuni commenti doxygen
+
+changeset:   166:4480af36e3c7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 11:25:22 2011 +0200
+sommario:    inserita delete_matrix per eliminare la matrice dalla memoria.
+
+changeset:   165:973a3fecd69d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 29 02:39:35 2011 +0200
 sommario:    memory leak trovati da valgrind fixati! :)

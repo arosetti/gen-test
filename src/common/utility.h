@@ -12,11 +12,7 @@
 #include "defines.h"
 #include "typedefs.h"
 #include "logger/logger.h"
-#include "../config.h"
-
-extern config *conf;
 
 bool file_exists(string filename);
-int  parse_options(int argc, char **argv);
 
 #endif

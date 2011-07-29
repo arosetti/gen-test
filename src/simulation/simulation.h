@@ -8,7 +8,7 @@
 //#include <sys/types.h>
 //#include <regex.h>
 
-#include "../common/utility.h"
+#include "../config.h"
 #include "../bitmatrix/bitmatrix.h"
 
 using namespace std;

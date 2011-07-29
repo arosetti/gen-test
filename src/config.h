@@ -2,7 +2,7 @@
 #include <string>
 #include <confuse.h>
 
-#include "common/typedefs.h"
+#include "common/utility.h"
 
 using namespace std;
 
@@ -10,9 +10,9 @@ using namespace std;
 /**
  *
  */
-
 typedef struct config
 {
+    string conf_filename;
     bool debug, verbose, interactive;
     bool print_best, print_avg_fitness;
     bool print_population_size, print_mating;
@@ -38,5 +38,14 @@ typedef struct config
     float  mutation_rate, mutation_strength;
 } config;
 
-bool load_config(string , config *);
+extern config *conf;
+
+void init_config();
+bool load_config();
 void help_config();
+
+int  load_args(int argc, char **argv);
+void help_args();
+
+void interactive();
+
