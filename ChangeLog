@@ -1,5 +1,10 @@
-changeset:   167:0a6ce4815655
+changeset:   168:f43864650e7a
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 14:29:01 2011 +0200
+sommario:    aggiornato sistema di input della configurazione da terminale e da .config
+
+changeset:   167:0a6ce4815655
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 29 11:26:17 2011 +0200
 sommario:    modificati alcuni commenti doxygen

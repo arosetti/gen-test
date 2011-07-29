@@ -15,17 +15,33 @@ config *conf = new config;
 int main(int argc, char ** argv)
 {
     int clocks = 30;
+    int inputs = 0;
+
+    uint32 tot,det;
 
     srand(time(NULL));
 
     if (argc > 1)
         clocks = atoi(argv[1]);
-        
-    bitmatrix b1(5,clocks);
+
     simulation s;
 
-    load_config("../../config.conf", conf);
+    init_config();
+    conf->conf_filename = "../../config.conf";
+    load_config();
+    
+    inputs = read_n_inputs();
 
+    if (!inputs)
+    {
+        cout << "error reading inputs " << inputs << endl;
+        exit(0);
+    }
+    else
+        cout << "inputs: " << inputs << endl;
+
+    bitmatrix b1(inputs, clocks);
+    
     //if (!s.init_env())
     //    exit(0);
 
@@ -38,7 +54,7 @@ int main(int argc, char ** argv)
     
     cout << endl;
 
-    s.get_results();
+    s.get_results(&tot,&det);
 
     return 0;
 }

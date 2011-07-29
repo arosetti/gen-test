@@ -15,6 +15,8 @@ using namespace std;
 
 extern config *conf;
 
+uint32 read_n_inputs();
+
 class simulation
 {
     uint32 n_total_faults;

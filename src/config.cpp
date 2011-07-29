@@ -41,7 +41,6 @@ bool load_config()
 
         CFG_INT((char*)"population_size", 50, CFGF_NONE),
 
-        CFG_INT((char*)"chromosome_num", 5 , CFGF_NONE),
         CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
         CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
         CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
@@ -86,7 +85,6 @@ bool load_config()
 
     conf->population_size = cfg_getint(cfg, "population_size");
 
-    conf->chromosome_num = cfg_getint(cfg, "chromosome_num");
     conf->chromosome_max_len = cfg_getint(cfg, "chromosome_max_len");
     conf->chromosome_start_len_min = cfg_getint(cfg, "chromosome_start_len_min");
     conf->chromosome_start_len_max = cfg_getint(cfg, "chromosome_start_len_max");
