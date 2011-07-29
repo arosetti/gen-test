@@ -45,6 +45,7 @@ bool load_config(string conf_filename, config *c)
     cfg_t *cfg = cfg_init(opts, CFGF_NONE);
     if(cfg_parse(cfg, conf_filename.c_str()) == CFG_PARSE_ERROR)
     {
+        cfg_free(cfg);
         exit(0);
     }
 
