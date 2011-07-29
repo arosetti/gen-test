@@ -54,3 +54,7 @@ opzioni:
 CLEAN
 revisione nomi variabili
 commenti doxygen
+
+#fare sempre un test con valgrind per identificare i leak ;)
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
+

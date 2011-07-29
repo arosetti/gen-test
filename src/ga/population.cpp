@@ -74,6 +74,8 @@ void population::empty_population()
     }
 
     pool->clear();
+    if (pool)
+        delete pool;
 }
 
 void population::calc_population_fitness()

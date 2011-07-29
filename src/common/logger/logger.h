@@ -22,7 +22,8 @@ class logger
 
     static logger* get_instance()
     {
-        l_singleton = new logger();
+        if(!l_singleton)
+            l_singleton = new logger();
         return l_singleton;
     };
 
