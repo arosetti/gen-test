@@ -1,5 +1,59 @@
 #include"simulation.h"
 
+uint32 read_n_inputs()
+{
+    string path = conf->simulator_dir;      // get net path
+    string net  = "output.net";
+    if (path.c_str()[path.length()] != '/')
+        path += "/";
+    path += net;
+
+    ifstream sim_net_file;
+    char *buffer = NULL, *p_buffer = NULL;
+    uint32 n_inputs = 0;
+    int length = 0;
+
+    sim_net_file.open(path.c_str(), ios::binary);
+
+    if (!sim_net_file.is_open())
+    {
+        printf("file: %s\n", path.c_str());
+        perror("simulator output.net");
+        return 0;
+    }
+
+    sim_net_file.seekg (0, ios::end);
+    length = sim_net_file.tellg();
+    sim_net_file.seekg (0, ios::beg);
+
+    buffer = new char[length + 1];
+
+    sim_net_file.read (buffer,length);
+    sim_net_file.close();
+    buffer[length] = 0;
+
+    p_buffer = strtok (buffer,"\n");
+    while (p_buffer != NULL)
+    {
+        if (strncmp(p_buffer + (strchr(p_buffer,' ') - p_buffer + 1), "ibuf ",4) == 0)
+            n_inputs++;
+        else
+            break;
+
+        p_buffer = strtok (NULL, "\n");
+        if(p_buffer == NULL)
+        {
+           n_inputs = 0;
+           break;
+        }
+    }
+
+    delete[] buffer;
+    
+    return n_inputs;
+
+}
+
 simulation::simulation()
 {
     init_env();
@@ -20,9 +74,9 @@ string simulation::get_bin_path()
 {
     string path = conf->simulator_dir; 
 
-    if (path.c_str()[path.length()] != '/')
+    if (path.c_str()[path.length()] != '/') // funzione add slash
         path += "/";
-    path+= conf->simulator_bin;
+    path += conf->simulator_bin;
     
     return path;
 }
@@ -33,7 +87,7 @@ string simulation::get_patch_path()
 
     if (path.c_str()[path.length()] != '/')
         path += "/";
-    path+= conf->simulator_patch;
+    path += conf->simulator_patch;
     
     return path;
 }
@@ -44,7 +98,7 @@ string simulation::get_input_file_path()
 
     if (path.c_str()[path.length()] != '/')
         path += "/";
-    path+= conf->test_file_in;
+    path += conf->test_file_in;
     
     return path;
 }
@@ -55,7 +109,7 @@ string simulation::get_output_file_path()
 
     if (path.c_str()[path.length()] != '/')
         path += "/";
-    path+= conf->test_file_out;
+    path += conf->test_file_out;
     
     return path;
 }

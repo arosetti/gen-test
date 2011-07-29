@@ -19,6 +19,15 @@ population::population()
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
         exit(0);
     }
+    
+    conf->chromosome_num = read_n_inputs();
+    if (!conf->chromosome_num)
+    {
+        cout << "chromosome number is 0, errror reading simulator output.net" << endl;
+        exit(0);
+    }
+    else if (conf->verbose)
+        cout << "* using " << conf->chromosome_num << " chromosome(s)" << endl;
 
     pool = new individual_map;
 }
@@ -48,9 +57,6 @@ individual* population::new_random_individual()
     individual* ind = new individual(len,conf->chromosome_num);
     ind->dna_random();
 
-    if (conf->verbose && conf->debug)
-        cout << "new individual, chromosome_len = " << len << endl;
-
     return ind;
 }
 
@@ -59,8 +65,22 @@ void population::new_random_population()
     int created = 0;
 
     while (created++ < conf->population_size)
+    {
         pool->insert(pool->end(),
                     individual_pair(created, new_random_individual()));
+    }
+    
+    if (conf->verbose && conf->debug)
+    {
+        individual_map::iterator itr = pool->begin();
+        cout << "* individual lengths: " << endl;
+        for (; itr != pool->end(); ++itr)
+        {
+            if ((*itr).second)
+                cout << (*itr).second->get_chromosome_length() << " ";
+        }
+        cout << endl;
+    }
 }
 
 void population::empty_population()
