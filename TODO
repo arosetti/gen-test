@@ -58,3 +58,22 @@ commenti doxygen
 #fare sempre un test con valgrind per identificare i leak ;)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
 
+
+
+
+POSSIBILE MULTITRHEAD:
+
+init del simulatore:
+copia in una cartella temporanea N simulatori impostati con i parametri del simulatore nella cartella principale.
+
+ - population chiama calc_fitness su tutti gli individual.
+      - l'individual chiede a simulation di calcolare la fitness. 
+              - busy = 1 su simulation
+              - le varie istanze di simulation ricevono il comando calc_fitness(); avvia un thread. e ritorna.
+              - il thread esegue una wait sul semaforo che ha la coda più corta al momento.
+              - chi entra nel semaforo accede alla corrispettiva cartella di simulatore temporanea es. copiata in /tmp/gentest/sim_$x  
+               (se c'è un problema con il chdir, si copia tutto in una sola dir e si fa sim_0 sim_1 ... sim_n lo stesso con gli input/output.. no input no..)
+              - esegue la simulazione prende i risultati. il thread termina. reimposta busy = 0.
+        - finchè la classe è busy si aspetta
+        - l'individual fa il get_results
+
