@@ -1,5 +1,21 @@
-changeset:   168:f43864650e7a
+changeset:   171:615f3253bbbd
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:27:50 2011 +0200
+sommario:    Inserita l'etichetta 0.1.1 per il changeset 96b83b521cc7
+
+changeset:   170:96b83b521cc7
+tag:         0.1.1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:27:44 2011 +0200
+sommario:    versione 0.1.1
+
+changeset:   169:7d323e2635ea
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:25:09 2011 +0200
+sommario:    implementata la funzione read_n_inputs, legge il numero di piedini dal file
+
+changeset:   168:f43864650e7a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 29 14:29:01 2011 +0200
 sommario:    aggiornato sistema di input della configurazione da terminale e da .config
