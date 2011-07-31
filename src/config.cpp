@@ -1,5 +1,55 @@
 #include "config.h"
 
+cfg_opt_t opts[] =
+{
+    CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),
+
+    CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE),
+
+    CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
+    CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
+
+    CFG_INT((char*)"max_generations",  100, CFGF_NONE),
+    CFG_INT((char*)"max_stall", 10, CFGF_NONE),
+
+    CFG_INT((char*)"population_size", 50, CFGF_NONE),
+
+    CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
+    CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
+    CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
+
+    CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
+    CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
+
+    CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
+    CFG_FLOAT((char*)"mutation_strength", 2.0f, CFGF_NONE),
+    CFG_END()
+};
+
+cfg_t *open_cfg()
+{
+    cfg_t *cfg = cfg_init(opts, CFGF_NONE);
+
+    if(cfg_parse(cfg, conf->conf_filename.c_str()) == CFG_PARSE_ERROR)
+    {
+        cfg_free(cfg);
+        exit(0);
+    }
+
+    return cfg;
+}
+    
 void init_config()
 {
     if(!conf)
@@ -16,49 +66,7 @@ bool load_config()
     if (!file_exists(conf->conf_filename.c_str()))
         return 1;
 
-    cfg_opt_t opts[] =
-    {
-        CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
-        CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
-        CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),
-        CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),
-
-        CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE),
-
-        CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
-        CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
-        CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
-
-        CFG_INT((char*)"max_generations",  100, CFGF_NONE),
-        CFG_INT((char*)"max_stall", 10, CFGF_NONE),
-
-        CFG_INT((char*)"population_size", 50, CFGF_NONE),
-
-        CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
-        CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
-        CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
-
-        CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
-        CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
-
-        CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
-        CFG_FLOAT((char*)"mutation_strength", 2.0f, CFGF_NONE),
-        CFG_END()
-    };
-
-    cfg_t *cfg = cfg_init(opts, CFGF_NONE);
-    if(cfg_parse(cfg, conf->conf_filename.c_str()) == CFG_PARSE_ERROR)
-    {
-        cfg_free(cfg);
-        exit(0);
-    }
+    cfg_t *cfg = open_cfg();
 
     conf->debug = cfg_getbool(cfg, "debug");
     conf->verbose = cfg_getbool(cfg, "verbose");
@@ -172,29 +180,49 @@ void help_args()
 void interactive()
 {
     uint32 value;
+    char response;
 
     if(!conf->interactive)
         return;
 
+    cfg_t *cfg = open_cfg();
+
     cout << "generations: ";
     cin  >> value;
     conf->max_generations = value;
+    cfg_setint(cfg, "max_generations", value);
 
     cout << "population: ";
     cin >> value;
     conf->population_size = value;
+    cfg_setint(cfg, "population_size", value);
 
-    cout << "chromosome_max_len: ";
-    cin  >> value;
-    conf->chromosome_max_len = value;
+    //cout << "chromosome_max_len: ";
+    //cin  >> value;
+    //conf->chromosome_max_len = value;
+    //cfg_setint(cfg, "chromosome_max_len", value);
 
     cout << "chromosome_start_len_min: ";
     cin  >> value;
     conf->chromosome_start_len_min = value;
+    cfg_setint(cfg, "chromosome_start_len_min", value);
 
     cout << "chromosome_start_len_max: ";
     cin  >> value;
     conf->chromosome_start_len_max = value;
+    cfg_setint(cfg, "chromosome_start_len_max", value);
 
     cout << endl; // TODO finire la modalità interactive
+
+    cout << "do you want to save new options to " << conf->conf_filename << "? (y/n) ";
+    cin  >> response;
+    if(response == 'y')
+    {
+        FILE *fp = fopen(conf->conf_filename.c_str(), "w");
+        cfg_print(cfg, fp);
+        fclose(fp);
+    }
+    cout << endl;
+
+    cfg_free(cfg);
 }
