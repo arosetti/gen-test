@@ -62,9 +62,7 @@ individual* population::new_random_individual()
 
 void population::new_random_population()
 {
-    int created = 0;
-
-    while (created++ < conf->population_size)
+    for (int created = 0; created < conf->population_size; created++)
     {
         pool->insert(pool->end(),
                     individual_pair(created, new_random_individual()));
@@ -166,24 +164,6 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     ind_b->dna_merge(dna_b_1, dna_a_2);
 }
 
-uint32 population::get_id_from_mating_pool(uint32 pos, individual_id_list::iterator &itr_to_del)
-{
-    individual_id_list::iterator itr;
-    uint32 i = 0;
-
-    for (itr = mating_pool.begin(); itr!= mating_pool.end(); ++itr)
-    {
-        if (i == pos)
-        {
-            itr_to_del = itr;
-            return (*itr);
-        }
-        i++;
-    }
-
-    return 0;
-}
-
 void population::create_mating_pool()
 {
     weight_map m_weight_map;
@@ -234,84 +214,44 @@ void population::create_mating_pool()
 void population::mate_individuals()
 {
     individual_map *temp_pool = new individual_map;
-    individual_id_list::iterator itr_del_a, itr_del_b;
-    uint32 rnd_a, rnd_b;
-    individual *ind_a, *ind_b;
     individual *ind_a_cloned, *ind_b_cloned;
-    individual *ind_a_child, *ind_b_child;
-    uint32 m_size;
 
-    create_mating_pool();
-    m_size = mating_pool.size();
+    create_mating_pool();    
 
-    while (mating_pool.size())
-    {
-        /* randomizzo due elementi della mating_pool */
-        rnd_a = rand()%mating_pool.size();
-        rnd_b = rand()%mating_pool.size();
+    if (mating_pool.empty())
+        return;
 
-        /* prendo il valore degli elementi nella mating_pool e dell'iteratore degli indici */
-        rnd_a = get_id_from_mating_pool(rnd_a, itr_del_a);
-        rnd_b = get_id_from_mating_pool(rnd_b, itr_del_b);
+    individual_id_list::iterator itr = mating_pool.begin();
+    uint32 index = 0;
 
-        /* prendo i puntatori a individual usando gli indici della mating_pool */
-        ind_a = (*pool->find(rnd_a)).second;
-        ind_b = (*pool->find(rnd_b)).second;
+    while (mating_pool.size() > (index + 1))
+    {        
+        /* Inizio accoppiamento */
+        ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
+        ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
 
-        /* clono i genitori */
-        ind_a_cloned = new individual(*ind_a);
-        ind_b_cloned = new individual(*ind_b);
+        if (rand()%2) // Inserire percentuale accoppiamento        
+            crossover(ind_a_cloned, ind_b_cloned);
 
-        if (conf->debug && conf->verbose && conf->print_mating)
-        {
-            cout << "mating_pool size: " << mating_pool.size() << "/"<< m_size << endl;
-            cout << "temp_pool size: " << temp_pool->size() << endl;
-            cout << "selected id: " << rnd_a << "-"<< rnd_b << endl;
-            cout << "creating parents"<< endl;
-        }
-
-        /* inserisco i genitori nella nuova map */
+        /* aggiungo i figli alla nuova map */
         temp_pool->insert(temp_pool->end(),
                  individual_pair(temp_pool->size(), ind_a_cloned));
         temp_pool->insert(temp_pool->end(),
                  individual_pair(temp_pool->size(), ind_b_cloned));
 
-        /* se i genitori non sono lo stesso individual */
-        if (itr_del_a != itr_del_b)
-        {
-            /* rimuovo gli indici dalla lista */
-            mating_pool.erase(itr_del_a);
-            mating_pool.erase(itr_del_b);
-
-            /* effettuo il crossover */
-            crossover(ind_a, ind_b);
-
-            /* creo i puntatori ai figli */
-            ind_a_child = new individual(*ind_a);
-            ind_b_child = new individual(*ind_b);
-
-            if (conf->debug && conf->verbose && conf->print_mating)
-                cout << "creating childs" << endl;
-
-            /* aggiungo i figli alla nuova map */
-            temp_pool->insert(temp_pool->end(),
-                     individual_pair(temp_pool->size(), ind_a_child));
-            temp_pool->insert(temp_pool->end(),
-                     individual_pair(temp_pool->size(), ind_b_child));
-        }
-        else
-        {
-            /* se i genitori sono lo stesso individuo elimino l'id dalla lista */
-            mating_pool.erase(itr_del_a);
-        }
+        index +=2; 
     }
 
-    /* se la mating pool non era vuota svuoto la vecchia map e la sostituisco con la nuova */
-    if (m_size)
+    if (mating_pool.size() == (index + 1))
     {
-        empty_population();
-        pool = temp_pool;
-    }
+        ind_a_cloned = new individual(*(*pool->find(*itr)).second);
+        temp_pool->insert(temp_pool->end(),
+            individual_pair(temp_pool->size(), ind_a_cloned));
+    }          
+
+    empty_population();
+    pool = temp_pool;
+    mating_pool.clear();  
 
     if (conf->debug && conf->verbose && conf->print_mating)
         cout << "temp_pool size: " << temp_pool->size() << endl;
@@ -355,7 +295,7 @@ void population::print_best() const
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
-        if (best_fitness < (*itr).second->get_fitness())
+        if (best_fitness <= (*itr).second->get_fitness())
         {
             best_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;

@@ -30,12 +30,9 @@ bitmatrix::~bitmatrix()
 void bitmatrix::delete_matrix()
 {
     for (uint32 i = 0; i < m_rows; i++)
-    {
-        if(matrix[i])
+        if (matrix[i])
             delete[] matrix[i];
-    }
-
-    if(matrix)
+    if (matrix)
         delete[] matrix;
 }
 
@@ -107,36 +104,28 @@ void bitmatrix::RandomizeAll()
 {
     for (uint32 i = 0; i < m_rows; i++)
         for (uint32 j = 0; j < m_cells; j++)
-        {
              matrix[i][j] = uint8(rand()%256);
-        }
 }
 
 void bitmatrix::SetAll()
 {
     for (uint32 i = 0; i < m_rows; i++)
         for (uint32 j = 0; j < m_cells; j++)
-        {
              matrix[i][j] = uint8(255); // 11111111
-        }
 }
 
 void bitmatrix::UnsetAll()
 {
     for (uint32 i = 0; i < m_rows; i++)
         for (uint32 j = 0; j < m_cells; j++)
-        {
              matrix[i][j] = uint8(0); // 00000000
-        }
 }
 
 void bitmatrix::FlipAll()
 {
     for (uint32 i = 0; i < m_rows; i++)
         for (uint32 j = 0; j < m_cells; j++)
-        {
              matrix[i][j] = ~uint8(matrix[i][j]);
-        }
 }
 
 void bitmatrix::Resize(uint32 rows, uint32 cols)
