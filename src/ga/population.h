@@ -35,7 +35,6 @@ class population
     
     void    create_mating_pool();
     void    crossover(individual*&, individual*&);
-    uint32  get_id_from_mating_pool(uint32, individual_id_list::iterator &);
 
 
     void    empty_population();
