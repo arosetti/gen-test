@@ -30,6 +30,7 @@ population::population()
         cout << "* using " << conf->chromosome_num << " chromosome(s)" << endl;
 
     pool = new individual_map;
+    temp_pool = NULL;
 }
 
 population::~population()
@@ -94,6 +95,7 @@ void population::empty_population()
     pool->clear();
     if (pool)
         delete pool;
+    pool = NULL;
 }
 
 void population::calc_population_fitness()
@@ -194,7 +196,7 @@ void population::create_mating_pool()
     uint32 weight;
     weight_map::const_iterator itr;
 
-    for (uint32 i = 0; i < conf->population_size * conf->mating_fraction; i++)
+    for (uint32 i = 0; i < uint32(conf->population_size * conf->mating_fraction); i++)
     {
          selected_weight = rand()%total_weight;
          weight = 0;
@@ -211,9 +213,59 @@ void population::create_mating_pool()
     }
 }
 
+void population::transfert_bests()
+{
+    uint32 transfert_num = uint32(conf->population_size) - uint32(conf->population_size * conf->mating_fraction);
+
+    if (!transfert_num) 
+        return;
+    
+    if (!temp_pool)
+        temp_pool = new individual_map;
+
+    typedef std::pair<individual*, float> best_pair;
+    std::list<best_pair> best_map;
+    
+    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        for (std::list<best_pair>::iterator itr2 = best_map.begin();; ++itr2)
+        {  
+            if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
+            {        
+                if (itr2 == best_map.end() && best_map.size() >= transfert_num)
+                    break;               
+                
+                best_map.insert(itr2, best_pair((*itr).second, (*itr).second->get_fitness()));                
+                
+                if (best_map.size() > transfert_num)
+                {   
+                    itr2 = best_map.end();
+                    best_map.erase(--itr2);
+                }
+
+                /*for (std::list<best_pair>::iterator itr3 = best_map.begin(); itr3 != best_map.end(); ++itr3)
+                {
+                    cout<< (*itr3).second << " ";
+                }            
+                cout << endl << "best_map.size(): " << best_map.size() << endl;*/
+
+                break;
+            }
+        }
+    }
+    
+    for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
+    {
+        individual *ind_cloned = new individual(*((*itr2).first));
+        temp_pool->insert(temp_pool->end(),
+            individual_pair(temp_pool->size(), ind_cloned));
+    }
+}
+
 void population::mate_individuals()
 {
-    individual_map *temp_pool = new individual_map;
+    if (!temp_pool)
+        temp_pool = new individual_map;
     individual *ind_a_cloned, *ind_b_cloned;
 
     create_mating_pool();    
@@ -251,6 +303,7 @@ void population::mate_individuals()
 
     empty_population();
     pool = temp_pool;
+    temp_pool = NULL;
     mating_pool.clear();  
 
     if (conf->debug && conf->verbose && conf->print_mating)

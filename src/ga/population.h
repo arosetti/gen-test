@@ -27,6 +27,7 @@ class population
 {
     individual_map*     pool;
     individual_id_list  mating_pool;
+    individual_map*     temp_pool;
     
     general_tests test;
 
@@ -49,6 +50,8 @@ class population
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();  // deprecated
+
+    void    transfert_bests();
 
     void    mate_individuals();
     void    mutate_individuals() const;
