@@ -219,9 +219,6 @@ void population::transfert_bests()
 
     if (!transfert_num) 
         return;
-    
-    if (!temp_pool)
-        temp_pool = new individual_map;
 
     typedef std::pair<individual*, float> best_pair;
     std::list<best_pair> best_map;
@@ -253,12 +250,14 @@ void population::transfert_bests()
             }
         }
     }
+
+    if (!temp_pool)
+        temp_pool = new individual_map;
     
     for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
     {
         individual *ind_cloned = new individual(*((*itr2).first));
-        temp_pool->insert(temp_pool->end(),
-            individual_pair(temp_pool->size(), ind_cloned));
+        temp_pool->insert(temp_pool->end(), individual_pair(temp_pool->size(), ind_cloned));
     }
 }
 
@@ -299,15 +298,15 @@ void population::mate_individuals()
         ind_a_cloned = new individual(*(*pool->find(*itr)).second);
         temp_pool->insert(temp_pool->end(),
             individual_pair(temp_pool->size(), ind_a_cloned));
-    }          
+    }
+
+    if (conf->debug && conf->verbose && conf->print_mating)
+        cout << "temp_pool size: " << temp_pool->size() << endl;
 
     empty_population();
     pool = temp_pool;
     temp_pool = NULL;
-    mating_pool.clear();  
-
-    if (conf->debug && conf->verbose && conf->print_mating)
-        cout << "temp_pool size: " << temp_pool->size() << endl;
+    mating_pool.clear();
 }
 
 void population::mutate_individuals() const
