@@ -60,6 +60,10 @@ void ga_engine::evolve()
             pop->print_best();
 
         if (conf->verbose)
+            cout << "* transfert best individuals" << endl;
+        pop->transfert_bests();
+
+        if (conf->verbose)
             cout << "* mating individuals" << endl;
         pop->mate_individuals();
 
