@@ -1,5 +1,20 @@
-changeset:   177:5636bf33d481
+changeset:   180:6725d63e524a
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 11:43:41 2011 +0200
+sommario:    La mutazione si fa successivamente a un crossover con una certa probabilità.
+
+changeset:   179:de3f4db94b5b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 11:02:53 2011 +0200
+sommario:    eliminata ridondanza in alcuni parametri del simulator
+
+changeset:   178:560407403834
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 10:52:33 2011 +0200
+sommario:    * aggiornato script di build in modo da essere più veloce. chiamare una volta,
+
+changeset:   177:5636bf33d481
 utente:      Lazzalf
 data:        Thu Aug 18 13:44:57 2011 +0200
 sommario:    Population

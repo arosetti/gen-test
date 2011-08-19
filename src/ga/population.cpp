@@ -371,7 +371,7 @@ void population::print_best() const
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
-        if (best_fitness <= (*itr).second->get_fitness())
+        if (best_fitness < (*itr).second->get_fitness()) // TODO scegliere il più corto
         {
             best_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
