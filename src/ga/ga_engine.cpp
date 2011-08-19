@@ -52,7 +52,7 @@ void ga_engine::evolve()
        
         if (conf->verbose)
             cout << "* execute tests" << endl;
-        pop->execute_tests();        
+        pop->execute_tests();
             
         if (conf->verbose)
             cout << "* calculating population fitnesses" << endl;

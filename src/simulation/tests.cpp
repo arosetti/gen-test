@@ -136,6 +136,8 @@ bool tests::GetFaultsFile(general_tests* g_test)
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
 
+    remove(path.c_str());
+
     buffer[length] = 'E';
     buffer[length+1] = ' ';
 
@@ -161,6 +163,7 @@ bool tests::GetFaultsFile(general_tests* g_test)
             {
                 cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
                 //perror("simulator faults.txt");
+                delete[] buffer; 
                 return false;
             }
 
@@ -174,6 +177,7 @@ bool tests::GetFaultsFile(general_tests* g_test)
         fault_index++;
     }
 
-    remove(path.c_str());
+    delete[] buffer;
+    
     return true;
 }
