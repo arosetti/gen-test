@@ -124,10 +124,16 @@ void individual::set_fitness(float f)
     fitness = f;
 }
 
-void individual::calc_fitness()
+void individual::execute_test()
 {
     test.execute(get_dna());
     test.get_results(&n_tests, &detected);
+}
+
+void individual::calc_fitness()
+{
+    //test.execute(get_dna());
+    //test.get_results(&n_tests, &detected);
     fitness = (float)(100 * detected) / (float)(n_tests);
     //fitness = ( (float)(100 * detected) / (float)(n_tests) ) * ( get_chromosome_length()>conf->chromosome_start_len_min?((get_dna_length()+60)/get_dna_length()):1 );
 }

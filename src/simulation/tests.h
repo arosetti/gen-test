@@ -18,6 +18,7 @@ class tests
         bool   DeleteFault(uint32 fault);
         bool   InsertFault(uint32 fault);
         bool   FindFault(uint32 fault);
+        void   EmptyFaults();
 
     private:
 

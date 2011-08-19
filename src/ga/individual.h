@@ -6,6 +6,7 @@
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
 #include "../simulation/simulation.h"
+#include "../simulation/tests.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ class individual
     uint32   n_tests;
     uint32   detected;
 
-    simulation test;
+    simulation test;   
 
     public:
     individual(uint32,uint32);
@@ -45,6 +46,8 @@ class individual
     void    set_fitness(float);
     void    calc_fitness();
 
+    void    execute_test();
+
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
     uint32  get_chromosome_length() const;
@@ -57,6 +60,8 @@ class individual
     string  info();
 
     bool operator < (const individual&);
+
+    tests fault_find;    
 };
 
 #endif
