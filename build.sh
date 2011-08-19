@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo -e "usage ./build.sh {[clean] || [strip] || [dist]}\n"
+
 DOXYGEN=`which doxygen`
 
 if [ -e gentest ] ; then
@@ -8,13 +10,16 @@ fi
 
 ./autogen.sh
 ./configure
-make
+
+make -j5
 
 if [ "$1" = "dist" ] ; then
     make dist-bzip2
 fi
 
+if [ "$1" = "clean" ] ; then
 ./clean.sh
+fi
 
 if [ "$1" = "strip" ] ; then
     strip gentest
