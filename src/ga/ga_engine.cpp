@@ -45,14 +45,14 @@ void ga_engine::evolve()
             cout << endl << "* generation: " << generation << endl;
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;
+
+        if (conf->verbose)
+            cout << "* reset faults" << endl;
+        pop->reset_faults();
        
         if (conf->verbose)
             cout << "* execute tests" << endl;
-        pop->execute_tests();
-
-        if (conf->verbose)
-            cout << "* read faults" << endl;
-        pop->read_faults();
+        pop->execute_tests();        
             
         if (conf->verbose)
             cout << "* calculating population fitnesses" << endl;

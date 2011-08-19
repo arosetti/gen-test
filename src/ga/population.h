@@ -47,7 +47,7 @@ class population
     void    new_random_population();
 
     void    execute_tests();
-    void    read_faults();
+    void    reset_faults();
     void    calc_population_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
