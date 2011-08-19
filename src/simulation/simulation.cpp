@@ -2,7 +2,7 @@
 
 uint32 read_n_inputs()
 {
-    string path = conf->simulator_dir;      // get net path
+    string path = conf->simulator_dir;
     string net  = "output.net";
     if (path.c_str()[path.length()] != '/')
         path += "/";
@@ -118,7 +118,7 @@ bool simulation::init_env()
 {
     string sim_bin = get_bin_path();
 
-    /*if (chmod((char *) sim_bin.c_str(),775))
+    /*if (chmod((char *) sim_bin.c_str(),00775))
     {
         perror("chmod");
         return false;
@@ -131,27 +131,24 @@ bool simulation::execute(string dna)
 {
     string path = get_bin_path();
     char *buffer = new char[1024];
-    //char *args[];
 
     if (!file_exists(path))
     {
-        cout << "can't find simulator binary." << endl; // perror
+        cout << "simulator binary does note exists." << endl;
         exit(0);
     }
 
     path += " ";
     path += conf->simulator_args;
+    path += conf->test_file_out;
     path += " > /dev/null 2>&1";
 
     setup_input_file(dna);
 
     getcwd(buffer,1024);
     chdir((char *)conf->simulator_dir.c_str());
-    system(path.c_str());
+    system(path.c_str()); //int execl(path.c_str(), argvs);
     chdir(buffer);
-
-    //int execl(path.c_str(), argvs);
-    //controllo esecuzione terminata
 
     delete[] buffer;
     return true;
@@ -227,7 +224,7 @@ string simulation::read_output()
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
-    //remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
+    remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
     buffer[length] = 0;
     content = buffer;
     delete[] buffer;
@@ -241,8 +238,8 @@ void simulation::get_results(uint32 *n_total_faults, uint32 *n_faults)
     string str = read_output();
     char *str_s = strstr ((char *)str.c_str(),"0,");
 
-    *n_total_faults = 0; // se si rimuove questo nn funziona nulla
-    *n_faults = 0;       // da vedere molto bene ......
+    *n_total_faults = 0; // se si rimuove questo nn funziona nulla (forse ora è ok ma non ci conterei)
+    *n_faults = 0;
     
     ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)n_total_faults, (int*)n_faults);
     if (ret != 2)
