@@ -23,11 +23,17 @@ class individual: public tests
 
     bitmatrix *dna;
     float    fitness;
+    
+    bool edited;
 
     public:
     individual(uint32, uint32);
     individual(const individual&);
     ~individual();
+
+    bool    IsEdited() const;
+    void    SetEdited();
+    void    UnsetEdited();
 
     string  get_dna() const;
     void    set_dna(string);

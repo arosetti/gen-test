@@ -24,12 +24,14 @@ class tests
         bool   DeleteFault(uint32 fault);
         bool   InsertFault(uint32 fault);
         bool   FindFault(uint32 fault);
-        void   EmptyFaults();
+        void   EmptyFaults(general_tests* g_test = NULL);
  
         void   ExecuteTest(general_tests* g_test = NULL); 
         bool   GetFaultsFile(general_tests* g_test);
  
         virtual string get_dna() const;
+        virtual bool   IsEdited() const;
+        virtual void   UnsetEdited() {};
 
     protected:
  

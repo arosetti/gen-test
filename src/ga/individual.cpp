@@ -6,6 +6,7 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
     chromosome_number = chrom_num;
     fitness = 0;
     dna = new bitmatrix(chromosome_number, chromosome_length);
+    edited = true;
 }
 
 individual::individual(const individual &ind)
@@ -13,12 +14,28 @@ individual::individual(const individual &ind)
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
-    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??    
+    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??  
+    edited = edited;  
 }
 
 individual::~individual()
 {
     delete dna;
+} 
+
+bool individual::IsEdited() const
+{
+    return edited;
+} 
+
+void individual::SetEdited()
+{
+    edited = true;
+}
+
+void individual::UnsetEdited()
+{
+    edited = false;
 }   
 
 string individual::get_dna() const
@@ -29,6 +46,7 @@ string individual::get_dna() const
 void individual::set_dna(string str)
 {
     dna->Import(str);
+    SetEdited();
 }
 
 uint32 individual::get_dna_length()  const
@@ -45,11 +63,13 @@ void individual::set_chromosome_number(uint32 l)
 {
     chromosome_number = l;
     dna->Resize(dna->GetRowNum(), chromosome_number);
+    SetEdited();
 }
 
 void individual::dna_random()
 {
     dna->RandomizeAll();
+    SetEdited();
 }
 
 void individual::dna_mutate()
@@ -63,6 +83,7 @@ void individual::dna_mutate()
         col_r = rand()%get_chromosome_length() + 1;
 
         dna->Flip(row_r,col_r);
+        SetEdited();   
     }
 }
 
@@ -107,6 +128,8 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         dna->Print();
         cout << endl;
     }
+
+    SetEdited();
 }
 
 float individual::get_fitness()  const
@@ -147,6 +170,7 @@ void individual::set_chromosome(uint32 crom, string str)
         return;
 
     dna->SetRow(str, crom);
+    SetEdited();
 }
 
 uint32  individual::get_chromosome_length()  const
@@ -158,6 +182,7 @@ void  individual::set_chromosome_length(uint32 len)
 {
     chromosome_length = len;
     dna->Resize(chromosome_number, len);
+    SetEdited();
 }
 
 void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
@@ -172,7 +197,10 @@ void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
     col_r = rand()%chromosome_length + 1;
 
     while (count-- != 0)
+    {
         dna->Flip(crom, col_r);
+        SetEdited();
+    }
 }
 
 void individual::chromosome_random(uint32 crom)
@@ -181,6 +209,7 @@ void individual::chromosome_random(uint32 crom)
         return;
 
     dna->RandomizeRow(crom);
+    SetEdited();
 }
 
 string individual::info()

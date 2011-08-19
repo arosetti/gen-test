@@ -31,8 +31,11 @@ uint32 tests::GetDetectedNumber()
     return detected;
 }
 
-void tests::EmptyFaults()
+void tests::EmptyFaults(general_tests* g_test)
 {
+    if (g_test)
+        for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
+            g_test->DeleteFault(*itr, 1);
     m_faults_set.clear();
 }
 
@@ -82,11 +85,22 @@ string tests::get_dna() const
     return "";
 }; 
 
+bool tests::IsEdited() const
+{
+    return true;
+}
+
 void tests::ExecuteTest(general_tests* g_test)
 {
+    if (!IsEdited())
+    {
+        // cout << "Test non eseguito perchè DNA uguale" << endl;
+        return;
+    }
     sim_test.execute(get_dna());
     sim_test.get_results(n_tests, detected);
     GetFaultsFile(g_test);
+    UnsetEdited();
 }
 
 bool tests::GetFaultsFile(general_tests* g_test)
@@ -107,7 +121,7 @@ bool tests::GetFaultsFile(general_tests* g_test)
         return false;
     }
 
-    EmptyFaults();
+    EmptyFaults(g_test);
 
     sim_fault_file.seekg (0, ios::end);
     int length = sim_fault_file.tellg();

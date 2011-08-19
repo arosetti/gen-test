@@ -432,7 +432,7 @@ void population::cout_population(string logfile) const
 
 void population::reset_faults()
 {
-    test.EmptyFaults();
+    //test.EmptyFaults();
     //for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
     //    (*itr).second->EmptyFaults();
     //test.LoadFile(pool);
