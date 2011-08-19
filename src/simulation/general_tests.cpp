@@ -31,7 +31,7 @@ bool general_tests::DeleteFault(uint32 fault, uint32 numb)
     if (itr == m_faults_map.end())
         return false;
 
-    if (m_faults_map[fault] <= numb || !numb)
+    if ((*itr).second <= numb || !numb)
         m_faults_map.erase(fault);
     else
         m_faults_map[fault] -= numb;
