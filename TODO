@@ -76,4 +76,15 @@ copia in una cartella temporanea N simulatori impostati con i parametri del simu
               - esegue la simulazione prende i risultati. il thread termina. reimposta busy = 0.
         - finchè la classe è busy si aspetta
         - l'individual fa il get_results
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+AVG LENGTH E ALTRE STATISTICHE!
 
