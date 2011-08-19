@@ -108,6 +108,16 @@ void population::calc_population_fitness()
     }
 }
 
+void population::execute_tests()
+{
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        if ((*itr).second)
+            (*itr).second->execute_test();
+    }
+}
+
 float population::get_avg_fitness() const
 {
     float sum_fitness = 0;
@@ -392,4 +402,12 @@ void population::cout_population(string logfile) const
         cout << (*itr).second->info() << endl;
         count++;
     }
+}
+
+void population::read_faults()
+{
+    test.EmptyFaults();
+    for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
+        (*itr).second->fault_find.EmptyFaults();
+    test.LoadFile(pool);
 }
