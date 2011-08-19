@@ -140,7 +140,7 @@ bool general_tests::LoadFile(individual_map* pool)
             InsertFault(fault_index);
             individual_map::iterator itr = pool->find(test_index);
             if (itr != pool->end())
-                (*itr).second->fault_find.InsertFault(fault_index); 
+                (*itr).second->InsertFault(fault_index); 
             //cout << "ADD: " << test_index << " " << fault_index <<endl;
         }
 

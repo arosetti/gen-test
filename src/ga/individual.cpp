@@ -3,10 +3,8 @@
 individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
     chromosome_length = chrom_len;
-    chromosome_number = chrom_num;
-    n_tests = detected = 0;
+    chromosome_number = chrom_num;    
     fitness = 0;
-
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
 
@@ -15,10 +13,7 @@ individual::individual(const individual &ind)
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
-    n_tests = ind.n_tests;
-    detected = ind.detected;
-    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??
-    test = ind.test;
+    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??    
 }
 
 individual::~individual()
@@ -124,11 +119,11 @@ void individual::set_fitness(float f)
     fitness = f;
 }
 
-void individual::execute_test()
+/*void individual::execute_test()
 {
     test.execute(get_dna());
     test.get_results(&n_tests, &detected);
-}
+}*/
 
 void individual::calc_fitness()
 {

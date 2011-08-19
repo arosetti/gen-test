@@ -2,12 +2,32 @@
 
 tests::tests()
 {
+    n_tests = 0;
+    detected = 0;
+    m_faults_set.clear();
+}
 
+tests::tests(const tests &m_test)
+{
+    n_tests = m_test.n_tests;
+    detected = m_test.detected;
+    m_faults_set = m_test.m_faults_set;
+    sim_test = m_test.sim_test;
 }
 
 tests::~tests()
 {
 
+}
+
+uint32 tests::GetTestNumber()
+{
+    return n_tests;
+}
+
+uint32 tests::GetDetectedNumber()
+{
+    return detected;
 }
 
 void tests::EmptyFaults()
@@ -56,3 +76,13 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
+string tests::get_dna() const 
+{
+    return "";
+}; 
+
+void tests::ExecuteTest()
+{
+    sim_test.execute(get_dna());
+    sim_test.get_results(&n_tests, &detected);
+}
