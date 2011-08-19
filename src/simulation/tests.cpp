@@ -84,5 +84,5 @@ string tests::get_dna() const
 void tests::ExecuteTest()
 {
     sim_test.execute(get_dna());
-    sim_test.get_results(&n_tests, &detected);
+    sim_test.get_results(n_tests, detected);
 }

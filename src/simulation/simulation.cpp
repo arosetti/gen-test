@@ -251,25 +251,25 @@ string simulation::read_output()
     return content;
 }
 
-void simulation::get_results(uint32 *n_total_faults, uint32 *n_faults)
+void simulation::get_results(uint32& n_total_faults, uint32& n_faults)
 {
     int ret;
     string str = read_output();
     char *str_s = strstr ((char *)str.c_str(),"0,");
 
-    *n_total_faults = 0; // se si rimuove questo nn funziona nulla (forse ora è ok ma non ci conterei)
-    *n_faults = 0;
+    n_total_faults = 0; // se si rimuove questo nn funziona nulla (forse ora è ok ma non ci conterei)
+    n_faults = 0;
     
-    ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)n_total_faults, (int*)n_faults);
+    ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)&n_total_faults, (int*)&n_faults);
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
 
     if (conf->debug && conf->print_simulation)
     {
-        cout << "#total_faults " << *n_total_faults << endl;
-        cout << "#faults_detected " << *n_faults << endl;
+        cout << "#total_faults " << n_total_faults << endl;
+        cout << "#faults_detected " << n_faults << endl;
     }
-    if (*n_total_faults > 1000)
+    if (n_total_faults > 1000)
         exit(0);
 
     remove(get_output_file_path().c_str());

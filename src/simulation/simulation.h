@@ -35,7 +35,7 @@ class simulation
     simulation();
     ~simulation();
     
-    void get_results(uint32*, uint32*);
+    void get_results(uint32&, uint32&);
 
     void rebuild();
     void patch();
