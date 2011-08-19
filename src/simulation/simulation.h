@@ -25,6 +25,7 @@ class simulation
     bool setup_input_file(string);
     string read_output();
 
+    string get_sim_path();
     string get_bin_path();
     string get_patch_path();
     string get_input_file_path();

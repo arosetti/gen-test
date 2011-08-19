@@ -70,12 +70,31 @@ void simulation::rebuild()
 
 }
 
+string simulation::get_sim_path()
+{
+    string path;
+    char *buffer = new char[1024];
+
+    getcwd(buffer,1024);
+   
+    if(conf->simulator_dir.c_str()[0] != '/')
+    {
+        path = buffer;
+        if (path.c_str()[path.length()] != '/')
+            path += "/";
+    
+    }
+    path += conf->simulator_dir;
+
+    if (path.c_str()[path.length()] != '/') // TODO funzione add slash
+        path += "/";
+
+    return path;
+}
+
 string simulation::get_bin_path()
 {
-    string path = conf->simulator_dir; 
-
-    if (path.c_str()[path.length()] != '/') // funzione add slash
-        path += "/";
+    string path = get_sim_path();
     path += conf->simulator_bin;
     
     return path;
@@ -83,40 +102,33 @@ string simulation::get_bin_path()
 
 string simulation::get_patch_path()
 {
-    string path = conf->simulator_dir;
-
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
-    path += conf->simulator_patch;
-    
+    string path = conf->simulator_patch;
     return path;
 }
 
 string simulation::get_input_file_path()
 {
-    string path = conf->simulator_dir;
-
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
+    string path = get_sim_path();
     path += conf->test_file_in;
-    
+
     return path;
 }
 
 string simulation::get_output_file_path()
 {
-    string path = conf->simulator_dir;
-
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
+    string path = get_sim_path();
     path += conf->test_file_out;
-    
+
     return path;
 }
 
 bool simulation::init_env()
 {
     string sim_bin = get_bin_path();
+    string faults = get_sim_path();
+
+    faults += "faults.txt";
+    remove(faults.c_str());
 
     /*if (chmod((char *) sim_bin.c_str(),00775))
     {
@@ -129,30 +141,33 @@ bool simulation::init_env()
 
 bool simulation::execute(string dna)
 {
-    string path = get_bin_path();
+    string bin = conf->simulator_bin , sim_path = get_sim_path();
     char *buffer = new char[1024];
     int ret;
 
-    if (!file_exists(path))
+    setup_input_file(dna);
+
+    getcwd(buffer,1024);
+
+    ret = chdir((char *)sim_path.c_str());
+    if(ret)
+        perror("chdir");
+
+    if (!file_exists(bin))
     {
-        cout << "simulator binary does note exists." << endl;
+        cout << "simulator binary does not exists." << endl;
         exit(0);
     }
 
-    path += " ";
-    path += conf->simulator_args;
-    path += conf->test_file_out;
-    path += " > /dev/null 2>&1";
-    
-    cout << path << endl;
-
-    setup_input_file(dna);
-    
-    /* da controllare i ret */
-    getcwd(buffer,1024);
-    ret = chdir((char *)conf->simulator_dir.c_str());
-    ret = system(path.c_str()); //int execl(path.c_str(), argvs);
+    bin.insert(0,"./");
+    bin += " ";
+    bin += conf->simulator_args;
+    bin += conf->test_file_out;
+    bin += " > /dev/null 2>&1";
+    ret = system(bin.c_str()); //int execl(path.c_str(), argvs);
     ret = chdir(buffer);
+    if(ret)
+        perror("chdir");
 
     delete[] buffer;
     return true;
