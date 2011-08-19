@@ -27,6 +27,7 @@ class tests
         void   EmptyFaults();
  
         void   ExecuteTest(general_tests* g_test = NULL); 
+        bool   GetFaultsFile(general_tests* g_test);
  
         virtual string get_dna() const;
 

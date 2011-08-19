@@ -430,10 +430,10 @@ void population::cout_population(string logfile) const
     }
 }
 
-void population::read_faults()
+void population::reset_faults()
 {
     test.EmptyFaults();
-    for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
-        (*itr).second->EmptyFaults();
-    test.LoadFile(pool);
+    //for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    //    (*itr).second->EmptyFaults();
+    //test.LoadFile(pool);
 }

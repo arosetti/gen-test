@@ -29,7 +29,8 @@ class general_tests
         bool   DeleteFault(uint32 fault, uint32 numb = 0);
         bool   InsertFault(uint32 fault, uint32 numb = 1);
         uint32 FindFault(uint32 fault);
-        bool   LoadFile(individual_map* pool);
+
+        bool   LoadFile(individual_map* pool); // Deprecato
 
     private:
 
