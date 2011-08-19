@@ -10,6 +10,11 @@ tests::~tests()
 
 }
 
+void tests::EmptyFaults()
+{
+    m_faults_set.clear();
+}
+
 uint32 tests::GetFaultsSize()
 {
     return m_faults_set.size();

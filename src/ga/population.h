@@ -46,15 +46,16 @@ class population
     
     void    new_random_population();
 
+    void    execute_tests();
+    void    read_faults();
     void    calc_population_fitness();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();  // deprecated
 
     void    transfert_bests();
-
     void    mate_individuals();
-    void    mutate_individuals() const;
+    void    mutate_individuals() const;    
 
     uint32  size() const;
     void    print_best() const;
