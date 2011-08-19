@@ -42,3 +42,12 @@ src/simulation/simulation_test
 src/simulation/input_signals
 gentest.log
 src/common/logger/logger_test
+patches/patches_sim_mobius.tar.bz2
+simulator/b02/sim_FPGASim_Linux
+simulator/b02/output_faults
+simulator/b02/input_signals
+patches/modifiche_alg_genetico
+simulator/b02/faults.txt
+src/.deps/main.Po
+src/.deps/.dirstamp
+src/.deps/config.Po
