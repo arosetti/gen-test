@@ -9,13 +9,13 @@ individual::individual(uint32 chrom_len, uint32 chrom_num)
     edited = true;
 }
 
-individual::individual(const individual &ind)
+individual::individual(const individual &ind) : tests (ind)
 {
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
     dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ??  
-    edited = edited;  
+    edited = edited;    
 }
 
 individual::~individual()

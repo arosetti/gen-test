@@ -28,7 +28,7 @@ class individual: public tests
 
     public:
     individual(uint32, uint32);
-    individual(const individual&);
+    individual(const individual& ind);
     ~individual();
 
     bool    IsEdited() const;

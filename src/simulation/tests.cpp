@@ -34,8 +34,12 @@ uint32 tests::GetDetectedNumber()
 void tests::EmptyFaults(general_tests* g_test)
 {
     if (g_test)
+    {        
         for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
+        {
             g_test->DeleteFault(*itr, 1);
+        }
+    }
     m_faults_set.clear();
 }
 
@@ -138,6 +142,7 @@ bool tests::GetFaultsFile(general_tests* g_test)
     int fault_index = 0;
 
     string p_buffer = strtok (buffer," "); // The
+
     while (p_buffer != "E")
     {
         p_buffer = strtok (NULL, " "); // fault
@@ -159,7 +164,6 @@ bool tests::GetFaultsFile(general_tests* g_test)
                 return false;
             }
 
-            //cout << "insert fault " << fault_index << endl;
             InsertFault(fault_index);
             if (g_test)
                 g_test->InsertFault(fault_index);            
