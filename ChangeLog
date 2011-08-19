@@ -1,5 +1,20 @@
-changeset:   185:15cd73b6115d
+changeset:   188:6ffe32e049ba
 tag:         tip
+utente:      Lazzalf
+data:        Fri Aug 19 15:44:46 2011 +0200
+sommario:    Simulation
+
+changeset:   187:5a19ed1c71f8
+utente:      Lazzalf
+data:        Fri Aug 19 15:33:57 2011 +0200
+sommario:    Individual e Tests
+
+changeset:   186:0313f03dc645
+utente:      Lazzalf
+data:        Fri Aug 19 14:34:41 2011 +0200
+sommario:    Aggiustata Changelog dopo il Merge
+
+changeset:   185:15cd73b6115d
 utente:      Lazzalf
 data:        Fri Aug 19 14:33:52 2011 +0200
 sommario:    General_tests

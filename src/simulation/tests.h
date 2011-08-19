@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class general_tests;
+
 class tests
 {
     public:
@@ -24,9 +26,9 @@ class tests
         bool   FindFault(uint32 fault);
         void   EmptyFaults();
  
-        void   ExecuteTest(); 
+        void   ExecuteTest(general_tests* g_test = NULL); 
  
-        virtual string get_dna() const; 
+        virtual string get_dna() const;
 
     protected:
  
