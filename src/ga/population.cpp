@@ -267,7 +267,7 @@ void population::mate_individuals()
         temp_pool = new individual_map;
     individual *ind_a_cloned, *ind_b_cloned;
 
-    create_mating_pool();    
+    create_mating_pool();
 
     if (mating_pool.empty())
         return;
@@ -275,16 +275,27 @@ void population::mate_individuals()
     individual_id_list::iterator itr = mating_pool.begin();
     uint32 index = 0;
 
+    /* Inizio accoppiamento */
     while (mating_pool.size() > (index + 1))
-    {        
-        /* Inizio accoppiamento */
+    {
+        /* Clono gli individual che faranno parte della nuova map */
         ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
 
-        if (rand()%2) // Inserire percentuale accoppiamento        
+        /* Effettuo il crossover con una certa probabilità */
+        if ((rand()%100 + 1) <= conf->mating_rate)
+        {
+            if (conf->debug && conf->verbose && conf->print_mating)
+                cout << "crossover event!" << endl;
+
             crossover(ind_a_cloned, ind_b_cloned);
 
-        /* aggiungo i figli alla nuova map */
+            /* Dopo il crossover ci potrebbero essere delle mutazioni */
+            mutate_individual(ind_a_cloned);
+            mutate_individual(ind_a_cloned);
+        }
+
+        /* Aggiungo i figli alla nuova map */
         temp_pool->insert(temp_pool->end(),
                  individual_pair(temp_pool->size(), ind_a_cloned));
         temp_pool->insert(temp_pool->end(),
@@ -293,6 +304,7 @@ void population::mate_individuals()
         index +=2; 
     }
 
+    /* Se ne rimane uno che non ha trovato moglie lo copio nella nuova map */
     if (mating_pool.size() == (index + 1))
     {
         ind_a_cloned = new individual(*(*pool->find(*itr)).second);
@@ -300,13 +312,25 @@ void population::mate_individuals()
             individual_pair(temp_pool->size(), ind_a_cloned));
     }
 
-    if (conf->debug && conf->verbose && conf->print_mating)
-        cout << "temp_pool size: " << temp_pool->size() << endl;
-
+    /* Elimino la vecchia generazione e la sostituisco con la nuova */
     empty_population();
     pool = temp_pool;
     temp_pool = NULL;
     mating_pool.clear();
+}
+
+void population::mutate_individual(individual *ind)
+{
+    float count = 0;
+
+    if (!ind)
+        return;
+
+    if ((conf->mutation_rate * 100) > (rand()%100 + 1))
+        ind->dna_mutate();
+
+    if (conf->verbose && conf->print_mutations)
+        cout << count <<" mutation event!"<<endl;
 }
 
 void population::mutate_individuals() const

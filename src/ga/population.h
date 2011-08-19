@@ -54,7 +54,9 @@ class population
     void    transfert_bests();
 
     void    mate_individuals();
-    void    mutate_individuals() const;
+    void    mutate_individuals() const;  // deprecated
+    void    mutate_individual(individual*);
+
 
     uint32  size() const;
     void    print_best() const;

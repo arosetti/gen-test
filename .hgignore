@@ -51,3 +51,4 @@ simulator/b02/faults.txt
 src/.deps/main.Po
 src/.deps/.dirstamp
 src/.deps/config.Po
+simulator/*

@@ -67,10 +67,6 @@ void ga_engine::evolve()
             cout << "* mating individuals" << endl;
         pop->mate_individuals();
 
-        if (conf->verbose)
-            cout << "* mutating individuals" << endl;
-        pop->mutate_individuals();
-
         if (conf->debug)
         {
             cout << "* logging generation to file" << endl;

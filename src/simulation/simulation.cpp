@@ -131,6 +131,7 @@ bool simulation::execute(string dna)
 {
     string path = get_bin_path();
     char *buffer = new char[1024];
+    int ret;
 
     if (!file_exists(path))
     {
@@ -142,13 +143,16 @@ bool simulation::execute(string dna)
     path += conf->simulator_args;
     path += conf->test_file_out;
     path += " > /dev/null 2>&1";
+    
+    cout << path << endl;
 
     setup_input_file(dna);
-
+    
+    /* da controllare i ret */
     getcwd(buffer,1024);
-    chdir((char *)conf->simulator_dir.c_str());
-    system(path.c_str()); //int execl(path.c_str(), argvs);
-    chdir(buffer);
+    ret = chdir((char *)conf->simulator_dir.c_str());
+    ret = system(path.c_str()); //int execl(path.c_str(), argvs);
+    ret = chdir(buffer);
 
     delete[] buffer;
     return true;
@@ -162,7 +166,7 @@ bool simulation::setup_input_file(string dna)
 
     if (!sim_file.is_open())
     {
-        perror("setup_input_file");
+        perror("input_file");
         exit(0);
     }
 
@@ -212,7 +216,7 @@ string simulation::read_output()
     
     if (!sim_out_file.is_open())
     {
-        perror("setup_output_file");
+        perror("output_file");
         exit(0);
     }
 
