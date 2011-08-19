@@ -81,7 +81,7 @@ string tests::get_dna() const
     return "";
 }; 
 
-void tests::ExecuteTest()
+void tests::ExecuteTest(general_tests* g_test)
 {
     sim_test.execute(get_dna());
     sim_test.get_results(n_tests, detected);

@@ -55,7 +55,7 @@ individual* population::new_random_individual()
                          conf->chromosome_start_len_min + 1 ) \
                          + conf->chromosome_start_len_min;
 
-    individual* ind = new individual(len,conf->chromosome_num);
+    individual* ind = new individual(len, conf->chromosome_num);
     ind->dna_random();
 
     return ind;
@@ -114,7 +114,7 @@ void population::execute_tests()
     for (; itr != pool->end(); ++itr)
     {
         if ((*itr).second)
-            (*itr).second->ExecuteTest();
+            (*itr).second->ExecuteTest(&test);
     }
 }
 

@@ -3,7 +3,7 @@
 individual::individual(uint32 chrom_len, uint32 chrom_num)
 {
     chromosome_length = chrom_len;
-    chromosome_number = chrom_num;    
+    chromosome_number = chrom_num;
     fitness = 0;
     dna = new bitmatrix(chromosome_number, chromosome_length);
 }
@@ -19,7 +19,7 @@ individual::individual(const individual &ind)
 individual::~individual()
 {
     delete dna;
-}
+}   
 
 string individual::get_dna() const
 {

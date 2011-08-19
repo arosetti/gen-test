@@ -25,7 +25,7 @@ class individual: public tests
     float    fitness;
 
     public:
-    individual(uint32,uint32);
+    individual(uint32, uint32);
     individual(const individual&);
     ~individual();
 
