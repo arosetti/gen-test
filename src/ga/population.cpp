@@ -293,6 +293,7 @@ void population::mate_individuals()
     {
         /* Clono gli individual che faranno parte della nuova map */
         ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
+        //cout << "faults " << ((*pool->find(*itr)).second)->GetFaultsSize() << endl;
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
         /* Effettuo il crossover con una certa probabilità */
         if ((rand()%100 + 1) <= (conf->mating_rate*100))
