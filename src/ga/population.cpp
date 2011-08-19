@@ -114,7 +114,7 @@ void population::execute_tests()
     for (; itr != pool->end(); ++itr)
     {
         if ((*itr).second)
-            (*itr).second->execute_test();
+            (*itr).second->ExecuteTest();
     }
 }
 
@@ -434,6 +434,6 @@ void population::read_faults()
 {
     test.EmptyFaults();
     for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
-        (*itr).second->fault_find.EmptyFaults();
+        (*itr).second->EmptyFaults();
     test.LoadFile(pool);
 }

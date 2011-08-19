@@ -5,7 +5,6 @@
 
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
-#include "../simulation/simulation.h"
 #include "../simulation/tests.h"
 
 using namespace std;
@@ -17,17 +16,13 @@ extern config *conf;
  *
  */
 
-class individual
+class individual: public tests
 {
     uint32    chromosome_length;
     uint32    chromosome_number;
 
     bitmatrix *dna;
     float    fitness;
-    uint32   n_tests;
-    uint32   detected;
-
-    simulation test;   
 
     public:
     individual(uint32,uint32);
@@ -60,8 +55,6 @@ class individual
     string  info();
 
     bool operator < (const individual&);
-
-    tests fault_find;    
 };
 
 #endif
