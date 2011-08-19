@@ -1,5 +1,10 @@
-changeset:   180:6725d63e524a
+changeset:   181:d778e338f896
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 12:56:21 2011 +0200
+sommario:    fix simulazione con directory assolute o relative.
+
+changeset:   180:6725d63e524a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Aug 19 11:43:41 2011 +0200
 sommario:    La mutazione si fa successivamente a un crossover con una certa probabilità.

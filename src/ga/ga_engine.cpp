@@ -59,6 +59,12 @@ void ga_engine::evolve()
         if (conf->verbose && conf->print_best)
             pop->print_best();
 
+        if (conf->debug)
+        {
+            cout << "* logging generation to file" << endl;
+            pop->log_population(generation);
+        }
+        
         if (conf->verbose)
             cout << "* transfert best individuals" << endl;
         pop->transfert_bests();
@@ -67,13 +73,8 @@ void ga_engine::evolve()
             cout << "* mating individuals" << endl;
         pop->mate_individuals();
 
-        if (conf->debug)
-        {
-            cout << "* logging generation to file" << endl;
-            pop->log_population(generation);
-        }
         time_stop(time);
-        
+         
         if (conf->verbose)
             cout << "* iteration time: " << time_format(time_diff(time)) << endl;
     }

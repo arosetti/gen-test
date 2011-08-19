@@ -270,8 +270,11 @@ void population::mate_individuals()
     create_mating_pool();
 
     if (mating_pool.empty())
+    {
+        if (conf->debug)
+            cout << "mating_pool is empty" << endl;
         return;
-
+    }
     individual_id_list::iterator itr = mating_pool.begin();
     uint32 index = 0;
 
@@ -281,9 +284,8 @@ void population::mate_individuals()
         /* Clono gli individual che faranno parte della nuova map */
         ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
-
         /* Effettuo il crossover con una certa probabilità */
-        if ((rand()%100 + 1) <= conf->mating_rate)
+        if ((rand()%100 + 1) <= (conf->mating_rate*100))
         {
             if (conf->debug && conf->verbose && conf->print_mating)
                 cout << "crossover event!" << endl;
