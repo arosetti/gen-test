@@ -1,4 +1,5 @@
 #include <string>
+#include <string.h>
 #include <assert.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -14,5 +15,6 @@
 #include "logger/logger.h"
 
 bool file_exists(string filename);
+uint32 get_columns();
 
 #endif

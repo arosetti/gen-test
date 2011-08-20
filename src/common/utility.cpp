@@ -9,3 +9,11 @@ bool file_exists(string filename)
         return false;
     return true;
 }
+
+uint32 get_columns()
+{
+    char *str = getenv("COLUMNS");
+    if (strcmp(str, ""))
+        return 0;
+    return atoi(str);
+}

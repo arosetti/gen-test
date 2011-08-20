@@ -233,7 +233,7 @@ void population::transfer_bests()
     transfer_num = (transfer_num == 0)?1:transfer_num;
 
     if (conf->debug)
-        cout << "transferring " << transfer_num << "best individuals from old population" << endl;
+        cout << "transferring " << transfer_num << " best individual(s) from old population" << endl;
 
     typedef std::pair<individual*, float> best_pair;
     std::list<best_pair> best_map;

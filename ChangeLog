@@ -1,5 +1,10 @@
-changeset:   194:4ca643884afb
+changeset:   195:d69bbeb24ee4
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 13:10:39 2011 +0200
+sommario:    modificata transfer_bests() in modo da trasferire almeno un individuo,
+
+changeset:   194:4ca643884afb
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Aug 20 12:35:13 2011 +0200
 sommario:    fix costruttore di copia di individual

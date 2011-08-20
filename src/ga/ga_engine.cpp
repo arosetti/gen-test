@@ -22,7 +22,6 @@ void ga_engine::init()
     pop->new_random_population();
 }
 
-
 void ga_engine::evolve()
 {
     float avg_fitness = 0;
@@ -42,7 +41,10 @@ void ga_engine::evolve()
     {
         time_start(time);
         if (conf->verbose)
+        {
+            //for(int i = 0; i< (get_columns()/4) ; i++) cout << "-";
             cout << endl << "* generation: " << generation << endl;
+        }
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;
 
@@ -69,7 +71,7 @@ void ga_engine::evolve()
 
         if (conf->debug)
         {
-            cout << "* logging generation" << generation << " to file" << endl;
+            cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
         }
         
