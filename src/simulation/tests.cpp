@@ -89,9 +89,13 @@ void tests::ExecuteTest(general_tests* g_test)
     if (is_tested())
     {
         if (conf->debug && conf->verbose)
-            cout << "Test non eseguito perchè DNA uguale" << endl;
+            cout << "dna già testato" << endl;
         return;
     }
+
+    if (conf->debug && conf->verbose)
+        cout << "test dna in corso..." << endl;
+
     sim_test.execute(get_dna());
     sim_test.get_results(n_tests, detected);
     GetFaultsFile(g_test);
