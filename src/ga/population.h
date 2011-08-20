@@ -26,42 +26,41 @@ extern config *conf;
 class population
 {
     individual_map*     pool;
-    individual_id_list  mating_pool;
     individual_map*     temp_pool;
-    
+    individual_id_list  mating_pool;
+
     general_tests test;
 
     individual* get_random_individual() const;
     individual* new_random_individual();
-    
+
     void    create_mating_pool();
     void    crossover(individual*&, individual*&);
+    void    clear_population();
 
-
-    void    empty_population();
-    
     public:
     population();
     ~population();
-    
+
     void    new_random_population();
 
-    void    execute_tests();
-    void    reset_faults();
-    void    calc_population_fitness();
+    void    test_population();
+    void    reset_faults(); // ?? da inserire in general tests ??
+    
+    void    eval_fitnesses();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();  // deprecated
 
-    void    transfert_bests();
+    void    transfer_bests();
+    void    print_best() const;
     void    mate_individuals();
-    void    mutate_individuals() const;  // deprecated
     void    mutate_individual(individual*);
+    void    mutate_individuals() const;  // deprecated
 
     uint32  size() const;
-    void    print_best() const;
-    void    log_population(uint32 generation) const;
-    void    cout_population(string logfile) const;
+    void    log(uint32 generation) const;
+    void    print() const;
 };
 
 #endif

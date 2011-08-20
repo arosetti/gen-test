@@ -148,7 +148,6 @@ void individual::set_fitness(float f) // deprecated??
 {
     test.execute(get_dna());
     test.get_results(&n_tests, &detected);
-    test();
 }*/
 
 void individual::calc_fitness()
@@ -157,7 +156,6 @@ void individual::calc_fitness()
     //test.get_results(&n_tests, &detected);
     fitness = (float)(100 * detected) / (float)(n_tests);
     //fitness = ( (float)(100 * detected) / (float)(n_tests) ) * ( get_chromosome_length()>conf->chromosome_start_len_min?((get_dna_length()+60)/get_dna_length()):1 );
-    test();
 }
 
 string individual::get_chromosome(uint32 crom)  const

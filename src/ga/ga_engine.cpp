@@ -49,19 +49,19 @@ void ga_engine::evolve()
         /*if (conf->verbose)
             cout << "* reset faults" << endl;
         pop->reset_faults();*/
-       
+
         if (conf->verbose)
-            cout << "* execute tests" << endl;
-        pop->execute_tests();
-            
+            cout << "* executing tests" << endl;
+        pop->test_population();
+
         if (conf->verbose)
             cout << "* calculating population fitnesses" << endl;
-        pop->calc_population_fitness();
+        pop->eval_fitnesses();
 
         if (conf->verbose && conf->print_avg_fitness)
         {
             avg_fitness = pop->get_avg_fitness();
-            cout << "* avg fitness: " << avg_fitness << endl;
+            cout << "* average fitness: " << avg_fitness << endl;
         }
 
         if (conf->verbose && conf->print_best)
@@ -69,13 +69,13 @@ void ga_engine::evolve()
 
         if (conf->debug)
         {
-            cout << "* logging generation to file" << endl;
-            pop->log_population(generation);
+            cout << "* logging generation" << generation << " to file" << endl;
+            pop->log(generation);
         }
         
         if (conf->verbose)
-            cout << "* transfert best individuals" << endl;
-        pop->transfert_bests();
+            cout << "* transfer best individuals" << endl;
+        pop->transfer_bests();
 
         if (conf->verbose)
             cout << "* mating individuals" << endl;
