@@ -25,22 +25,23 @@ class tests
         bool   InsertFault(uint32 fault);
         bool   FindFault(uint32 fault);
         void   EmptyFaults(general_tests* g_test = NULL);
- 
-        void   ExecuteTest(general_tests* g_test = NULL); 
-        bool   GetFaultsFile(general_tests* g_test);
- 
-        virtual string get_dna() const;
-        virtual bool   IsEdited() const;
-        virtual void   UnsetEdited() {};
 
+        void   ExecuteTest(general_tests* g_test = NULL);
+        bool   GetFaultsFile(general_tests* g_test);  // questa va in simulation
+
+        virtual string get_dna() const = 0;
+        virtual bool   is_tested() const = 0;
+        virtual void   test() = 0;
+        virtual void   untest() = 0;
+        
     protected:
- 
+
         uint32 detected;
         uint32 n_tests;
 
         simulation sim_test;
 
-        set<uint32> m_faults_set;        
+        set<uint32> m_faults_set;
 };
 
 #endif
