@@ -34,7 +34,7 @@ uint32 tests::GetDetectedNumber()
 void tests::EmptyFaults(general_tests* g_test)
 {
     if (g_test)
-    {        
+    {
         for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
         {
             g_test->DeleteFault(*itr, 1);
@@ -84,27 +84,18 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
-string tests::get_dna() const 
-{
-    return "";
-}; 
-
-bool tests::IsEdited() const
-{
-    return true;
-}
-
 void tests::ExecuteTest(general_tests* g_test)
 {
-    if (!IsEdited())
+    if (is_tested())
     {
-        // cout << "Test non eseguito perchè DNA uguale" << endl;
+        if (conf->debug && conf->verbose)
+            cout << "Test non eseguito perchè DNA uguale" << endl;
         return;
     }
     sim_test.execute(get_dna());
     sim_test.get_results(n_tests, detected);
     GetFaultsFile(g_test);
-    UnsetEdited();
+    test();
 }
 
 bool tests::GetFaultsFile(general_tests* g_test)
@@ -153,10 +144,10 @@ bool tests::GetFaultsFile(general_tests* g_test)
         if (p_buffer != "in") //!!!!
             p_buffer = strtok (NULL, " "); //in
 
-        p_buffer = strtok (NULL, " "); // component        
+        p_buffer = strtok (NULL, " "); // component
         p_buffer = strtok (NULL, " "); // number
         p_buffer = strtok (NULL, " "); // has
-        p_buffer = strtok (NULL, " ");        
+        p_buffer = strtok (NULL, " ");
         if (p_buffer == "been") // fault trovato
         {
             if (fault_index > n_tests)
@@ -169,7 +160,7 @@ bool tests::GetFaultsFile(general_tests* g_test)
 
             InsertFault(fault_index);
             if (g_test)
-                g_test->InsertFault(fault_index);            
+                g_test->InsertFault(fault_index);
         }
 
         p_buffer = strtok (NULL, "\n");

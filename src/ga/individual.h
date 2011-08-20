@@ -24,18 +24,18 @@ class individual: public tests
     bitmatrix *dna;
     float    fitness;
     
-    bool edited;
+    bool tested;
 
     public:
     individual(uint32, uint32);
     individual(const individual& ind);
     ~individual();
 
-    bool    IsEdited() const;
-    void    SetEdited();
-    void    UnsetEdited();
+    virtual bool    is_tested() const;
+    virtual void    test();
+    virtual void    untest();
 
-    string  get_dna() const;
+    virtual string  get_dna() const;
     void    set_dna(string);
     uint32  get_dna_length() const;
     void    dna_random();
