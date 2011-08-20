@@ -35,7 +35,7 @@ population::population()
 
 population::~population()
 {
-    empty_population();
+    clear_population();
 }
 
 individual* population::get_random_individual() const
@@ -82,7 +82,7 @@ void population::new_random_population()
     }
 }
 
-void population::empty_population()
+void population::clear_population()
 {
     individual_map::iterator itr;
 
@@ -98,7 +98,7 @@ void population::empty_population()
     pool = NULL;
 }
 
-void population::calc_population_fitness()
+void population::eval_fitnesses()
 {
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
@@ -108,7 +108,7 @@ void population::calc_population_fitness()
     }
 }
 
-void population::execute_tests()
+void population::test_population()
 {
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
@@ -223,12 +223,17 @@ void population::create_mating_pool()
     }
 }
 
-void population::transfert_bests()
+void population::transfer_bests()
 {
-    uint32 transfert_num = uint32(conf->population_size) - uint32(conf->population_size * conf->mating_fraction);
+    uint32 transfer_num = uint32(conf->population_size) - uint32(conf->population_size * conf->mating_fraction);
 
-    if (!transfert_num) 
+    if (conf->mating_fraction == 1)
         return;
+
+    transfer_num = (transfer_num == 0)?1:transfer_num;
+
+    if (conf->debug)
+        cout << "transferring " << transfer_num << "best individuals from old population" << endl;
 
     typedef std::pair<individual*, float> best_pair;
     std::list<best_pair> best_map;
@@ -239,12 +244,12 @@ void population::transfert_bests()
         {  
             if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
             {        
-                if (itr2 == best_map.end() && best_map.size() >= transfert_num)
+                if (itr2 == best_map.end() && best_map.size() >= transfer_num)
                     break;               
                 
-                best_map.insert(itr2, best_pair((*itr).second, (*itr).second->get_fitness()));                
+                best_map.insert(itr2, best_pair((*itr).second, (*itr).second->get_fitness()));
                 
-                if (best_map.size() > transfert_num)
+                if (best_map.size() > transfer_num)
                 {   
                     itr2 = best_map.end();
                     best_map.erase(--itr2);
@@ -326,7 +331,7 @@ void population::mate_individuals()
     }
 
     /* Elimino la vecchia generazione e la sostituisco con la nuova */
-    empty_population();
+    clear_population();
     pool = temp_pool;
     temp_pool = NULL;
     mating_pool.clear();
@@ -395,7 +400,7 @@ void population::print_best() const
         cout << ind->info();
 }
 
-void population::log_population(uint32 generation) const
+void population::log(uint32 generation) const
 {
     string generations_logfile;
     individual_map::const_iterator itr;
@@ -418,7 +423,7 @@ void population::log_population(uint32 generation) const
     LOG(generations_logfile, out.str(), false);
 }
 
-void population::cout_population(string logfile) const
+void population::print() const
 {
     individual_map::const_iterator itr;
     uint32 count = 0;

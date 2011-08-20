@@ -1,5 +1,10 @@
-changeset:   193:8c92dc742e14
+changeset:   194:4ca643884afb
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 12:35:13 2011 +0200
+sommario:    fix costruttore di copia di individual
+
+changeset:   193:8c92dc742e14
 utente:      Lazzalf
 data:        Sat Aug 20 01:33:40 2011 +0200
 sommario:    tests
