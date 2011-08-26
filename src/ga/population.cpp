@@ -339,16 +339,17 @@ void population::mate_individuals()
 
 void population::mutate_individual(individual *ind)
 {
-    float count = 0;
+    float count = conf->mutation_strength * ind->dna_length();
 
     if (!ind)
         return;
 
-    if ((conf->mutation_rate * 100) > (rand()%100 + 1))
-        ind->dna_mutate();
-
     if (conf->verbose && conf->print_mutations)
         cout << count <<" mutation event!"<<endl;
+
+    while(count--)
+        if ((conf->mutation_rate * 100) > (rand()%100 + 1))
+            ind->dna_mutate();
 }
 
 void population::mutate_individuals() const

@@ -410,6 +410,25 @@ void bitmatrix::AttachCols(const string& str)
     SetCols(str, old_col_size);
 }
 
+void bitmatrix::DeleteCol(uint32 col)
+{
+    if (col >= m_cols)
+        return;
+
+    string chunk_a, chunk_b;
+    
+    if (col)
+        chunk_a = GetCols(0, col - 1);
+    if (col < m_cols)
+    chunk_b = GetCols(col + 1,m_cols);
+
+    Resize(m_rows, m_cols -1);
+
+    SetCols(chunk_a, 0);
+    SetCols(chunk_b, col);
+}
+
+
 uint32 GetStrColSize(const string& str)
 {
     /* conta i \n */
