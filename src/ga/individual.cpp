@@ -49,7 +49,7 @@ void individual::set_dna(string str)
     untest();
 }
 
-uint32 individual::get_dna_length()  const
+uint32 individual::dna_length()  const
 {
     return chromosome_number * get_chromosome_length();
 }
@@ -74,7 +74,7 @@ void individual::dna_random()
 
 void individual::dna_mutate()
 {
-    uint8 count = (get_dna_length()) * (conf->mutation_strength) / (fitness);
+    uint8 count = (dna_length()) * (conf->mutation_strength) / (fitness);
     uint32 row_r,col_r;
 
     if (count)

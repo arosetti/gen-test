@@ -260,6 +260,13 @@ class bitmatrix
         */
         void    AttachCols(const string& str);
 
+        //! Elimina una colonna dalla bitmatrix
+        /**
+
+        * @param uint32
+        */
+        void    DeleteCol(uint32 col);
+
         //! Stampa la bitmatrix a video
         void    Print() const;
         //! Converte la bitmatrix in una stringa uguale a quella del formato di importazione

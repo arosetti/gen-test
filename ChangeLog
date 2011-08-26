@@ -1,5 +1,10 @@
-changeset:   195:d69bbeb24ee4
+changeset:   196:c478fc2be3f5
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 14:20:47 2011 +0200
+sommario:    cleanups
+
+changeset:   195:d69bbeb24ee4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Aug 20 13:10:39 2011 +0200
 sommario:    modificata transfer_bests() in modo da trasferire almeno un individuo,
