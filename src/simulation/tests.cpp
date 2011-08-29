@@ -126,12 +126,19 @@ bool tests::GetFaultsFile(general_tests* g_test)
     int length = sim_fault_file.tellg();
     sim_fault_file.seekg (0, ios::beg);
 
+    if (!length)
+        cout<< "File Fault.txt vuoto" << endl;
+
     char *buffer = new char[length + 2];
 
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
 
-    remove(path.c_str());
+    // Svuota file
+    sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
+    sim_fault_file.close();   
+
+    //remove(path.c_str());
 
     buffer[length] = 'E';
     buffer[length+1] = ' ';
