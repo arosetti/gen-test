@@ -5,6 +5,7 @@
 #include <time.h>
 #include <sstream>
 #include <string>
+#include <limits.h>
 
 #include "../typedefs.h"
 
@@ -22,5 +23,7 @@ void time_stop(timer &time);
 double time_diff(timer &time);
 
 string time_format(uint32 sec);
+
+unsigned time_seed();
 
 #endif

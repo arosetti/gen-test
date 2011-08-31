@@ -7,6 +7,8 @@
 #include <string>
 #include <string.h>
 
+#include "../common/utility.h"
+
 typedef unsigned char uint8;
 typedef unsigned short int uint16;
 typedef unsigned long int uint32;

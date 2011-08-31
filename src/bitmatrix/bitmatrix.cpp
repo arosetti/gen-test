@@ -41,7 +41,7 @@ void bitmatrix::Randomize(uint32 row, uint32 col)
     if (row >= m_rows || col >= m_cols)
         return;
 
-    if (rand()%2)
+    if (randmm(0,1))
         Unset(row, col);
     else
         Set(row, col);
@@ -97,14 +97,14 @@ void bitmatrix::RandomizeRow(uint32 row)
         return;
 
     for (uint32 i = 0; i < m_cells; i++)
-        matrix[row][i] = uint8(rand()%256);
+        matrix[row][i] = uint8(randmm(0,255));
 }
 
 void bitmatrix::RandomizeAll()
 {
     for (uint32 i = 0; i < m_rows; i++)
         for (uint32 j = 0; j < m_cells; j++)
-             matrix[i][j] = uint8(rand()%256);
+             matrix[i][j] = uint8(randmm(0,255));
 }
 
 void bitmatrix::SetAll()
@@ -420,7 +420,7 @@ void bitmatrix::DeleteCol(uint32 col)
     if (col)
         chunk_a = GetCols(0, col - 1);
     if (col < m_cols)
-    chunk_b = GetCols(col + 1,m_cols);
+    chunk_b = GetCols(col + 1, m_cols);
 
     Resize(m_rows, m_cols -1);
 

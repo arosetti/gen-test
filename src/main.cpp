@@ -10,7 +10,7 @@ config *conf = new config;
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
+    srand(time_seed());
 
     ga_engine ga;
 

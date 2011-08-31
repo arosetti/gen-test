@@ -96,6 +96,11 @@ int main()
     
     b1.AttachCols(b2.ToString());
     b1.Print();
+
+    b1.DeleteCol(9);
+    b1.DeleteCol(0);
+
+    b1.Print();
    
     return 0;
 }

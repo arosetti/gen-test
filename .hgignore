@@ -52,3 +52,4 @@ src/.deps/main.Po
 src/.deps/.dirstamp
 src/.deps/config.Po
 output_faults
+simulator/b03/sim_FPGASim_Linux

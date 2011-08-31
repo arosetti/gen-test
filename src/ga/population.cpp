@@ -1,8 +1,8 @@
 #include "population.h"
 
 population::population()
-{
-    if (conf->population_size == 0)
+{   /*TODO controlli da fare nel config con una specifica funzione che decide se sono coerenti*/
+    if (conf->population_size == 0) 
     {
         cout << "can't use zero population size" << endl;
         exit(0);
@@ -44,16 +44,15 @@ individual* population::get_random_individual() const
         return NULL;
 
     individual_map::const_iterator itr = pool->begin();
-    advance(itr, rand()%pool->size());
+    advance(itr, randmm(0,pool->size()));
 
     return (*itr).second;
 }
 
 individual* population::new_random_individual()
 {
-    uint32 len = rand()%(conf->chromosome_start_len_max - \
-                         conf->chromosome_start_len_min + 1 ) \
-                         + conf->chromosome_start_len_min;
+    uint32 len = randmm(conf->chromosome_start_len_min, 
+                        conf->chromosome_start_len_max);
 
     individual* ind = new individual(len, conf->chromosome_num);
     ind->dna_random();
@@ -76,7 +75,7 @@ void population::new_random_population()
         for (; itr != pool->end(); ++itr)
         {
             if ((*itr).second)
-                cout << (*itr).second->get_chromosome_length() << " ";
+                  cout << (*itr).second->get_chromosome_length() << " ";
         }
         cout << endl;
     }
