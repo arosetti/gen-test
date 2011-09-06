@@ -72,7 +72,7 @@ class population
     {
         pthread_mutex_lock(&mutex_ind_itr);
     }
-    void  relaselock_ind_itr()
+    void  releaselock_ind_itr()
     {
         pthread_mutex_unlock(&mutex_ind_itr);
     }
@@ -80,7 +80,7 @@ class population
     {
         pthread_mutex_lock(&mutex_n_thread);
     }
-    void  relaselock_n_thread()
+    void  releaselock_n_thread()
     {
         pthread_mutex_unlock(&mutex_n_thread);
     }
