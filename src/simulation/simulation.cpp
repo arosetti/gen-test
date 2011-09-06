@@ -107,8 +107,11 @@ string simulation::read_output(uint32 id)
     
     if (!sim_out_file.is_open())
     {
-        perror("output_file");
-        exit(0);
+        throw "Error output_file not found or can't open";
+        
+        //perror("output_file");
+        //cout << "out : " << get_output_file_path(id).c_str() << endl;
+        //exit(0);
     }
 
     sim_out_file.seekg (0, ios::end);
