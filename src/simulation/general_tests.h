@@ -32,9 +32,19 @@ class general_tests
 
         bool   LoadFile(individual_map* pool); // Deprecato
 
+        void  getlock_gen_test()
+        {
+            pthread_mutex_lock(&mutex_gen_test);
+        }
+        void  relaselock_gen_test()
+        {
+            pthread_mutex_unlock(&mutex_gen_test);
+        }
+
     private:
 
         FaultsMap m_faults_map;
+        pthread_mutex_t    mutex_gen_test;
 };
 
 #endif
