@@ -47,8 +47,6 @@ class individual: public tests
     void    set_fitness(float);
     void    calc_fitness();
 
-    void    execute_test();
-
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
     uint32  get_chromosome_length() const;
