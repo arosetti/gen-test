@@ -1,5 +1,10 @@
-changeset:   205:81a9a75d1063
+changeset:   206:2f71fec64f1f
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 14:35:20 2011 +0200
+sommario:    aggiunti file simulation_setup
+
+changeset:   205:81a9a75d1063
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 06 11:32:19 2011 +0200
 sommario:    gestione parametri thread e inizializzazione cartelle di simulazione

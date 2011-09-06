@@ -23,6 +23,7 @@ typedef struct config
     string simulator_dir, simulator_bin, simulator_patch;
     string simulator_args;
     string test_file_out, test_file_in;
+    
     string thread_prefix;
     uint32 thread_slots;
 
@@ -45,6 +46,8 @@ extern config *conf;
 void init_config();
 bool load_config();
 void help_config();
+void check_config();
+
 
 int  load_args(int argc, char **argv);
 void help_args();

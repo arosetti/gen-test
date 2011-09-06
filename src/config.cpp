@@ -19,7 +19,7 @@ cfg_opt_t opts[] =
     CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
     CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
     CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
-    
+
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
     
@@ -90,7 +90,6 @@ bool load_config()
     conf->test_file_out = cfg_getstr(cfg, "test_file_out");
     conf->test_file_in = cfg_getstr(cfg, "test_file_in");
 
-
     conf->thread_prefix = cfg_getstr(cfg, "thread_prefix");
     conf->thread_slots = cfg_getint(cfg, "thread_slots");
 
@@ -128,7 +127,7 @@ int load_args(int argc, char **argv)
 
     opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hdIc:")) != -1)
+    while ((opt = getopt (argc, argv, "hdIc:")) != -1) //TODO t: %d thread_slots
         switch (opt)
         {
             case 'h':
@@ -180,6 +179,7 @@ void help_args()
     cout << "-d             :  debug mode on" << endl;
     cout << "-I             :  interactive mode on" << endl;
     cout << "-c <filename>  :  alternative config filename" << endl;
+    cout << "-t <threads>   :  thread number (not yet implemented)" << endl; //TODO thread number
     cout << endl;
 }
 
@@ -202,6 +202,11 @@ void interactive()
     cin >> value;
     conf->population_size = value;
     cfg_setint(cfg, "population_size", value);
+
+    cout << "thread slots: ";
+    cin >> value;
+    conf->thread_slots = value;
+    cfg_setint(cfg, "thread_slots", value);
 
     //cout << "chromosome_max_len: ";
     //cin  >> value;
@@ -231,4 +236,13 @@ void interactive()
     cout << endl;
 
     cfg_free(cfg);
+}
+
+void check_config()
+{
+    if (conf->thread_slots <= 0)
+    {
+        cout << "use at least one thread in thread_slots" << endl;
+        abort();
+    }
 }
