@@ -144,12 +144,6 @@ void individual::set_fitness(float f) // deprecated??
     fitness = f;
 }
 
-/*void individual::execute_test()
-{
-    test.execute(get_dna());
-    test.get_results(&n_tests, &detected);
-}*/
-
 void individual::calc_fitness()
 {
     //test.execute(get_dna());

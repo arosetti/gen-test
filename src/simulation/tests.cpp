@@ -115,7 +115,7 @@ void tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         cout << "test dna in corso..." << endl;
 
     sim_test.execute(get_dna(), sim_id);
-    sim_test.get_results(n_tests, detected);
+    sim_test.get_results(sim_id, n_tests, detected);
     GetFaultsFile(g_test);
     test();
 }
@@ -185,10 +185,10 @@ bool tests::GetFaultsFile(general_tests* g_test)
             if (fault_index > n_tests)
             {                
                 cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
-                //perror("simulator faults.txt");
-                delete[] buffer; 
+                //perror("simulator faults.txt");                
                 if (g_test)
                     g_test->releaselock_gen_test();  // Release Lock general tests
+                delete[] buffer;
                 return false;
             }
 
@@ -204,7 +204,6 @@ bool tests::GetFaultsFile(general_tests* g_test)
 
     if (g_test)
         g_test->releaselock_gen_test();  // Release Lock general tests
-
     delete[] buffer;
     
     return true;
