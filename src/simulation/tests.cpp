@@ -116,18 +116,13 @@ void tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 
     sim_test.execute(get_dna(), sim_id);
     sim_test.get_results(sim_id, n_tests, detected);
-    GetFaultsFile(g_test);
+    GetFaultsFile(sim_id, g_test);
     test();
 }
 
-bool tests::GetFaultsFile(general_tests* g_test)
+bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 {
-    string path = conf->simulator_dir;
-    string fault  = "faults.txt";
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
-    path += fault;
-
+    string path = get_faults_path(sim_id);
     ifstream sim_fault_file;
     sim_fault_file.open(path.c_str(), ios::binary);
 

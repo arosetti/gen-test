@@ -38,7 +38,7 @@ class tests
         void   EmptyFaults(general_tests* g_test = NULL);
 
         void   ExecuteTest(uint32 sim_id, general_tests* g_test = NULL);
-        bool   GetFaultsFile(general_tests* g_test);  // questa va in simulation
+        bool   GetFaultsFile(uint32 sim_id, general_tests* g_test = NULL);  // questa va in simulation
 
         virtual string get_dna() const = 0;
         virtual bool   is_tested() const = 0;
