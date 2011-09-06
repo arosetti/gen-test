@@ -15,13 +15,13 @@ void simulation::rebuild()
 
 }
 
-bool simulation::execute(string dna)
+bool simulation::execute(string dna, uint32 sim_id)
 {
-    string bin = conf->simulator_bin , sim_path = get_sim_path();
+    string bin = conf->simulator_bin , sim_path = get_sim_path(sim_id);
     char *buffer = new char[1024];
     int ret;
 
-    setup_input_file(dna);
+    setup_input_file(dna, sim_id);
 
     getcwd(buffer,1024);
 
@@ -49,11 +49,11 @@ bool simulation::execute(string dna)
     return true;
 }
 
-bool simulation::setup_input_file(string dna)
+bool simulation::setup_input_file(string dna, uint32 id)
 {
     fstream sim_file;
     
-    sim_file.open(get_input_file_path().c_str(),  fstream::out);
+    sim_file.open(get_input_file_path(id).c_str(),  fstream::out);
 
     if (!sim_file.is_open())
     {
@@ -91,18 +91,18 @@ bool simulation::setup_input_file(string dna)
     return true;
 }
 
-string simulation::read_output()
+string simulation::read_output(uint32 id)
 {
     uint32 length;
     ifstream sim_out_file;
     string content;
     char *buffer = NULL;
 
-    sim_out_file.open (get_output_file_path().c_str(), ios::binary );
+    sim_out_file.open (get_output_file_path(id).c_str(), ios::binary );
 
     if (conf->debug && conf->print_simulation)
     {
-        cout << "out : " << get_output_file_path().c_str() << endl;
+        cout << "out : " << get_output_file_path(id).c_str() << endl;
     }
     
     if (!sim_out_file.is_open())
@@ -119,7 +119,7 @@ string simulation::read_output()
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
-    remove(get_input_file_path().c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
+    remove(get_input_file_path(id).c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
     buffer[length] = 0;
     content = buffer;
     delete[] buffer;
@@ -127,10 +127,10 @@ string simulation::read_output()
     return content;
 }
 
-void simulation::get_results(uint32& n_total_faults, uint32& n_faults)
+void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults)
 {
     int ret;
-    string str = read_output();
+    string str = read_output(id);
     char *str_s = strstr ((char *)str.c_str(),"0,");
 
     n_total_faults = 0; // se si rimuove questo nn funziona nulla (forse ora è ok ma non ci conterei)
@@ -148,5 +148,5 @@ void simulation::get_results(uint32& n_total_faults, uint32& n_faults)
     if (n_total_faults > 1000)
         exit(0);
 
-    remove(get_output_file_path().c_str());
+    remove(get_output_file_path(id).c_str());
 }
