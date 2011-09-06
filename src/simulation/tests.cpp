@@ -7,13 +7,22 @@
 void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
+
+    // Svuota file fault.txt 
+    // TODO creare funzione di reset cartella all'inizio dei threads
+    string path = get_faults_path(t_param->sim_id);
+    ifstream sim_fault_file;    
+    sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
+    sim_fault_file.close();
+    
     while (individual* ind = t_param->pop->get_next_ind())
     {
-        ind->ExecuteTest(t_param->sim_id, t_param->g_test);
+        if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
+            sleep(1); // Per evitare che si accavallano i log
     }
     
     t_param->pop->dec_threads();
-    delete t_param;
+    delete t_param;    
 }
 
 
@@ -102,13 +111,13 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
-void tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
+bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
     if (is_tested())
     {
         if (conf->debug && conf->verbose)
             cout << "dna già testato" << endl;
-        return;
+        return false;
     }
 
     if (conf->debug && conf->verbose)
@@ -118,6 +127,7 @@ void tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
     sim_test.get_results(sim_id, n_tests, detected);
     GetFaultsFile(sim_id, g_test);
     test();
+    return true;
 }
 
 bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
