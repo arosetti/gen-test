@@ -12,6 +12,8 @@
 #include "../config.h"
 #include "../bitmatrix/bitmatrix.h"
 
+extern string dir_path;
+
 string get_sim_path(int);
 string get_bin_path(int);
 string get_outputnet_path(int);

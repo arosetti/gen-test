@@ -1,5 +1,15 @@
-changeset:   210:a8f9c1b9223c
+changeset:   212:04c1a38c13a3
 tag:         tip
+utente:      Lazzalf
+data:        Tue Sep 06 16:18:28 2011 +0200
+sommario:    Fix in tests class
+
+changeset:   211:0c81b14a9801
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 16:07:45 2011 +0200
+sommario:    fix thread in simulation_setup e simulaton
+
+changeset:   210:a8f9c1b9223c
 utente:      Lazzalf
 data:        Tue Sep 06 16:01:35 2011 +0200
 sommario:    Fix parametro e clean up

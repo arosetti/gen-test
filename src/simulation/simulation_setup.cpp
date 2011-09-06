@@ -18,9 +18,10 @@ string get_sim_path(int id)
 
     getcwd(buffer,1024);
    
-    if(conf->simulator_dir.c_str()[0] != '/')
+    if (conf->simulator_dir.c_str()[0] != '/')
     {
-        path = buffer;
+        path = dir_path;
+        //path = buffer;
         addslash(path);
     }
     path += conf->simulator_dir;
@@ -30,6 +31,7 @@ string get_sim_path(int id)
     if (id>=0)
         path += get_thread_subdir(id);
 
+    delete buffer;
     return path;
 }
 
