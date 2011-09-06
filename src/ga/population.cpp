@@ -110,6 +110,12 @@ void population::eval_fitnesses()
 
 void population::test_population()
 {
+    // Non servono mutex qui perchè non ci sono thread in esecuzione
+    //ind_itr = pool->begin();
+    //n_thread = conf->thread_slots;
+
+    // Qua invece servono mutex
+
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
@@ -443,4 +449,24 @@ void population::reset_faults()
     //for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
     //    (*itr).second->EmptyFaults();
     //test.LoadFile(pool);
+}
+
+individual* population::get_next_ind()
+{
+    getlock_ind_itr();
+    individual* ind = NULL;
+    if (ind_itr != pool->end())
+    {
+        ind = (*ind_itr).second;
+        ind_itr++;
+    }
+    relaselock_ind_itr();
+    return ind;
+}
+
+void population::thread_terminate()
+{
+    getlock_n_thread();
+    n_thread--;
+    relaselock_n_thread();
 }
