@@ -61,6 +61,34 @@ class population
     uint32  size() const;
     void    log(uint32 generation) const;
     void    print() const;
+
+    // for Thread
+    public:
+    individual* get_next_ind();
+    void thread_terminate();    
+    
+    private:
+    void  getlock_ind_itr()
+    {
+        pthread_mutex_lock(&mutex_ind_itr);
+    }
+    void  relaselock_ind_itr()
+    {
+        pthread_mutex_unlock(&mutex_ind_itr);
+    }
+    void  getlock_n_thread()
+    {
+        pthread_mutex_lock(&mutex_n_thread);
+    }
+    void  relaselock_n_thread()
+    {
+        pthread_mutex_unlock(&mutex_n_thread);
+    }
+
+    individual_map::const_iterator ind_itr;  // deve essere settato a ind_itr = pool->begin() prima dell'avvio dei thread
+    uint32 n_thread;                         // deve essere messo pari al numero dei thread prima dell'avvio di essi
+    pthread_mutex_t    mutex_ind_itr;
+    pthread_mutex_t    mutex_n_thread;
 };
 
 #endif
