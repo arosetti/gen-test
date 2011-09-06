@@ -1,8 +1,8 @@
 #include "general_tests.h"
 
 general_tests::general_tests()
-{
-
+{    
+    pthread_mutex_init(&mutex_gen_test, NULL);
 }
 
 general_tests::~general_tests()
