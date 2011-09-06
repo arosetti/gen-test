@@ -136,7 +136,7 @@ void population::test_population()
 
     while (n_thread)
     {
-        sleep(1000);
+        sleep(1); // In secondi
     }
 
     /*    
