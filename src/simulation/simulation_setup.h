@@ -12,13 +12,13 @@
 #include "../config.h"
 #include "../bitmatrix/bitmatrix.h"
 
-string get_sim_path();
-string get_bin_path();
-string get_outputnet_path();
-string get_faults_path();
-string get_patch_path();
-string get_input_file_path();
-string get_output_file_path();
+string get_sim_path(int);
+string get_bin_path(int);
+string get_outputnet_path(int);
+string get_faults_path(int);
+string get_patch_path(int);
+string get_input_file_path(int);
+string get_output_file_path(int);
 
 bool init_env();
 uint32 read_n_inputs();

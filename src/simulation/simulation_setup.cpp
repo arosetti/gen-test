@@ -1,6 +1,17 @@
 #include "simulation_setup.h"
 
-string get_sim_path()
+string get_thread_subdir(uint32 id)
+{
+    stringstream out;
+    out << id;
+    string subdir = conf->thread_prefix;
+    subdir += out.str();
+    addslash(subdir);
+
+    return subdir;
+}
+
+string get_sim_path(int id)
 {
     string path;
     char *buffer = new char[1024];
@@ -16,51 +27,54 @@ string get_sim_path()
 
     addslash(path);
 
+    if (id>=0)
+        path += get_thread_subdir(id);
+
     return path;
 }
 
-string get_bin_path()
+string get_bin_path(int id)
 {
-    string path = get_sim_path();
+    string path = get_sim_path(id);
     path += conf->simulator_bin;
-    
+
     return path;
 }
 
-string get_outputnet_path()
+string get_outputnet_path(int id)
 {
-    string path = get_sim_path();
+    string path = get_sim_path(id);
     path += "output.net";
-    
+
     return path;
 }
 
-string get_faults_path()
+string get_faults_path(int id)
 {
-    string path = get_sim_path();
+    string path = get_sim_path(id);
     path += "faults.txt";
-    
+
     return path;
 }
 
 
-string get_patch_path()
+string get_patch_path(int id) //TODO sistemare il return
 {
     string path = conf->simulator_patch;
     return path;
 }
 
-string get_input_file_path()
+string get_input_file_path(int id)
 {
-    string path = get_sim_path();
+    string path = get_sim_path(id);
     path += conf->test_file_in;
 
     return path;
 }
 
-string get_output_file_path()
+string get_output_file_path(int id)
 {
-    string path = get_sim_path();
+    string path = get_sim_path(id);
     path += conf->test_file_out;
 
     return path;
@@ -68,14 +82,14 @@ string get_output_file_path()
 
 bool init_env()
 {
-    string sim_bin = get_bin_path();
+    string sim_bin = get_bin_path(-1);
     string thread_dir, bin_link, outputnet_link;
     int ret;
 
     if (conf->debug && conf->verbose)
         cout << "* simulation: init environment" << endl;
 
-    remove(get_faults_path().c_str());
+    remove(get_faults_path(-1).c_str());
 
     if (conf->debug && conf->verbose)
         cout << "* simulation: init " << conf->thread_slots << " slot(s)" << endl;
@@ -84,19 +98,19 @@ bool init_env()
     {
         stringstream out;
         out << i;
-        thread_dir = get_sim_path();
+        thread_dir = get_sim_path(-1);
         thread_dir += conf->thread_prefix;
         thread_dir += out.str();
         addslash(thread_dir);
         mkdir(thread_dir.c_str(), 0777);
-        
+
         bin_link = thread_dir;
         bin_link += conf->simulator_bin;
         outputnet_link = thread_dir;
         outputnet_link += "output.net";
         
-        ret = symlink(get_outputnet_path().c_str(), outputnet_link.c_str());
-        ret = symlink(get_bin_path().c_str(), bin_link.c_str());
+        ret = symlink(get_outputnet_path(-1).c_str(), outputnet_link.c_str()); //TODO usare 0 1 in get_***_***
+        ret = symlink(get_bin_path(-1).c_str(), bin_link.c_str());
     }
     
     /*if (chmod((char *) sim_bin.c_str(),00775))
@@ -110,7 +124,7 @@ bool init_env()
 
 uint32 read_n_inputs()
 {
-    string path = conf->simulator_dir;
+    string path = conf->simulator_dir;   // TODO usare le funzioni qua sopra
     string net  = "output.net";
     if (path.c_str()[path.length()] != '/')
         path += "/";
