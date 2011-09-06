@@ -1,5 +1,38 @@
-changeset:   198:6dcaec62c61d
+changeset:   204:8eafa652338b
 tag:         tip
+utente:      Lazzalf
+data:        Tue Sep 06 10:49:04 2011 +0200
+sommario:    Test
+
+changeset:   203:ce9dbbffbbac
+utente:      Lazzalf
+data:        Tue Sep 06 10:43:10 2011 +0200
+sommario:    General_test
+
+changeset:   202:267fff811181
+genitore:    201:32e73b3593e2
+genitore:    200:4d592130704a
+utente:      Lazzalf
+data:        Tue Sep 06 10:39:40 2011 +0200
+sommario:    Merge
+
+changeset:   201:32e73b3593e2
+genitore:    198:6dcaec62c61d
+utente:      Lazzalf
+data:        Tue Sep 06 10:37:10 2011 +0200
+sommario:    Population
+
+changeset:   200:4d592130704a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Aug 31 14:12:34 2011 +0200
+sommario:    inserito file net del circuito b03. è necessario inserire il binario del b03 a mano.
+
+changeset:   199:3766be6c2dcc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Aug 31 14:11:16 2011 +0200
+sommario:    * aggiornato il sistema di randomizzazione,
+
+changeset:   198:6dcaec62c61d
 utente:      Lazzalf
 data:        Mon Aug 29 12:32:20 2011 +0200
 sommario:    Test
@@ -576,22 +609,22 @@ data:        Fri Jul 22 15:24:52 2011 +0200
 sommario:    generazione di individual con lunghezza compresa tra due valori, uno di max e uno di min.
 
 changeset:   85:9e26102cd30d
-genitore:    83:697965025251
-genitore:    84:d99fef23453c
+genitore:    84:697965025251
+genitore:    83:d99fef23453c
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 22 14:48:50 2011 +0200
 sommario:    Merge
 
-changeset:   84:d99fef23453c
+changeset:   84:697965025251
 genitore:    82:70f49e5d68bf
-utente:      Lazzalf
-data:        Fri Jul 22 14:38:01 2011 +0200
-sommario:    BitMatrix
-
-changeset:   83:697965025251
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Jul 22 14:47:45 2011 +0200
 sommario:    update TODO
+
+changeset:   83:d99fef23453c
+utente:      Lazzalf
+data:        Fri Jul 22 14:38:01 2011 +0200
+sommario:    BitMatrix
 
 changeset:   82:70f49e5d68bf
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -864,32 +897,31 @@ sommario:    update script di compilazione
 
 changeset:   31:904d2135aa68
 genitore:    30:610027fe86e7
-genitore:    29:677b8f995a6a
+genitore:    28:677b8f995a6a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 15:53:26 2011 +0200
 sommario:    Merge
 
 changeset:   30:610027fe86e7
-genitore:    27:05bcd140e0bf
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 15:50:19 2011 +0200
 sommario:    remove old Makefile
 
-changeset:   29:677b8f995a6a
+changeset:   29:05bcd140e0bf
+genitore:    26:6275ed899571
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:44:39 2011 +0200
+sommario:    fix nome in AUTHORS
+
+changeset:   28:677b8f995a6a
 utente:      Lazzalf
 data:        Wed Jul 20 15:44:40 2011 +0200
 sommario:    Fix compile
 
-changeset:   28:12ec81e75969
-genitore:    26:6275ed899571
+changeset:   27:12ec81e75969
 utente:      Lazzalf
 data:        Wed Jul 20 15:36:57 2011 +0200
 sommario:    BitMatrix:
-
-changeset:   27:05bcd140e0bf
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Wed Jul 20 15:44:39 2011 +0200
-sommario:    fix nome in AUTHORS
 
 changeset:   26:6275ed899571
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -922,45 +954,45 @@ data:        Wed Jul 20 13:29:39 2011 +0200
 sommario:    implementata population::get_avg_fitness ; fix ~ga_engine();
 
 changeset:   20:975661fa3cd8
-genitore:    17:d79479101e14
-genitore:    19:5ed28da5f18a
+genitore:    19:d79479101e14
+genitore:    18:5ed28da5f18a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 13:08:59 2011 +0200
 sommario:    Merge
 
-changeset:   19:5ed28da5f18a
-utente:      Lazzalf
-data:        Wed Jul 20 12:26:03 2011 +0200
-sommario:    Fix compile
-
-changeset:   18:958eb6479635
+changeset:   19:d79479101e14
 genitore:    16:daa63abd1dc5
-utente:      Lazzalf
-data:        Wed Jul 20 12:22:14 2011 +0200
-sommario:    BitMatrix: Inserita funzione Import
-
-changeset:   17:d79479101e14
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 12:40:28 2011 +0200
 sommario:    creata cartella common ; inserimento nuovi parametri per la configurazione
 
+changeset:   18:5ed28da5f18a
+utente:      Lazzalf
+data:        Wed Jul 20 12:26:03 2011 +0200
+sommario:    Fix compile
+
+changeset:   17:958eb6479635
+utente:      Lazzalf
+data:        Wed Jul 20 12:22:14 2011 +0200
+sommario:    BitMatrix: Inserita funzione Import
+
 changeset:   16:daa63abd1dc5
-genitore:    15:736aee0e74d7
-genitore:    14:7fd15bc6af39
+genitore:    14:736aee0e74d7
+genitore:    15:7fd15bc6af39
 utente:      Lazzalf
 data:        Wed Jul 20 11:33:16 2011 +0200
 sommario:    Merge
 
-changeset:   15:736aee0e74d7
+changeset:   15:7fd15bc6af39
 genitore:    13:ecdf04bfe25c
-utente:      Lazzalf
-data:        Wed Jul 20 11:30:12 2011 +0200
-sommario:    Aggiustati check righe in bitmatrix
-
-changeset:   14:7fd15bc6af39
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Jul 20 11:30:34 2011 +0200
 sommario:    fix generici ; implementata la modalità verbose in alcuni cout
+
+changeset:   14:736aee0e74d7
+utente:      Lazzalf
+data:        Wed Jul 20 11:30:12 2011 +0200
+sommario:    Aggiustati check righe in bitmatrix
 
 changeset:   13:ecdf04bfe25c
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
