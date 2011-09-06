@@ -76,7 +76,10 @@ bool init_env()
         cout << "* simulation: init environment" << endl;
 
     remove(get_faults_path().c_str());
-    
+
+    if (conf->debug && conf->verbose)
+        cout << "* simulation: init " << conf->thread_slots << " slot(s)" << endl;
+
     for(int i = 0 ; i < conf->thread_slots ; i++ )
     {
         stringstream out;
@@ -90,7 +93,7 @@ bool init_env()
         bin_link = thread_dir;
         bin_link += conf->simulator_bin;
         outputnet_link = thread_dir;
-        outputnet_link += "output.net";        
+        outputnet_link += "output.net";
         
         ret = symlink(get_outputnet_path().c_str(), outputnet_link.c_str());
         ret = symlink(get_bin_path().c_str(), bin_link.c_str());
