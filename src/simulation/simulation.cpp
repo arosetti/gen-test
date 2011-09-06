@@ -80,14 +80,11 @@ string simulation::get_sim_path()
     if(conf->simulator_dir.c_str()[0] != '/')
     {
         path = buffer;
-        if (path.c_str()[path.length()] != '/')
-            path += "/";
-    
+        addslash(path);
     }
     path += conf->simulator_dir;
 
-    if (path.c_str()[path.length()] != '/') // TODO funzione add slash
-        path += "/";
+    addslash(path);
 
     return path;
 }
@@ -99,6 +96,23 @@ string simulation::get_bin_path()
     
     return path;
 }
+
+string simulation::get_outputnet_path()
+{
+    string path = get_sim_path();
+    path += "output.net";
+    
+    return path;
+}
+
+string simulation::get_faults_path()
+{
+    string path = get_sim_path();
+    path += "faults.txt";
+    
+    return path;
+}
+
 
 string simulation::get_patch_path()
 {
@@ -125,11 +139,32 @@ string simulation::get_output_file_path()
 bool simulation::init_env()
 {
     string sim_bin = get_bin_path();
-    string faults = get_sim_path();
+    string thread_dir, bin_link, outputnet_link;
+    int ret;
 
-    faults += "faults.txt";
-    remove(faults.c_str());
+    //cout << "simulation: init environment" << endl;
 
+    remove(get_faults_path().c_str());
+    
+    for(int i = 0 ; i < conf->thread_slots ; i++ )
+    {
+        stringstream out;
+        out << i;
+        thread_dir = get_sim_path();
+        thread_dir += conf->thread_prefix;
+        thread_dir += out.str();
+        addslash(thread_dir);
+        mkdir(thread_dir.c_str(), 0777);
+        
+        bin_link = thread_dir;
+        bin_link += conf->simulator_bin;
+        outputnet_link = thread_dir;
+        outputnet_link += "output.net";        
+        
+        ret = symlink(get_outputnet_path().c_str(), outputnet_link.c_str());
+        ret = symlink(get_bin_path().c_str(), bin_link.c_str());
+    }
+    
     /*if (chmod((char *) sim_bin.c_str(),00775))
     {
         perror("chmod");

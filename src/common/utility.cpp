@@ -31,3 +31,9 @@ uint32 randmm(uint32 min, uint32 max)
 {
     return min + uniform_deviate(rand()) * (( max - min ) + 1);
 }
+
+void addslash(string &str)
+{
+    if (str.c_str()[str.length()] != '/')
+        str += "/";
+}

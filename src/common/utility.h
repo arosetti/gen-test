@@ -17,5 +17,6 @@
 bool file_exists(string filename);
 uint32 get_columns();
 uint32 randmm(uint32, uint32);
+void addslash(string &str);
 
 #endif
