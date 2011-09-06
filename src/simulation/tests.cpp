@@ -122,11 +122,22 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 
     if (conf->debug && conf->verbose)
         cout << "test dna in corso..." << endl;
-
-    sim_test.execute(get_dna(), sim_id);
-    sim_test.get_results(sim_id, n_tests, detected);
-    GetFaultsFile(sim_id, g_test);
-    test();
+   
+    while (!is_tested())
+    {        
+        try
+        {
+            sim_test.execute(get_dna(), sim_id);
+            sim_test.get_results(sim_id, n_tests, detected);
+            GetFaultsFile(sim_id, g_test);
+            test();
+        }
+        catch (char const* str)
+        {
+            cout << "Caught exception: " << str << endl;
+            cout << "Restesting ..." << endl;
+        }
+    }    
     return true;
 }
 
@@ -138,8 +149,9 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     if (!sim_fault_file.is_open())
     {
-        printf("file: %s\n", path.c_str());
-        perror("simulator faults.txt");
+        throw "Error faults.txt not found or can't open";
+        //printf("file: %s\n", path.c_str());
+        //perror("simulator faults.txt");
         return false;
     }
 
@@ -150,7 +162,10 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
     sim_fault_file.seekg (0, ios::beg);
 
     if (!length)
-        cout<< "File Fault.txt vuoto" << endl;
+    {
+        throw "File Fault.txt empty";
+        //cout<< "File Fault.txt vuoto" << endl;
+    }
 
     char *buffer = new char[length + 2];
 
@@ -189,11 +204,13 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         {
             if (fault_index > n_tests)
             {                
-                cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
+                //cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
                 //perror("simulator faults.txt");                
                 if (g_test)
-                    g_test->releaselock_gen_test();  // Release Lock general tests
+                    g_test->releaselock_gen_test();  // Release Lock general tests                
                 delete[] buffer;
+
+                throw "Errore lettura faults.txt, numero faults superiore al massimo";
                 return false;
             }
 
