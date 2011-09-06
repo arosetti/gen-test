@@ -1,5 +1,23 @@
 #include "tests.h"
 #include "general_tests.h"
+#include "../ga/population.h"
+
+/// THREAD
+
+void *SimulationThread(void *arg)
+{
+    thread_params* t_param = (thread_params*) arg;
+    while (individual* ind = t_param->pop->get_next_ind())
+    {
+        ind->ExecuteTest(t_param->sim_id, t_param->g_test);
+    }    
+
+    delete t_param;
+    dec_threads();
+}
+
+
+/// Classe TEST
 
 tests::tests()
 {
@@ -84,7 +102,7 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
-void tests::ExecuteTest(general_tests* g_test)
+void tests::ExecuteTest((uint32 sim_id, general_tests* g_test = NULL)
 {
     if (is_tested())
     {
@@ -96,7 +114,7 @@ void tests::ExecuteTest(general_tests* g_test)
     if (conf->debug && conf->verbose)
         cout << "test dna in corso..." << endl;
 
-    sim_test.execute(get_dna());
+    sim_test.execute(get_dna(), sim_id);
     sim_test.get_results(n_tests, detected);
     GetFaultsFile(g_test);
     test();

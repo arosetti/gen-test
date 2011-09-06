@@ -8,6 +8,17 @@
 using namespace std;
 
 class general_tests;
+class population;
+
+struct thread_params
+{
+    population* pop;
+    general_tests* g_test;
+    uint32 sim_id;
+};
+
+
+void *SimulationThread(void *arg);
 
 class tests
 {
@@ -26,7 +37,7 @@ class tests
         bool   FindFault(uint32 fault);
         void   EmptyFaults(general_tests* g_test = NULL);
 
-        void   ExecuteTest(general_tests* g_test = NULL);
+        void   ExecuteTest(uint32 sim_id, general_tests* g_test = NULL);
         bool   GetFaultsFile(general_tests* g_test);  // questa va in simulation
 
         virtual string get_dna() const = 0;

@@ -65,7 +65,8 @@ class population
     // for Thread
     public:
     individual* get_next_ind();
-    void thread_terminate();    
+    void dec_threads();   
+    void inc_threads();  
     
     private:
     void  getlock_ind_itr()

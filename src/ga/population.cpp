@@ -31,6 +31,9 @@ population::population()
 
     pool = new individual_map;
     temp_pool = NULL;
+
+    pthread_mutex_init(&mutex_ind_itr, NULL);
+    pthread_mutex_init(&mutex_n_thread, NULL);
 }
 
 population::~population()
@@ -109,12 +112,17 @@ void population::eval_fitnesses()
 
 void population::test_population()
 {
-    // Non servono mutex qui perchè non ci sono thread in esecuzione
-    //ind_itr = pool->begin();
-    //n_thread = conf->thread_slots;
+    ind_itr = pool->begin();
 
-    // Qua invece servono mutex
+/*
+    if (ind_itr != poll->end())
+        for (int i = 0; i < conf->thread_slots; i++)
+        {
+            inc_threads();
 
+
+        }*/
+    
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
@@ -297,6 +305,7 @@ void population::mate_individuals()
     }
     individual_id_list::iterator itr = mating_pool.begin();
 
+
     uint32 index = 0;
 
     /* Inizio accoppiamento */
@@ -464,9 +473,16 @@ individual* population::get_next_ind()
     return ind;
 }
 
-void population::thread_terminate()
+void population::dec_threads()
 {
     getlock_n_thread();
     n_thread--;
+    releaselock_n_thread();
+}
+
+void population::inc_threads()
+{
+    getlock_n_thread();
+    n_thread++;
     releaselock_n_thread();
 }
