@@ -1,4 +1,5 @@
 #include "population.h"
+#include <unistd.h>
 
 population::population()
 {   /*TODO controlli da fare nel config con una specifica funzione che decide se sono coerenti*/
@@ -114,21 +115,38 @@ void population::test_population()
 {
     ind_itr = pool->begin();
 
-/*
-    if (ind_itr != poll->end())
+    if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)
         {
-            inc_threads();
+            thread_params* t_params = new thread_params;
+            t_params->pop = this;
+            t_params->g_test = &test;
+            t_params->sim_id = i;
+                     
+            pthread_t tid;
+            if (pthread_create(&tid, NULL, SimulationThread, (void*)t_params))
+            {
+                cout<<"Errore nealla creazione del thread "<< i <<endl;
+                delete t_params;
+                continue;
+            }
+            else
+                inc_threads();
+        }
 
+    while (n_thread)
+    {
+        sleep(1000);
+    }
 
-        }*/
-    
+    /*    
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
         if ((*itr).second)
             (*itr).second->ExecuteTest(&test);
     }
+    */
 }
 
 float population::get_avg_fitness() const
