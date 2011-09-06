@@ -296,6 +296,7 @@ void population::mate_individuals()
         return;
     }
     individual_id_list::iterator itr = mating_pool.begin();
+
     uint32 index = 0;
 
     /* Inizio accoppiamento */
@@ -459,7 +460,7 @@ individual* population::get_next_ind()
         ind = (*ind_itr).second;
         ind_itr++;
     }
-    relaselock_ind_itr();
+    releaselock_ind_itr();
     return ind;
 }
 
@@ -467,5 +468,5 @@ void population::thread_terminate()
 {
     getlock_n_thread();
     n_thread--;
-    relaselock_n_thread();
+    releaselock_n_thread();
 }

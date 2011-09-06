@@ -36,7 +36,7 @@ class general_tests
         {
             pthread_mutex_lock(&mutex_gen_test);
         }
-        void  relaselock_gen_test()
+        void  releaselock_gen_test()
         {
             pthread_mutex_unlock(&mutex_gen_test);
         }
