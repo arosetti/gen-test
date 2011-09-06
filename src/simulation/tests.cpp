@@ -135,7 +135,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         catch (char const* str)
         {
             cout << "Caught exception: " << str << endl;
-            cout << "Restesting ..." << endl;
+            cout << "Retesting ..." << endl;
         }
     }    
     return true;
