@@ -86,8 +86,8 @@ class population
         pthread_mutex_unlock(&mutex_n_thread);
     }
 
-    individual_map::const_iterator ind_itr;  // deve essere settato a ind_itr = pool->begin() prima dell'avvio dei thread
-    uint32 n_thread;                         // deve essere messo pari al numero dei thread prima dell'avvio di essi
+    individual_map::const_iterator ind_itr;
+    int n_thread;
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
 };

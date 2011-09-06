@@ -10,10 +10,10 @@ void *SimulationThread(void *arg)
     while (individual* ind = t_param->pop->get_next_ind())
     {
         ind->ExecuteTest(t_param->sim_id, t_param->g_test);
-    }    
-
+    }
+    
+    t_param->pop->dec_threads();
     delete t_param;
-    dec_threads();
 }
 
 
@@ -102,7 +102,7 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
-void tests::ExecuteTest((uint32 sim_id, general_tests* g_test = NULL)
+void tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
     if (is_tested())
     {
