@@ -1,5 +1,10 @@
-changeset:   204:8eafa652338b
+changeset:   205:81a9a75d1063
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 11:32:19 2011 +0200
+sommario:    gestione parametri thread e inizializzazione cartelle di simulazione
+
+changeset:   204:8eafa652338b
 utente:      Lazzalf
 data:        Tue Sep 06 10:49:04 2011 +0200
 sommario:    Test
