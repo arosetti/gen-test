@@ -3,7 +3,6 @@
 ga_engine::ga_engine()
 {
     generation = 0;
-    srand(time(NULL));
 }
 
 ga_engine::~ga_engine()
@@ -13,6 +12,8 @@ ga_engine::~ga_engine()
 
 void ga_engine::init()
 {
+    init_env();
+
     if (conf->verbose)
         cout << "* init population" << endl;
     pop = new population();
