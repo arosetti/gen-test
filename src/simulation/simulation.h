@@ -2,6 +2,8 @@
 #define SIMULATION_H
 
 #include "simulation_setup.h"
+#include <sys/types.h>
+#include <sys/wait.h>
 
 using namespace std;
 
