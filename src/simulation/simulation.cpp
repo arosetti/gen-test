@@ -25,6 +25,22 @@ bool simulation::execute(string dna, uint32 sim_id)
 
     getcwd(buffer,1024);
 
+/*
+LA FONTE DI OGNI PROBLEMA
+
+per far si che i file di output e gli input vadano nella cartella giusta si fa un change_dir
+il problema è che in ambiente multithread non ho idea di cosa possa succedere quando cambi 
+directory stai per lanciare il programma e un altro thread ti cambia directory.
+serve un mutex su questa operazione ma quando lancio il comando system bloccante,
+non posso liberare il mutex senza aspettare di aver completato la simulazione....
+
+si potrebbe provare a lanciare il programma con funzioni non bloccanti, 
+ma a quel punto bisognerebbe salvarsi il pid della applicazione e controllare 
+con un polling che abbia terminato.
+
+dimmi cosa ne pensi.
+
+*/
     ret = chdir((char *)sim_path.c_str());
     if(ret)
         perror("chdir");
@@ -108,7 +124,7 @@ string simulation::read_output(uint32 id)
     if (!sim_out_file.is_open())
     {
         throw "Error output_file not found or can't open";
-        
+
         //perror("output_file");
         //cout << "out : " << get_output_file_path(id).c_str() << endl;
         //exit(0);
@@ -122,7 +138,9 @@ string simulation::read_output(uint32 id)
 
     sim_out_file.read (buffer,length);
     sim_out_file.close();
+
     remove(get_input_file_path(id).c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
+
     buffer[length] = 0;
     content = buffer;
     delete[] buffer;
@@ -136,7 +154,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     string str = read_output(id);
     char *str_s = strstr ((char *)str.c_str(),"0,");
 
-    n_total_faults = 0; // se si rimuove questo nn funziona nulla (forse ora è ok ma non ci conterei)
+    n_total_faults = 0;
     n_faults = 0;
     
     ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)&n_total_faults, (int*)&n_faults);

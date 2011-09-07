@@ -92,30 +92,33 @@ bool init_env()
         cout << "* simulation: init environment" << endl;
 
     remove(get_faults_path(-1).c_str());
+    remove(get_input_file_path(-1).c_str());
+    remove(get_output_file_path(-1).c_str());
+    for(int i = 0 ; i < conf->thread_slots; i++)
+    {
+        remove(get_faults_path(i).c_str());
+        remove(get_input_file_path(i).c_str());
+        remove(get_output_file_path(i).c_str());
+        unlink(get_outputnet_path(i).c_str());
+        unlink(get_bin_path(i).c_str());
+        rmdir(get_sim_path(i).c_str());
+    }
 
     if (conf->debug && conf->verbose)
         cout << "* simulation: init " << conf->thread_slots << " slot(s)" << endl;
 
     for(int i = 0 ; i < conf->thread_slots ; i++ )
     {
-        stringstream out;
-        out << i;
-        thread_dir = get_sim_path(-1);
-        thread_dir += conf->thread_prefix;
-        thread_dir += out.str();
-        addslash(thread_dir);
-        mkdir(thread_dir.c_str(), 0777);
-
-        bin_link = thread_dir;
-        bin_link += conf->simulator_bin;
-        outputnet_link = thread_dir;
-        outputnet_link += "output.net";
-        
-        ret = symlink(get_outputnet_path(-1).c_str(), outputnet_link.c_str()); //TODO usare 0 1 in get_***_***
-        ret = symlink(get_bin_path(-1).c_str(), bin_link.c_str());
+        mkdir(get_sim_path(i).c_str(), 0777);
+        ret = symlink(get_outputnet_path(-1).c_str(), get_outputnet_path(i).c_str());
+        if (ret)
+            perror("symlink");
+        ret = symlink(get_bin_path(-1).c_str(), get_bin_path(i).c_str());
+        if (ret)
+            perror("symlink");
     }
     
-    /*if (chmod((char *) sim_bin.c_str(),00775))
+    /*if (chmod((char *) sim_bin.c_str(),0777))
     {
         perror("chmod");
         return false;

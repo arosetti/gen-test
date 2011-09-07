@@ -205,12 +205,13 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
             if (fault_index > n_tests)
             {                
                 //cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
-                //perror("simulator faults.txt");                
+                //perror("simulator faults.txt");
                 if (g_test)
-                    g_test->releaselock_gen_test();  // Release Lock general tests                
+                    g_test->releaselock_gen_test();  // Release Lock general tests
                 delete[] buffer;
 
                 throw "Errore lettura faults.txt, numero faults superiore al massimo";
+                remove(get_input_file_path(sim_id).c_str());
                 return false;
             }
 
@@ -227,6 +228,8 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
     if (g_test)
         g_test->releaselock_gen_test();  // Release Lock general tests
     delete[] buffer;
+
+    remove(get_input_file_path(sim_id).c_str());
     
     return true;
 }
