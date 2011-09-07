@@ -1,5 +1,16 @@
-changeset:   220:1658f00d8d27
+changeset:   222:dd22111b871e
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:28:44 2011 +0200
+sommario:    Inserita l'etichetta 0.1.2 per il changeset b1615f984061
+
+changeset:   221:b1615f984061
+tag:         0.1.2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:28:21 2011 +0200
+sommario:    log_dir configurabile
+
+changeset:   220:1658f00d8d27
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 07 16:07:08 2011 +0200
 sommario:    fix nell'esecuzione della simulazione

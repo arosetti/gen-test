@@ -131,7 +131,7 @@ string simulation::read_output(uint32 id)
     sim_out_file.read (buffer,length);
     sim_out_file.close();
 
-    remove(get_input_file_path(id).c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
+    //remove(get_input_file_path(id).c_str()); // DEBUG mi assicuro che il vecchio file di ingresso venga rimosso
 
     buffer[length] = 0;
     content = buffer;
@@ -161,5 +161,5 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (n_total_faults > 1000)
         exit(0);
 
-    remove(get_output_file_path(id).c_str());
+    //remove(get_output_file_path(id).c_str());
 }

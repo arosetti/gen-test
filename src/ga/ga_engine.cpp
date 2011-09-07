@@ -68,8 +68,10 @@ void ga_engine::evolve()
         }
 
         if (conf->verbose && conf->print_best)
+        {
+            cout << "* best individual info:" << endl;
             pop->print_best();
-
+        }
         if (conf->debug)
         {
             cout << "* logging generation " << generation << " to file" << endl;

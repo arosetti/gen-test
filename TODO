@@ -38,3 +38,10 @@ avg length e altre statistiche
 possibilità di iniziare la simulazione da un log.
 mutazione che elimina le colonne
 più profili di fitness alternative.
+
+invece che scrivere test dna in corso / già testato,
+si potrebbe usare una variabile globale che conta i test eseguiti e fare una cosa tipo:
+4/30
+8/30
+15/30 <- skippa quelli già testati 
+si fa in maniera di cancellare il vecchio valore in maniera da veder aumentare i test sulla stessa linea
