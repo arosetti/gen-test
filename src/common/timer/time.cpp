@@ -20,7 +20,7 @@ void time_stop(timer &time)
     gettimeofday(&time.stop,NULL);
 }
 
-string time_format(uint32 sec)
+string time_format(float sec)
 {
     stringstream out;
 
