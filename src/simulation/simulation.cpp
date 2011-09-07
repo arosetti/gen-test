@@ -15,53 +15,40 @@ void simulation::rebuild()
 
 }
 
-bool simulation::execute(string dna, uint32 sim_id)
+bool simulation::execute(string dna, uint32 id)
 {
-    string bin = conf->simulator_bin , sim_path = get_sim_path(sim_id);
-    char *buffer = new char[1024];
-    int ret;
+    string bin = conf->simulator_bin, args, sim_path = get_sim_path(id);
+    int status, ret, f_ret;
 
-    setup_input_file(dna, sim_id);
+    setup_input_file(dna, id);
 
-    getcwd(buffer,1024);
-
-/*
-LA FONTE DI OGNI PROBLEMA
-
-per far si che i file di output e gli input vadano nella cartella giusta si fa un change_dir
-il problema è che in ambiente multithread non ho idea di cosa possa succedere quando cambi 
-directory stai per lanciare il programma e un altro thread ti cambia directory.
-serve un mutex su questa operazione ma quando lancio il comando system bloccante,
-non posso liberare il mutex senza aspettare di aver completato la simulazione....
-
-si potrebbe provare a lanciare il programma con funzioni non bloccanti, 
-ma a quel punto bisognerebbe salvarsi il pid della applicazione e controllare 
-con un polling che abbia terminato.
-
-dimmi cosa ne pensi.
-
-*/
-    ret = chdir((char *)sim_path.c_str());
-    if(ret)
-        perror("chdir");
-
-    if (!file_exists(bin))
+    if (!file_exists(get_bin_path(id).c_str()))
     {
         cout << "simulator binary does not exists." << endl;
         exit(0);
     }
 
     bin.insert(0,"./");
-    bin += " ";
-    bin += conf->simulator_args;
-    bin += conf->test_file_out;
     bin += " > /dev/null 2>&1";
-    ret = system(bin.c_str()); //int execl(path.c_str(), argvs);
-    ret = chdir(buffer);
-    if(ret)
-        perror("chdir");
 
-    delete[] buffer;
+    args = conf->simulator_args;
+    args += conf->test_file_out;
+
+    f_ret = fork();
+    if (f_ret == 0)
+    {   
+        ret = chdir((char *)get_sim_path(id).c_str());
+        execl(conf->simulator_bin.c_str(), "-N 1", args.c_str(), 0);
+        _exit(0);
+    }
+    else if (f_ret == -1)
+    {
+        perror("fork");
+        exit(1);
+    }
+
+    waitpid(f_ret, &status, 0);
+
     return true;
 }
 

@@ -1,5 +1,35 @@
-changeset:   212:04c1a38c13a3
+changeset:   218:9e594b0f64e3
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 13:17:56 2011 +0200
+sommario:    hgignore updated
+
+changeset:   217:c94704b1b7e2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 13:16:02 2011 +0200
+sommario:    individuato il problema principale.
+
+changeset:   216:7bc60ebbe8f4
+utente:      Lazzalf
+data:        Tue Sep 06 23:36:41 2011 +0200
+sommario:    typo
+
+changeset:   215:656a3e5e5511
+utente:      Lazzalf
+data:        Tue Sep 06 23:27:53 2011 +0200
+sommario:    Inseriti try/catch per recupero errori del simulatore
+
+changeset:   214:8d29588cec7f
+utente:      Lazzalf
+data:        Tue Sep 06 22:35:56 2011 +0200
+sommario:    tests
+
+changeset:   213:2d6584f9e671
+utente:      Lazzalf
+data:        Tue Sep 06 22:13:34 2011 +0200
+sommario:    * Fix millisecondi in secondi
+
+changeset:   212:04c1a38c13a3
 utente:      Lazzalf
 data:        Tue Sep 06 16:18:28 2011 +0200
 sommario:    Fix in tests class
