@@ -23,7 +23,8 @@ typedef struct config
     string simulator_dir, simulator_bin, simulator_patch;
     string simulator_args;
     string test_file_out, test_file_in;
-    
+
+    string log_dir;
     string thread_prefix;
     uint32 thread_slots;
 

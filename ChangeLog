@@ -1,5 +1,10 @@
-changeset:   219:7d9388c9bb1d
+changeset:   220:1658f00d8d27
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:07:08 2011 +0200
+sommario:    fix nell'esecuzione della simulazione
+
+changeset:   219:7d9388c9bb1d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 07 15:17:32 2011 +0200
 sommario:    esecuzione con fork e waitpid, si blocca.

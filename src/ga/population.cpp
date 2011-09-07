@@ -440,8 +440,10 @@ void population::log(uint32 generation) const
     individual_map::const_iterator itr;
     uint32 count = 0;
     stringstream out;
-    
-    generations_logfile = "logs/generation";
+
+    generations_logfile = conf->log_dir;
+    addslash(generations_logfile);
+    generations_logfile += "generation";
     out << generation;
     generations_logfile.append(out.str());
     generations_logfile.append(".log");
@@ -455,6 +457,11 @@ void population::log(uint32 generation) const
     }
 
     LOG(generations_logfile, out.str(), false);
+}
+
+void population::load_log(string filename)
+{
+  //TODO read log and load generation.
 }
 
 void population::print() const
