@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT([gentest], [0.1.1])
+AC_INIT([gentest], [0.1.2])
 AM_INIT_AUTOMAKE([-Wall foreign])
 AC_CONFIG_HEADERS([config.h])
 AC_CHECK_LIB(confuse, cfg_parse)

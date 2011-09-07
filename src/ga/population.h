@@ -60,15 +60,17 @@ class population
 
     uint32  size() const;
     void    log(uint32 generation) const;
+    void    load_log(string filename);
     void    print() const;
 
-    // for Thread
+    // for threads
     public:
     individual* get_next_ind();
-    void dec_threads();   
-    void inc_threads();  
+    void dec_threads();
+    void inc_threads();
     
     private:
+
     void  getlock_ind_itr()
     {
         pthread_mutex_lock(&mutex_ind_itr);

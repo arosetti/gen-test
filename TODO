@@ -11,81 +11,30 @@
 + classe ga_engine
 
 + classe population
-   + preservare i dna migliori
-   + 
 
 + classe individual
 
 + classe simulator
    + prevedere ricompilazione del simulatore.
-   + parallelizzare l'esecuzione di più simulatori
 
 + classe bitmatrix
    + ottimizzare i return di stringhe con puntatori
    + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
 
-+ funzione check_conf (nuovi file check_conf.h/cpp)
++ config.h
+    + funzione check_conf
 
 + classe astrazione random (std_random, /dev/random, altri algoritmi)
 
-#####librerie_utili#####
-
-+pthread
-   + per un minimo di parallelizzazione.
-
-+libconfuse.
-   + scrittura dei parametri da "shell" nella modalità interattiva
-
-
-patchare il simulatore
-init riassunto parametri del GA utilizzati
-timing di ogni iterazione
-ottimizzare
-dove leggere il numero di piedini?
-parametrizzare con una patch anche il nome del file input_signals
-dal simulatore una reward che mi dica fino a che punto il pattern è utile 
-
-opzioni:
--c config alternativo
--g generazioni
--i input
-
-
-CLEAN
+#REVISIONE CODICE
 revisione nomi variabili
 commenti doxygen
-
 #fare sempre un test con valgrind per identificare i leak ;)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
 
 
-
-
-POSSIBILE MULTITRHEAD:
-
-init del simulatore:
-copia in una cartella temporanea N simulatori impostati con i parametri del simulatore nella cartella principale.
-
- - population chiama calc_fitness su tutti gli individual.
-      - l'individual chiede a simulation di calcolare la fitness. 
-              - busy = 1 su simulation
-              - le varie istanze di simulation ricevono il comando calc_fitness(); avvia un thread. e ritorna.
-              - il thread esegue una wait sul semaforo che ha la coda più corta al momento.
-              - chi entra nel semaforo accede alla corrispettiva cartella di simulatore temporanea es. copiata in /tmp/gentest/sim_$x  
-               (se c'è un problema con il chdir, si copia tutto in una sola dir e si fa sim_0 sim_1 ... sim_n lo stesso con gli input/output.. no input no..)
-              - esegue la simulazione prende i risultati. il thread termina. reimposta busy = 0.
-        - finchè la classe è busy si aspetta
-        - l'individual fa il get_results
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-AVG LENGTH E ALTRE STATISTICHE!
-POSSIBILITÀ DI DARE IN INPUT UN LOG
-
+####TODO
+avg length e altre statistiche
+possibilità di iniziare la simulazione da un log.
+mutazione che elimina le colonne
+più profili di fitness alternative.

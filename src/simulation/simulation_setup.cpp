@@ -15,9 +15,10 @@ string get_sim_path(int id)
 {
     string path;
     char *buffer = new char[1024];
+    char *retc;
 
-    getcwd(buffer,1024);
-   
+    retc = getcwd(buffer,1024);
+
     if (conf->simulator_dir.c_str()[0] != '/')
     {
         path = dir_path;
