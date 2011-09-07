@@ -38,7 +38,12 @@ bool simulation::execute(string dna, uint32 id)
     if (f_ret == 0)
     {   
         ret = chdir((char *)get_sim_path(id).c_str());
-        execl(conf->simulator_bin.c_str(), "-N 1", args.c_str(), 0);
+        bin.insert(0,"./");
+        bin += " ";
+        bin += conf->simulator_args;
+        bin += conf->test_file_out;
+        bin += " > /dev/null 2>&1";
+        ret = system(bin.c_str());
         _exit(0);
     }
     else if (f_ret == -1)

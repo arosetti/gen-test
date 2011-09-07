@@ -22,7 +22,7 @@ void time_stop(timer &time);
 
 double time_diff(timer &time);
 
-string time_format(uint32 sec);
+string time_format(float sec);
 
 unsigned time_seed();
 

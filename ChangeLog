@@ -1,5 +1,10 @@
-changeset:   218:9e594b0f64e3
+changeset:   219:7d9388c9bb1d
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 15:17:32 2011 +0200
+sommario:    esecuzione con fork e waitpid, si blocca.
+
+changeset:   218:9e594b0f64e3
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 07 13:17:56 2011 +0200
 sommario:    hgignore updated
