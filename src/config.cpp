@@ -248,12 +248,30 @@ void check_config()
     if (conf->thread_slots <= 0)
     {
         cout << "use at least one thread in thread_slots" << endl;
-        abort();
+        exit(0);
     }
 
     if (conf->max_retest < 0)
     {
         cout << "use max_retest >= 0" << endl;
-        abort();
+        exit(0);
+    }
+    
+    if (conf->population_size == 0) 
+    {
+        cout << "can't use zero population size" << endl;
+        exit(0);
+    }
+
+    if (conf->chromosome_start_len_min == 0 || conf->chromosome_start_len_max == 0)
+    {
+        cout << "can't use zero chromosome length" << endl;
+        exit(0);
+    }
+
+    if (conf->chromosome_start_len_min > conf->chromosome_start_len_max)
+    {
+        cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
+        exit(0);
     }
 }
