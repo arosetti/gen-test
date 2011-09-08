@@ -8,7 +8,7 @@ void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
-    // Svuota file fault.txt 
+    // Svuota file faults.txt 
     // TODO creare funzione di reset cartella all'inizio dei threads
     string path = get_faults_path(t_param->sim_id);
     ifstream sim_fault_file;    
@@ -123,7 +123,8 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
     if (conf->debug && conf->verbose)
         cout << "test dna in corso..." << endl;
    
-    while (!is_tested())
+    int tried = 0;
+    while (!is_tested() && tried < 4)
     {        
         try
         {
@@ -134,8 +135,10 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         }
         catch (char const* str)
         {
-            cout << "Caught exception: " << str << endl;
-            cout << "Retesting ..." << endl;
+            tried++;
+            cout << "Caught exception: " << str << endl;   
+            if (tried < 4)         
+                cout << "Retesting try " << tried << endl;
         }
     }    
     return true;
