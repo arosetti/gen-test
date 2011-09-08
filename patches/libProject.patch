@@ -1,0 +1,95 @@
+--- ntf_reader.cc	2011-07-23 12:41:16.000000000 +0200
++++ ntf_reader.cc	2011-07-31 14:40:42.612422208 +0200
+@@ -55,8 +55,14 @@
+ }
+ 
+ void ntf_reader::signal_probability(int n_inpu_pins) {
+-
+-	ifstream* ifile_ =  new ifstream("input_signals");
++    char buffer[1024], *p_buffer; // al momento buffer grezzo da 1024
++    string input_signals_file = "input_signals_";
++    
++    getexename(buffer, 1024);
++    p_buffer = strstr(buffer, "_");
++    input_signals_file += p_buffer;
++    
++	ifstream* ifile_ =  new ifstream(input_signals_file.c_str());
+     	if (!ifile_->is_open()) { 
+         	cerr << "Error opening file input_signals" << endl;
+         	return;
+--- utility.h	2011-07-23 12:53:04.000000000 +0200
++++ utility.h	2011-07-31 14:08:07.564901418 +0200
+@@ -10,6 +10,11 @@
+ #include <string>
+ #include <stdio.h>
+ #include <time.h>
++#include <errno.h>
++#include <sys/types.h>
++#include <unistd.h>
++#include <libgen.h>
++
+ using namespace std;
+ 
+ enum component_type {lut, mul, buff, ff};
+@@ -326,6 +331,7 @@
+ int compute_sp();
+ 
+ int num_clock_cycle();
++char* getexename(char* buf, size_t size);
+ 
+ short* grid_topology(int N, int c, int radius);
+ short* load_matrix(short N, short maxC, const char* filename);
+--- utility.cpp	2011-07-25 09:38:50.000000000 +0200
++++ utility.cpp	2011-07-31 14:39:36.629513259 +0200
+@@ -15,7 +15,14 @@
+ extern double last_input_generated = 0;
+ 
+ int num_clock_cycle() {
+-	ifstream* ifile_ =  new ifstream("input_signals");
++    char buffer[1024], *p_buffer; // al momento buffer grezzo da 1024
++    string input_signals_file = "input_signals_";
++    
++    getexename(buffer, 1024);
++    p_buffer = strstr(buffer, "_");
++    input_signals_file += p_buffer;
++
++	ifstream* ifile_ =  new ifstream(input_signals_file.c_str());
+     	if (!ifile_->is_open()) { 
+         	cerr << "Error opening file input_signals" << endl;
+ 		// 8 is a default value
+@@ -34,6 +41,35 @@
+ 
+ }
+ 
++char* getexename(char* buf, size_t size)
++{
++	char linkname[64];
++	pid_t pid;
++	int ret;
++
++	pid = getpid();
++	
++	if (snprintf(linkname, sizeof(linkname), "/proc/%i/exe", pid) < 0)
++	{
++        abort();
++	}
++
++	ret = readlink(linkname, buf, size);
++
++	if (ret == -1)
++		return NULL;
++
++	if (ret >= size)
++	{
++        errno = ERANGE;
++        return NULL;
++	}
++
++	buf[ret] = 0;
++
++	return buf;
++}
++
+ int compute_sp() {
+ 
+ 	int sp = 10;
