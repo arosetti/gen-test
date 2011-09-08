@@ -134,11 +134,14 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             test();
         }
         catch (char const* str)
-        {
+        {            
             tried++;
-            cout << "Caught exception: " << str << endl;   
-            if (tried < 4)         
-                cout << "Retesting try " << tried << endl;
+            if (conf->debug && conf->verbose)
+            {
+                cout << "Caught exception: " << str << endl;   
+                if (tried < 4)         
+                    cout << "Retesting try " << tried << endl;
+            }
         }
     }    
     return true;

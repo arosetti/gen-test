@@ -14,7 +14,7 @@ case $1 in
 			echo "info thread" >> $2
 			echo "thread apply all backtrace full" >> $2
 
-			gdb ./gentest -x $2 --batch 2>$4
+			gdb ./gentest -x $2 --batch >$3 2>$4
 		fi
 		
 		if [ $5 -eq 0 ]; then
