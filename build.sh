@@ -39,6 +39,6 @@ if [ "$1" = "run" ] ; then
 fi
 
 if [ "$1" = "debug" ] ; then
-    ./debug
+    ./debugger
 fi
 
