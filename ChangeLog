@@ -1,5 +1,53 @@
-changeset:   223:7d7c5b3d3ba4
+changeset:   232:a1cfb59f852f
 tag:         tip
+utente:      Lazzalf
+data:        Thu Sep 08 14:41:14 2011 +0200
+sommario:    * CleanUp
+
+changeset:   231:3110c7c84cee
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:34:26 2011 +0200
+sommario:    aggiunto max_retest
+
+changeset:   230:ce11ffa421b1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:25:57 2011 +0200
+sommario:    rimossa mutation_strength
+
+changeset:   229:99607b5e9221
+utente:      Lazzalf
+data:        Thu Sep 08 14:20:12 2011 +0200
+sommario:    Population
+
+changeset:   228:0f10e47efce1
+utente:      Lazzalf
+data:        Thu Sep 08 13:23:19 2011 +0200
+sommario:    Fix inizializzazione n_thread
+
+changeset:   227:900d99fac963
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:24:45 2011 +0200
+sommario:    rinominati i file start e starter in debug e debugger
+
+changeset:   226:10d2258d3b23
+genitore:    225:4264bb94083c
+genitore:    224:c7eb09918d0f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:18:34 2011 +0200
+sommario:    Merge
+
+changeset:   225:4264bb94083c
+genitore:    223:7d7c5b3d3ba4
+utente:      Lazzalf
+data:        Thu Sep 08 10:03:21 2011 +0200
+sommario:    Inserito starter per GDB debug
+
+changeset:   224:c7eb09918d0f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:17:01 2011 +0200
+sommario:    aggiornato build.sh
+
+changeset:   223:7d7c5b3d3ba4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 07 16:56:07 2011 +0200
 sommario:    configurazione default aggiornata

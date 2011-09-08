@@ -45,8 +45,7 @@ class population
     void    new_random_population();
 
     void    test_population();
-    void    reset_faults(); // ?? da inserire in general tests ??
-    
+
     void    eval_fitnesses();
     float   get_avg_fitness() const;
     float   get_best_fitness() const;

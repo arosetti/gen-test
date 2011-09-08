@@ -2,25 +2,7 @@
 #include <unistd.h>
 
 population::population()
-{   //TODO controlli da fare nel config con una specifica funzione che decide se sono coerenti
-    if (conf->population_size == 0) 
-    {
-        cout << "can't use zero population size" << endl;
-        exit(0);
-    }
-
-    if (conf->chromosome_start_len_min == 0 || conf->chromosome_start_len_max == 0)
-    {
-        cout << "can't use zero chromosome length" << endl;
-        exit(0);
-    }
-
-    if (conf->chromosome_start_len_min > conf->chromosome_start_len_max)
-    {
-        cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
-        exit(0);
-    }
-    
+{
     conf->chromosome_num = read_n_inputs();
     if (!conf->chromosome_num)
     {
@@ -128,7 +110,7 @@ void population::test_population()
             pthread_t tid;
             if (pthread_create(&tid, NULL, SimulationThread, (void*)t_params))
             {
-                cout<<"Errore nealla creazione del thread "<< i <<endl;
+                cout<<"errore nealla creazione del thread "<< i <<endl;
                 delete t_params;
                 continue;
             }
@@ -487,14 +469,6 @@ void population::print() const
         cout << (*itr).second->info() << endl;
         count++;
     }
-}
-
-void population::reset_faults()
-{
-    //test.EmptyFaults();
-    //for (individual_map::iterator itr = pool->begin(); itr != pool->end(); ++itr)
-    //    (*itr).second->EmptyFaults();
-    //test.LoadFile(pool);
 }
 
 individual* population::get_next_ind()
