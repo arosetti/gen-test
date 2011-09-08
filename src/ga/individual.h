@@ -53,7 +53,6 @@ class individual: public tests
     void    set_chromosome_length(uint32);
     uint32  get_chromosome_number() const;
     void    set_chromosome_number(uint32);   // not used
-    void    chromosome_mutate(uint32,uint32);
     void    chromosome_random(uint32);
 
     string  info();
