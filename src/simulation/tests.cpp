@@ -158,8 +158,6 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
     if (!sim_fault_file.is_open())
     {
         throw "Error faults.txt not found or can't open";
-        //printf("file: %s\n", path.c_str());
-        //perror("simulator faults.txt");
         return false;
     }
 
@@ -179,12 +177,12 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
-
+    
+    remove(path.c_str());
+    
     // Svuota file
-    sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
-    sim_fault_file.close();   
-
-    //remove(path.c_str());
+    //sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
+    //sim_fault_file.close();
 
     buffer[length] = 'E';
     buffer[length+1] = ' ';
@@ -218,8 +216,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
                     g_test->releaselock_gen_test();  // Release Lock general tests
                 delete[] buffer;
 
-                throw "Errore lettura faults.txt, numero faults superiore al massimo";
-                remove(get_input_file_path(sim_id).c_str());
+                throw "Errore lettura faults.txt, numero faults superiore al massimo";                
                 return false;
             }
 
@@ -236,8 +233,6 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
     if (g_test)
         g_test->releaselock_gen_test();  // Release Lock general tests
     delete[] buffer;
-
-    remove(get_input_file_path(sim_id).c_str());
     
     return true;
 }
