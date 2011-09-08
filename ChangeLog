@@ -1,5 +1,20 @@
-changeset:   233:958b6905f037
+changeset:   236:6b46251d6051
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:56:36 2011 +0200
+sommario:    * crossover_type rinominato in cut_type.
+
+changeset:   235:0fc52d5e4718
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:54:25 2011 +0200
+sommario:    * inserita la possibilità di definire diversi profili di crossover / fitness.
+
+changeset:   234:273957290376
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:28:31 2011 +0200
+sommario:    creazione della cartella di log se non esiste
+
+changeset:   233:958b6905f037
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 08 14:58:57 2011 +0200
 sommario:    * alcuni controlli di validità del config sono stati spostati dalla population,
@@ -35,22 +50,22 @@ data:        Thu Sep 08 10:24:45 2011 +0200
 sommario:    rinominati i file start e starter in debug e debugger
 
 changeset:   226:10d2258d3b23
-genitore:    225:4264bb94083c
-genitore:    224:c7eb09918d0f
+genitore:    224:4264bb94083c
+genitore:    225:c7eb09918d0f
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 08 10:18:34 2011 +0200
 sommario:    Merge
 
-changeset:   225:4264bb94083c
+changeset:   225:c7eb09918d0f
 genitore:    223:7d7c5b3d3ba4
-utente:      Lazzalf
-data:        Thu Sep 08 10:03:21 2011 +0200
-sommario:    Inserito starter per GDB debug
-
-changeset:   224:c7eb09918d0f
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 08 10:17:01 2011 +0200
 sommario:    aggiornato build.sh
+
+changeset:   224:4264bb94083c
+utente:      Lazzalf
+data:        Thu Sep 08 10:03:21 2011 +0200
+sommario:    Inserito starter per GDB debug
 
 changeset:   223:7d7c5b3d3ba4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
