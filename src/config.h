@@ -38,7 +38,7 @@ typedef struct config
 
     float  mating_fraction;
     float  mating_rate;
-    float  mutation_rate, mutation_strength;
+    float  mutation_rate;
 } config;
 
 extern config *conf;
