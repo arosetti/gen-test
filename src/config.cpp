@@ -31,7 +31,7 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"population_size", 50, CFGF_NONE),
 
     CFG_STR((char*)"fitness_type",(char*)"fault_rate",CFGF_NONE),
-    CFG_STR((char*)"crossover_type",(char*)"random",CFGF_NONE),
+    CFG_STR((char*)"cut_type",(char*)"random",CFGF_NONE),
 
     CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
     CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
@@ -106,7 +106,7 @@ bool load_config()
     
     conf->population_size = cfg_getint(cfg, "population_size");
     conf->fitness_type = cfg_getstr(cfg, "fitness_type");
-    conf->crossover_type = cfg_getstr(cfg, "crossover_type");
+    conf->cut_type = cfg_getstr(cfg, "cut_type");
 
     conf->chromosome_max_len = cfg_getint(cfg, "chromosome_max_len");
     conf->chromosome_start_len_min = cfg_getint(cfg, "chromosome_start_len_min");

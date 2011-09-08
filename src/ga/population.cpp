@@ -173,12 +173,12 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     string dna_a_1, dna_a_2;
     string dna_b_1, dna_b_2;
 
-    if (conf->crossover_type == "random")
+    if (conf->cut_type == "random")
     {
     cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
     cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
     } 
-    else if (conf->crossover_type == "half")
+    else if (conf->cut_type == "half")
     {
         cut_a = ind_a->get_chromosome_length()/2;
         cut_b = ind_b->get_chromosome_length()/2;
