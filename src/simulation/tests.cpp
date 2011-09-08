@@ -179,7 +179,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     int fault_index = 0;
 
-    string p_buffer = strtok (buffer," "); // The
+    string p_buffer = strtok (buffer," ");
 
     if (g_test)
         g_test->getlock_gen_test();  // Lock general tests
@@ -196,12 +196,11 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         p_buffer = strtok (NULL, " "); // number
         p_buffer = strtok (NULL, " "); // has
         p_buffer = strtok (NULL, " ");
+
         if (p_buffer == "been") // fault trovato
         {
             if (fault_index > n_tests)
-            {                
-                //cout << "Errore lettura faults.txt, numero faults superiore al massimo" << endl;
-                //perror("simulator faults.txt");
+            {
                 if (g_test)
                     g_test->releaselock_gen_test();  // Release Lock general tests
                 delete[] buffer;

@@ -1,23 +1,19 @@
 #!/bin/bash
 
 ######################
-GDB_ENABLED=1
-GDB=gentest.gdb
+GDB="gentest.gdb"
 
 TRACE_BEGIN_STRING="SIGSEGV"
 TRACE_FILE="crashlog.log"
-ERR_FILE="error.log"
 SYSLOG="system.log"
 SYSERR="error.log"
 ######################
 
 DATE=$(date)
 echo "Starting Gentest ($DATE)"
-if [ $GDB_ENABLED -eq 1 ]; then
-	./debug core $GDB "$SYSLOG" "$SYSERR" 1
-    grep -B 10 -A 1800 "$TRACE_BEGIN_STRING" "$SYSLOG" > "$TRACE_FILE"
-fi
+echo -e "run\nbt\nbt full\ninfo thread\nthread apply all backtrace full" > $GDB
 
-if [ $GDB_ENABLED -eq 0 ]; then
-	./debug core null null null 0
-fi
+rm $SYSLOG $SYSERR
+gdb ./gentest -x $GDB --batch >$SYSLOG 2>$SYSERR
+grep -B 10 -A 1800 "$TRACE_BEGIN_STRING" "$SYSLOG" > "$TRACE_FILE"
+
