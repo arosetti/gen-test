@@ -108,7 +108,14 @@ void population::test_population()
             t_params->sim_id = i;
                      
             pthread_t tid;
-            if (pthread_create(&tid, NULL, SimulationThread, (void*)t_params))
+            pthread_attr_t tattr;
+            int ret;
+
+            // Per riusare i thread R.I.P.
+            ret = pthread_attr_init(&tattr);
+            ret = pthread_attr_setdetachstate(&tattr, PTHREAD_CREATE_DETACHED);
+
+            if (ret = pthread_create(&tid, &tattr, SimulationThread, (void*)t_params))
             {
                 perror("pthread_create ");
                 // cout<<"errore nealla creazione del thread "<< i <<endl;
