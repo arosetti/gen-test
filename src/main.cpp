@@ -6,7 +6,6 @@
 
 using namespace std;
 
-string dir_path;
 config *conf = new config;
 
 int main(int argc, char **argv)
@@ -17,14 +16,13 @@ int main(int argc, char **argv)
 
     cout << PACKAGE_STRING << ": a gentetic algorithm program ";
     cout << "used to generate test patterns for simulated circuits." << endl;
+    cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
     cout << endl;
 
     init_config();
     load_config();
     load_args(argc, argv);
     check_config();
-
-    dir_path = get_current_dir_name();
 
     ga.init();
     ga.evolve();

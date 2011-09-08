@@ -20,7 +20,7 @@ cfg_opt_t opts[] =
     CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
     CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
 
-    CFG_STR((char*)"log_dir",(char*)"logs",CFGF_NONE),
+    CFG_STR((char*)"log_path",(char*)"logs",CFGF_NONE),
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
     
@@ -63,6 +63,8 @@ void init_config()
     }
 
     conf->conf_filename = "config.conf";
+
+    conf->main_path = get_current_dir_name();
 }
 
 bool load_config()
@@ -91,7 +93,7 @@ bool load_config()
     conf->test_file_out = cfg_getstr(cfg, "test_file_out");
     conf->test_file_in = cfg_getstr(cfg, "test_file_in");
 
-    conf->log_dir = cfg_getstr(cfg, "log_dir");
+    conf->log_path = cfg_getstr(cfg, "log_path");
     conf->thread_prefix = cfg_getstr(cfg, "thread_prefix");
     conf->thread_slots = cfg_getint(cfg, "thread_slots");
 

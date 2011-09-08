@@ -60,7 +60,7 @@ bool simulation::execute(string dna, uint32 id)
 bool simulation::setup_input_file(string dna, uint32 id)
 {
     fstream sim_file;
-    
+
     sim_file.open(get_input_file_path(id).c_str(),  fstream::out);
 
     if (!sim_file.is_open())

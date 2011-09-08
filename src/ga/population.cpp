@@ -441,7 +441,7 @@ void population::log(uint32 generation) const
     uint32 count = 0;
     stringstream out;
 
-    generations_logfile = conf->log_dir;
+    generations_logfile = conf->log_path;
     addslash(generations_logfile);
     generations_logfile += "generation";
     out << generation;

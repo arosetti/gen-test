@@ -42,19 +42,18 @@ int main(int argc, char ** argv)
 
     bitmatrix b1(inputs, clocks);
     
-    //if (!s.init_env())
-    //    exit(0);
+    init_env();
 
     b1.RandomizeAll();
     b1.Print();
     
     cout << "test_simulation:" << endl;
     
-    s.execute(b1.ToString());
+    s.execute(b1.ToString(),0);
     
     cout << endl;
 
-    s.get_results(&tot,&det);
+    s.get_results(0,tot,det);
 
     return 0;
 }
