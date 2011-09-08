@@ -121,10 +121,10 @@ void population::test_population()
 
     while (n_thread)
     {
-        sleep(1); // In secondi
+        usleep(100); // In millisecondi
     }
 
-    /*    
+    /*
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
@@ -174,11 +174,16 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     string dna_a_1, dna_a_2;
     string dna_b_1, dna_b_2;
 
-    if (conf->cut_type == "random")
+    if (conf->cut_type == "double_random")
     {
     cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
     cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
-    } 
+    }
+    else if (conf->cut_type == "single_random")
+    {   
+        uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
+        cut_a = cut_b = rand()%(cmin-1) + 1;
+    }
     else if (conf->cut_type == "half")
     {
         cut_a = ind_a->get_chromosome_length()/2;
