@@ -14,15 +14,17 @@ void *SimulationThread(void *arg)
     ifstream sim_fault_file;    
     sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
     sim_fault_file.close();
-    
+
     while (individual* ind = t_param->pop->get_next_ind())
     {
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
             sleep(1); // Per evitare che si accavallano i log
     }
-    
+
     t_param->pop->dec_threads();
-    delete t_param;    
+    delete t_param;
+
+    pthread_exit(NULL);
 }
 
 
@@ -125,7 +127,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 
     int tried = 0;
     while (!is_tested() && tried < (conf->max_retest + 1))
-    {        
+    {
         try
         {
             sim_test.execute(get_dna(), sim_id);
@@ -138,8 +140,8 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             tried++;
             if (conf->debug && conf->verbose)
             {
-                cout << "Caught exception: " << str << endl;   
-                if (tried < (conf->max_retest + 1))         
+                cout << "Caught exception: " << str << endl;
+                if (tried < (conf->max_retest + 1))
                     cout << "Retesting try " << tried << endl;
             }
         }

@@ -33,7 +33,7 @@ typedef struct config
 
     uint32 population_size;
 
-    string crossover_type, fitness_type;
+    string cut_type, fitness_type;
 
     uint32 chromosome_num;
     uint32 chromosome_max_len;
