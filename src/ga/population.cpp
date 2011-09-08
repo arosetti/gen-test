@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 population::population()
-{   /*TODO controlli da fare nel config con una specifica funzione che decide se sono coerenti*/
+{   //TODO controlli da fare nel config con una specifica funzione che decide se sono coerenti
     if (conf->population_size == 0) 
     {
         cout << "can't use zero population size" << endl;
@@ -328,14 +328,14 @@ void population::mate_individuals()
 
     uint32 index = 0;
 
-    /* Inizio accoppiamento */
+    // Inizio accoppiamento
     while (mating_pool.size() > (index + 1))
     {
-        /* Clono gli individual che faranno parte della nuova map */
+        // Clono gli individual che faranno parte della nuova map
         ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
         //cout << "faults " << ((*pool->find(*itr)).second)->GetFaultsSize() << endl;
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
-        /* Effettuo il crossover con una certa probabilità */
+        // Effettuo il crossover con una certa probabilità
         if ((rand()%100 + 1) <= (conf->mating_rate*100))
         {
             if (conf->debug && conf->verbose && conf->print_mating)
@@ -343,12 +343,15 @@ void population::mate_individuals()
 
             crossover(ind_a_cloned, ind_b_cloned);
 
-            /* Dopo il crossover ci potrebbero essere delle mutazioni */
-            mutate_individual(ind_a_cloned);
-            mutate_individual(ind_a_cloned);
+            // Dopo il crossover ci potrebbero essere delle mutazioni
+            // mutate_individual(ind_a_cloned);
+            // mutate_individual(ind_a_cloned);
         }
 
-        /* Aggiungo i figli alla nuova map */
+        mutate_individual(ind_a_cloned);
+        mutate_individual(ind_a_cloned);
+
+        // Aggiungo i figli alla nuova map
         temp_pool->insert(temp_pool->end(),
                  individual_pair(temp_pool->size(), ind_a_cloned));
         temp_pool->insert(temp_pool->end(),
@@ -374,19 +377,24 @@ void population::mate_individuals()
 
 void population::mutate_individual(individual *ind)
 {
-    float count = conf->mutation_strength * ind->dna_length();
-
     if (!ind)
         return;
 
-    if (conf->verbose && conf->print_mutations)
-        cout << count <<" mutation event!"<<endl;
+    float count = conf->mutation_rate * ind->dna_length();
 
-    while(count--)
-        if ((conf->mutation_rate * 100) > (rand()%100 + 1))
-            ind->dna_mutate();
+    if (conf->verbose && conf->print_mutations)
+        cout << count << " mutation event!"<<endl;
+
+    while (count >= 1.0f)
+    {
+        ind->dna_mutate();
+        count--;
+    }
+    if (uint32(count * 1000) > randmm(0,1000))
+        ind->dna_mutate();
 }
 
+/*
 void population::mutate_individuals() const
 {
     individual_map::const_iterator itr;
@@ -408,6 +416,7 @@ void population::mutate_individuals() const
     if (conf->verbose && conf->print_mutations)
         cout << count <<" mutation events!"<<endl;
 }
+*/
 
 uint32  population::size() const
 {
