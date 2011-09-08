@@ -2,25 +2,20 @@
 #include "general_tests.h"
 #include "../ga/population.h"
 
-/// THREAD
+/// Corpo del thread di simulazione
 
 void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
-    // Svuota file faults.txt 
-    // TODO creare funzione di reset cartella all'inizio dei threads
-    string path = get_faults_path(t_param->sim_id);
-    ifstream sim_fault_file;    
-    sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
-    sim_fault_file.close();
+    remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_ind())
     {
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
-            usleep(100); // Per evitare che si accavallano i log
+            usleep(50); // Per evitare che si accavallano i log
     }
-    
+
     t_param->pop->dec_threads();
     delete t_param;
 
@@ -28,7 +23,7 @@ void *SimulationThread(void *arg)
 }
 
 
-/// Classe TEST
+/// Classe TESTS
 
 tests::tests()
 {
@@ -118,12 +113,12 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
     if (is_tested())
     {
         if (conf->debug && conf->verbose)
-            cout << "dna già testato" << endl;
+            cout << "dna already tested" << endl;
         return false;
     }
 
     if (conf->debug && conf->verbose)
-        cout << "test dna in corso..." << endl;
+        cout << "dna test in progress..." << endl;
 
     int tried = 0;
     while (!is_tested() && tried < (conf->max_retest + 1))
@@ -140,9 +135,9 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             tried++;
             if (conf->debug && conf->verbose)
             {
-                cout << "Caught exception: " << str << endl;
+                cout << "caught exception: " << str << endl;
                 if (tried < (conf->max_retest + 1))
-                    cout << "Retesting try " << tried << endl;
+                    cout << "retesting try " << tried << endl;
             }
         }
     }    
@@ -157,7 +152,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     if (!sim_fault_file.is_open())
     {
-        throw "Error faults.txt not found or can't open";
+        throw "can't open faults.txt";
         return false;
     }
 
@@ -169,20 +164,15 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     if (!length)
     {
-        throw "File Fault.txt empty";
-        //cout<< "File Fault.txt vuoto" << endl;
+        throw "fault.txt is empty";
     }
 
     char *buffer = new char[length + 2];
 
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
-    
+
     remove(path.c_str());
-    
-    // Svuota file
-    //sim_fault_file.open(path.c_str(), ios::out | ios::trunc);
-    //sim_fault_file.close();
 
     buffer[length] = 'E';
     buffer[length+1] = ' ';
@@ -216,7 +206,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
                     g_test->releaselock_gen_test();  // Release Lock general tests
                 delete[] buffer;
 
-                throw "Errore lettura faults.txt, numero faults superiore al massimo";                
+                throw "error reading faults.txt, max number of faults";
                 return false;
             }
 
@@ -233,6 +223,6 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
     if (g_test)
         g_test->releaselock_gen_test();  // Release Lock general tests
     delete[] buffer;
-    
+
     return true;
 }
