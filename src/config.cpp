@@ -37,7 +37,6 @@ cfg_opt_t opts[] =
     CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
 
     CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
-    CFG_FLOAT((char*)"mutation_strength", 2.0f, CFGF_NONE),
     CFG_END()
 };
 
@@ -110,7 +109,6 @@ bool load_config()
     conf->mating_fraction = cfg_getfloat(cfg, "mating_fraction");
 
     conf->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
-    conf->mutation_strength = cfg_getfloat(cfg, "mutation_strength");
 
     cfg_free(cfg);
 
