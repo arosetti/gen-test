@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#GDB_FILE=$2
+#SYSLOG=$3
+#SYSERR=$4
+#GBD_ENABLED=$5
+
+case $1 in
+	core)
+		if [ $5 -eq 1 ]; then
+			echo "run" > $2
+			echo "bt" >> $2
+			echo "bt full" >> $2
+			echo "info thread" >> $2
+			echo "thread apply all backtrace full" >> $2
+
+			gdb ./gentest -x $2 --batch 2>$4
+		fi
+		
+		if [ $5 -eq 0 ]; then
+			./gentest
+		fi
+	;;
+esac
