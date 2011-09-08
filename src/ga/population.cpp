@@ -32,6 +32,7 @@ population::population()
 
     pool = new individual_map;
     temp_pool = NULL;
+    n_thread = 0;
 
     pthread_mutex_init(&mutex_ind_itr, NULL);
     pthread_mutex_init(&mutex_n_thread, NULL);
@@ -114,6 +115,7 @@ void population::eval_fitnesses()
 void population::test_population()
 {
     ind_itr = pool->begin();
+    n_thread = 0;
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)
