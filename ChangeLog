@@ -1,5 +1,10 @@
-changeset:   232:a1cfb59f852f
+changeset:   233:958b6905f037
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:58:57 2011 +0200
+sommario:    * alcuni controlli di validità del config sono stati spostati dalla population,
+
+changeset:   232:a1cfb59f852f
 utente:      Lazzalf
 data:        Thu Sep 08 14:41:14 2011 +0200
 sommario:    * CleanUp
