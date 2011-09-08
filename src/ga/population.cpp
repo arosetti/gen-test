@@ -375,6 +375,7 @@ void population::mate_individuals()
     mating_pool.clear();
 }
 
+// TODO inglobare in individual
 void population::mutate_individual(individual *ind)
 {
     if (!ind)

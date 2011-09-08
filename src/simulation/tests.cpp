@@ -122,9 +122,9 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 
     if (conf->debug && conf->verbose)
         cout << "test dna in corso..." << endl;
-   
+
     int tried = 0;
-    while (!is_tested() && tried < 4)
+    while (!is_tested() && tried < (conf->max_retest + 1))
     {        
         try
         {
@@ -139,7 +139,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             if (conf->debug && conf->verbose)
             {
                 cout << "Caught exception: " << str << endl;   
-                if (tried < 4)         
+                if (tried < (conf->max_retest + 1))         
                     cout << "Retesting try " << tried << endl;
             }
         }

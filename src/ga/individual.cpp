@@ -74,19 +74,11 @@ void individual::dna_random()
 
 void individual::dna_mutate()
 {
-    uint8 count = (dna_length()) * (conf->mutation_strength) / (fitness);
-    uint32 row_r,col_r;
+    uint32 row_r = rand()%chromosome_number + 1;
+    uint32 col_r = rand()%get_chromosome_length() + 1;
 
-    if (count)
-        untest();
-
-    while (count-- != 0)
-    {
-        row_r = rand()%chromosome_number + 1;
-        col_r = rand()%get_chromosome_length() + 1;
-
-        dna->Flip(row_r,col_r);
-    }
+    dna->Flip(row_r,col_r);
+    untest();
 }
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
@@ -179,24 +171,6 @@ void  individual::set_chromosome_length(uint32 len)
     chromosome_length = len;
     dna->Resize(chromosome_number, len);
     untest();
-}
-
-void individual::chromosome_mutate(uint32 crom, uint32 mutation_strength)
-{
-    uint8 count = mutation_strength>chromosome_length? \
-                  get_chromosome_length():mutation_strength;
-    uint32 col_r;
-
-    if (crom == 0 || crom >= get_chromosome_length())
-        return;
-
-    col_r = rand()%chromosome_length + 1;
-
-    while (count-- != 0)
-    {
-        dna->Flip(crom, col_r);
-        untest();
-    }
 }
 
 void individual::chromosome_random(uint32 crom)
