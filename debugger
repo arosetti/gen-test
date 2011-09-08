@@ -14,10 +14,10 @@ SYSERR="error.log"
 DATE=$(date)
 echo "Starting Gentest ($DATE)"
 if [ $GDB_ENABLED -eq 1 ]; then
-	./start core $GDB "$SYSLOG" "$SYSERR" 1
+	./debug core $GDB "$SYSLOG" "$SYSERR" 1
     grep -B 10 -A 1800 "$TRACE_BEGIN_STRING" "$SYSLOG" > "$TRACE_FILE"
 fi
 
 if [ $GDB_ENABLED -eq 0 ]; then
-	./start core null null null 0
+	./debug core null null null 0
 fi
