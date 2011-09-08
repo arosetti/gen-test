@@ -72,12 +72,13 @@ void ga_engine::evolve()
             cout << "* best individual info:" << endl;
             pop->print_best();
         }
+
         if (conf->debug)
         {
             cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
         }
-        
+
         if (conf->verbose)
             cout << "* transfer best individuals" << endl;
         pop->transfer_bests();

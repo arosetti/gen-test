@@ -27,4 +27,4 @@ rm -Rf autom4te.cache/ stamp-h1 config.status install-sh \
        config.h.in depcomp missing Makefile Makefile.in INSTALL \ > /dev/null 2>&1
 rm -f src/bitmatrix/bitmatrix_test src/simulation/simulation_test src/common/logger/logger_test
 
-rm -f logs/*
+rm -f logs/* *.log

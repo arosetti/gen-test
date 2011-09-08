@@ -192,7 +192,7 @@ string individual::info()
     out << "fitness : " << fitness << endl;
     out << "dna     : (" <<
            dna->GetRowNum() << "," << dna->GetColNum() << ")" << endl;
-    out << dna->ToString() << endl;
+    out << dna->ToString();
 
     return out.str();
 }
