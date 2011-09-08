@@ -274,4 +274,9 @@ void check_config()
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
         exit(0);
     }
+
+    if (!file_exists(conf->log_path))
+    {
+        mkdir(conf->log_path.c_str(),0777);
+    }
 }

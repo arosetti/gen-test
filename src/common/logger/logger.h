@@ -16,7 +16,7 @@ class logger
 
     static logger* l_singleton;
 
-    logger() { };
+    logger();
 
     public:
 

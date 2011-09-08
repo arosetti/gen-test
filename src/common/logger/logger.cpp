@@ -1,5 +1,10 @@
 #include "logger.h"
 
+logger::logger()
+{
+
+}
+
 bool logger::log(string file, string log, bool append)
 {
     ofstream ff;
