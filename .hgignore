@@ -88,3 +88,7 @@ simulator/b02/sim_1/input_signals
 simulator/b02/sim_1/ output_faults
 simulator/b02/sim_0/input_signals
 simulator/b02/sim_0/ output_faults
+system.log
+gentest.gdb
+error.log
+crashlog.log
