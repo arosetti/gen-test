@@ -21,8 +21,8 @@ void *SimulationThread(void *arg)
             usleep(100); // Per evitare che si accavallano i log
     }
     
-    delete t_param;
     t_param->pop->dec_threads();
+    delete t_param;
 
     pthread_exit(NULL);
 }
