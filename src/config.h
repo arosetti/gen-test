@@ -29,6 +29,7 @@ typedef struct config
 
     uint32 max_generations;
     uint32 max_stall;
+    uint32 max_retest;
 
     uint32 population_size;
 
