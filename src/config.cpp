@@ -26,6 +26,8 @@ cfg_opt_t opts[] =
     
     CFG_INT((char*)"max_generations",  100, CFGF_NONE),
     CFG_INT((char*)"max_stall", 10, CFGF_NONE),
+    CFG_INT((char*)"max_retest", 3, CFGF_NONE),
+
 
     CFG_INT((char*)"population_size", 50, CFGF_NONE),
 
@@ -98,7 +100,8 @@ bool load_config()
 
     conf->max_generations = cfg_getint(cfg, "max_generations");
     conf->max_stall = cfg_getint(cfg, "max_stall");
-
+    conf->max_stall = cfg_getint(cfg, "max_retest");
+    
     conf->population_size = cfg_getint(cfg, "population_size");
 
     conf->chromosome_max_len = cfg_getint(cfg, "chromosome_max_len");
@@ -245,6 +248,12 @@ void check_config()
     if (conf->thread_slots <= 0)
     {
         cout << "use at least one thread in thread_slots" << endl;
+        abort();
+    }
+
+    if (conf->max_retest < 0)
+    {
+        cout << "use max_retest >= 0" << endl;
         abort();
     }
 }
