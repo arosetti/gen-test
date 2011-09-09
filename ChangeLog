@@ -1,5 +1,23 @@
-changeset:   249:b459b3096c4d
+changeset:   252:af1d4234628a
 tag:         tip
+genitore:    251:b04b20622638
+genitore:    250:221be332c88a
+utente:      Lazzalf
+data:        Fri Sep 09 20:58:47 2011 +0200
+sommario:    Merge
+
+changeset:   251:b04b20622638
+genitore:    249:b459b3096c4d
+utente:      Lazzalf
+data:        Fri Sep 09 20:57:42 2011 +0200
+sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
+
+changeset:   250:221be332c88a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 20:35:01 2011 +0200
+sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
+
+changeset:   249:b459b3096c4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 09 19:13:27 2011 +0200
 sommario:    inserita funzione clean_env()

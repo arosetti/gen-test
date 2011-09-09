@@ -131,22 +131,16 @@ void init_env()
 
 uint32 read_n_inputs()
 {
-    string path = conf->simulator_dir;   // TODO usare le funzioni qua sopra
-    string net  = "output.net";
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
-    path += net;
-
     ifstream sim_net_file;
     char *buffer = NULL, *p_buffer = NULL;
     uint32 n_inputs = 0;
     int length = 0;
 
-    sim_net_file.open(path.c_str(), ios::binary);
+    sim_net_file.open(get_outputnet_path(-1).c_str(), ios::binary);
 
     if (!sim_net_file.is_open())
     {
-        printf("file: %s\n", path.c_str());
+        printf("file: %s\n", get_outputnet_path(-1).c_str());
         perror("simulator output.net");
         return 0;
     }
@@ -178,7 +172,6 @@ uint32 read_n_inputs()
     }
 
     delete[] buffer;
-    
     return n_inputs;
 
 }

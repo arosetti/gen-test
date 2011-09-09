@@ -27,8 +27,9 @@ int main(int argc, char **argv)
     init_config();
     load_config();
     load_args(argc, argv);
+    post_init_config();
     check_config();
-
+    
     ga.init();
     ga.evolve();
 

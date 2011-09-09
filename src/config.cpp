@@ -85,9 +85,15 @@ void init_config()
     conf->conf_filename = "config.conf";
 
     conf->main_path = get_current_dir_name();
+    
+}
 
+void post_init_config()
+{
     conf->chromosome_num = read_n_inputs();
 
+    if (!file_exists(conf->log_path))  // usare dir_exists
+        mkdir(conf->log_path.c_str(),0777);
 }
 
 bool load_config()
@@ -305,9 +311,4 @@ void check_config()
         cout << "chromosome number is 0, errror reading simulator output.net" << endl;
         exit(1);
     }
-
-    //HACK post_init
-    if (!file_exists(conf->log_path))  // usare dir_exists
-    mkdir(conf->log_path.c_str(),0777);
-
 }

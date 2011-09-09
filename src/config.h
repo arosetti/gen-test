@@ -49,6 +49,7 @@ typedef struct config
 extern config *conf;
 
 void init_config();
+void post_init_config();
 bool load_config();
 void help_config();
 void check_config();
