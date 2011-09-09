@@ -65,7 +65,7 @@ cfg_t *open_cfg()
 {
     cfg_t *cfg = cfg_init(opts, CFGF_NONE);
 
-    if(cfg_parse(cfg, conf->conf_filename.c_str()) == CFG_PARSE_ERROR)
+    if (cfg_parse(cfg, conf->conf_filename.c_str()) == CFG_PARSE_ERROR)
     {
         cfg_free(cfg);
         exit(0);
@@ -76,7 +76,7 @@ cfg_t *open_cfg()
     
 void init_config()
 {
-    if(!conf)
+    if (!conf)
     {
         cout << "config is null" << endl;
         abort();
@@ -224,7 +224,7 @@ void interactive()
     uint32 value;
     char response;
 
-    if(!conf->interactive)
+    if (!conf->interactive)
         return;
 
     cfg_t *cfg = open_cfg();

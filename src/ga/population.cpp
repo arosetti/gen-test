@@ -380,7 +380,12 @@ void population::mutate_individual(individual *ind)
 
 void population::set_mutation_rate(float rate)
 {
-    mutation_rate = rate;
+    if (rate > 1.0f)        
+        mutation_rate = 1;
+    else if (rate < 0.0f)
+        mutation_rate = 0;
+    else 
+        mutation_rate = rate;
 }
 
 /*
