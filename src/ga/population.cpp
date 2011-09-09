@@ -3,13 +3,7 @@
 
 population::population()
 {
-    conf->chromosome_num = read_n_inputs();
-    if (!conf->chromosome_num)
-    {
-        cout << "chromosome number is 0, errror reading simulator output.net" << endl;
-        exit(0);
-    }
-    else if (conf->verbose)
+    if (conf->verbose)
         cout << "* using " << conf->chromosome_num << " chromosome(s)" << endl;
 
     pool = new individual_map;
@@ -99,7 +93,9 @@ void population::test_population()
 {
     ind_itr = pool->begin();
     n_thread = 0;
-    m_barlink.init(pool->size());
+
+    if (conf->print_progress_bar)
+        m_barlink.init(pool->size());
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)

@@ -25,7 +25,7 @@ class individual: public tests
     
     bool tested;
 
-    public:
+  public:
     individual(uint32, uint32);
     individual(const individual& ind);
     ~individual();

@@ -1,4 +1,5 @@
 #include "config.h"
+#include "simulation/simulation_setup.h"
 
 cfg_opt_t opts[] =
 {
@@ -45,14 +46,14 @@ cfg_opt_t opts[] =
     CFG_END()
 };
 
-char *fitness_types[] =
+const char *fitness_types[] =
 {
     "fault_rate",
     "fault_rate_linear_min_length",
     NULL
 };
 
-char *cut_types[] =
+const char *cut_types[] =
 {
     "half",
     "single_random",
@@ -84,6 +85,9 @@ void init_config()
     conf->conf_filename = "config.conf";
 
     conf->main_path = get_current_dir_name();
+
+    conf->chromosome_num = read_n_inputs();
+
 }
 
 bool load_config()
@@ -269,35 +273,41 @@ void check_config()
     if (conf->thread_slots <= 0)
     {
         cout << "use at least one thread in thread_slots" << endl;
-        exit(0);
+        exit(1);
     }
 
     if (conf->max_retest < 0)
     {
         cout << "use max_retest >= 0" << endl;
-        exit(0);
+        exit(1);
     }
     
     if (conf->population_size == 0) 
     {
         cout << "can't use zero population size" << endl;
-        exit(0);
+        exit(1);
     }
 
     if (conf->chromosome_start_len_min == 0 || conf->chromosome_start_len_max == 0)
     {
         cout << "can't use zero chromosome length" << endl;
-        exit(0);
+        exit(1);
     }
 
     if (conf->chromosome_start_len_min > conf->chromosome_start_len_max)
     {
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value" << endl;
-        exit(0);
+        exit(1);
     }
 
-    if (!file_exists(conf->log_path))
+    if (conf->chromosome_num == 0)
     {
-        mkdir(conf->log_path.c_str(),0777);
+        cout << "chromosome number is 0, errror reading simulator output.net" << endl;
+        exit(1);
     }
+
+    //HACK post_init
+    if (!file_exists(conf->log_path))  // usare dir_exists
+    mkdir(conf->log_path.c_str(),0777);
+
 }
