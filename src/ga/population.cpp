@@ -15,6 +15,7 @@ population::population()
     pool = new individual_map;
     temp_pool = NULL;
     n_thread = 0;
+    mutation_rate = 0.0f;
 
     pthread_mutex_init(&mutex_ind_itr, NULL);
     pthread_mutex_init(&mutex_n_thread, NULL);
@@ -269,7 +270,7 @@ void population::transfer_bests()
     if (conf->mating_fraction == 1)
         return;
 
-    transfer_num = (transfer_num == 0)?1:transfer_num;
+    transfer_num = transfer_num ? transfer_num : 1;
 
     if (conf->debug)
         cout << "transferring " << transfer_num << " best individual(s) from old population" << endl;
@@ -293,12 +294,6 @@ void population::transfer_bests()
                     itr2 = best_map.end();
                     best_map.erase(--itr2);
                 }
-
-                /*for (std::list<best_pair>::iterator itr3 = best_map.begin(); itr3 != best_map.end(); ++itr3)
-                {
-                    cout<< (*itr3).second << " ";
-                }            
-                cout << endl << "best_map.size(): " << best_map.size() << endl;*/
 
                 break;
             }
@@ -384,7 +379,12 @@ void population::mate_individuals()
 void population::mutate_individual(individual *ind)
 {
     if (ind)
-        ind->dna_mutate();
+        ind->dna_mutate(mutation_rate);
+}
+
+void population::set_mutation_rate(float rate)
+{
+    mutation_rate = rate;
 }
 
 /*

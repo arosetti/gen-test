@@ -26,9 +26,9 @@ void ga_engine::init()
 void ga_engine::evolve()
 {
     float avg_fitness = 0;
-    float last_best_fitness = 0;
-    uint32 stall = 0;
+    float last_best_fitness = 0;    
     timer time;
+    uint32 stall = 0;
 
     if (!conf)
     {
@@ -69,7 +69,7 @@ void ga_engine::evolve()
         {
             last_best_fitness = pop->get_best_fitness();
             stall = 0;
-            conf->mutation_rate=0.07f; // !!!!!! WARNING HACK !!!!!
+            pop->set_mutation_rate(conf->mutation_rate);
         }
         else
             stall++;
@@ -78,7 +78,7 @@ void ga_engine::evolve()
         {
             if (conf->verbose)
                 cout << "ga is not improving best fitness for " << stall << " generations" << endl;
-            conf->mutation_rate=1; // !!!!!! WARNING HACK !!!!!
+            pop->set_mutation_rate(1.0f); // Magic Number
         }
 
         if (conf->verbose && conf->print_avg_fitness)

@@ -32,6 +32,8 @@ class population
 
     general_tests test;
 
+    float mutation_rate;
+
     individual* get_random_individual() const;
     individual* new_random_individual();
 
@@ -56,6 +58,7 @@ class population
     void    print_best() const;
     void    mate_individuals();
     void    mutate_individual(individual*);
+    void    set_mutation_rate(float rate);
     // void    mutate_individuals() const;  // deprecated
 
     uint32  size() const;
