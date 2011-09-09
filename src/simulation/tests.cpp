@@ -168,15 +168,20 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         throw "fault.txt is empty";
     }
 
-    char *buffer = new char[length + 2];
+    char *buffer = new char[length + 3];
 
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
 
     remove(path.c_str());
+    
+    // Bloccato momentaneamente perchè causa crash
+    delete buffer;
+    return true;
 
-    buffer[length] = 'E';
-    buffer[length+1] = ' ';
+    buffer[length] = ' ';
+    buffer[length+1] = 'E';
+    buffer[length+2] = ' ';
 
     int fault_index = 0;
 
