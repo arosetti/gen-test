@@ -79,18 +79,15 @@ string get_output_file_path(int id)
     return path;
 }
 
-bool init_env()
+void clean_env()
 {
-    string sim_bin = get_bin_path(-1);
-    string thread_dir, bin_link, outputnet_link;
-    int ret;
-
     if (conf->debug && conf->verbose)
-        cout << "* simulation: init environment" << endl;
+        cout << "* simulation: cleaning environment" << endl;
 
     remove(get_faults_path(-1).c_str());
     remove(get_input_file_path(-1).c_str());
     remove(get_output_file_path(-1).c_str());
+
     for(int i = 0 ; i < conf->thread_slots; i++)
     {
         remove(get_faults_path(i).c_str());
@@ -100,6 +97,16 @@ bool init_env()
         unlink(get_bin_path(i).c_str());
         rmdir(get_sim_path(i).c_str());
     }
+}
+
+void init_env()
+{
+    int ret;
+
+    if (conf->debug && conf->verbose)
+        cout << "* simulation: initing environment" << endl;
+
+    clean_env();
 
     if (conf->debug && conf->verbose)
         cout << "* simulation: init " << conf->thread_slots << " slot(s)" << endl;
@@ -115,13 +122,11 @@ bool init_env()
             perror("symlink");
     }
     
-    /*if (chmod((char *) sim_bin.c_str(),0777))
+    /*if (chmod((char *) get_bin_path(-1).c_str(),0777))
     {
         perror("chmod");
         return false;
     }*/
-
-    return true;
 }
 
 uint32 read_n_inputs()

@@ -42,5 +42,7 @@ int main(int argc, char **argv)
 void sigint_callback_handler(int signum)
 {
    cout << endl << "caught SIGINT signal " << endl;
+   // kill dei thread per evitare segfault
+   clean_env();
    exit(signum);
 }
