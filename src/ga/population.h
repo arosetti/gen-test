@@ -8,6 +8,7 @@
 
 #include "individual.h"
 #include "../simulation/general_tests.h"
+#include "../common/ProgressBar.h"
 
 using namespace std;
 
@@ -67,30 +68,42 @@ class population
     individual* get_next_ind();
     void dec_threads();
     void inc_threads();
+    void inc_barlink();
     
     private:
 
-    void  getlock_ind_itr()
+    inline void  getlock_ind_itr()
     {
         pthread_mutex_lock(&mutex_ind_itr);
     }
-    void  releaselock_ind_itr()
+    inline void  releaselock_ind_itr()
     {
         pthread_mutex_unlock(&mutex_ind_itr);
     }
-    void  getlock_n_thread()
+    inline void  getlock_n_thread()
     {
         pthread_mutex_lock(&mutex_n_thread);
     }
-    void  releaselock_n_thread()
+    inline void  releaselock_n_thread()
     {
         pthread_mutex_unlock(&mutex_n_thread);
+    }
+    inline void  getlock_barlink()
+    {
+        pthread_mutex_lock(&mutex_barlink);
+    }
+    inline void  releaselock_barlink()
+    {
+        pthread_mutex_unlock(&mutex_barlink);
     }
 
     individual_map::const_iterator ind_itr;
     int n_thread;
+    BarGoLink m_barlink;    
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
+    pthread_mutex_t    mutex_barlink;
+    
 };
 
 #endif
