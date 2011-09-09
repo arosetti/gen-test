@@ -1,0 +1,60 @@
+diff -Naur Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Fault_Injector/Fault_InjectorSAN.cpp Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Fault_Injector/Fault_InjectorSAN.cpp
+--- Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Fault_Injector/Fault_InjectorSAN.cpp	2011-05-19 10:01:50.000000000 +0200
++++ Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Fault_Injector/Fault_InjectorSAN.cpp	2011-07-27 14:08:08.080161235 +0200
+@@ -5,7 +5,7 @@
+ #include "Atomic/Fault_Injector/Fault_InjectorSAN.h"
+ 
+ #include <stdlib.h>
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <math.h>
+ 
+diff -Naur Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Generic_Component/Generic_ComponentSAN.cpp Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Generic_Component/Generic_ComponentSAN.cpp
+--- Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Generic_Component/Generic_ComponentSAN.cpp	2011-07-23 12:35:02.000000000 +0200
++++ Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Generic_Component/Generic_ComponentSAN.cpp	2011-07-27 14:10:19.795884148 +0200
+@@ -5,7 +5,7 @@
+ #include "Atomic/Generic_Component/Generic_ComponentSAN.h"
+ 
+ #include <stdlib.h>
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <math.h>
+ 
+diff -Naur Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Input_Setup/Input_SetupSAN.cpp Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Input_Setup/Input_SetupSAN.cpp
+--- Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Input_Setup/Input_SetupSAN.cpp	2011-05-06 10:12:44.000000000 +0200
++++ Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Input_Setup/Input_SetupSAN.cpp	2011-07-27 14:08:50.436524567 +0200
+@@ -5,7 +5,7 @@
+ #include "Atomic/Input_Setup/Input_SetupSAN.h"
+ 
+ #include <stdlib.h>
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <math.h>
+ 
+diff -Naur Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Manager/ManagerSAN.cpp Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Manager/ManagerSAN.cpp
+--- Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//Manager/ManagerSAN.cpp	2011-05-03 09:50:30.000000000 +0200
++++ Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//Manager/ManagerSAN.cpp	2011-07-27 14:09:10.289715671 +0200
+@@ -5,7 +5,7 @@
+ #include "Atomic/Manager/ManagerSAN.h"
+ 
+ #include <stdlib.h>
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <math.h>
+ 
+diff -Naur Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//System_Manager/System_ManagerSAN.cpp Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//System_Manager/System_ManagerSAN.cpp
+--- Optimized_Netlist_Signal_Probabilities_Project_b02x/Atomic//System_Manager/System_ManagerSAN.cpp	2011-05-06 10:13:04.000000000 +0200
++++ Optimized_Netlist_Signal_Probabilities_Project_b02/Atomic//System_Manager/System_ManagerSAN.cpp	2011-07-27 14:09:39.146175553 +0200
+@@ -5,7 +5,7 @@
+ #include "Atomic/System_Manager/System_ManagerSAN.h"
+ 
+ #include <stdlib.h>
+-#include <iostream.h>
++#include <iostream>
+ 
+ #include <math.h>
+ 
