@@ -1,5 +1,15 @@
-changeset:   264:f1226453d153
+changeset:   266:362810343e36
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:56:21 2011 +0200
+sommario:    possibile miglioramente della dna_mutate
+
+changeset:   265:8f30c8ec798b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:36:04 2011 +0200
+sommario:    rinominata classe BarGoLink in prog_bar, funzioni, variabili.
+
+changeset:   264:f1226453d153
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 01:24:25 2011 +0200
 sommario:    * rimozione dei log dell'esecuzione precedente in caso di nuova esecuzione.
