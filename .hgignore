@@ -92,3 +92,4 @@ error.log
 crashlog.log
 gentest.gdb
 simulator/b02/output
+simulator/b02/input_signals_53su59
