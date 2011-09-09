@@ -90,10 +90,16 @@ void init_config()
 
 void post_init_config()
 {
+
+
     conf->chromosome_num = read_n_inputs();
 
     if (!file_exists(conf->log_path))  // usare dir_exists
         mkdir(conf->log_path.c_str(),0777);
+
+    stringstream str;
+    str << "rm -f " << conf->log_path << "/generation*.log";
+    system(str.str().c_str());
 }
 
 bool load_config()

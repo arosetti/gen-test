@@ -30,9 +30,7 @@ string time_format(float sec)
     if ( sec != 0.0f )
         sec_res = fmod(sec, (float)60);
 
-    if ( sec == 0.0f )
-        out << sec << " second(s)"; 
-    else if (sec < 60)
+    if (sec < 60)
         out << sec << " second(s)"; 
     else if (sec < 3600)
     {
