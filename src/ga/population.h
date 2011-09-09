@@ -23,7 +23,6 @@ extern config *conf;
 /**
  *
  */
-
 class population
 {
     individual_map*     pool;
@@ -99,7 +98,7 @@ class population
 
     individual_map::const_iterator ind_itr;
     int n_thread;
-    BarGoLink m_barlink;    
+    BarGoLink m_barlink;
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
     pthread_mutex_t    mutex_barlink;

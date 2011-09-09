@@ -1,5 +1,15 @@
-changeset:   247:7135ec88caea
+changeset:   249:b459b3096c4d
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 19:13:27 2011 +0200
+sommario:    inserita funzione clean_env()
+
+changeset:   248:a60bbcdf5e7f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 16:35:02 2011 +0200
+sommario:    aggiornamenti parametri e configurazioni
+
+changeset:   247:7135ec88caea
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 09 15:22:31 2011 +0200
 sommario:    aggiornato configure.ac

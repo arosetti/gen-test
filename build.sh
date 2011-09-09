@@ -20,7 +20,7 @@ if [ "$1" = "dist" ] ; then
 fi
 
 if [ "$1" = "clean" ] ; then
-./clean.sh
+    ./clean.sh
 fi
 
 if [ "$1" = "strip" ] ; then
@@ -29,10 +29,6 @@ fi
 
 echo "* generazione doxygen"
 $DOXYGEN Doxyfile > /dev/null 2>&1
-
-if [ ! -d "logs" ] ; then 
-    mkdir "logs"
-fi
 
 if [ "$1" = "run" ] ; then
     ./gentest
