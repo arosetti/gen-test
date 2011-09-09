@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <limits.h>
+#include <math.h>
 
 #include "../typedefs.h"
 
