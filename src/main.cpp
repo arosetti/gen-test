@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <iostream>
+#include <signal.h>
 
 #include "ga/ga_engine.h"
 #include "../config.h"
@@ -7,6 +8,8 @@
 using namespace std;
 
 config *conf = new config;
+
+void sigint_callback_handler(int);
 
 int main(int argc, char **argv)
 {
@@ -18,6 +21,9 @@ int main(int argc, char **argv)
     cout << "used to generate test patterns for simulated circuits." << endl;
     cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
     cout << endl;
+
+
+    signal(SIGINT,sigint_callback_handler);
 
     init_config();
     load_config();
@@ -31,4 +37,10 @@ int main(int argc, char **argv)
     delete LOG_PTR();
 
     return 0;
+}
+
+void sigint_callback_handler(int signum)
+{
+   cout << endl << "caught SIGINT signal " << endl;
+   exit(signum);
 }
