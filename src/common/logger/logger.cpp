@@ -5,7 +5,7 @@ logger::logger()
 
 }
 
-bool logger::log(string file, string log, bool append)
+bool logger::log(string file, string log, bool append) // inserire un mutex se il file è già aperto che attende la chiusura ?!
 {
     ofstream ff;
 

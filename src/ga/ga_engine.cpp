@@ -46,7 +46,7 @@ void ga_engine::evolve()
         if (conf->verbose)
         {
             //for(int i = 0; i< (get_columns()/4) ; i++) cout << "-";
-            cout << endl << "* generation: " << generation << endl;
+            cout << endl << "# generation: " << generation << endl;
         }
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;

@@ -13,7 +13,7 @@ void *SimulationThread(void *arg)
     while (individual* ind = t_param->pop->get_next_ind())
     {        
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
-            usleep(25); // Per evitare che si accavallano i log
+            usleep(10);
         t_param->pop->inc_barlink();
     }
 
@@ -112,14 +112,7 @@ bool tests::FindFault(uint32 fault)
 bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
     if (is_tested())
-    {
-        //if (conf->debug && conf->verbose)
-        //    cout << "skipped" << endl;
         return false;
-    }
-
-    //if (conf->debug && conf->verbose)
-    //    cout << "testing" << endl;
 
     int tried = 0;
     while (!is_tested() && tried < (conf->max_retest + 1))
@@ -136,7 +129,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             tried++;
             if (conf->debug && conf->verbose)
             {
-                cout << "caught exception: " << str << endl;
+                cout << "caught exception: " << str << endl; // log
                 if (tried < (conf->max_retest + 1))
                     cout << "retesting try " << tried << endl;
             }

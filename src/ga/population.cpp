@@ -113,7 +113,7 @@ void population::test_population()
             pthread_attr_t tattr;
             int ret;
 
-            // Per riusare i thread R.I.P.
+            // per riusare i thread R.I.P.
             ret = pthread_attr_init(&tattr);
             ret = pthread_attr_setdetachstate(&tattr, PTHREAD_CREATE_DETACHED);
 
@@ -129,7 +129,7 @@ void population::test_population()
 
     while (n_thread)
     {
-        usleep(50); // In millisecondi
+        usleep(50); // in millisecondi
     }
 
     cout << endl << endl;
@@ -173,7 +173,7 @@ float population::get_best_fitness() const
     return best_fitness;
 }
 
-void population::sort_by_fitness()
+void population::sort_by_fitness()  // deprecated
 {
     //pool->sort();
 }
