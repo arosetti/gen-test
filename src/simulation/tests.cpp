@@ -11,9 +11,10 @@ void *SimulationThread(void *arg)
     remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_ind())
-    {
+    {        
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
             usleep(50); // Per evitare che si accavallano i log
+        t_param->pop->inc_barlink();
     }
 
     t_param->pop->dec_threads();
@@ -112,13 +113,13 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
     if (is_tested())
     {
-        if (conf->debug && conf->verbose)
-            cout << "dna already tested" << endl;
+        //if (conf->debug && conf->verbose)
+        //    cout << "skipped" << endl;
         return false;
     }
 
-    if (conf->debug && conf->verbose)
-        cout << "dna test in progress..." << endl;
+    //if (conf->debug && conf->verbose)
+    //    cout << "testing" << endl;
 
     int tried = 0;
     while (!is_tested() && tried < (conf->max_retest + 1))
@@ -167,15 +168,20 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         throw "fault.txt is empty";
     }
 
-    char *buffer = new char[length + 2];
+    char *buffer = new char[length + 3];
 
     sim_fault_file.read (buffer,length);
     sim_fault_file.close();
 
     remove(path.c_str());
+    
+    // Bloccato momentaneamente perchè causa crash
+    delete buffer;
+    return true;
 
-    buffer[length] = 'E';
-    buffer[length+1] = ' ';
+    buffer[length] = ' ';
+    buffer[length+1] = 'E';
+    buffer[length+2] = ' ';
 
     int fault_index = 0;
 
