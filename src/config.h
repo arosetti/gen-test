@@ -2,6 +2,9 @@
 #include <string>
 #include <confuse.h>
 
+#ifndef CONFIG_H
+#define CONFIG_H
+
 #include "common/utility.h"
 
 using namespace std;
@@ -56,3 +59,4 @@ void help_args();
 
 void interactive();
 
+#endif
