@@ -79,6 +79,7 @@ void ga_engine::evolve()
             if (conf->verbose)
                 cout << "ga is not improving best fitness for " << stall << " generations" << endl;
             pop->set_mutation_rate(1.0f); // Magic Number
+            last_best_fitness = 0;
         }
 
         if (conf->verbose && conf->print_avg_fitness)
