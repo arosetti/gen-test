@@ -91,3 +91,4 @@ system.log
 error.log
 crashlog.log
 gentest.gdb
+simulator/b02/output
