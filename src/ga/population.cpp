@@ -96,7 +96,7 @@ void population::test_population()
     n_thread = 0;
 
     if (conf->print_progress_bar)
-        m_barlink.init(pool->size());
+        p_bar.init(pool->size());
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)
@@ -514,7 +514,7 @@ void population::inc_barlink()
     if (!conf->print_progress_bar)
         return;
 
-    getlock_barlink();
-    m_barlink.step();
-    releaselock_barlink();
+    getlock_pbar();
+    p_bar.step();
+    releaselock_pbar();
 }

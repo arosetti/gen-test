@@ -1,5 +1,10 @@
-changeset:   263:fbdf0160262e
+changeset:   264:f1226453d153
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:24:25 2011 +0200
+sommario:    * rimozione dei log dell'esecuzione precedente in caso di nuova esecuzione.
+
+changeset:   263:fbdf0160262e
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 09 23:37:40 2011 +0200
 sommario:    real_fix2 time_format

@@ -1,33 +1,33 @@
 #include <stdio.h>
 #include <errno.h>
 
-#include "ProgressBar.h"
+#include "prog_bar.h"
 
-bool BarGoLink::m_showOutput = true;
+bool prog_bar::m_showOutput = true;
 
-char const* const BarGoLink::empty = " ";
+char const* const prog_bar::empty = " ";
 #ifdef _WIN32
-char const* const BarGoLink::full = "\x3D";
+char const* const prog_bar::full = "\x3D";
 #else
-char const* const BarGoLink::full = "*";
+char const* const prog_bar::full = "*";
 #endif
 
-BarGoLink::BarGoLink()
+prog_bar::prog_bar()
 {
 
 }
 
-BarGoLink::BarGoLink(int row_count)
+prog_bar::prog_bar(int row_count)
 {
     init(row_count);
 }
 
-BarGoLink::BarGoLink(uint32 row_count)
+prog_bar::prog_bar(uint32 row_count)
 {
     init((int)row_count);
 }
 
-BarGoLink::~BarGoLink()
+prog_bar::~prog_bar()
 {
     if (!m_showOutput)
         return;
@@ -36,7 +36,7 @@ BarGoLink::~BarGoLink()
     fflush(stdout);
 }
 
-void BarGoLink::init(int row_count)
+void prog_bar::init(int row_count)
 {
     rec_no = 0;
     rec_pos = 0;
@@ -60,7 +60,7 @@ void BarGoLink::init(int row_count)
     fflush(stdout);
 }
 
-void BarGoLink::step()
+void prog_bar::step()
 {
     if (!m_showOutput)
         return;
@@ -92,7 +92,7 @@ void BarGoLink::step()
 }
 
 // avoid use inline version because linking problems with private static field
-void BarGoLink::SetOutputState(bool on)
+void prog_bar::SetOutputState(bool on)
 {
     m_showOutput = on;
 }

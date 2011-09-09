@@ -93,3 +93,6 @@ crashlog.log
 gentest.gdb
 simulator/b02/output
 simulator/b02/input_signals_53su59
+src/common/progress_bar/.dirstamp
+src/common/progress_bar/.deps/prog_bar.Po
+src/common/progress_bar/.deps/.dirstamp
