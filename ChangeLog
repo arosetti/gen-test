@@ -1,5 +1,10 @@
-changeset:   246:96e6c7d99464
+changeset:   247:7135ec88caea
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 15:22:31 2011 +0200
+sommario:    aggiornato configure.ac
+
+changeset:   246:96e6c7d99464
 genitore:    245:104bef85ead4
 genitore:    243:242f8fceae07
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

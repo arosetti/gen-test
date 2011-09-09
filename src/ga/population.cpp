@@ -129,7 +129,7 @@ void population::test_population()
 
     while (n_thread)
     {
-        usleep(100); // In millisecondi
+        usleep(50); // In millisecondi
     }
 
     cout << endl << endl;
@@ -381,23 +381,9 @@ void population::mate_individuals()
     mating_pool.clear();
 }
 
-// TODO inglobare in individual
 void population::mutate_individual(individual *ind)
 {
-    if (!ind)
-        return;
-
-    float count = conf->mutation_rate * ind->dna_length();
-
-    if (conf->verbose && conf->print_mutations)
-        cout << count << " mutation event!"<<endl;
-
-    while (count >= 1.0f)
-    {
-        ind->dna_mutate();
-        count--;
-    }
-    if (uint32(count * 1000) > randmm(0,1000))
+    if (ind)
         ind->dna_mutate();
 }
 
@@ -524,6 +510,9 @@ void population::inc_threads()
 
 void population::inc_barlink()
 {
+    if (!conf->print_progress_bar)
+        return;
+
     getlock_barlink();
     m_barlink.step();
     releaselock_barlink();

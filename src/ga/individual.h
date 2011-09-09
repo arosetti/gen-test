@@ -15,7 +15,6 @@ extern config *conf;
 /**
  *
  */
-
 class individual: public tests
 {
     uint32    chromosome_length;

@@ -112,13 +112,13 @@ bool general_tests::LoadFile(individual_map* pool)
             if (p_buffer == block)
                 new_block = true;
 
-            p_buffer = strtok (NULL, " "); //in               
+            p_buffer = strtok (NULL, " "); //in
         }
         else
             new_block = true;
 
 
-        p_buffer = strtok (NULL, " "); // component        
+        p_buffer = strtok (NULL, " "); // component
         p_buffer = strtok (NULL, " "); // number
 
         int temp_fault_number = atoi(p_buffer.c_str());
@@ -134,7 +134,7 @@ bool general_tests::LoadFile(individual_map* pool)
         
         p_buffer = strtok (NULL, " "); // has
 
-        p_buffer = strtok (NULL, " ");        
+        p_buffer = strtok (NULL, " ");
         if (p_buffer == "been") // fault trovato
         {
             InsertFault(fault_index);
