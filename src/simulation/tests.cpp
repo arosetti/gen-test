@@ -125,7 +125,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             test();
         }
         catch (char const* str)
-        {            
+        {
             tried++;
             if (conf->debug && conf->verbose)
             {
@@ -134,7 +134,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
                     cout << "retesting try " << tried << endl;
             }
         }
-    }    
+    }
     return true;
 }
 

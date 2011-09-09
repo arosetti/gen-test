@@ -90,3 +90,4 @@ simulator/b02/sim_0/ output_faults
 system.log
 error.log
 crashlog.log
+gentest.gdb
