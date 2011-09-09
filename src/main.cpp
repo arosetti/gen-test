@@ -8,6 +8,7 @@
 using namespace std;
 
 config *conf = new config;
+static timer t_gentest;
 
 void sigint_callback_handler(int);
 
@@ -29,7 +30,8 @@ int main(int argc, char **argv)
     load_args(argc, argv);
     post_init_config();
     check_config();
-    
+
+    time_start(t_gentest);
     ga.init();
     ga.evolve();
 
@@ -41,8 +43,13 @@ int main(int argc, char **argv)
 
 void sigint_callback_handler(int signum)
 {
-   cout << endl << "caught SIGINT signal " << endl;
-   // kill dei thread per evitare segfault
-   clean_env();
-   exit(signum);
+    cout << endl << "caught SIGINT signal " << endl;
+
+    // kill dei thread per evitare segfault
+    clean_env();
+
+    time_stop(t_gentest);
+    if (conf->verbose)
+       cout << "* program time: " << time_format(time_diff(t_gentest)) << endl;
+    exit(signum);
 }
