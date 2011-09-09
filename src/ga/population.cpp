@@ -18,6 +18,7 @@ population::population()
 
     pthread_mutex_init(&mutex_ind_itr, NULL);
     pthread_mutex_init(&mutex_n_thread, NULL);
+    pthread_mutex_init(&mutex_barlink, NULL);
 }
 
 population::~population()
@@ -98,6 +99,7 @@ void population::test_population()
 {
     ind_itr = pool->begin();
     n_thread = 0;
+    m_barlink.init(pool->size());
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)
@@ -129,6 +131,8 @@ void population::test_population()
     {
         usleep(100); // In millisecondi
     }
+
+    cout << endl << endl;
 
     /*
     individual_map::const_iterator itr = pool->begin();
@@ -182,8 +186,8 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 
     if (conf->cut_type == "double_random")
     {
-    cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
-    cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
+        cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
+        cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
     }
     else if (conf->cut_type == "single_random")
     {   
@@ -516,4 +520,11 @@ void population::inc_threads()
     getlock_n_thread();
     n_thread++;
     releaselock_n_thread();
+}
+
+void population::inc_barlink()
+{
+    getlock_barlink();
+    m_barlink.step();
+    releaselock_barlink();
 }
