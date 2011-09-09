@@ -13,7 +13,7 @@ void *SimulationThread(void *arg)
     while (individual* ind = t_param->pop->get_next_ind())
     {        
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
-            usleep(50); // Per evitare che si accavallano i log
+            usleep(25); // Per evitare che si accavallano i log
         t_param->pop->inc_barlink();
     }
 

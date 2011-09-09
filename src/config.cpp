@@ -5,13 +5,14 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"print_best",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print_population_size",(cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),
-
-    CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
+    
+    CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
+    CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),  // trasformare in log
+    CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE), // trasformare in log
 
     CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
@@ -42,6 +43,21 @@ cfg_opt_t opts[] =
 
     CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
     CFG_END()
+};
+
+char *fitness_types[] =
+{
+    "fault_rate",
+    "fault_rate_linear_min_length",
+    NULL
+};
+
+char *cut_types[] =
+{
+    "half",
+    "single_random",
+    "double_random",
+    NULL
 };
 
 cfg_t *open_cfg()
@@ -81,6 +97,7 @@ bool load_config()
     conf->verbose = cfg_getbool(cfg, "verbose");
     conf->interactive = cfg_getbool(cfg, "interactive");
 
+    conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
     conf->print_avg_fitness = cfg_getbool(cfg, "print_avg_fitness");
     conf->print_population_size = cfg_getbool(cfg, "print_population_size");
@@ -102,7 +119,7 @@ bool load_config()
 
     conf->max_generations = cfg_getint(cfg, "max_generations");
     conf->max_stall = cfg_getint(cfg, "max_stall");
-    conf->max_stall = cfg_getint(cfg, "max_retest");
+    conf->max_retest = cfg_getint(cfg, "max_retest");
     
     conf->population_size = cfg_getint(cfg, "population_size");
     conf->fitness_type = cfg_getstr(cfg, "fitness_type");

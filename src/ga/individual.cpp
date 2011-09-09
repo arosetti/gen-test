@@ -74,10 +74,26 @@ void individual::dna_random()
 
 void individual::dna_mutate()
 {
-    uint32 row_r = rand()%chromosome_number + 1;
-    uint32 col_r = rand()%get_chromosome_length() + 1;
+    uint32 row_r = rand()%chromosome_number + 1,
+           col_r = rand()%get_chromosome_length() + 1;
+    float count = 100 * conf->mutation_rate * dna_length();
 
-    dna->Flip(row_r,col_r);
+    if (conf->verbose && conf->print_mutations)
+    {
+        //LOG in generation{x}-mutations.log ... in individual non sappiamo la generazione attuale...
+        cout << count << " mutation event(s)!"<<endl;
+    }
+
+    while (count >= 1.0f)
+    {
+        dna->Flip(row_r,col_r);
+        row_r = rand()%chromosome_number + 1;
+        col_r = rand()%get_chromosome_length() + 1;
+        count--;
+    }
+    if (uint32(count * 1000) > randmm(0,1000))
+        dna->Flip(row_r,col_r);
+
     untest();
 }
 
@@ -131,17 +147,24 @@ float individual::get_fitness()  const
     return fitness;
 }
 
-void individual::set_fitness(float f) // deprecated??
+void individual::set_fitness(float f) // deprecated
 {
     fitness = f;
 }
 
 void individual::calc_fitness()
 {
-    //test.execute(get_dna());
-    //test.get_results(&n_tests, &detected);
-    fitness = (float)(100 * detected) / (float)(n_tests);
-    //fitness = ( (float)(100 * detected) / (float)(n_tests) ) * ( get_chromosome_length()>conf->chromosome_start_len_min?((get_dna_length()+60)/get_dna_length()):1 );
+    if (conf->fitness_type == "fault_rate")
+        fitness = (float)(100 * detected) / (float)(n_tests);
+    else if (conf->fitness_type == "fault_rate_linear_min_length")
+        fitness = ( (float)(100 * detected) / (float)(n_tests) ) / 
+                    (float)( get_chromosome_length() >= conf->chromosome_max_len?
+                      get_chromosome_length():1 );
+    else
+    {
+        cout << "please, select a valid fitness type" << endl;
+        exit(1);
+    }
 }
 
 string individual::get_chromosome(uint32 crom)  const

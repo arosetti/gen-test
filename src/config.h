@@ -14,6 +14,7 @@ typedef struct config
 {
     string conf_filename, main_path, log_path;
     bool debug, verbose, interactive;
+    bool print_progress_bar;
     bool print_best, print_avg_fitness;
     bool print_population_size, print_mating;
     bool print_mutations;
@@ -27,9 +28,7 @@ typedef struct config
     string thread_prefix;
     uint32 thread_slots;
 
-    uint32 max_generations;
-    uint32 max_stall;
-    uint32 max_retest;
+    uint32 max_generations, max_stall, max_retest;
 
     uint32 population_size;
 
