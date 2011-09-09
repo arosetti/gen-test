@@ -8,7 +8,7 @@
 
 #include "individual.h"
 #include "../simulation/general_tests.h"
-#include "../common/ProgressBar.h"
+#include "../common/progress_bar/prog_bar.h"
 
 using namespace std;
 
@@ -90,18 +90,18 @@ class population
     {
         pthread_mutex_unlock(&mutex_n_thread);
     }
-    inline void  getlock_barlink()
+    inline void  getlock_pbar()
     {
         pthread_mutex_lock(&mutex_barlink);
     }
-    inline void  releaselock_barlink()
+    inline void  releaselock_pbar()
     {
         pthread_mutex_unlock(&mutex_barlink);
     }
 
     individual_map::const_iterator ind_itr;
     int n_thread;
-    BarGoLink m_barlink;
+    prog_bar p_bar;
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
     pthread_mutex_t    mutex_barlink;

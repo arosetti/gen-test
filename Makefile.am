@@ -14,7 +14,7 @@ gentest_SOURCES = src/ga/ga_engine.h src/ga/ga_engine.cpp   \
                   src/config.h src/config.cpp \
                   src/common/typedefs.h \
                   src/common/defines.h \
-                  src/common/ProgressBar.h src/common/ProgressBar.cpp \
+                  src/common/progress_bar/prog_bar.h src/common/progress_bar/prog_bar.cpp \
                   src/common/logger/logger.h src/common/logger/logger.cpp \
                   src/common/timer/time.h src/common/timer/time.cpp \
                   src/main.cpp
