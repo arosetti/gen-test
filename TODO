@@ -1,0 +1,41 @@
+#####nomi variabili#####
+-nomi variabili autocommentanti.
+-nomi delle variabili relative ad un modello univoco
+ -> genetico (meglio questo)
+ -> circuitale
+-nomi variabili con lettere minuscole e parole separate da _
+
+#####classi-strutture#####
++ documentazioni doxygen
+
++ classe ga_engine
+
++ classe population
+
++ classe individual
+
++ classe simulator
+   + prevedere ricompilazione del simulatore.
+
++ classe bitmatrix
+   + ottimizzare i return di stringhe con puntatori
+   + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
+
++ config.h
+    + funzione check_conf
+
++ classe astrazione random (std_random, /dev/random, altri algoritmi)
+
+#REVISIONE CODICE
+revisione nomi variabili
+commenti doxygen
+#fare sempre un test con valgrind per identificare i leak ;)
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
+
+
+####TODO
+- altre statistiche, indice di differenza in qualche maniera dire quanti cloni ci sono nella popolazione
+- possibilità di iniziare la simulazione da un log.
+- mutazione che elimina le colonne
+- inserire quanti sono stati testati o skippati in fondo alla barra.
+- log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
