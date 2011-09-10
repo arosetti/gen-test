@@ -204,10 +204,12 @@ float population::get_best_fitness() const
     return best_fitness;
 }
 
+/*
 void population::sort_by_fitness()  // deprecated
 {
     //pool->sort();
 }
+*/
 
 void population::crossover(individual *& ind_a, individual *& ind_b)
 {
@@ -363,8 +365,8 @@ void population::mate_individuals()
     {
         // Clono gli individual che faranno parte della nuova map
         ind_a_cloned = new individual(*(*pool->find(*itr++)).second);
-        //cout << "faults " << ((*pool->find(*itr)).second)->GetFaultsSize() << endl;
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
+
         // Effettuo il crossover con una certa probabilità
         if (randmm(0,100) <= (conf->mating_rate*100))
         {
@@ -374,12 +376,12 @@ void population::mate_individuals()
             crossover(ind_a_cloned, ind_b_cloned);
 
             // Dopo il crossover ci potrebbero essere delle mutazioni
-            // mutate_individual(ind_a_cloned);
-            // mutate_individual(ind_a_cloned);
+            //ind_a_cloned->dna_mutate(mutation_rate);
+            //ind_a_cloned->dna_mutate(mutation_rate);
         }
 
-        mutate_individual(ind_a_cloned);
-        mutate_individual(ind_a_cloned);
+        ind_a_cloned->dna_mutate(mutation_rate);
+        ind_a_cloned->dna_mutate(mutation_rate);
 
         // Aggiungo i figli alla nuova map
         temp_pool->insert(temp_pool->end(),
@@ -405,20 +407,26 @@ void population::mate_individuals()
     mating_pool.clear();
 }
 
-void population::mutate_individual(individual *ind)
-{
-    if (ind)
-        ind->dna_mutate(mutation_rate);
-}
-
 void population::set_mutation_rate(float rate)
 {
-    if (rate > 1.0f)        
+    if (rate > 1.0f)
         mutation_rate = 1;
     else if (rate < 0.0f)
         mutation_rate = 0;
     else 
         mutation_rate = rate;
+}
+
+void population::fattest_individual_shrink()
+{
+    individual *ind = get_fattest_individual();
+
+    if (!ind)
+        return;
+
+    // finchè è il più grande taglio colonne a caso
+    while(ind == get_fattest_individual())
+        ind->dna_shrink();
 }
 
 /*
