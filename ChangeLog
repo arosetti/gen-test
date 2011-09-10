@@ -1,5 +1,16 @@
-changeset:   271:ab4129e3f3a9
+changeset:   273:1b46a267dc95
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 12:35:04 2011 +0200
+sommario:    Inserita l'etichetta 0.1.5 per il changeset aa47160b273e
+
+changeset:   272:aa47160b273e
+tag:         0.1.5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 12:34:53 2011 +0200
+sommario:    * versione 0.1.5
+
+changeset:   271:ab4129e3f3a9
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 12:03:04 2011 +0200
 sommario:    * info numero threads nella label di esecuzione dei test.

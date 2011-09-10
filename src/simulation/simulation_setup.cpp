@@ -114,7 +114,7 @@ void init_env()
     clean_env();
 
     if (conf->debug && conf->verbose)
-        cout << "* simulation: initing " << conf->thread_slots << " slot(s)" << endl;
+        cout << "* simulation: initing \"" << conf->simulator_dir << "\" using " << conf->thread_slots << " thread(s)" << endl;
 
     for(int i = 0 ; i < conf->thread_slots ; i++ )
     {

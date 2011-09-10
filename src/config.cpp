@@ -26,6 +26,7 @@ cfg_opt_t opts[] =
     CFG_STR((char*)"log_path",(char*)"logs",CFGF_NONE),
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
+    CFG_INT((char*)"max_threads", 32, CFGF_NONE),
     
     CFG_INT((char*)"max_generations",  100, CFGF_NONE),
     CFG_INT((char*)"max_stall", 10, CFGF_NONE),
@@ -134,11 +135,12 @@ bool load_config()
     conf->log_path = cfg_getstr(cfg, "log_path");
     conf->thread_prefix = cfg_getstr(cfg, "thread_prefix");
     conf->thread_slots = cfg_getint(cfg, "thread_slots");
+    conf->max_threads = cfg_getint(cfg, "max_threads");
 
     conf->max_generations = cfg_getint(cfg, "max_generations");
     conf->max_stall = cfg_getint(cfg, "max_stall");
     conf->max_retest = cfg_getint(cfg, "max_retest");
-    
+
     conf->population_size = cfg_getint(cfg, "population_size");
     conf->fitness_type = cfg_getstr(cfg, "fitness_type");
     conf->cut_type = cfg_getstr(cfg, "cut_type");
@@ -167,11 +169,11 @@ int load_args(int argc, char **argv)
 {
     char *c_value = NULL;
     int index;
-    int opt;
+    int opt, tmp_i;
 
     opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hdIc:")) != -1) //TODO t: %d thread_slots
+    while ((opt = getopt (argc, argv, "hdIt:c:s:")) != -1) //TODO t: %d thread_slots
         switch (opt)
         {
             case 'h':
@@ -191,19 +193,38 @@ int load_args(int argc, char **argv)
                 if (!file_exists(optarg))
                 {
                     cout << "config file " << optarg << " does not exists!" << endl;
-                    exit(0);
+                    exit(1);
                 }
                 cout << "* loading config from" << optarg << endl;
                 load_config();
             break;
+            case 't':
+                tmp_i = atoi(optarg);
+                if (tmp_i > 0 && tmp_i <= conf->max_threads)
+                    conf->thread_slots = tmp_i;
+                else
+                    cout << "wrong -t parameter. you must use a value between 1 and "
+                         << conf->max_threads << endl << endl;
+            break;
+            case 's':
+                if (file_exists(optarg))  // controllare che sia una dir con dir_exists
+                    conf->simulator_dir = optarg;
+                else
+                    cout << "wrong -s parameter. you must use a valid simulator dir " 
+                         << endl << endl;
+            break;
             case '?':
                 if (optopt == 'c')
-                fprintf (stderr, "option -%c requires an argument.\n", optopt);
+                fprintf (stderr, "option -%c requires an argument.\n\n", optopt);
+                else if (optopt == 't')
+                fprintf (stderr, "option -%c requires an argument.\n\n", optopt);
+                else if (optopt == 's')
+                fprintf (stderr, "option -%c requires an argument.\n\n", optopt);
                 else if (isprint (optopt))
-                fprintf (stderr, "unknown option `-%c'.\n", optopt);
+                fprintf (stderr, "unknown option `-%c'.\n\n", optopt);
                 else
                 fprintf (stderr,
-                        "unknown option character `\\x%x'.\n",
+                        "unknown option character `\\x%x'.\n\n",
                         optopt);
                 return 1;
             default:
@@ -219,11 +240,12 @@ int load_args(int argc, char **argv)
 void help_args()
 {
     cout << "help: " << endl;
-    cout << "-h             :  help" << endl;
-    cout << "-d             :  debug mode on" << endl;
-    cout << "-I             :  interactive mode on" << endl;
-    cout << "-c <filename>  :  alternative config filename" << endl;
-    cout << "-t <threads>   :  thread number (not yet implemented)" << endl; //TODO thread number
+    cout << "-h                 :  help" << endl;
+    cout << "-d                 :  debug mode on" << endl;
+    cout << "-I                 :  interactive mode on" << endl;
+    cout << "-c <filename>      :  alternative config filename" << endl;
+    cout << "-t <threads>       :  set thread number" << endl;
+    cout << "-s <simulator_dir> :  set simulator dir" << endl;
     cout << endl;
 }
 
@@ -288,6 +310,12 @@ void check_config()
     {
         cout << "use at least one thread in thread_slots" << endl;
         exit(1);
+    }
+
+    if (conf->thread_slots > conf->max_threads)
+    {
+        cout << "max_threads (" << conf->max_threads  << ") exceeded!" << endl;
+        conf->thread_slots = conf->max_threads;
     }
 
     if (conf->max_retest < 0)

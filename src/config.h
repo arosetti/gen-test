@@ -29,7 +29,7 @@ typedef struct config
     string test_file_out, test_file_in;
 
     string thread_prefix;
-    uint32 thread_slots;
+    uint32 thread_slots, max_threads;
 
     uint32 max_generations, max_stall, max_retest;
 

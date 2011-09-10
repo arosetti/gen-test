@@ -51,7 +51,7 @@ void ga_engine::evolve()
             cout << "* population size: " << pop->size() << endl;
 
         /*if (conf->verbose)
-            cout << "* reset faults" << endl;
+            cout << "* resetting faults" << endl;
         pop->reset_faults();*/
 
         if (conf->verbose)
@@ -80,7 +80,7 @@ void ga_engine::evolve()
             pop->set_mutation_rate(0.5f); // magic number
             last_best_fitness = 0;
         }
-        else
+        else if (stall > 0)
             cout << "  stall is at " << stall << endl;
 
         if (conf->verbose && conf->print_avg_chromosome_length)
