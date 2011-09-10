@@ -114,3 +114,4 @@ simulator/b03/sim_1/input_signals
 simulator/b03/sim_0/sim_FPGASim_Linux
 simulator/b03/sim_0/output.net
 simulator/b03/sim_0/input_signals
+simulator/b02/sim_5/input_signals
