@@ -47,14 +47,14 @@ individual* population::get_fattest_individual()
 {
     individual_map::iterator itr = pool->begin();
     individual *fattest_ind = NULL;
+    uint32      c_len = 0;
 
     for (; itr != pool->end(); ++itr)
     {
-        if (fattest_ind && 
-           (fattest_ind->get_chromosome_length() <
-           (*itr).second->get_chromosome_length()))
+        if (c_len < (*itr).second->get_chromosome_length())
         {
             fattest_ind = (*itr).second;
+            c_len = fattest_ind->get_chromosome_length();
         }
     }
 
@@ -424,9 +424,15 @@ void population::fattest_individual_shrink()
     if (!ind)
         return;
 
-    // finchè è il più grande taglio colonne a caso
-    while(ind == get_fattest_individual())
+    if (conf->debug && conf->verbose)
+        cout << "ind_before: " << ind->get_chromosome_length() << endl;
+
+    while(ind == get_fattest_individual() 
+          || ind->get_chromosome_length() > conf->chromosome_max_len)
         ind->dna_shrink();
+
+    if (conf->debug && conf->verbose)
+        cout << "ind_after: " << ind->get_chromosome_length() << endl;
 }
 
 /*

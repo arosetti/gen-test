@@ -155,7 +155,7 @@ bool load_config()
     conf->mating_fraction = cfg_getfloat(cfg, "mating_fraction");
 
     conf->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
-    conf->mutation_length_gene = cfg_getfloat(cfg, "mutation_length_gene");
+    conf->mutation_length_gene = cfg_getbool(cfg, "mutation_length_gene");
 
     cfg_free(cfg);
 
