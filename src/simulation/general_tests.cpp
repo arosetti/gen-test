@@ -59,21 +59,16 @@ uint32 general_tests::FindFault(uint32 fault)
     return m_faults_map[fault];
 }
 
-// Deprecata (ma può servire in futuro)
+// Deprecata (ma può servire in futuro) 
+// TODO in futuro dovrebbe avere anche id come parametro.
 bool general_tests::LoadFile(individual_map* pool)
 {
-    string path = conf->simulator_dir;
-    string fault  = "faults.txt";
-    if (path.c_str()[path.length()] != '/')
-        path += "/";
-    path += fault;
-
     ifstream sim_fault_file;
-    sim_fault_file.open(path.c_str(), ios::binary);
+    sim_fault_file.open(get_faults_path(-1).c_str(), ios::binary);
 
     if (!sim_fault_file.is_open())
     {
-        printf("file: %s\n", path.c_str());
+        printf("file: %s\n", get_faults_path(-1).c_str());
         perror("simulator faults.txt");
         return false;
     }
@@ -149,6 +144,6 @@ bool general_tests::LoadFile(individual_map* pool)
         fault_index++;
     }
 
-    remove(path.c_str());
+    remove(get_faults_path(-1).c_str());
     return true;
 }
