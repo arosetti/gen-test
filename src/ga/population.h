@@ -53,14 +53,14 @@ class population
     float   get_avg_fitness() const;
     float   get_avg_chromosome_length() const;
     float   get_best_fitness() const;
-    void    sort_by_fitness();  // deprecated
+  //void    sort_by_fitness();  // deprecated
 
     void    transfer_bests();
     void    print_best() const;
     void    mate_individuals();
-    void    mutate_individual(individual*);
     void    set_mutation_rate(float rate);
-    // void    mutate_individuals() const;  // deprecated
+  //void    mutate_individuals() const;  // deprecated
+    void    fattest_individual_shrink();
 
     uint32  size() const;
     void    log(uint32) const;

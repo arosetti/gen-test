@@ -109,6 +109,13 @@ void ga_engine::evolve()
             cout << "* mating individuals" << endl;
         pop->mate_individuals();
 
+        if (conf->mutation_length_gene)
+        {
+            if (conf->verbose)
+                cout << "* shrinking fattest individual" << endl;
+            fattest_individual_shrink();
+        }
+
         time_stop(time);
 
         if (conf->verbose)

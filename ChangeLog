@@ -1,5 +1,10 @@
-changeset:   281:1a96e6b23645
+changeset:   282:cc70303437f9
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:05:28 2011 +0200
+sommario:    * inserita get_fattest_individual()
+
+changeset:   281:1a96e6b23645
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 18:21:32 2011 +0200
 sommario:    * inserito booleano mutation_length_gene
