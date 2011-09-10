@@ -21,6 +21,7 @@ string get_faults_path(int);
 string get_patch_path(int);
 string get_input_file_path(int);
 string get_output_file_path(int);
+string get_log_file_path(uint32);
 
 void clean_env();
 void init_env();

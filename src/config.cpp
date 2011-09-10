@@ -9,6 +9,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
     
     CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
@@ -90,10 +91,16 @@ void init_config()
 
 void post_init_config()
 {
+    int ret;
+
     conf->chromosome_num = read_n_inputs();
 
     if (!file_exists(conf->log_path))  // usare dir_exists
         mkdir(conf->log_path.c_str(),0777);
+
+    stringstream str;
+    str << "rm -f " << conf->log_path << "/generation*.log";
+    ret = system(str.str().c_str());
 }
 
 bool load_config()
@@ -109,6 +116,7 @@ bool load_config()
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
+    conf->print_avg_chromosome_length = cfg_getbool(cfg, "print_avg_chromosome_length");
     conf->print_avg_fitness = cfg_getbool(cfg, "print_avg_fitness");
     conf->print_population_size = cfg_getbool(cfg, "print_population_size");
     conf->print_mating = cfg_getbool(cfg, "print_mating");
