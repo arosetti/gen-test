@@ -1,10 +1,11 @@
 #include "config.h"
-#include "simulation/simulation_setup.h"
+#include "simulation/simulation_utility.h"
 
 cfg_opt_t opts[] =
 {
     CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"logger",(cfg_bool_t)true, CFGF_NONE),
 
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
@@ -114,6 +115,7 @@ bool load_config()
 
     conf->debug = cfg_getbool(cfg, "debug");
     conf->verbose = cfg_getbool(cfg, "verbose");
+    conf->logger = cfg_getbool(cfg, "logger");
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");

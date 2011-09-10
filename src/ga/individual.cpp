@@ -74,8 +74,8 @@ void individual::dna_random()
 
 void individual::dna_mutate(float mutation_rate)
 {
-    uint32 row_r = rand()%chromosome_number + 1,
-           col_r = rand()%get_chromosome_length() + 1;
+    uint32 row_r = randmm(0, chromosome_number),
+           col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * dna_length();
 
     if (conf->verbose && conf->print_mutations)
@@ -87,14 +87,19 @@ void individual::dna_mutate(float mutation_rate)
     while (count >= 1.0f)
     {
         dna->Flip(row_r,col_r);
-        row_r = rand()%chromosome_number + 1;
-        col_r = rand()%get_chromosome_length() + 1;
+        row_r = randmm(0, chromosome_number);
+        col_r = randmm(0, get_chromosome_length());
         count--;
     }
     if (uint32(count * 1000) > randmm(0,1000))
         dna->Flip(row_r,col_r);
 
     untest();
+}
+
+void individual::dna_shrink()
+{
+    dna->DeleteCol(randmm(0, get_chromosome_length()));
 }
 
 void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)

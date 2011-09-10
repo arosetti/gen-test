@@ -43,6 +43,24 @@ individual* population::new_random_individual()
     return ind;
 }
 
+individual* population::get_fattest_individual()
+{
+    individual_map::iterator itr = pool->begin();
+    individual *fattest_ind = NULL;
+
+    for (; itr != pool->end(); ++itr)
+    {
+        if (fattest_ind && 
+           (fattest_ind->get_chromosome_length() <
+           (*itr).second->get_chromosome_length()))
+        {
+            fattest_ind = (*itr).second;
+        }
+    }
+
+    return fattest_ind;
+}
+
 void population::new_random_population()
 {
     for (int created = 0; created < conf->population_size; created++)
@@ -199,13 +217,13 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 
     if (conf->cut_type == "double_random")
     {
-        cut_a = rand()%(ind_a->get_chromosome_length()-1) + 1;
-        cut_b = rand()%(ind_b->get_chromosome_length()-1) + 1;
+        cut_a = randmm(1, ind_a->get_chromosome_length());
+        cut_b = randmm(1, ind_b->get_chromosome_length());
     }
     else if (conf->cut_type == "single_random")
     {   
         uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
-        cut_a = cut_b = rand()%(cmin-1) + 1;
+        cut_a = cut_b = randmm(1, cmin);
     }
     else if (conf->cut_type == "half")
     {
@@ -260,7 +278,7 @@ void population::create_mating_pool()
 
     for (uint32 i = 0; i < uint32(conf->population_size * conf->mating_fraction); i++)
     {
-         selected_weight = rand()%total_weight;
+         selected_weight = randmm(0,total_weight);
          weight = 0;
 
          for (itr = m_weight_map.begin(); itr != m_weight_map.end(); ++itr)
@@ -332,12 +350,11 @@ void population::mate_individuals()
 
     if (mating_pool.empty())
     {
-        if (conf->debug)
-            cout << "mating_pool is empty" << endl;
+        if (conf->logger)
+            LOG("logs/mating.log", "mating_pool is empty\n",true);
         return;
     }
     individual_id_list::iterator itr = mating_pool.begin();
-
 
     uint32 index = 0;
 
@@ -349,7 +366,7 @@ void population::mate_individuals()
         //cout << "faults " << ((*pool->find(*itr)).second)->GetFaultsSize() << endl;
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
         // Effettuo il crossover con una certa probabilità
-        if ((rand()%100 + 1) <= (conf->mating_rate*100))
+        if (randmm(0,100) <= (conf->mating_rate*100))
         {
             if (conf->debug && conf->verbose && conf->print_mating)
                 cout << "crossover event!" << endl;

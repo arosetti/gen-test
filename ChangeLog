@@ -1,5 +1,50 @@
-changeset:   273:1b46a267dc95
+changeset:   281:1a96e6b23645
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 18:21:32 2011 +0200
+sommario:    * inserito booleano mutation_length_gene
+
+changeset:   280:d896c3dae6a2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 15:39:43 2011 +0200
+sommario:    .hgignore updated
+
+changeset:   279:76b800a3e2df
+utente:      Lazzalf
+data:        Sat Sep 10 15:13:04 2011 +0200
+sommario:    Fix inside check
+
+changeset:   278:a42fbc6a03c2
+utente:      Lazzalf
+data:        Sat Sep 10 15:10:08 2011 +0200
+sommario:    Fix multithreading crash
+
+changeset:   277:19b010484904
+genitore:    274:ecc355701301
+genitore:    276:73ac199fd32f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 14:12:51 2011 +0200
+sommario:    Merge^2
+
+changeset:   276:73ac199fd32f
+genitore:    275:d577f2c7b2bd
+genitore:    273:1b46a267dc95
+utente:      Lazzalf
+data:        Sat Sep 10 12:41:39 2011 +0200
+sommario:    Merge
+
+changeset:   275:d577f2c7b2bd
+genitore:    258:4743c28d0119
+utente:      Lazzalf
+data:        Sat Sep 10 12:40:54 2011 +0200
+sommario:    Test
+
+changeset:   274:ecc355701301
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 14:11:45 2011 +0200
+sommario:    * inserite opzioni -t e -s
+
+changeset:   273:1b46a267dc95
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 12:35:04 2011 +0200
 sommario:    Inserita l'etichetta 0.1.5 per il changeset aa47160b273e
