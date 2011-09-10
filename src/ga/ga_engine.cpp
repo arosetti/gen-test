@@ -113,7 +113,7 @@ void ga_engine::evolve()
         {
             if (conf->verbose)
                 cout << "* shrinking fattest individual" << endl;
-            fattest_individual_shrink();
+            pop->fattest_individual_shrink();
         }
 
         time_stop(time);
