@@ -150,77 +150,70 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         return false;
     }
 
-    EmptyFaults(g_test);
-
-    sim_fault_file.seekg (0, ios::end);
-    int length = sim_fault_file.tellg();
-    sim_fault_file.seekg (0, ios::beg);
-
-    if (!length)
-    {
-        throw "fault.txt is empty";
-    }
-
-    char *buffer = new char[length + 3];
-
-    sim_fault_file.read (buffer,length);
-    sim_fault_file.close();
-
-    remove(path.c_str());
-    
-    // Bloccato momentaneamente perchè causa crash
-    delete buffer;
-    return true;
-
-    buffer[length] = ' ';
-    buffer[length+1] = 'E';
-    buffer[length+2] = ' ';
+    EmptyFaults(g_test);    
 
     int fault_index = 0;
 
-    string p_buffer = strtok (buffer," ");
-
-    if (g_test)
-        g_test->getlock_gen_test();  // Lock general tests
-
-    while (p_buffer != "E")
+    // Parse the data file
+    while (!sim_fault_file.eof())
     {
-        p_buffer = strtok (NULL, " "); // fault
-        p_buffer = strtok (NULL, " ");
+        char buf[200] = {0};
+        int word = 0;
+        string Field;
 
-        if (p_buffer != "in") //!!!!
-            p_buffer = strtok (NULL, " "); //in
+        sim_fault_file.getline(buf, sizeof(buf));
 
-        p_buffer = strtok (NULL, " "); // component
-        p_buffer = strtok (NULL, " "); // number
-        p_buffer = strtok (NULL, " "); // has
-        p_buffer = strtok (NULL, " ");
+        istringstream istr(string(buf), ios_base::out);
 
-        if (p_buffer == "been") // fault trovato
+        while (istr >> Field)
         {
-            if (fault_index > n_tests)
+            word++;
+            switch (word)
             {
-                if (g_test)
-                    g_test->releaselock_gen_test();  // Release Lock general tests
-                delete[] buffer;
+                case 1: // The
+                case 2: // fault          
+                break;
+                case 3: // in or !!!!!!
+                    if (Field == "in")
+                        word++;
+                break;
+                case 4: // in
+                case 5: // component
+                case 6: // number
+                case 7: // has
+                break;
+                case 8: // been or not
+                    if (Field == "been")
+                    {
+                        if (fault_index > n_tests)
+                        {
+                            throw "error reading faults.txt, max number of faults";
+                            return false;
+                        }
 
-                throw "error reading faults.txt, max number of faults";
-                return false;
+                        InsertFault(fault_index);
+                        if (g_test)
+                        {      
+                            g_test->getlock_gen_test(); 
+                            g_test->InsertFault(fault_index);
+                            g_test->releaselock_gen_test();
+                        }
+                    }
+                    word = 10;         
+                break;
+                default:
+                    word = 10;
+                break;            
             }
 
-            InsertFault(fault_index);
-            if (g_test)
-                g_test->InsertFault(fault_index);
+            if (word == 10)
+                break;
         }
-
-        p_buffer = strtok (NULL, "\n");
-        p_buffer = strtok (NULL, " ");
         fault_index++;
     }
 
-    if (g_test)
-        g_test->releaselock_gen_test();  // Release Lock general tests
-    delete[] buffer;
+    sim_fault_file.close();
+    remove(path.c_str());
 
     return true;
 }

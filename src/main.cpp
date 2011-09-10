@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
     cout << endl;
 
-    signal(SIGINT,sigint_callback_handler);
+    signal(SIGINT, sigint_callback_handler);
 
     init_config();
     load_config();
