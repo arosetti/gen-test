@@ -16,12 +16,12 @@ string get_sim_path(int id)
     string path;
     char *buffer = new char[1024];
 
-    if (conf->simulator_dir.c_str()[0] != '/')
+    if (conf->simulator_path.c_str()[0] != '/')
     {
         path = conf->main_path;
         addslash(path);
     }
-    path += conf->simulator_dir;
+    path += conf->simulator_path;
 
     addslash(path);
 
@@ -114,7 +114,7 @@ void init_env()
     clean_env();
 
     if (conf->debug && conf->verbose)
-        cout << "* simulation: initing \"" << conf->simulator_dir << "\" using " << conf->thread_slots << " thread(s)" << endl;
+        cout << "* simulation: initing \"" << conf->simulator_path << "\" using " << conf->thread_slots << " thread(s)" << endl;
 
     for(int i = 0 ; i < conf->thread_slots ; i++ )
     {

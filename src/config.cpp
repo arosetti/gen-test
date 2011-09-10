@@ -5,7 +5,7 @@ cfg_opt_t opts[] =
 {
     CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"interactive",(cfg_bool_t)false, CFGF_NONE),
+
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
@@ -16,14 +16,14 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),  // trasformare in log
     CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE), // trasformare in log
 
-    CFG_STR((char*)"simulator_dir",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_path",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
     CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
     CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
-
     CFG_STR((char*)"log_path",(char*)"logs",CFGF_NONE),
+
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
     CFG_INT((char*)"max_threads", 32, CFGF_NONE),
@@ -45,6 +45,7 @@ cfg_opt_t opts[] =
     CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
 
     CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
+    CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
 };
 
@@ -113,7 +114,6 @@ bool load_config()
 
     conf->debug = cfg_getbool(cfg, "debug");
     conf->verbose = cfg_getbool(cfg, "verbose");
-    conf->interactive = cfg_getbool(cfg, "interactive");
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
@@ -125,14 +125,14 @@ bool load_config()
 
     conf->print_simulation = cfg_getbool(cfg, "print_simulation");
 
-    conf->simulator_dir = cfg_getstr(cfg, "simulator_dir");
+    conf->simulator_path = cfg_getstr(cfg, "simulator_path");
     conf->simulator_bin = cfg_getstr(cfg, "simulator_bin");
     conf->simulator_args = cfg_getstr(cfg, "simulator_args");
     conf->simulator_patch = cfg_getstr(cfg, "simulator_patch");
     conf->test_file_out = cfg_getstr(cfg, "test_file_out");
     conf->test_file_in = cfg_getstr(cfg, "test_file_in");
-
     conf->log_path = cfg_getstr(cfg, "log_path");
+
     conf->thread_prefix = cfg_getstr(cfg, "thread_prefix");
     conf->thread_slots = cfg_getint(cfg, "thread_slots");
     conf->max_threads = cfg_getint(cfg, "max_threads");
@@ -153,6 +153,7 @@ bool load_config()
     conf->mating_fraction = cfg_getfloat(cfg, "mating_fraction");
 
     conf->mutation_rate = cfg_getfloat(cfg, "mutation_rate");
+    conf->mutation_length_gene = cfg_getfloat(cfg, "mutation_length_gene");
 
     cfg_free(cfg);
 
@@ -173,7 +174,7 @@ int load_args(int argc, char **argv)
 
     opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hdIt:c:s:")) != -1) //TODO t: %d thread_slots
+    while ((opt = getopt (argc, argv, "hdIt:c:s:")) != -1)
         switch (opt)
         {
             case 'h':
@@ -184,7 +185,6 @@ int load_args(int argc, char **argv)
                 conf->debug = 1;
             break;
             case 'I':
-                conf->interactive = 1;
                 interactive();
                 return 0;
             break;
@@ -207,10 +207,10 @@ int load_args(int argc, char **argv)
                          << conf->max_threads << endl << endl;
             break;
             case 's':
-                if (file_exists(optarg))  // controllare che sia una dir con dir_exists
-                    conf->simulator_dir = optarg;
+                if (file_exists(optarg))  //TODO controllare che sia una dir con dir_exists
+                    conf->simulator_path = optarg;
                 else
-                    cout << "wrong -s parameter. you must use a valid simulator dir " 
+                    cout << "wrong -s parameter. you must use a valid simulator directory " 
                          << endl << endl;
             break;
             case '?':
@@ -240,12 +240,12 @@ int load_args(int argc, char **argv)
 void help_args()
 {
     cout << "help: " << endl;
-    cout << "-h                 :  help" << endl;
-    cout << "-d                 :  debug mode on" << endl;
-    cout << "-I                 :  interactive mode on" << endl;
-    cout << "-c <filename>      :  alternative config filename" << endl;
-    cout << "-t <threads>       :  set thread number" << endl;
-    cout << "-s <simulator_dir> :  set simulator dir" << endl;
+    cout << "-h                  :  help" << endl;
+    cout << "-d                  :  debug mode on" << endl;
+    cout << "-I                  :  interactive mode on" << endl;
+    cout << "-c <filename>       :  alternative config filename" << endl;
+    cout << "-t <threads>        :  set thread number" << endl;
+    cout << "-s <simulator path> :  set simulator directory" << endl;
     cout << endl;
 }
 
@@ -253,9 +253,6 @@ void interactive()
 {
     uint32 value;
     char response;
-
-    if (!conf->interactive)
-        return;
 
     cfg_t *cfg = open_cfg();
 
@@ -274,10 +271,10 @@ void interactive()
     conf->thread_slots = value;
     cfg_setint(cfg, "thread_slots", value);
 
-    //cout << "chromosome_max_len: ";
-    //cin  >> value;
-    //conf->chromosome_max_len = value;
-    //cfg_setint(cfg, "chromosome_max_len", value);
+    cout << "chromosome_max_len: ";
+    cin  >> value;
+    conf->chromosome_max_len = value;
+    cfg_setint(cfg, "chromosome_max_len", value);
 
     cout << "chromosome_start_len_min: ";
     cin  >> value;
@@ -304,7 +301,7 @@ void interactive()
     cfg_free(cfg);
 }
 
-void check_config()
+void check_config() // TODO inserire altri controlli
 {
     if (conf->thread_slots <= 0)
     {
