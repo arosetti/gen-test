@@ -62,8 +62,8 @@ class population
     // void    mutate_individuals() const;  // deprecated
 
     uint32  size() const;
-    void    log(uint32 generation) const;
-    void    load_log(string filename);
+    void    log(uint32) const;
+    void    load_log(uint32);
     void    print() const;
 
     // for threads
