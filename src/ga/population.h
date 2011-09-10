@@ -35,6 +35,7 @@ class population
 
     individual* get_random_individual() const;
     individual* new_random_individual();
+    individual* get_fattest_individual();
 
     void    create_mating_pool();
     void    crossover(individual*&, individual*&);

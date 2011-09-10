@@ -1,9 +1,10 @@
+#include <sys/types.h>
+#include <sys/wait.h>
+
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
-#include "simulation_setup.h"
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "simulation_utility.h"
 
 using namespace std;
 

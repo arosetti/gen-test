@@ -39,6 +39,7 @@ class individual: public tests
     uint32  dna_length() const;
     void    dna_random();
     void    dna_mutate(float mutation_rate);
+    void    dna_shrink();
     void    dna_split(uint32, string&, string&);
     void    dna_merge(string&, string&);
 

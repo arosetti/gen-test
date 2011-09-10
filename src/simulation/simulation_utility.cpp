@@ -1,4 +1,4 @@
-#include "simulation_setup.h"
+#include "simulation_utility.h"
 
 string get_thread_subdir(uint32 id)
 {
