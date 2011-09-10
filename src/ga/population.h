@@ -50,6 +50,7 @@ class population
 
     void    eval_fitnesses();
     float   get_avg_fitness() const;
+    float   get_avg_chromosome_length() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();  // deprecated
 

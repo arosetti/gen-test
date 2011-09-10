@@ -141,6 +141,22 @@ void population::test_population()
     */
 }
 
+float population::get_avg_chromosome_length() const
+{
+    float sum_length = 0;
+
+    if (!pool->size())
+        return 0;
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        sum_length += (*itr).second->get_chromosome_length();
+    }
+
+    return sum_length/pool->size();
+}
+
 float population::get_avg_fitness() const
 {
     float sum_fitness = 0;
