@@ -76,7 +76,7 @@ void individual::dna_mutate(float mutation_rate)
 {
     uint32 row_r = rand()%chromosome_number + 1,
            col_r = rand()%get_chromosome_length() + 1;
-    float count = mutation_rate * dna_length() * chromosome_number;
+    float count = mutation_rate * dna_length();
 
     if (conf->verbose && conf->print_mutations)
     {
