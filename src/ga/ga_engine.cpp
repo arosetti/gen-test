@@ -55,7 +55,7 @@ void ga_engine::evolve()
         pop->reset_faults();*/
 
         if (conf->verbose)
-            cout << "* executing tests" << endl;
+            cout << "* executing tests on " << conf->thread_slots << " thread(s)" << endl;
         pop->test_population();
 
         if (conf->verbose)
@@ -76,7 +76,7 @@ void ga_engine::evolve()
         if (stall > conf->max_stall)
         {
             if (conf->verbose)
-                cout << "  ga is not improving best fitness for " << stall << " generations" << endl;
+                cout << "  max stall! (" << stall << ") mutation_rate at max for 1 iteration" << endl;
             pop->set_mutation_rate(0.5f); // magic number
             last_best_fitness = 0;
         }
@@ -110,7 +110,7 @@ void ga_engine::evolve()
         pop->mate_individuals();
 
         time_stop(time);
-         
+
         if (conf->verbose)
             cout << "* iteration time: " << time_format(time_diff(time)) << endl;
     }
