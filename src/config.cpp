@@ -9,6 +9,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
     
     CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
@@ -115,6 +116,7 @@ bool load_config()
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
+    conf->print_avg_chromosome_length = cfg_getbool(cfg, "print_avg_chromosome_length");
     conf->print_avg_fitness = cfg_getbool(cfg, "print_avg_fitness");
     conf->print_population_size = cfg_getbool(cfg, "print_population_size");
     conf->print_mating = cfg_getbool(cfg, "print_mating");

@@ -25,8 +25,7 @@ void ga_engine::init()
 
 void ga_engine::evolve()
 {
-    float avg_fitness = 0;
-    float last_best_fitness = 0;    
+    float last_best_fitness = 0;
     timer time;
     uint32 stall = 0;
 
@@ -77,16 +76,18 @@ void ga_engine::evolve()
         if (stall > conf->max_stall)
         {
             if (conf->verbose)
-                cout << "ga is not improving best fitness for " << stall << " generations" << endl;
-            pop->set_mutation_rate(0.5f); // Magic Number
+                cout << "  ga is not improving best fitness for " << stall << " generations" << endl;
+            pop->set_mutation_rate(0.5f); // magic number
             last_best_fitness = 0;
         }
+        else
+            cout << "  stall is at " << stall << endl;
+
+        if (conf->verbose && conf->print_avg_chromosome_length)
+            cout << "* average chromosome length: " << pop->get_avg_chromosome_length() << " bit" << endl;
 
         if (conf->verbose && conf->print_avg_fitness)
-        {
-            avg_fitness = pop->get_avg_fitness();
-            cout << "* average fitness: " << avg_fitness << endl;
-        }
+            cout << "* average fitness: " << pop->get_avg_fitness() << endl;
 
         if (conf->verbose && conf->print_best)
         {
