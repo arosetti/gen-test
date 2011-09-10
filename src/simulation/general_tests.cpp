@@ -59,7 +59,7 @@ uint32 general_tests::FindFault(uint32 fault)
     return m_faults_map[fault];
 }
 
-// Da splittare nei singoli individui (ci sto lavorando XD)
+// Deprecata (ma può servire in futuro)
 bool general_tests::LoadFile(individual_map* pool)
 {
     string path = conf->simulator_dir;
