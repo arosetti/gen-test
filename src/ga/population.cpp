@@ -96,7 +96,7 @@ void population::test_population()
     n_thread = 0;
 
     if (conf->print_progress_bar)
-        m_barlink.init(pool->size());
+        p_bar.init(pool->size());
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->thread_slots; i++)
@@ -139,6 +139,22 @@ void population::test_population()
             (*itr).second->ExecuteTest(&test);
     }
     */
+}
+
+float population::get_avg_chromosome_length() const
+{
+    float sum_length = 0;
+
+    if (!pool->size())
+        return 0;
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        sum_length += (*itr).second->get_chromosome_length();
+    }
+
+    return sum_length/pool->size();
 }
 
 float population::get_avg_fitness() const
@@ -464,9 +480,66 @@ void population::log(uint32 generation) const
     LOG(generations_logfile, out.str(), false);
 }
 
-void population::load_log(string filename)
+void population::load_log(uint32 gen)
 {
-  //TODO read log and load generation.
+    string filename = get_log_file_path(gen);
+    string temp_dna;
+    individual* ind;
+    
+    ifstream log_file;
+    char *buffer = NULL, *p_buffer = NULL;
+    int length = 0, created = 0;
+
+    clear_population();
+    pool = new individual_map;
+    temp_pool = NULL;
+
+    log_file.open(filename.c_str(), ios::binary);
+
+    if (!log_file.is_open())
+    {
+        printf("file: %s\n", filename.c_str());
+        perror("log file");
+        return;
+    }
+
+    log_file.seekg (0, ios::end);
+    length = log_file.tellg();
+    log_file.seekg (0, ios::beg);
+
+    buffer = new char[length + 1];
+
+    log_file.read (buffer,length);
+    log_file.close();
+    buffer[length] = 0;
+
+    p_buffer = strtok (buffer,"dna     :");
+    while (!p_buffer)
+    {
+        p_buffer = strtok (NULL,"\n");
+
+        // reading dna
+        while(p_buffer[0] != 0 || (p_buffer[0] != '\n' && p_buffer[1] != '\n') )
+        {
+            temp_dna += p_buffer[0];
+            p_buffer++;
+        }
+        cout << "<< " << temp_dna << endl; 
+
+        ind = new individual(0, conf->chromosome_num);
+        ind->set_dna(temp_dna);
+        pool->insert(pool->end(),
+                    individual_pair(created, ind));
+
+        if (conf->debug && conf->verbose)
+            cout << "adding new individual from " << filename << endl;
+
+        p_buffer = strtok (NULL, "dna     :");
+
+        created++;
+    }
+
+    delete[] buffer;
 }
 
 void population::print() const
@@ -514,7 +587,7 @@ void population::inc_barlink()
     if (!conf->print_progress_bar)
         return;
 
-    getlock_barlink();
-    m_barlink.step();
-    releaselock_barlink();
+    getlock_pbar();
+    p_bar.step();
+    releaselock_pbar();
 }

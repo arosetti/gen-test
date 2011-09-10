@@ -8,7 +8,7 @@
 
 #include "individual.h"
 #include "../simulation/general_tests.h"
-#include "../common/ProgressBar.h"
+#include "../common/progress_bar/prog_bar.h"
 
 using namespace std;
 
@@ -50,6 +50,7 @@ class population
 
     void    eval_fitnesses();
     float   get_avg_fitness() const;
+    float   get_avg_chromosome_length() const;
     float   get_best_fitness() const;
     void    sort_by_fitness();  // deprecated
 
@@ -61,8 +62,8 @@ class population
     // void    mutate_individuals() const;  // deprecated
 
     uint32  size() const;
-    void    log(uint32 generation) const;
-    void    load_log(string filename);
+    void    log(uint32) const;
+    void    load_log(uint32);
     void    print() const;
 
     // for threads
@@ -90,18 +91,18 @@ class population
     {
         pthread_mutex_unlock(&mutex_n_thread);
     }
-    inline void  getlock_barlink()
+    inline void  getlock_pbar()
     {
         pthread_mutex_lock(&mutex_barlink);
     }
-    inline void  releaselock_barlink()
+    inline void  releaselock_pbar()
     {
         pthread_mutex_unlock(&mutex_barlink);
     }
 
     individual_map::const_iterator ind_itr;
     int n_thread;
-    BarGoLink m_barlink;
+    prog_bar p_bar;
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
     pthread_mutex_t    mutex_barlink;

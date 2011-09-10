@@ -1,15 +1,15 @@
 #ifndef PROGRESSBAR_H
 #define PROGRESSBAR_H
 
-#include "typedefs.h"
+#include "../typedefs.h"
 
-class BarGoLink
+class prog_bar
 {
     public: // constructors
-        BarGoLink(int row_count);
-        BarGoLink(uint32 row_count);
-        BarGoLink();
-        ~BarGoLink();
+        prog_bar(int row_count);
+        prog_bar(uint32 row_count);
+        prog_bar();
+        ~prog_bar();
 
     public: // modifiers
         void step();

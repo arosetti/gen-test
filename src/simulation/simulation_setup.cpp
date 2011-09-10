@@ -79,6 +79,14 @@ string get_output_file_path(int id)
     return path;
 }
 
+string get_log_file_path(uint32 gen)
+{
+    stringstream str;
+    str << conf->main_path << "/" << conf->log_path << "/" << "generaton" << gen << ".log";
+
+    return str.str();
+}
+
 void clean_env()
 {
     if (conf->debug && conf->verbose)
@@ -103,13 +111,10 @@ void init_env()
 {
     int ret;
 
-    if (conf->debug && conf->verbose)
-        cout << "* simulation: initing environment" << endl;
-
     clean_env();
 
     if (conf->debug && conf->verbose)
-        cout << "* simulation: init " << conf->thread_slots << " slot(s)" << endl;
+        cout << "* simulation: initing " << conf->thread_slots << " slot(s)" << endl;
 
     for(int i = 0 ; i < conf->thread_slots ; i++ )
     {
@@ -173,5 +178,4 @@ uint32 read_n_inputs()
 
     delete[] buffer;
     return n_inputs;
-
 }
