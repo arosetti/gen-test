@@ -13,7 +13,7 @@ DATE=$(date)
 echo "Starting Gentest ($DATE)"
 echo -e "run\nbt\nbt full\ninfo thread\nthread apply all backtrace full" > $GDB
 
-rm $SYSLOG $SYSERR
+rm $SYSLOG $SYSERR > /dev/null 2>&1
 gdb ./gentest -x $GDB --batch >$SYSLOG 2>$SYSERR
 grep -B 10 -A 1800 "$TRACE_BEGIN_STRING" "$SYSLOG" > "$TRACE_FILE"
 
