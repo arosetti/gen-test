@@ -91,7 +91,7 @@ void init_config()
 
 void post_init_config()
 {
-
+    int ret;
 
     conf->chromosome_num = read_n_inputs();
 
@@ -100,7 +100,7 @@ void post_init_config()
 
     stringstream str;
     str << "rm -f " << conf->log_path << "/generation*.log";
-    system(str.str().c_str());
+    ret = system(str.str().c_str());
 }
 
 bool load_config()
