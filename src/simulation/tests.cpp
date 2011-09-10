@@ -57,16 +57,16 @@ uint32 tests::GetDetectedNumber()
 }
 
 void tests::EmptyFaults(general_tests* g_test)
-{
-    g_test->getlock_gen_test(); 
+{    
     if (g_test)
     {
+        g_test->getlock_gen_test(); 
         for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
         {
             g_test->DeleteFault(*itr, 1);
         }
-    }
-    g_test->releaselock_gen_test();
+        g_test->releaselock_gen_test();
+    }    
     m_faults_set.clear();
 }
 
