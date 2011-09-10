@@ -34,10 +34,8 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 
 
 ####TODO
-- avg length e altre statistiche
+- altre statistiche, indice di differenza in qualche maniera dire quanti cloni ci sono nella popolazione
 - possibilità di iniziare la simulazione da un log.
 - mutazione che elimina le colonne
 - inserire quanti sono stati testati o skippati in fondo alla barra.
 - log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
-
-dna 5x20 = 100 bit x 0.01 = cambio un bit solo .... potrei moltiplicare per il numero di piedini quindi cambierei 5 bit.

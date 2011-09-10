@@ -79,6 +79,14 @@ string get_output_file_path(int id)
     return path;
 }
 
+string get_log_file_path(uint32 gen)
+{
+    stringstream str;
+    str << conf->main_path << "/" << conf->log_path << "/" << "generaton" << gen << ".log";
+
+    return str.str();
+}
+
 void clean_env()
 {
     if (conf->debug && conf->verbose)
@@ -173,5 +181,4 @@ uint32 read_n_inputs()
 
     delete[] buffer;
     return n_inputs;
-
 }
