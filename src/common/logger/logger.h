@@ -32,6 +32,7 @@ class logger
     };
 
     bool log(string file, bool append, const char *s_format, ...);
+    bool log_static(string file, bool append, const char *str);
 
     inline void  getlock()
     {

@@ -3,7 +3,7 @@
 
 population::population()
 {
-    if (conf->verbose)
+    if (conf->verbose && conf->debug)
         cout << "* using " << conf->chromosome_num << " chromosome(s)" << endl;
 
     pool = new individual_map;
@@ -144,10 +144,10 @@ void population::test_population()
 
     while (n_thread)
     {
-        usleep(50); // in millisecondi
+        usleep(30); // in millisecondi
     }
 
-    cout << endl << endl;
+    cout << endl;
 
     /*
     individual_map::const_iterator itr = pool->begin();
@@ -233,7 +233,7 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
         cut_b = ind_b->get_chromosome_length()/2;
     }
     
-    if ( conf->debug && conf->print_mating)
+    if ( conf->debug && conf->log_mating)
     {
         cout << "split " << cut_a << "/" << ind_a->get_chromosome_length();
         cout << "," << cut_b << "/" << ind_b->get_chromosome_length() << endl;
@@ -258,7 +258,7 @@ void population::create_mating_pool()
     if (!pool->size())
         return;
 
-    if (conf->debug && conf->verbose && conf->print_mating)
+    if (conf->debug && conf->verbose && conf->log_mating)
         cout << "create_mating_pool" << endl;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
@@ -352,7 +352,7 @@ void population::mate_individuals()
 
     if (mating_pool.empty())
     {
-        if (conf->logger)
+        if (conf->log)
             LOG->log("logs/mating.log",true, "mating_pool is empty\n");
         return;
     }
@@ -370,7 +370,7 @@ void population::mate_individuals()
         // Effettuo il crossover con una certa probabilità
         if (randmm(0,100) <= (conf->mating_rate*100))
         {
-            if (conf->debug && conf->verbose && conf->print_mating)
+            if (conf->debug && conf->verbose && conf->log_mating)
                 cout << "crossover event!" << endl;
 
             crossover(ind_a_cloned, ind_b_cloned);
@@ -454,7 +454,7 @@ void population::mutate_individuals() const
         }
     }
 
-    if (conf->verbose && conf->print_mutations)
+    if (conf->verbose && conf->log_mutations)
         cout << count <<" mutation events!"<<endl;
 }
 */
@@ -469,14 +469,18 @@ void population::print_best() const
     individual_map::const_iterator itr;
     individual* ind = NULL;
     float best_fitness = 0;
+    uint32 shortest = 0;
 
     if (!pool->size())
         return;
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
-        if (best_fitness < (*itr).second->get_fitness()) // TODO scegliere il più corto
+        if (best_fitness <= (*itr).second->get_fitness())
         {
+            // tra due individui con fitness uguali scelgo il più corto 
+            if (ind && (*itr).second->dna_length() > ind->dna_length())
+                continue;
             best_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
         }
@@ -508,7 +512,7 @@ void population::log(uint32 generation) const
         count++;
     }
 
-    LOG->log(generations_logfile, false, out.str().c_str());
+    LOG->log_static(generations_logfile, false, out.str().c_str());
 }
 
 void population::load_log(uint32 gen)
