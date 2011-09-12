@@ -55,7 +55,7 @@ class individual: public tests
     void    set_chromosome_number(uint32);   // not used
     void    chromosome_random(uint32);
 
-    string  info();
+    string  info(bool format = true);
 
     bool operator < (const individual&);
 };
