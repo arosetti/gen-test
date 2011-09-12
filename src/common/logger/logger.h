@@ -4,9 +4,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdarg.h>
 
-#define LOG_PTR() logger::get_instance()
-#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
+#define LOG logger::get_instance()
+//#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
+
+#define BUF_SIZE 4096
 
 using namespace std;
 
@@ -14,7 +17,8 @@ class logger
 {
     private:
 
-    static logger* l_singleton;
+    static logger*          l_singleton;
+    pthread_mutex_t  mutex_log;
 
     logger();
 
@@ -27,7 +31,18 @@ class logger
         return l_singleton;
     };
 
-    bool log(string file, string log, bool append);
+    bool log(string file, bool append, const char *s_format, ...);
+
+    inline void  getlock()
+    {
+        pthread_mutex_lock(&mutex_log);
+    }
+
+    inline void  releaselock()
+    {
+        pthread_mutex_unlock(&mutex_log);
+    }
+
 };
 
 #endif

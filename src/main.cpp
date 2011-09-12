@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     ga.evolve();
 
     delete conf;
-    delete LOG_PTR();
+    delete LOG;
 
     return 0;
 }
@@ -51,5 +51,7 @@ void sigint_callback_handler(int signum)
     time_stop(t_gentest);
     if (conf->verbose)
        cout << "* program time: " << time_format(time_diff(t_gentest)) << endl;
+
+    fflush(stdout);
     exit(signum);
 }

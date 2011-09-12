@@ -353,7 +353,7 @@ void population::mate_individuals()
     if (mating_pool.empty())
     {
         if (conf->logger)
-            LOG("logs/mating.log", "mating_pool is empty\n",true);
+            LOG->log("logs/mating.log",true, "mating_pool is empty\n");
         return;
     }
     individual_id_list::iterator itr = mating_pool.begin();
@@ -483,7 +483,7 @@ void population::print_best() const
     }
 
     if (ind)
-        cout << ind->info();
+        cout << ind->info(false);
 }
 
 void population::log(uint32 generation) const
@@ -508,7 +508,7 @@ void population::log(uint32 generation) const
         count++;
     }
 
-    LOG(generations_logfile, out.str(), false);
+    LOG->log(generations_logfile, false, out.str().c_str());
 }
 
 void population::load_log(uint32 gen)
