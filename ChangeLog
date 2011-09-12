@@ -1,5 +1,26 @@
-changeset:   283:59aa8d4d56d8
+changeset:   287:9db43c4c9ce6
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:50:54 2011 +0200
+sommario:    Inserita l'etichetta 0.1.6 per il changeset 7e54be1399ce
+
+changeset:   286:7e54be1399ce
+tag:         0.1.6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:50:46 2011 +0200
+sommario:    versione 0.1.6
+
+changeset:   285:7c117d396e36
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:49:56 2011 +0200
+sommario:    fix get_fattest_individual
+
+changeset:   284:889419734615
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:33:55 2011 +0200
+sommario:    fix compile
+
+changeset:   283:59aa8d4d56d8
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 19:21:04 2011 +0200
 sommario:    * inserita fattest_individual_shrink

@@ -14,7 +14,7 @@ individual::individual(const individual &ind) : tests (ind)
     chromosome_length = ind.chromosome_length;
     chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
-    dna = new bitmatrix(*ind.dna); // con dna = ind.dna crash ?
+    dna = new bitmatrix(*ind.dna);
     tested = ind.tested;
 }
 
@@ -78,7 +78,7 @@ void individual::dna_mutate(float mutation_rate)
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * dna_length();
 
-    if (conf->verbose && conf->print_mutations)
+    if (conf->logger && conf->print_mutations)
     {
         //LOG in generation{x}-mutations.log ... in individual non sappiamo la generazione attuale...
         cout << count << " mutation event(s)!"<<endl;
@@ -110,7 +110,7 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColNum() - 1);
 
-    if (conf->debug && conf->print_mating)
+    if (conf->logger && conf->print_mating)
     {
         cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
         cout << "dna_2 (" << pos+1 << ", " << 
@@ -122,23 +122,24 @@ void individual::dna_merge(string& dna_1, string& dna_2)
 {
     string new_dna;
 
-    /* controlla che le righe siano le stesse in tutti i componenti non nulle */
+    // controlla che le righe siano le stesse in tutti i componenti non nulle
     if (dna_1.length() == 0 || dna_2.length() == 0 ||
         GetStrColSize(dna_1) != dna->GetRowNum() ||
         GetStrColSize(dna_2) != dna->GetRowNum())
         return;
-    //cout << "MERGING DNA " << endl; 
+    if (conf->logger && conf->print_mating)
+        cout << "# merging DNA" << endl; 
 
-    /* ridimensiona il dna alla somma delle colonne di dna_1 */
+    // ridimensiona il dna alla somma delle colonne di dna_1
     set_chromosome_length(GetStrRowSize(dna_1));
 
-    /* copio dna_1 nel dna */
+    // copio dna_1 nel dna */
     dna->SetCols(dna_1, 0);
 
-    /* attacco il secondo pezzo di dna */
+    // attacco il secondo pezzo di dna
     dna->AttachCols(dna_2);
 
-    if (conf->debug && conf->print_mating)
+    if (conf->logger && conf->print_mating)
     {
         dna->Print();
         cout << endl;
@@ -210,13 +211,16 @@ void individual::chromosome_random(uint32 crom)
     untest();
 }
 
-string individual::info()
+string individual::info(bool format)
 {
     stringstream out;
 
-    //out << "ptr : " << this << endl;
     out << "tests   : " << detected << "/" << n_tests 
-        << " (" << ((n_tests > 0)?((float)(100*detected)/(float)n_tests):n_tests) << "%)" << endl;
+        << " (" << ((n_tests > 0)?((float)(100*detected)/(float)n_tests):n_tests) ;
+    if (format)
+        out << "%%)" << endl;
+    else
+        out << "%)" << endl;
     out << "fitness : " << fitness << endl;
     out << "dna     : (" <<
            dna->GetRowNum() << "," << dna->GetColNum() << ")" << endl;
