@@ -1,5 +1,20 @@
-changeset:   287:9db43c4c9ce6
+changeset:   290:a4da2fa94931
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 15:20:57 2011 +0200
+sommario:    * inserita log_static per evitare overflow con i log delle generazioni che non
+
+changeset:   289:a2d5e2555ec8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 14:41:09 2011 +0200
+sommario:    * manca l'header di individual aggiornato
+
+changeset:   288:6d17be798d02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 14:39:57 2011 +0200
+sommario:    * modificata classe logger
+
+changeset:   287:9db43c4c9ce6
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 10 19:50:54 2011 +0200
 sommario:    Inserita l'etichetta 0.1.6 per il changeset 7e54be1399ce

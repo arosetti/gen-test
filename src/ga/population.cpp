@@ -417,22 +417,15 @@ void population::set_mutation_rate(float rate)
         mutation_rate = rate;
 }
 
-void population::fattest_individual_shrink()
+void population::fattest_individuals_shrink()
 {
-    individual *ind = get_fattest_individual();
+    individual_map::const_iterator itr = pool->begin();
 
-    if (!ind)
-        return;
-
-    if (conf->debug && conf->verbose)
-        cout << "ind_before: " << ind->get_chromosome_length() << endl;
-
-    while(ind == get_fattest_individual() 
-          || ind->get_chromosome_length() > conf->chromosome_max_len)
-        ind->dna_shrink();
-
-    if (conf->debug && conf->verbose)
-        cout << "ind_after: " << ind->get_chromosome_length() << endl;
+    for (; itr != pool->end(); ++itr)
+    {
+         while((*itr).second->get_chromosome_length() >= conf->chromosome_max_len)
+            (*itr).second->dna_shrink();
+    }
 }
 
 /*

@@ -65,25 +65,22 @@ void ga_engine::evolve()
         if (conf->check_stall)
         {
             if (conf->verbose)
-                cout << "* checking for ga stall" << endl;
+                cout << "* checking stall: " << stall << endl;
             if (last_best_fitness < pop->get_best_fitness())
             {
                 last_best_fitness = pop->get_best_fitness();
-                stall = 0;
                 pop->set_mutation_rate(conf->mutation_rate);
+                stall = 0;
             }
             else
                 stall++;
 
-            if (stall > conf->max_stall)
+            if (stall != 0 && (stall % conf->max_stall) == 0)
             {
                 if (conf->verbose)
-                    cout << "  max stall! (" << stall << ") mutation_rate at max for 1 iteration" << endl;
+                    cout << "  setting high mutation rate for 1 iteration" << endl;
                 pop->set_mutation_rate(0.5f); // magic number
-                last_best_fitness = 0;
             }
-            else if (stall > 0)
-                cout << "  stall is at " << stall << endl;
         }
 
         if (conf->verbose && conf->print_avg_chromosome_length)
@@ -115,8 +112,8 @@ void ga_engine::evolve()
         if (conf->mutation_length_gene)
         {
             if (conf->verbose)
-                cout << "* shrinking fattest individual" << endl;
-            pop->fattest_individual_shrink();
+                cout << "* shrinking fattest individuals" << endl;
+            pop->fattest_individuals_shrink();
         }
 
         time_stop(time);
