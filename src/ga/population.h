@@ -60,7 +60,7 @@ class population
     void    mate_individuals();
     void    set_mutation_rate(float rate);
   //void    mutate_individuals() const;  // deprecated
-    void    fattest_individual_shrink();
+    void    fattest_individuals_shrink();
 
     uint32  size() const;
     void    log(uint32) const;
