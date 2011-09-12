@@ -13,8 +13,21 @@ bool logger::log(string file, bool append, const char *fmt, ...)
 
     va_list ap;
     va_start(ap, fmt);
-    vsnprintf(buffer, BUF_SIZE, fmt, ap);
+    ret = vsnprintf(buffer, BUF_SIZE, fmt, ap);
     va_end(ap);
+
+    if (ret)
+        return log_static(file, append, buffer);
+    else
+    {
+        perror("vsnprintf");
+        return 0;
+    }
+}
+
+bool logger::log_static(string file, bool append, const char *str)
+{
+    ofstream ff;
 
     getlock();
 
@@ -25,7 +38,7 @@ bool logger::log(string file, bool append, const char *fmt, ...)
 
     if (ff.is_open())
     {
-        ff << buffer << endl;
+        ff << str << endl;
         ff.close();
     }
     else

@@ -78,7 +78,7 @@ void individual::dna_mutate(float mutation_rate)
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * dna_length();
 
-    if (conf->logger && conf->print_mutations)
+    if (conf->log && conf->log_mutations)
     {
         //LOG in generation{x}-mutations.log ... in individual non sappiamo la generazione attuale...
         cout << count << " mutation event(s)!"<<endl;
@@ -110,7 +110,7 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColNum() - 1);
 
-    if (conf->logger && conf->print_mating)
+    if (conf->log && conf->log_mating)
     {
         cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
         cout << "dna_2 (" << pos+1 << ", " << 
@@ -127,7 +127,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         GetStrColSize(dna_1) != dna->GetRowNum() ||
         GetStrColSize(dna_2) != dna->GetRowNum())
         return;
-    if (conf->logger && conf->print_mating)
+    if (conf->log && conf->log_mating)
         cout << "# merging DNA" << endl; 
 
     // ridimensiona il dna alla somma delle colonne di dna_1
@@ -139,7 +139,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
     // attacco il secondo pezzo di dna
     dna->AttachCols(dna_2);
 
-    if (conf->logger && conf->print_mating)
+    if (conf->log && conf->log_mating)
     {
         dna->Print();
         cout << endl;

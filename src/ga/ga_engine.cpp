@@ -62,26 +62,29 @@ void ga_engine::evolve()
             cout << "* calculating population fitnesses" << endl;
         pop->eval_fitnesses();
 
-        if (conf->verbose)
-            cout << "* checking for ga stall" << endl;
-        if (last_best_fitness < pop->get_best_fitness())
-        {
-            last_best_fitness = pop->get_best_fitness();
-            stall = 0;
-            pop->set_mutation_rate(conf->mutation_rate);
-        }
-        else
-            stall++;
-
-        if (stall > conf->max_stall)
+        if (conf->check_stall)
         {
             if (conf->verbose)
-                cout << "  max stall! (" << stall << ") mutation_rate at max for 1 iteration" << endl;
-            pop->set_mutation_rate(0.5f); // magic number
-            last_best_fitness = 0;
+                cout << "* checking for ga stall" << endl;
+            if (last_best_fitness < pop->get_best_fitness())
+            {
+                last_best_fitness = pop->get_best_fitness();
+                stall = 0;
+                pop->set_mutation_rate(conf->mutation_rate);
+            }
+            else
+                stall++;
+
+            if (stall > conf->max_stall)
+            {
+                if (conf->verbose)
+                    cout << "  max stall! (" << stall << ") mutation_rate at max for 1 iteration" << endl;
+                pop->set_mutation_rate(0.5f); // magic number
+                last_best_fitness = 0;
+            }
+            else if (stall > 0)
+                cout << "  stall is at " << stall << endl;
         }
-        else if (stall > 0)
-            cout << "  stall is at " << stall << endl;
 
         if (conf->verbose && conf->print_avg_chromosome_length)
             cout << "* average chromosome length: " << pop->get_avg_chromosome_length() << " bit" << endl;

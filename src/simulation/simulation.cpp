@@ -72,7 +72,7 @@ bool simulation::setup_input_file(string dna, uint32 id)
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    if (conf->debug && conf->print_simulation)
+    if (conf->debug && conf->log_simulation)
     {
         cout << "clocks: " << clocks << endl;
         cout << "inputs: " << inputs << endl;
@@ -108,7 +108,7 @@ string simulation::read_output(uint32 id)
 
     sim_out_file.open (get_output_file_path(id).c_str(), ios::binary );
 
-    if (conf->debug && conf->print_simulation)
+    if (conf->debug && conf->log_simulation)
     {
         cout << "out : " << get_output_file_path(id).c_str() << endl;
     }
@@ -153,7 +153,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
 
-    if (conf->debug && conf->print_simulation)
+    if (conf->debug && conf->log_simulation)
     {
         cout << "#total_faults " << n_total_faults << endl;
         cout << "#faults_detected " << n_faults << endl;

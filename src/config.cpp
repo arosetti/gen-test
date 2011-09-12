@@ -5,17 +5,17 @@ cfg_opt_t opts[] =
 {
     CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"logger",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"log",(cfg_bool_t)true, CFGF_NONE),
 
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
-    
-    CFG_BOOL((char*)"print_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
-    CFG_BOOL((char*)"print_mutations",(cfg_bool_t)false, CFGF_NONE),  // trasformare in log
-    CFG_BOOL((char*)"print_simulation",(cfg_bool_t)false, CFGF_NONE), // trasformare in log
+
+    CFG_BOOL((char*)"log_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
+    CFG_BOOL((char*)"log_mutations",(cfg_bool_t)false, CFGF_NONE),  // trasformare in log
+    CFG_BOOL((char*)"log_simulation",(cfg_bool_t)false, CFGF_NONE), // trasformare in log
 
     CFG_STR((char*)"simulator_path",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
@@ -30,8 +30,9 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"max_threads", 32, CFGF_NONE),
     
     CFG_INT((char*)"max_generations",  100, CFGF_NONE),
-    CFG_INT((char*)"max_stall", 10, CFGF_NONE),
     CFG_INT((char*)"max_retest", 3, CFGF_NONE),
+    CFG_INT((char*)"max_stall", 10, CFGF_NONE),
+    CFG_BOOL((char*)"check_stall", (cfg_bool_t)false, CFGF_NONE),
 
     CFG_INT((char*)"population_size", 50, CFGF_NONE),
 
@@ -115,17 +116,17 @@ bool load_config()
 
     conf->debug = cfg_getbool(cfg, "debug");
     conf->verbose = cfg_getbool(cfg, "verbose");
-    conf->logger = cfg_getbool(cfg, "logger");
+    conf->log = cfg_getbool(cfg, "log");
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
     conf->print_avg_chromosome_length = cfg_getbool(cfg, "print_avg_chromosome_length");
     conf->print_avg_fitness = cfg_getbool(cfg, "print_avg_fitness");
     conf->print_population_size = cfg_getbool(cfg, "print_population_size");
-    conf->print_mating = cfg_getbool(cfg, "print_mating");
-    conf->print_mutations = cfg_getbool(cfg, "print_mutations");
+    conf->log_mating = cfg_getbool(cfg, "log_mating");
+    conf->log_mutations = cfg_getbool(cfg, "log_mutations");
 
-    conf->print_simulation = cfg_getbool(cfg, "print_simulation");
+    conf->log_simulation = cfg_getbool(cfg, "log_simulation");
 
     conf->simulator_path = cfg_getstr(cfg, "simulator_path");
     conf->simulator_bin = cfg_getstr(cfg, "simulator_bin");
@@ -140,9 +141,10 @@ bool load_config()
     conf->max_threads = cfg_getint(cfg, "max_threads");
 
     conf->max_generations = cfg_getint(cfg, "max_generations");
-    conf->max_stall = cfg_getint(cfg, "max_stall");
     conf->max_retest = cfg_getint(cfg, "max_retest");
-
+    conf->max_stall = cfg_getint(cfg, "max_stall");
+    conf->check_stall = cfg_getbool(cfg, "check_stall");
+    
     conf->population_size = cfg_getint(cfg, "population_size");
     conf->fitness_type = cfg_getstr(cfg, "fitness_type");
     conf->cut_type = cfg_getstr(cfg, "cut_type");
