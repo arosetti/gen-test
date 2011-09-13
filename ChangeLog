@@ -1,5 +1,10 @@
-changeset:   296:d746fe3e6a3c
+changeset:   297:d2fb76a4dd59
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 23:44:26 2011 +0200
+sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
+
+changeset:   296:d746fe3e6a3c
 genitore:    295:85d875e04010
 genitore:    294:3d8fc8ae45bd
 utente:      Lazzalf

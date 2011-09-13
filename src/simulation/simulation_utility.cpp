@@ -159,15 +159,15 @@ uint32 read_n_inputs()
     sim_net_file.close();
     buffer[length] = 0;
 
-    p_buffer = strtok (buffer,"\n");
+    p_buffer = strtok(buffer,"\n");
     while (p_buffer != NULL)
     {
-        if (strncmp(p_buffer + (strchr(p_buffer,' ') - p_buffer + 1), "ibuf ",4) == 0)
+        if (strncmp(strchr(p_buffer, ' ') + 1, "ibuf ",4) == 0)
             n_inputs++;
         else
             break;
 
-        p_buffer = strtok (NULL, "\n");
+        p_buffer = strtok(NULL, "\n");
         if(p_buffer == NULL)
         {
            n_inputs = 0;
