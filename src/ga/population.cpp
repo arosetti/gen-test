@@ -595,32 +595,44 @@ void population::load_log(string filename)
     log_file.close();
     buffer[length] = 0;
 
-    p_buffer = strtok (buffer,"dna     :");
-    while (!p_buffer)
+    p_buffer = buffer;
+    while (p_buffer)
     {
-        p_buffer = strtok (NULL,"\n");
+        temp_dna = "";
+        p_buffer = strchr(p_buffer, '\n');
 
-        // reading dna
-        while(p_buffer[0] != 0 || (p_buffer[0] != '\n' && p_buffer[1] != '\n') )
+        if (p_buffer == 0)
+            break;
+
+        p_buffer++;
+        if(strncmp(p_buffer, "dna", 3) == 0)
+        {
+            p_buffer = strchr(p_buffer, '\n');
+            p_buffer++;
+        }
+        else
+           continue;
+
+        while(p_buffer[0] == '0' || p_buffer[0] == '1' || p_buffer[0] == '\n' )
         {
             temp_dna += p_buffer[0];
             p_buffer++;
         }
-        cout << "<< " << temp_dna << endl; 
+        
+        if (temp_dna != "")
+        {
+            while (temp_dna.at(temp_dna.length()-1)  == '\n')
+                temp_dna.resize(temp_dna.length()-1);
 
-        ind = new individual(0, conf->chromosome_num);
-        ind->set_dna(temp_dna);
-        pool->insert(pool->end(),
-                    individual_pair(created, ind));
-
-        if (conf->debug && conf->verbose)
-            cout << "adding new individual from " << filename << endl;
-
-        p_buffer = strtok (NULL, "dna     :");
+            cout << GetStrRowSize(temp_dna) << "-" << GetStrColSize(temp_dna) << endl;
+            ind = new individual(GetStrRowSize(temp_dna), GetStrColSize(temp_dna));
+            ind->set_dna(temp_dna);
+            pool->insert(pool->end(),
+                        individual_pair(created, ind));
+        }
 
         created++;
     }
-
     delete[] buffer;
 }
 
