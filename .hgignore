@@ -62,3 +62,4 @@ error.log
 simulator/patches/modifiche_alg_genetico
 simulator/b02/input_signals_51_59
 *.eps
+*.log

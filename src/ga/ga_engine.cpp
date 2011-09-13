@@ -18,9 +18,18 @@ void ga_engine::init()
         cout << "* init population" << endl;
     pop = new population();
 
-    if (conf->verbose)
-        cout << "* selecting " << conf->population_size << " random individuals..." << endl;
-    pop->new_random_population();
+    if (conf->load_log_filename != "")
+    {
+        if (conf->verbose)
+            cout << "* loading log " << conf->load_log_filename << " ..." << endl;
+        pop->load_log(conf->load_log_filename);
+    }
+    else
+    {
+        if (conf->verbose)
+            cout << "* selecting " << conf->population_size << " random individuals..." << endl;
+        pop->new_random_population();
+    }
 }
 
 void ga_engine::evolve()
@@ -28,7 +37,8 @@ void ga_engine::evolve()
     float last_best_fitness = 0;
     timer time;
     uint32 stall = 0;
-    stringstream str;
+    string       s_tmp;
+    stringstream ss_tmp;
 
     if (!conf)
     {
@@ -44,10 +54,8 @@ void ga_engine::evolve()
     {
         time_start(time);
         if (conf->verbose)
-        {
-            //for(int i = 0; i< (get_columns()/4) ; i++) cout << "-";
             cout << endl << "# generation: " << generation << endl;
-        }
+
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;
 
@@ -100,15 +108,23 @@ void ga_engine::evolve()
         {
             cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
-            str.str("");
-            str <<  pop->get_best_fitness();
-            LOG->log_static("logs/best_fitnesses.log", true, str.str().c_str());
-            str.str("");
-            str <<  pop->get_best_fault_coverage();
-            LOG->log_static("logs/best_fault_coverage.log", true, str.str().c_str());
-            str.str("");
-            str <<  pop->get_best_chromosome_length();
-            LOG->log_static("logs/best_chromosome_length.log", true, str.str().c_str());
+            s_tmp = conf->log_path;
+            s_tmp += "/best_fitness.log";
+            ss_tmp.str("");
+            ss_tmp <<  pop->get_best_fitness();
+            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            s_tmp = conf->log_path;
+            s_tmp += "/best_fault_coverage.log";
+            ss_tmp.str("");
+            ss_tmp <<  pop->get_best_fault_coverage();
+            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            s_tmp = conf->log_path;
+            s_tmp += "/best_chromosome_length.log";
+            ss_tmp.str("");
+            ss_tmp <<  pop->get_best_chromosome_length();
+            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            if (conf->graphics)
+                system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }
 
         if (conf->verbose)

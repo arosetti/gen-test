@@ -563,9 +563,8 @@ void population::log(uint32 generation) const
     LOG->log_static(generations_logfile, false, out.str().c_str());
 }
 
-void population::load_log(uint32 gen)
+void population::load_log(string filename)
 {
-    string filename = get_log_file_path(gen);
     string temp_dna;
     individual* ind;
     

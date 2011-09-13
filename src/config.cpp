@@ -6,6 +6,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"log",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"graphics",(cfg_bool_t)true, CFGF_NONE),
 
     CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
@@ -120,6 +121,7 @@ bool load_config()
     conf->debug = cfg_getbool(cfg, "debug");
     conf->verbose = cfg_getbool(cfg, "verbose");
     conf->log = cfg_getbool(cfg, "log");
+    conf->graphics = cfg_getbool(cfg, "graphics");
 
     conf->print_progress_bar = cfg_getbool(cfg, "print_progress_bar");
     conf->print_best = cfg_getbool(cfg, "print_best");
@@ -184,7 +186,7 @@ int load_args(int argc, char **argv)
 
     opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hdIt:c:s:")) != -1)
+    while ((opt = getopt (argc, argv, "hdIt:c:s:l:")) != -1)
         switch (opt)
         {
             case 'h':
@@ -220,7 +222,14 @@ int load_args(int argc, char **argv)
                 if (file_exists(optarg))  //TODO controllare che sia una dir con dir_exists
                     conf->simulator_path = optarg;
                 else
-                    cout << "wrong -s parameter. you must use a valid simulator directory " 
+                    cout << "wrong -s parameter. you must use a valid simulator directory" 
+                         << endl << endl;
+            break;
+            case 'l':
+                if (file_exists(optarg))
+                    conf->load_log_filename = optarg;
+                else
+                    cout << "wrong -s parameter. you must use a valid generation log file" 
                          << endl << endl;
             break;
             case '?':

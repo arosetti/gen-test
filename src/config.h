@@ -15,9 +15,9 @@ using namespace std;
  */
 typedef struct config
 {
-    string conf_filename, main_path, log_path;
-    bool debug, verbose, log;
-    
+    string conf_filename, load_log_filename, main_path, log_path;
+    bool debug, verbose, log, graphics;
+
     bool print_progress_bar, print_population_size;
     bool print_best, print_avg_fitness, print_avg_chromosome_length;
 
