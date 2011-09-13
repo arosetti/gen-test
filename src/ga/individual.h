@@ -46,6 +46,7 @@ class individual: public tests
     float   get_fitness() const;
     void    set_fitness(float);
     void    calc_fitness();
+    float   get_fault_coverage() const;
 
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);

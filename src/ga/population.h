@@ -59,6 +59,9 @@ class population
     float   get_worst_fitness();
   //void    sort_by_fitness();  // deprecated
 
+    float   get_best_fault_coverage();
+    float   get_best_chromosome_length();
+
     void    transfer_bests();
     void    print_best() const;
     void    mate_individuals();
