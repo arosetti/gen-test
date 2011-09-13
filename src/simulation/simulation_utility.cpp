@@ -127,11 +127,10 @@ void init_env()
             perror("symlink");
     }
     
-    /*if (chmod((char *) get_bin_path(-1).c_str(),0777))
+    if (chmod((char *) get_bin_path(-1).c_str(),0777))
     {
         perror("chmod");
-        return false;
-    }*/
+    }
 }
 
 uint32 read_n_inputs()
