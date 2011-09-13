@@ -1,5 +1,10 @@
-changeset:   291:c6e7fbd12f02
+changeset:   292:554baf06b3e4
 tag:         tip
+utente:      Lazzalf
+data:        Tue Sep 13 12:49:46 2011 +0200
+sommario:    * Inserita funzione get_worst_fitness
+
+changeset:   291:c6e7fbd12f02
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Mon Sep 12 20:00:28 2011 +0200
 sommario:    * shrink di tutti gli individui che superano la dimensione massima
@@ -207,22 +212,22 @@ data:        Fri Sep 09 21:55:30 2011 +0200
 sommario:    fix lettura piedini del circuito
 
 changeset:   252:af1d4234628a
-genitore:    250:b04b20622638
-genitore:    251:221be332c88a
+genitore:    251:b04b20622638
+genitore:    250:221be332c88a
 utente:      Lazzalf
 data:        Fri Sep 09 20:58:47 2011 +0200
 sommario:    Merge
 
-changeset:   251:221be332c88a
+changeset:   251:b04b20622638
 genitore:    249:b459b3096c4d
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Fri Sep 09 20:35:01 2011 +0200
-sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
-
-changeset:   250:b04b20622638
 utente:      Lazzalf
 data:        Fri Sep 09 20:57:42 2011 +0200
 sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
+
+changeset:   250:221be332c88a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 20:35:01 2011 +0200
+sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
 
 changeset:   249:b459b3096c4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -344,22 +349,22 @@ data:        Thu Sep 08 10:24:45 2011 +0200
 sommario:    rinominati i file start e starter in debug e debugger
 
 changeset:   226:10d2258d3b23
-genitore:    224:4264bb94083c
-genitore:    225:c7eb09918d0f
+genitore:    225:4264bb94083c
+genitore:    224:c7eb09918d0f
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 08 10:18:34 2011 +0200
 sommario:    Merge
 
-changeset:   225:c7eb09918d0f
+changeset:   225:4264bb94083c
 genitore:    223:7d7c5b3d3ba4
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 08 10:17:01 2011 +0200
-sommario:    aggiornato build.sh
-
-changeset:   224:4264bb94083c
 utente:      Lazzalf
 data:        Thu Sep 08 10:03:21 2011 +0200
 sommario:    Inserito starter per GDB debug
+
+changeset:   224:c7eb09918d0f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:17:01 2011 +0200
+sommario:    aggiornato build.sh
 
 changeset:   223:7d7c5b3d3ba4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
