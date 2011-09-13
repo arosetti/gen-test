@@ -33,6 +33,9 @@ class population
 
     float mutation_rate;
 
+    float best_fitness;
+    float worst_fitness;
+
     individual* get_random_individual() const;
     individual* new_random_individual();
     individual* get_fattest_individual();
@@ -52,7 +55,8 @@ class population
     void    eval_fitnesses();
     float   get_avg_fitness() const;
     float   get_avg_chromosome_length() const;
-    float   get_best_fitness() const;
+    float   get_best_fitness();
+    float   get_worst_fitness();
   //void    sort_by_fitness();  // deprecated
 
     void    transfer_bests();

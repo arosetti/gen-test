@@ -27,7 +27,7 @@ cfg_opt_t opts[] =
 
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
-    CFG_INT((char*)"max_threads", 32, CFGF_NONE),
+    CFG_INT((char*)"max_threads", 32, CFGF_NONE),    
     
     CFG_INT((char*)"max_generations",  100, CFGF_NONE),
     CFG_INT((char*)"max_retest", 3, CFGF_NONE),
@@ -43,6 +43,7 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
     CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
 
+    CFG_BOOL((char*)"normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
     CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
     CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
 
@@ -153,6 +154,7 @@ bool load_config()
     conf->chromosome_start_len_min = cfg_getint(cfg, "chromosome_start_len_min");
     conf->chromosome_start_len_max = cfg_getint(cfg, "chromosome_start_len_max");
 
+    conf->normalized_fitness = cfg_getbool(cfg, "normalized_fitness");
     conf->mating_rate = cfg_getfloat(cfg, "mating_rate");
     conf->mating_fraction = cfg_getfloat(cfg, "mating_fraction");
 
