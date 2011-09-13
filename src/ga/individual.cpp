@@ -171,7 +171,7 @@ void individual::calc_fitness()
         cout << "please, select a valid fitness type" << endl;
         exit(1);
     }*/
-    fitness = ((float)(detected) / (float)(n_tests)) - ((float)get_chromosome_length() / (3.0f * (float)(n_tests))) + 1.0f;
+    fitness = ((float)(detected) / (float)(n_tests)) - ((float)get_chromosome_length() / (4.0f * (float)(n_tests))) + 1.0f;
 }
 
 string individual::get_chromosome(uint32 crom)  const
