@@ -160,7 +160,7 @@ void individual::set_fitness(float f) // deprecated
 
 void individual::calc_fitness()
 {
-    if (conf->fitness_type == "fault_rate")
+    /*if (conf->fitness_type == "fault_rate")
         fitness = (float)(100 * detected) / (float)(n_tests);
     else if (conf->fitness_type == "fault_rate_linear_min_length")
         fitness = ( (float)(100 * detected) / (float)(n_tests) ) / 
@@ -170,7 +170,8 @@ void individual::calc_fitness()
     {
         cout << "please, select a valid fitness type" << endl;
         exit(1);
-    }
+    }*/
+    fitness = ((float)(detected) / (float)(n_tests)) - ((float)get_chromosome_length() / (3.0f * (float)(n_tests))) + 1.0f;
 }
 
 string individual::get_chromosome(uint32 crom)  const

@@ -10,6 +10,8 @@ population::population()
     temp_pool = NULL;
     n_thread = 0;
     mutation_rate = 0.0f;
+    best_fitness = 0.0f;
+    worst_fitness = 0.0f;
 
     pthread_mutex_init(&mutex_ind_itr, NULL);
     pthread_mutex_init(&mutex_n_thread, NULL);
@@ -100,6 +102,9 @@ void population::clear_population()
 
 void population::eval_fitnesses()
 {
+    best_fitness = 0.0f;
+    worst_fitness = 0.0f;
+
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
@@ -191,9 +196,10 @@ float population::get_avg_fitness() const
     return sum_fitness/pool->size();
 }
 
-float population::get_best_fitness() const
+float population::get_best_fitness()
 {
-    float best_fitness = 0;
+    if (best_fitness)
+        return best_fitness;
 
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
@@ -202,6 +208,22 @@ float population::get_best_fitness() const
             best_fitness = (*itr).second->get_fitness();
     }
     return best_fitness;
+}
+
+float population::get_worst_fitness()
+{
+    if (worst_fitness)
+        return worst_fitness;
+
+    worst_fitness = get_best_fitness();
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        if (worst_fitness > (*itr).second->get_fitness())
+            worst_fitness = (*itr).second->get_fitness();
+    }
+    return worst_fitness;
 }
 
 /*
@@ -263,9 +285,15 @@ void population::create_mating_pool()
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
-        uint32 u_fitness = uint32((*itr).second->get_fitness() * 1000);
-        if (!u_fitness)
+        float fitness = (*itr).second->get_fitness();
+        if (!fitness)
             continue;
+
+        if (conf->normalized_fitness)  // Normalized
+            if (get_best_fitness() - get_worst_fitness() != 0.0f)            
+                fitness = (fitness - get_worst_fitness()) / (get_best_fitness() - get_worst_fitness());
+
+        uint32 u_fitness = uint32(fitness * 1000);        
 
         total_weight += u_fitness;
         m_weight_map[(*itr).first] = u_fitness;

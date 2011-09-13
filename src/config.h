@@ -41,6 +41,7 @@ typedef struct config
     uint32 chromosome_max_len;
     uint32 chromosome_start_len_min, chromosome_start_len_max;
 
+    bool   normalized_fitness;
     float  mating_fraction;
     float  mating_rate;
     float  mutation_rate;
