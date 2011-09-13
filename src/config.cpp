@@ -13,9 +13,9 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print_avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
 
-    CFG_BOOL((char*)"log_mating",(cfg_bool_t)false, CFGF_NONE),     // trasformare in log
-    CFG_BOOL((char*)"log_mutations",(cfg_bool_t)false, CFGF_NONE),  // trasformare in log
-    CFG_BOOL((char*)"log_simulation",(cfg_bool_t)false, CFGF_NONE), // trasformare in log
+    CFG_BOOL((char*)"log_mating",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"log_mutations",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"log_simulation",(cfg_bool_t)false, CFGF_NONE),
 
     CFG_STR((char*)"simulator_path",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
@@ -24,6 +24,8 @@ cfg_opt_t opts[] =
     CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
     CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
     CFG_STR((char*)"log_path",(char*)"logs",CFGF_NONE),
+
+    CFG_BOOL((char*)"read_faultstxt",(cfg_bool_t)false, CFGF_NONE),
 
     CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread_slots",  4, CFGF_NONE),
@@ -104,7 +106,7 @@ void post_init_config()
         mkdir(conf->log_path.c_str(),0777);
 
     stringstream str;
-    str << "rm -f " << conf->log_path << "/generation*.log";
+    str << "rm -f " << conf->log_path << "/*.log";
     ret = system(str.str().c_str());
 }
 
@@ -136,6 +138,8 @@ bool load_config()
     conf->test_file_out = cfg_getstr(cfg, "test_file_out");
     conf->test_file_in = cfg_getstr(cfg, "test_file_in");
     conf->log_path = cfg_getstr(cfg, "log_path");
+
+    conf->read_faultstxt = cfg_getbool(cfg, "read_faultstxt");
 
     conf->thread_prefix = cfg_getstr(cfg, "thread_prefix");
     conf->thread_slots = cfg_getint(cfg, "thread_slots");

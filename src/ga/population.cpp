@@ -226,6 +226,33 @@ float population::get_worst_fitness()
     return worst_fitness;
 }
 
+
+float population::get_best_fault_coverage()
+{
+    float best_fault_coverage = 0.0f;
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        if (best_fault_coverage < (*itr).second->get_fault_coverage())
+            best_fault_coverage = (*itr).second->get_fault_coverage();
+    }
+    return best_fault_coverage;
+}
+
+float population::get_best_chromosome_length()
+{
+    float best_chromosome_length = 0.0f;
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        if (best_chromosome_length < (*itr).second->get_chromosome_length())
+            best_chromosome_length = (*itr).second->get_chromosome_length();
+    }
+    return best_chromosome_length;
+}
+
 /*
 void population::sort_by_fitness()  // deprecated
 {
