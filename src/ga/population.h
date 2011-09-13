@@ -71,7 +71,7 @@ class population
 
     uint32  size() const;
     void    log(uint32) const;
-    void    load_log(uint32);
+    void    load_log(string);
     void    print() const;
 
     // for threads

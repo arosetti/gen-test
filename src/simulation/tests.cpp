@@ -8,7 +8,8 @@ void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
-    remove(get_faults_path(t_param->sim_id).c_str());
+    if (conf->read_faultstxt)
+        remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_ind())
     {        
@@ -18,7 +19,9 @@ void *SimulationThread(void *arg)
     }
 
     t_param->pop->dec_threads();
-    delete t_param;
+
+    if (t_param)
+        delete t_param;
 
     pthread_exit(NULL);
 }
