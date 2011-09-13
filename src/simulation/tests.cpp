@@ -123,7 +123,8 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         {
             sim_test.execute(get_dna(), sim_id);
             sim_test.get_results(sim_id, n_tests, detected);
-            GetFaultsFile(sim_id, g_test);
+            if (conf->read_faultstxt)
+                GetFaultsFile(sim_id, g_test);
             test();
         }
         catch (char const* str)

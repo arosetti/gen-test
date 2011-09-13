@@ -28,6 +28,7 @@ void ga_engine::evolve()
     float last_best_fitness = 0;
     timer time;
     uint32 stall = 0;
+    stringstream str;
 
     if (!conf)
     {
@@ -50,7 +51,7 @@ void ga_engine::evolve()
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;
 
-        /*if (conf->verbose)
+        /*if (conf->verbose && conf->read_faultstxt)
             cout << "* resetting faults" << endl;
         pop->reset_faults();*/
 
@@ -95,10 +96,19 @@ void ga_engine::evolve()
             pop->print_best();
         }
 
-        if (conf->debug)
+        if (conf->log)
         {
             cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
+            str.str("");
+            str <<  pop->get_best_fitness();
+            LOG->log_static("logs/best_fitnesses.log", true, str.str().c_str());
+            str.str("");
+            str <<  pop->get_best_fault_coverage();
+            LOG->log_static("logs/best_fault_coverage.log", true, str.str().c_str());
+            str.str("");
+            str <<  pop->get_best_chromosome_length();
+            LOG->log_static("logs/best_chromosome_length.log", true, str.str().c_str());
         }
 
         if (conf->verbose)

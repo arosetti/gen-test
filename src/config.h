@@ -27,6 +27,8 @@ typedef struct config
     string simulator_args;
     string test_file_out, test_file_in;
 
+    bool read_faultstxt;
+
     string thread_prefix;
     uint32 thread_slots, max_threads;
 
