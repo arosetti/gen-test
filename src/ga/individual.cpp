@@ -174,6 +174,14 @@ void individual::calc_fitness()
     fitness = ((float)(detected) / (float)(n_tests)) - ((float)get_chromosome_length() / (3.0f * (float)(n_tests))) + 1.0f;
 }
 
+float individual::get_fault_coverage() const
+{
+    if (n_tests)
+        return (float)(detected) / (float)(n_tests);
+    else
+        return 0;
+}
+
 string individual::get_chromosome(uint32 crom)  const
 {
     if (crom >= chromosome_number)
