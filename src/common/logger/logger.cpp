@@ -50,5 +50,6 @@ bool logger::log_static(string file, bool append, const char *str)
     }
 
     releaselock();
+
     return false;
 }

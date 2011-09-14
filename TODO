@@ -22,12 +22,12 @@
    + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
 
 + config.h
-    + funzione check_conf
 
 + classe astrazione random (std_random, /dev/random, altri algoritmi)
 
 #REVISIONE CODICE
-revisione nomi variabili
+rimuovere codice deprecato
+revisione nomi variabili/funzioni
 commenti doxygen
 #fare sempre un test con valgrind per identificare i leak ;)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
@@ -35,9 +35,9 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 
 ####TODO
 - altre statistiche, indice di differenza in qualche maniera dire quanti cloni ci sono nella popolazione
-- possibilità di iniziare la simulazione da un log.
-- mutazione che elimina le colonne
 - inserire quanti sono stati testati o skippati in fondo alla barra.
-- log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
-
-- shrink per ogni elemento che supera la dimensione massima fino a un 50% della dimensione massima
+-migliorare sistema logging
+    - log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
+    - log colori e timestamps
+- non cancellare i .log se si usa -l
+- funzione di utility per leggere tutto il contenuto di un file.
