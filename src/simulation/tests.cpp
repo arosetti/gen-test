@@ -8,7 +8,7 @@ void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
-    if (conf->read_faultstxt)
+    if (conf->read_faults_file)
         remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_ind())
@@ -126,7 +126,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         {
             sim_test.execute(get_dna(), sim_id);
             sim_test.get_results(sim_id, n_tests, detected);
-            if (conf->read_faultstxt)
+            if (conf->read_faults_file)
                 GetFaultsFile(sim_id, g_test);
             test();
         }

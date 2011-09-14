@@ -59,7 +59,7 @@ void ga_engine::evolve()
         if (conf->verbose && conf->print_population_size)
             cout << "* population size: " << pop->size() << endl;
 
-        /*if (conf->verbose && conf->read_faultstxt)
+        /*if (conf->verbose && conf->read_faults_file)
             cout << "* resetting faults" << endl;
         pop->reset_faults();*/
 

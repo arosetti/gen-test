@@ -1,5 +1,21 @@
-changeset:   297:d2fb76a4dd59
+changeset:   300:05c286396a6b
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 02:01:13 2011 +0200
+sommario:    Inserita l'etichetta 0.1.7 per il changeset 71103021cab3
+
+changeset:   299:71103021cab3
+tag:         0.1.7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 02:01:02 2011 +0200
+sommario:    * versione 0.1.7
+
+changeset:   298:7992050c81b1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 01:48:28 2011 +0200
+sommario:    * fixata la load_log. (deve ancora rilevare il numero di generazione dal nome del file).
+
+changeset:   297:d2fb76a4dd59
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 13 23:44:26 2011 +0200
 sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
