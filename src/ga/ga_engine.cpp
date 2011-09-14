@@ -22,7 +22,7 @@ void ga_engine::init()
     {
         if (conf->verbose)
             cout << "* loading log " << conf->load_log_filename << " ..." << endl;
-        pop->load_log(conf->load_log_filename);
+        generation = pop->load_log(conf->load_log_filename);
     }
     else
     {
