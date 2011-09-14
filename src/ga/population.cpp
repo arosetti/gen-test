@@ -563,7 +563,7 @@ void population::log(uint32 generation) const
     LOG->log_static(generations_logfile, false, out.str().c_str());
 }
 
-void population::load_log(string filename)
+int population::load_log(string filename)
 {
     string temp_dna;
     individual* ind;
@@ -582,7 +582,7 @@ void population::load_log(string filename)
     {
         printf("file: %s\n", filename.c_str());
         perror("log file");
-        return;
+        return 0;
     }
 
     log_file.seekg (0, ios::end);
@@ -605,7 +605,7 @@ void population::load_log(string filename)
             break;
 
         p_buffer++;
-        if(strncmp(p_buffer, "dna", 3) == 0)
+        if (strncmp(p_buffer, "dna", 3) == 0)
         {
             p_buffer = strchr(p_buffer, '\n');
             p_buffer++;
@@ -613,7 +613,7 @@ void population::load_log(string filename)
         else
            continue;
 
-        while(p_buffer[0] == '0' || p_buffer[0] == '1' || p_buffer[0] == '\n' )
+        while (p_buffer[0] == '0' || p_buffer[0] == '1' || p_buffer[0] == '\n' )
         {
             temp_dna += p_buffer[0];
             p_buffer++;
@@ -624,7 +624,6 @@ void population::load_log(string filename)
             while (temp_dna.at(temp_dna.length()-1)  == '\n')
                 temp_dna.resize(temp_dna.length()-1);
 
-            cout << GetStrRowSize(temp_dna) << "-" << GetStrColSize(temp_dna) << endl;
             ind = new individual(GetStrRowSize(temp_dna), GetStrColSize(temp_dna));
             ind->set_dna(temp_dna);
             pool->insert(pool->end(),
@@ -634,6 +633,11 @@ void population::load_log(string filename)
         created++;
     }
     delete[] buffer;
+
+    int generation = 0;
+    sscanf(filename.c_str(), "generation%d.log", &generation);
+
+    return generation;
 }
 
 void population::print() const
