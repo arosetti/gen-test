@@ -160,18 +160,17 @@ void individual::set_fitness(float f) // deprecated
 
 void individual::calc_fitness()
 {
-    /*if (conf->fitness_type == "fault_rate")
+    if (conf->fitness_type == "fault_rate")
         fitness = (float)(100 * detected) / (float)(n_tests);
-    else if (conf->fitness_type == "fault_rate_linear_min_length")
-        fitness = ( (float)(100 * detected) / (float)(n_tests) ) / 
-                    (float)( get_chromosome_length() >= conf->chromosome_max_len?
-                      get_chromosome_length():1 );
+    else if (conf->fitness_type == "fault_rate_min_length")
+        fitness = ((float)(detected) / (float)(n_tests)) -
+                 ((float)get_chromosome_length() / (4.0f * (float)(n_tests))) + 1.0f;
     else
     {
         cout << "please, select a valid fitness type" << endl;
         exit(1);
-    }*/
-    fitness = ((float)(detected) / (float)(n_tests)) - ((float)get_chromosome_length() / (4.0f * (float)(n_tests))) + 1.0f;
+    }
+    
 }
 
 float individual::get_fault_coverage() const
