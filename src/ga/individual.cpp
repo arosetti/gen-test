@@ -49,7 +49,7 @@ void individual::set_dna(string str)
     untest();
 }
 
-uint32 individual::dna_length()  const
+uint32 individual::get_dna_length()  const
 {
     return chromosome_number * get_chromosome_length();
 }
@@ -76,7 +76,7 @@ void individual::dna_mutate(float mutation_rate)
 {
     uint32 row_r = randmm(0, chromosome_number),
            col_r = randmm(0, get_chromosome_length());
-    float count = mutation_rate * dna_length();
+    float count = mutation_rate * get_dna_length();
 
     if (conf->log && conf->log_mutations)
     {

@@ -226,7 +226,6 @@ float population::get_worst_fitness()
     return worst_fitness;
 }
 
-
 float population::get_best_fault_coverage()
 {
     float best_fault_coverage = 0.0f;
@@ -253,12 +252,30 @@ float population::get_best_chromosome_length()
     return best_chromosome_length;
 }
 
-/*
-void population::sort_by_fitness()  // deprecated
+const individual* population::get_best_individual()
 {
-    //pool->sort();
+    individual_map::const_iterator itr;
+    individual* ind = NULL;
+    float best_fitness = 0;
+    uint32 shortest = 0;
+
+    if (!pool->size())
+        return 0;
+
+    for (itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        if (best_fitness <= (*itr).second->get_fitness())
+        {
+            // tra due individui con fitness uguali scelgo il più corto 
+            if (ind && (*itr).second->get_dna_length() > ind->get_dna_length())
+                continue;
+            best_fitness = (*itr).second->get_fitness();
+            ind  = (*itr).second;
+        }
+    }
+
+    return ind;
 }
-*/
 
 void population::crossover(individual *& ind_a, individual *& ind_b)
 {
@@ -512,27 +529,9 @@ uint32  population::size() const
     return pool->size();
 }
 
-void population::print_best() const
+void population::print_best()
 {
-    individual_map::const_iterator itr;
-    individual* ind = NULL;
-    float best_fitness = 0;
-    uint32 shortest = 0;
-
-    if (!pool->size())
-        return;
-
-    for (itr = pool->begin(); itr != pool->end(); ++itr)
-    {
-        if (best_fitness <= (*itr).second->get_fitness())
-        {
-            // tra due individui con fitness uguali scelgo il più corto 
-            if (ind && (*itr).second->dna_length() > ind->dna_length())
-                continue;
-            best_fitness = (*itr).second->get_fitness();
-            ind  = (*itr).second;
-        }
-    }
+    individual* ind = (individual*) get_best_individual();
 
     if (ind)
         cout << ind->info(false);

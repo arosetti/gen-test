@@ -51,31 +51,28 @@ class population
     void    new_random_population();
 
     void    test_population();
-
     void    eval_fitnesses();
+
     float   get_avg_fitness() const;
     float   get_avg_chromosome_length() const;
     float   get_best_fitness();
     float   get_worst_fitness();
-  //void    sort_by_fitness();  // deprecated
-
     float   get_best_fault_coverage();
     float   get_best_chromosome_length();
-
+    const individual* get_best_individual();
+    
     void    transfer_bests();
-    void    print_best() const;
     void    mate_individuals();
     void    set_mutation_rate(float rate);
-  //void    mutate_individuals() const;  // deprecated
+    //void  mutate_individuals() const;
     void    fattest_individuals_shrink();
 
     uint32  size() const;
     void    log(uint32) const;
-    int    load_log(string);
+    int     load_log(string);
     void    print() const;
+    void    print_best();
 
-    // for threads
-    public:
     individual* get_next_ind();
     void dec_threads();
     void inc_threads();
