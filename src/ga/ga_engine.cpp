@@ -106,23 +106,38 @@ void ga_engine::evolve()
 
         if (conf->log)
         {
-            cout << "* logging generation " << generation << " to file" << endl;
+            cout << "* logging generation " << generation << " to file" << endl;  // snellire qua sotto
             pop->log(generation);
             s_tmp = conf->log_path;
             s_tmp += "/best_fitness.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_fitness();
             LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+
             s_tmp = conf->log_path;
             s_tmp += "/best_fault_coverage.log";
             ss_tmp.str("");
-            ss_tmp <<  pop->get_best_fault_coverage();
+            ss_tmp <<  pop->get_best_individual()->get_fault_coverage();
             LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+
             s_tmp = conf->log_path;
             s_tmp += "/best_chromosome_length.log";
             ss_tmp.str("");
+            ss_tmp <<  pop->get_best_individual()->get_chromosome_length();
+            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+
+            s_tmp = conf->log_path;
+            s_tmp += "/max_fault_coverage.log";
+            ss_tmp.str("");
+            ss_tmp <<  pop->get_best_fault_coverage();
+            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            
+            s_tmp = conf->log_path;
+            s_tmp += "/max_chromosome_length.log";
+            ss_tmp.str("");
             ss_tmp <<  pop->get_best_chromosome_length();
             LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            
             if (conf->graphics)
                 system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }

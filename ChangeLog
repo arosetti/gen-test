@@ -1,5 +1,20 @@
-changeset:   300:05c286396a6b
+changeset:   303:fc9ff9eadafa
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 00:27:16 2011 +0200
+sommario:    cleanups
+
+changeset:   302:936d71091915
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 20:52:17 2011 +0200
+sommario:    * reinseriti profili fitness
+
+changeset:   301:e7b9990d3200
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 12:25:22 2011 +0200
+sommario:    * read_faultstxt -> read_faults_file
+
+changeset:   300:05c286396a6b
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 14 02:01:13 2011 +0200
 sommario:    Inserita l'etichetta 0.1.7 per il changeset 71103021cab3

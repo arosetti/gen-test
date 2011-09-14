@@ -41,3 +41,6 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
     - log colori e timestamps
 - non cancellare i .log se si usa -l
 - funzione di utility per leggere tutto il contenuto di un file.
+
+- rivedere le funzioni get_best ecc utilizzare sempre il ritorno individual* invece di fare mille funzioni best_qui best_la best_su best_giu
+    - funzioni get_best_individual get_worst_individual get_random_individual
