@@ -223,7 +223,7 @@ string individual::info(bool format)
 {
     stringstream out;
 
-    out << "tests   : " << detected << "/" << n_tests 
+    out << "faults   : " << detected << "/" << n_tests 
         << " (" << ((n_tests > 0)?((float)(100*detected)/(float)n_tests):n_tests) ;
     if (format)
         out << "%%)" << endl;
