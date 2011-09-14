@@ -18,16 +18,16 @@ typedef struct config
     string conf_filename, load_log_filename, main_path, log_path;
     bool debug, verbose, log, graphics;
 
-    bool print_progress_bar, print_population_size;
-    bool print_best, print_avg_fitness, print_avg_chromosome_length;
+    bool print_progress_bar, print_population_size, print_best,
+         print_avg_fitness, print_avg_chromosome_length;
 
     bool log_mating, log_mutations, log_simulation;
 
-    string simulator_path, simulator_bin, simulator_patch;
-    string simulator_args;
+    string simulator_path, simulator_bin, simulator_patch,
+           simulator_args;
     string test_file_out, test_file_in;
 
-    bool read_faultstxt;
+    bool read_faults_file;
 
     string thread_prefix;
     uint32 thread_slots, max_threads;
