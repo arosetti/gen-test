@@ -1,5 +1,15 @@
-changeset:   320:630883714e64
+changeset:   322:db9f0633c9c1
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:01:41 2011 +0200
+sommario:    * fix display generazione
+
+changeset:   321:c49e7e2cde3d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 20:12:07 2011 +0200
+sommario:    * inserita set_count
+
+changeset:   320:630883714e64
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 15 18:04:09 2011 +0200
 sommario:    * altri info aggiornati
