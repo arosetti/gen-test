@@ -12,7 +12,7 @@
 #include "../config.h"
 #include "../bitmatrix/bitmatrix.h"
 
-extern string dir_path;
+using namespace std;
 
 string get_sim_path(int);
 string get_bin_path(int);

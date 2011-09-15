@@ -17,7 +17,9 @@ void simulation::rebuild()
 
 bool simulation::execute(string dna, uint32 id)
 {
-    string bin = conf->simulator_bin, args, sim_path = get_sim_path(id);
+    string bin = conf->get_string_config(CONFIG_SIMULATOR_BIN);
+    string args; 
+    string sim_path = get_sim_path(id);
     int status, ret, f_ret;
 
     setup_input_file(dna, id);
@@ -31,8 +33,8 @@ bool simulation::execute(string dna, uint32 id)
     bin.insert(0,"./");
     bin += " > /dev/null 2>&1";
 
-    args = conf->simulator_args;
-    args += conf->test_file_out;
+    args = conf->get_string_config(CONFIG_SIMULATOR_ARGS);
+    args += conf->get_string_config(CONFIG_TEST_FILE_OUT);
 
     f_ret = fork();
     if (f_ret == 0)
@@ -40,8 +42,8 @@ bool simulation::execute(string dna, uint32 id)
         ret = chdir((char *)get_sim_path(id).c_str());
         bin.insert(0,"./");
         bin += " ";
-        bin += conf->simulator_args;
-        bin += conf->test_file_out;
+        bin += conf->get_string_config(CONFIG_SIMULATOR_ARGS);
+        bin += conf->get_string_config(CONFIG_TEST_FILE_OUT);
         bin += " > /dev/null 2>&1";
         ret = system(bin.c_str());
         _exit(0);
@@ -72,7 +74,7 @@ bool simulation::setup_input_file(string dna, uint32 id)
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    if (conf->debug && conf->log_simulation)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_SIMULATION))
     {
         cout << "clocks: " << clocks << endl;
         cout << "inputs: " << inputs << endl;
@@ -108,7 +110,7 @@ string simulation::read_output(uint32 id)
 
     sim_out_file.open (get_output_file_path(id).c_str(), ios::binary );
 
-    if (conf->debug && conf->log_simulation)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_SIMULATION))
     {
         cout << "out : " << get_output_file_path(id).c_str() << endl;
     }
@@ -153,7 +155,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
 
-    if (conf->debug && conf->log_simulation)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_SIMULATION))
     {
         cout << "#total_faults " << n_total_faults << endl;
         cout << "#faults_detected " << n_faults << endl;

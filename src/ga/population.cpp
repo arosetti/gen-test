@@ -3,8 +3,8 @@
 
 population::population()
 {
-    if (conf->verbose && conf->debug)
-        cout << "* using " << conf->chromosome_num << " chromosome(s)" << endl;
+    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_DEBUG))
+        cout << "* using " << conf->get_int_config(CONFIG_CHROMOSOME_NUM) << " chromosome(s)" << endl;
 
     pool = new individual_map;
     temp_pool = NULL;
@@ -36,10 +36,10 @@ individual* population::get_random_individual() const
 
 individual* population::new_random_individual()
 {
-    uint32 len = randmm(conf->chromosome_start_len_min, 
-                        conf->chromosome_start_len_max);
+    uint32 len = randmm(conf->get_int_config(CONFIG_CHROMOSOME_START_LEN_MIN), 
+                        conf->get_int_config(CONFIG_CHROMOSOME_START_LEN_MAX));
 
-    individual* ind = new individual(len, conf->chromosome_num);
+    individual* ind = new individual(len, conf->get_int_config(CONFIG_CHROMOSOME_NUM));
     ind->dna_random();
 
     return ind;
@@ -65,13 +65,13 @@ individual* population::get_fattest_individual()
 
 void population::new_random_population()
 {
-    for (int created = 0; created < conf->population_size; created++)
+    for (int created = 0; created < conf->get_int_config(CONFIG_POPULATION_SIZE); created++)
     {
         pool->insert(pool->end(),
                     individual_pair(created, new_random_individual()));
     }
     
-    if (conf->verbose && conf->debug)
+    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_DEBUG))
     {
         individual_map::iterator itr = pool->begin();
         cout << "* individual lengths: " << endl;
@@ -118,11 +118,11 @@ void population::test_population()
     ind_itr = pool->begin();
     n_thread = 0;
 
-    if (conf->print_progress_bar)
+    if (conf->get_bool_config(CONFIG_PRINT_PROGRESS_BAR))
         p_bar.init(pool->size());
 
     if (ind_itr != pool->end())
-        for (int i = 0; i < conf->thread_slots; i++)
+        for (int i = 0; i < conf->get_int_config(CONFIG_THREAD_SLOTS); i++)
         {
             thread_params* t_params = new thread_params;
             t_params->pop = this;
@@ -283,23 +283,23 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     string dna_a_1, dna_a_2;
     string dna_b_1, dna_b_2;
 
-    if (conf->cut_type == "double_random")
+    if (conf->get_string_config(CONFIG_CUT_TYPE) == "double_random")
     {
         cut_a = randmm(1, ind_a->get_chromosome_length());
         cut_b = randmm(1, ind_b->get_chromosome_length());
     }
-    else if (conf->cut_type == "single_random")
+    else if (conf->get_string_config(CONFIG_CUT_TYPE) == "single_random")
     {   
         uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
         cut_a = cut_b = randmm(1, cmin);
     }
-    else if (conf->cut_type == "half")
+    else if (conf->get_string_config(CONFIG_CUT_TYPE) == "half")
     {
         cut_a = ind_a->get_chromosome_length()/2;
         cut_b = ind_b->get_chromosome_length()/2;
     }
     
-    if ( conf->debug && conf->log_mating)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_MATING))
     {
         cout << "split " << cut_a << "/" << ind_a->get_chromosome_length();
         cout << "," << cut_b << "/" << ind_b->get_chromosome_length() << endl;
@@ -324,7 +324,7 @@ void population::create_mating_pool()
     if (!pool->size())
         return;
 
-    if (conf->debug && conf->verbose && conf->log_mating)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_LOG_MATING))
         cout << "create_mating_pool" << endl;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
@@ -333,7 +333,7 @@ void population::create_mating_pool()
         if (!fitness)
             continue;
 
-        if (conf->normalized_fitness)  // Normalized
+        if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
             if (get_best_fitness() - get_worst_fitness() != 0.0f)            
                 fitness = (fitness - get_worst_fitness()) / (get_best_fitness() - get_worst_fitness());
 
@@ -350,7 +350,7 @@ void population::create_mating_pool()
     uint32 weight;
     weight_map::const_iterator itr;
 
-    for (uint32 i = 0; i < uint32(conf->population_size * conf->mating_fraction); i++)
+    for (uint32 i = 0; i < uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION)); i++)
     {
          selected_weight = randmm(0,total_weight);
          weight = 0;
@@ -369,14 +369,14 @@ void population::create_mating_pool()
 
 void population::transfer_bests()
 {
-    uint32 transfer_num = uint32(conf->population_size) - uint32(conf->population_size * conf->mating_fraction);
+    uint32 transfer_num = uint32(conf->get_int_config(CONFIG_POPULATION_SIZE)) - uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
-    if (conf->mating_fraction == 1)
+    if (conf->get_float_config(CONFIG_MATING_FRACTION) == 1.0f)
         return;
 
     transfer_num = transfer_num ? transfer_num : 1;
 
-    if (conf->debug)
+    if (conf->get_bool_config(CONFIG_DEBUG))
         cout << "transferring " << transfer_num << " best individual(s) from old population" << endl;
 
     typedef std::pair<individual*, float> best_pair;
@@ -424,7 +424,7 @@ void population::mate_individuals()
 
     if (mating_pool.empty())
     {
-        if (conf->log)
+        if (conf->get_bool_config(CONFIG_LOG))
             LOG->log("logs/mating.log",true, "mating_pool is empty\n");
         return;
     }
@@ -440,9 +440,9 @@ void population::mate_individuals()
         ind_b_cloned = new individual(*(*pool->find(*itr++)).second);
 
         // Effettuo il crossover con una certa probabilità
-        if (randmm(0,100) <= (conf->mating_rate*100))
+        if (randmm(0,100) <= (conf->get_float_config(CONFIG_MATING_RATE) * 100))
         {
-            if (conf->debug && conf->verbose && conf->log_mating)
+            if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_LOG_MATING))
                 cout << "crossover event!" << endl;
 
             crossover(ind_a_cloned, ind_b_cloned);
@@ -495,7 +495,7 @@ void population::fattest_individuals_shrink()
 
     for (; itr != pool->end(); ++itr)
     {
-         while((*itr).second->get_chromosome_length() >= conf->chromosome_max_len)
+         while((*itr).second->get_chromosome_length() >= conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH))
             (*itr).second->dna_shrink();
     }
 }
@@ -519,7 +519,7 @@ void population::mutate_individuals() const
         }
     }
 
-    if (conf->verbose && conf->log_mutations)
+    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->log_mutations)
         cout << count <<" mutation events!"<<endl;
 }
 */
@@ -544,7 +544,7 @@ void population::log(uint32 generation) const
     uint32 count = 0;
     stringstream out;
 
-    generations_logfile = conf->log_path;
+    generations_logfile = conf->get_string_config(CONFIG_LOG_PATH);
     addslash(generations_logfile);
     generations_logfile += "generation";
     out << generation;
@@ -681,7 +681,7 @@ void population::inc_threads()
 
 void population::inc_barlink()
 {
-    if (!conf->print_progress_bar)
+    if (!conf->get_bool_config(CONFIG_PRINT_PROGRESS_BAR))
         return;
 
     getlock_pbar();

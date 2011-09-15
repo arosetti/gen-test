@@ -7,7 +7,7 @@
 
 using namespace std;
 
-config *conf = new config;
+config *conf = NULL;
 static timer t_gentest;
 
 void sigint_callback_handler(int);
@@ -25,11 +25,8 @@ int main(int argc, char **argv)
 
     signal(SIGINT, sigint_callback_handler);
 
-    init_config();
-    load_config();
-    load_args(argc, argv);
-    post_init_config();
-    check_config();
+    conf = new config;
+    conf->load_args(argc, argv);
 
     time_start(t_gentest);
     ga.init();
@@ -49,7 +46,7 @@ void sigint_callback_handler(int signum)
     clean_env();
 
     time_stop(t_gentest);
-    if (conf->verbose)
+    if (conf->get_bool_config(CONFIG_VERBOSE))
        cout << "* program time: " << time_format(time_diff(t_gentest)) << endl;
 
     fflush(stdout);
