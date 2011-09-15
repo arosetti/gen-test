@@ -60,7 +60,8 @@ class population
     float   get_best_fault_coverage();
     float   get_best_chromosome_length();
     const individual* get_best_individual();
-    
+    const individual* get_worst_individual();
+
     void    transfer_bests();
     void    mate_individuals();
     void    set_mutation_rate(float rate);

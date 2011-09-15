@@ -49,6 +49,6 @@ void sigint_callback_handler(int signum)
     if (conf->get_bool_config(CONFIG_VERBOSE))
        cout << "* program time: " << time_format(time_diff(t_gentest)) << endl;
 
-    fflush(stdout);
+    cout.flush();
     exit(signum);
 }

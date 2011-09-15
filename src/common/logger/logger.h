@@ -11,9 +11,9 @@
 #include "../typedefs.h"
 
 #define LOG_PTR  logger::get_instance()
-#define LOG(_profile, _fname, _fmt, va_arg) logger::get_instance()->log(_profile, _fname, _fmt, va_arg)
+#define LOG(_profile, _fname, _fmt, ...) logger::get_instance()->log(_profile, _fname, _fmt, ##__VA_ARGS__)
 #define LOG_STATIC(_profile, _fname, _str) logger::get_instance()->log_static(_profile, _fname, _str)
-#define INFO(_profile, _fmt, va_arg) logger::get_instance()->info(_profile, _fmt, va_arg)
+#define INFO(_profile, _fmt, ...) logger::get_instance()->info(_profile, _fmt, ##__VA_ARGS__)
 
 //#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
 

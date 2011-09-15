@@ -14,20 +14,17 @@ void ga_engine::init()
 {
     init_env();
 
-    if (conf->get_bool_config(CONFIG_VERBOSE))
-        cout << "* init population" << endl;
+    INFO("info", "* init population\n");
     pop = new population();
 
     if (conf->get_string_config(CONFIG_LOAD_LOG_FILENAME) != "")
     {
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* loading log " << conf->get_string_config(CONFIG_LOAD_LOG_FILENAME) << " ..." << endl;
+        INFO("info", "* loading log %s ...\n", conf->get_string_config(CONFIG_LOAD_LOG_FILENAME).c_str());
         generation = pop->load_log(conf->get_string_config(CONFIG_LOAD_LOG_FILENAME));
     }
     else
     {
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* selecting " << conf->get_int_config(CONFIG_POPULATION_SIZE) << " random individuals..." << endl;
+        INFO("info", "* selecting %d random individuals\n", conf->get_int_config(CONFIG_POPULATION_SIZE));
         pop->new_random_population();
     }
 }
@@ -40,13 +37,11 @@ void ga_engine::evolve()
 
     if (!conf)
     {
-        cout << "GA parameters aren't configured." << endl;
+        INFO("info", "GA parameters aren't configured.\n");
         return;
     }
 
-    if (conf->get_bool_config(CONFIG_VERBOSE))
-        cout << "* the population is going to evolve for " << conf->get_int_config(CONFIG_MAX_GENERATIONS) << \
-            " generations!" << endl << endl;
+    INFO("info", "* the population is going to evolve for %d generations!\n", conf->get_int_config(CONFIG_MAX_GENERATIONS));
 
     while ( generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
