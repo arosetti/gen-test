@@ -57,22 +57,21 @@ class population
     float   get_avg_chromosome_length() const;
     float   get_best_fitness();
     float   get_worst_fitness();
-    float   get_best_fault_coverage();
-    float   get_best_chromosome_length();
+    float   get_max_fault_coverage();
+    float   get_max_chromosome_length();
     const individual* get_best_individual();
     const individual* get_worst_individual();
 
-    void    transfer_bests();
+    void    transfer_best();
     void    mate_individuals();
     void    set_mutation_rate(float rate);
-    //void  mutate_individuals() const;
     void    fattest_individuals_shrink();
 
     uint32  size() const;
+    string  to_string() const;
+    void    print(individual*) const;
     void    log(uint32) const;
     int     load_log(string);
-    string    to_string() const;
-    void    print_best();
 
     individual* get_next_ind();
     void dec_threads();
@@ -80,6 +79,13 @@ class population
     void inc_barlink();
     
     private:
+
+    inline void  mutex_init()
+    {
+        pthread_mutex_init(&mutex_ind_itr, NULL);
+        pthread_mutex_init(&mutex_n_thread, NULL);
+        pthread_mutex_init(&mutex_barlink, NULL);
+    }
 
     inline void  getlock_ind_itr()
     {
@@ -108,11 +114,10 @@ class population
 
     individual_map::const_iterator ind_itr;
     int n_thread;
-    prog_bar p_bar;
     pthread_mutex_t    mutex_ind_itr;
     pthread_mutex_t    mutex_n_thread;
     pthread_mutex_t    mutex_barlink;
-    
+    prog_bar p_bar;
 };
 
 #endif

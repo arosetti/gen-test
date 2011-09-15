@@ -3,8 +3,7 @@
 
 population::population()
 {
-    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_DEBUG))
-        cout << "* using " << conf->get_int_config(CONFIG_CHROMOSOME_NUM) << " chromosome(s)" << endl;
+    INFO("verbose", "* using %d chromosome(s)\n", conf->get_int_config(CONFIG_CHROMOSOME_NUM));
 
     pool = new individual_map;
     temp_pool = NULL;
@@ -13,9 +12,7 @@ population::population()
     best_fitness = 0.0f;
     worst_fitness = 0.0f;
 
-    pthread_mutex_init(&mutex_ind_itr, NULL);
-    pthread_mutex_init(&mutex_n_thread, NULL);
-    pthread_mutex_init(&mutex_barlink, NULL);
+    mutex_init();
 }
 
 population::~population()
@@ -45,43 +42,23 @@ individual* population::new_random_individual()
     return ind;
 }
 
-individual* population::get_fattest_individual()
-{
-    individual_map::iterator itr = pool->begin();
-    individual *fattest_ind = NULL;
-    uint32      c_len = 0;
-
-    for (; itr != pool->end(); ++itr)
-    {
-        if (c_len < (*itr).second->get_chromosome_length())
-        {
-            fattest_ind = (*itr).second;
-            c_len = fattest_ind->get_chromosome_length();
-        }
-    }
-
-    return fattest_ind;
-}
-
 void population::new_random_population()
 {
+    individual *ind = NULL;
+
+    INFO("verbose", "* individual lengths:\n");
     for (int created = 0; created < conf->get_int_config(CONFIG_POPULATION_SIZE); created++)
     {
-        pool->insert(pool->end(),
-                    individual_pair(created, new_random_individual()));
+        ind = new_random_individual();
+
+        if (!ind)
+            return;
+
+        pool->insert(pool->end(), individual_pair(created, ind));
+        INFO("verbose", "%d ", ind->get_chromosome_length());
     }
-    
-    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_DEBUG))
-    {
-        individual_map::iterator itr = pool->begin();
-        cout << "* individual lengths: " << endl;
-        for (; itr != pool->end(); ++itr)
-        {
-            if ((*itr).second)
-                  cout << (*itr).second->get_chromosome_length() << " ";
-        }
-        cout << endl;
-    }
+
+    INFO("verbose","\n");
 }
 
 void population::clear_population()
@@ -139,7 +116,7 @@ void population::test_population()
 
             if (ret = pthread_create(&tid, &tattr, SimulationThread, (void*)t_params))
             {
-                perror("pthread_create ");
+                perror("pthread_create");
                 delete t_params;
                 continue;
             }
@@ -149,19 +126,10 @@ void population::test_population()
 
     while (n_thread)
     {
-        usleep(30); // in millisecondi
+        usleep(30);
     }
 
-    cout << endl;
-
-    /*
-    individual_map::const_iterator itr = pool->begin();
-    for (; itr != pool->end(); ++itr)
-    {
-        if ((*itr).second)
-            (*itr).second->ExecuteTest(&test);
-    }
-    */
+    INFO("verbose", "\n");
 }
 
 float population::get_avg_chromosome_length() const
@@ -196,7 +164,25 @@ float population::get_avg_fitness() const
     return sum_fitness/pool->size();
 }
 
-float population::get_best_fitness()
+individual* population::get_fattest_individual()
+{
+    individual_map::iterator itr = pool->begin();
+    individual *fattest_ind = NULL;
+    uint32      c_len = 0;
+
+    for (; itr != pool->end(); ++itr)
+    {
+        if (c_len < (*itr).second->get_chromosome_length())
+        {
+            fattest_ind = (*itr).second;
+            c_len = fattest_ind->get_chromosome_length();
+        }
+    }
+
+    return fattest_ind;
+}
+
+float population::get_best_fitness()  // deprecated
 {
     if (best_fitness)
         return best_fitness;
@@ -210,7 +196,7 @@ float population::get_best_fitness()
     return best_fitness;
 }
 
-float population::get_worst_fitness()
+float population::get_worst_fitness() // deprecated
 {
     if (worst_fitness)
         return worst_fitness;
@@ -226,7 +212,7 @@ float population::get_worst_fitness()
     return worst_fitness;
 }
 
-float population::get_best_fault_coverage()
+float population::get_max_fault_coverage()
 {
     float best_fault_coverage = 0.0f;
 
@@ -239,7 +225,7 @@ float population::get_best_fault_coverage()
     return best_fault_coverage;
 }
 
-float population::get_best_chromosome_length()
+float population::get_max_chromosome_length()
 {
     float best_chromosome_length = 0.0f;
 
@@ -255,18 +241,19 @@ float population::get_best_chromosome_length()
 const individual* population::get_worst_individual()
 {
     individual_map::const_iterator itr;
-    individual* ind = NULL;
-    float worst_fitness = 0;
+    individual* ind = (individual*) get_best_individual();
+    float worst_fitness;
     uint32 shortest = 0;
 
-    if (!pool->size())
+    if (!ind || !pool->size())
         return 0;
+
+    worst_fitness = ind->get_fitness();
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
         if (worst_fitness >= (*itr).second->get_fitness())
         {
-            // tra due individui con fitness uguali scelgo il più corto 
             if (ind && (*itr).second->get_dna_length() < ind->get_dna_length())
                 continue;
             worst_fitness = (*itr).second->get_fitness();
@@ -308,7 +295,7 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     string dna_a_1, dna_a_2;
     string dna_b_1, dna_b_2;
 
-    switch (conf->get_int_config(CONFIG_CUT_TYPE))
+    switch (conf->get_int_config(CONFIG_CUT_TYPE)) // usare dei define per i codici
     {
         case 1: // Double Random
             {
@@ -355,8 +342,7 @@ void population::create_mating_pool()
     if (!pool->size())
         return;
 
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_LOG_MATING))
-        cout << "create_mating_pool" << endl;
+    LOG_STATIC("events", "mating", "create_mating_pool\n");
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -365,10 +351,10 @@ void population::create_mating_pool()
             continue;
 
         if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
-            if (get_best_fitness() - get_worst_fitness() != 0.0f)            
+            if (get_best_fitness() - get_worst_fitness() != 0.0f)
                 fitness = (fitness - get_worst_fitness()) / (get_best_fitness() - get_worst_fitness());
 
-        uint32 u_fitness = uint32(fitness * 1000);        
+        uint32 u_fitness = uint32(fitness * 1000);
 
         total_weight += u_fitness;
         m_weight_map[(*itr).first] = u_fitness;
@@ -398,7 +384,7 @@ void population::create_mating_pool()
     }
 }
 
-void population::transfer_bests()
+void population::transfer_best()
 {
     uint32 transfer_num = uint32(conf->get_int_config(CONFIG_POPULATION_SIZE)) - uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
@@ -407,8 +393,7 @@ void population::transfer_bests()
 
     transfer_num = transfer_num ? transfer_num : 1;
 
-    if (conf->get_bool_config(CONFIG_DEBUG))
-        cout << "transferring " << transfer_num << " best individual(s) from old population" << endl;
+    INFO("debug", "transferring %d best individual(s) from old population\n", transfer_num);
 
     typedef std::pair<individual*, float> best_pair;
     std::list<best_pair> best_map;
@@ -420,7 +405,7 @@ void population::transfer_bests()
             if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
             {        
                 if (itr2 == best_map.end() && best_map.size() >= transfer_num)
-                    break;               
+                    break;
                 
                 best_map.insert(itr2, best_pair((*itr).second, (*itr).second->get_fitness()));
                 
@@ -455,8 +440,7 @@ void population::mate_individuals()
 
     if (mating_pool.empty())
     {
-        if (conf->get_bool_config(CONFIG_LOG))
-            LOG_STATIC("events", "mating", "mating_pool is empty\n");
+        LOG_STATIC("events", "mating", "mating_pool is empty\n");
         return;
     }
     individual_id_list::iterator itr = mating_pool.begin();
@@ -473,16 +457,11 @@ void population::mate_individuals()
         // Effettuo il crossover con una certa probabilità
         if (randmm(0,100) <= (conf->get_float_config(CONFIG_MATING_RATE) * 100))
         {
-            if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_LOG_MATING))
-                cout << "crossover event!" << endl;
-
+            LOG_STATIC("events", "mating", "crossover event!\n");
             crossover(ind_a_cloned, ind_b_cloned);
-
-            // Dopo il crossover ci potrebbero essere delle mutazioni
-            //ind_a_cloned->dna_mutate(mutation_rate);
-            //ind_a_cloned->dna_mutate(mutation_rate);
         }
 
+        // Dopo il crossover ci potrebbero essere delle mutazioni
         ind_a_cloned->dna_mutate(mutation_rate);
         ind_a_cloned->dna_mutate(mutation_rate);
 
@@ -531,41 +510,15 @@ void population::fattest_individuals_shrink()
     }
 }
 
-/*
-void population::mutate_individuals() const
-{
-    individual_map::const_iterator itr;
-    float mutate_probability = conf->mutation_rate * 100;
-    float rnd, count = 0;
-
-    for (itr = pool->begin(); itr != pool->end(); ++itr)
-    {
-        rnd = rand()%100 + 1;
-
-        if (mutate_probability > rnd)
-        {
-            count++;
-            if ((*itr).second)
-                (*itr).second->dna_mutate();
-        }
-    }
-
-    if (conf->get_bool_config(CONFIG_VERBOSE) && conf->log_mutations)
-        cout << count <<" mutation events!"<<endl;
-}
-*/
-
 uint32  population::size() const
 {
     return pool->size();
 }
 
-void population::print_best()
+void population::print(individual *ind) const
 {
-    individual* ind = (individual*) get_best_individual();
-
     if (ind)
-        cout << ind->info(false);
+        INFO("verbose", "%s\n", ind->info(false).c_str());
 }
 
 void population::log(uint32 generation) const
@@ -591,8 +544,8 @@ int population::load_log(string filename)
 
     if (!log_file.is_open())
     {
-        printf("file: %s\n", filename.c_str());
-        perror("log file");
+        INFO("debug","file: %s\n", filename.c_str());
+        perror("open");
         return 0;
     }
 
@@ -661,7 +614,7 @@ string population::to_string() const
     {
         count++;
         str << "individual: #" << count << endl;
-        str << (*itr).second->info() << endl;
+        str << (*itr).second->info(false) << endl;
     }
 
     return str.str();
