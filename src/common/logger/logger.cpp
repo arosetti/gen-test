@@ -46,8 +46,6 @@ logger_profile* logger::get_profile(string profile)
     }
 
     releaselock();
-    cout << "profile not found!" << endl;
-
     return NULL;
 }
 
@@ -75,12 +73,12 @@ string logger::get_filename(string profile, string fname)
 
 bool logger::log(string profile, string fname, const char *fmt, ...)
 {
-    static char buffer[BUF_SIZE];
+    static char buffer[BSIZE];
     int ret;
 
     va_list ap;
     va_start(ap, fmt);
-    ret = vsnprintf(buffer, BUF_SIZE, fmt, ap);
+    ret = vsnprintf(buffer, BSIZE, fmt, ap);
     va_end(ap);
 
     if (ret)
@@ -96,28 +94,16 @@ bool logger::log(string profile, string fname, const char *fmt, ...)
 bool logger::log_static(string profile, string fname, const char *str)
 {
     logger_profile *l_profile = get_profile(profile);
-    string file;
 
     if (!l_profile)
         return false;
 
-    if (l_profile->get_opt(L_PRINT))
-    {
-        // colori e timestamps
-        cout << str << endl;
-    }
-
-    if (!l_profile->get_opt(L_FILE_LOG))
-        return true;
-
-    file = get_filename(profile, fname);
-
     if (!l_profile->ff.is_open())
     {
         if (l_profile->get_opt(L_APPEND))
-            l_profile->ff.open(file.c_str(), ios::out | ios::app);
+            l_profile->ff.open(get_filename(profile, fname).c_str(), ios::out | ios::app);
         else
-            l_profile->ff.open(file.c_str(), ios::out);
+            l_profile->ff.open(get_filename(profile, fname).c_str(), ios::out);
     }
 
     if (l_profile->ff.is_open())
@@ -132,11 +118,38 @@ bool logger::log_static(string profile, string fname, const char *str)
     {
         cout << file << endl;
         perror("logger");
-        releaselock();
         return true;
     }
 
-    releaselock();
-
     return false;
 }
+
+bool logger::info(string profile, const char *fmt, ...)
+{
+    static char buffer[BSIZE];
+    int ret;
+
+    if (l_profile->get_opt(L_VERBOSE))
+        logger_profile *l_profile = get_profile(profile);
+    else
+       return false;
+
+    va_list ap;
+    va_start(ap, fmt);
+    ret = vsnprintf(buffer, BSIZE, fmt, ap);
+    va_end(ap);
+
+    if (ret)
+    {
+        l_profile->lock();
+        cout << buffer;
+        cout.flush();
+        l_profile->lock();
+    }
+    else
+    {
+        perror("vsnprintf");
+        return 0;
+    }
+}
+

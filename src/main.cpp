@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     ga.evolve();
 
     delete conf;
-    delete LOG;
+    delete LOG_PTR;
 
     return 0;
 }

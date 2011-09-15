@@ -3,48 +3,70 @@
 
 cfg_opt_t opts[] =
 {
-    CFG_BOOL((char*)"log.enable",(cfg_bool_t)true, CFGF_NONE),
-    CFG_STR((char*)"log.path",(char*)"logs",CFGF_NONE),
-    CFG_BOOL((char*)"log.debug", (cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"log.verbose",(cfg_bool_t)true, CFGF_NONE),    
-    CFG_BOOL((char*)"log.graphics",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"log.mating",(cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"log.mutations",(cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"log.simulation",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"debug", (cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"verbose",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"log",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"graphics",(cfg_bool_t)true, CFGF_NONE),
 
-    CFG_BOOL((char*)"print.progress_bar",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print.best",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print.avg_fitness",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print.avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print.population_size",(cfg_bool_t)true, CFGF_NONE),    
+    CFG_BOOL((char*)"print_progress_bar",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_best",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_avg_fitness",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print_population_size",(cfg_bool_t)true, CFGF_NONE),
 
-    CFG_STR((char*)"simulator.path",(char*)"",CFGF_NONE),
-    CFG_STR((char*)"simulator.bin",(char*)"",CFGF_NONE),
-    CFG_STR((char*)"simulator.args",(char*)"",CFGF_NONE),
-    CFG_STR((char*)"simulator.test_file_out",(char*)"",CFGF_NONE),
-    CFG_STR((char*)"simulator.test_file_in",(char*)"",CFGF_NONE), 
-    CFG_BOOL((char*)"simulator.read_faults_file",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"log_mating",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"log_mutations",(cfg_bool_t)false, CFGF_NONE),
+    CFG_BOOL((char*)"log_simulation",(cfg_bool_t)false, CFGF_NONE),
 
-    CFG_STR((char*)"thread.prefix",(char*)"sim_",CFGF_NONE),
-    CFG_INT((char*)"thread.slots",  4, CFGF_NONE),   
+    CFG_STR((char*)"simulator_path",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_bin",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_args",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"simulator_patch",(char*)"simulator.patch",CFGF_NONE),
+    CFG_STR((char*)"test_file_out",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"test_file_in",(char*)"",CFGF_NONE),
+    CFG_STR((char*)"log_path",(char*)"logs",CFGF_NONE),
+
+    CFG_BOOL((char*)"read_faults_file",(cfg_bool_t)false, CFGF_NONE),
+
+    CFG_STR((char*)"thread_prefix",(char*)"sim_",CFGF_NONE),
+    CFG_INT((char*)"thread_slots",  4, CFGF_NONE),   
     
-    CFG_INT((char*)"ga.max_generations",  100, CFGF_NONE),
-    CFG_INT((char*)"ga.population_size", 50, CFGF_NONE),    
-    CFG_INT((char*)"ga.chromosome_max_len", 1000 , CFGF_NONE),
-    CFG_INT((char*)"ga.chromosome_start_len_min",  10, CFGF_NONE),
-    CFG_INT((char*)"ga.chromosome_start_len_max",  20, CFGF_NONE),
-    CFG_BOOL((char*)"ga.normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
-    CFG_INT((char*)"ga.fitness_type", 1, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mating_fraction", 0.5f, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
-    CFG_INT((char*)"ga.cut_type",1,CFGF_NONE),
-    CFG_INT((char*)"ga.max_retest", 1, CFGF_NONE),
-    CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mutation_stall_rate", 0.30f, CFGF_NONE),
-    
+    CFG_INT((char*)"max_generations",  100, CFGF_NONE),
+    CFG_INT((char*)"max_retest", 3, CFGF_NONE),
+    CFG_INT((char*)"max_stall", 10, CFGF_NONE),
+    CFG_BOOL((char*)"check_stall", (cfg_bool_t)false, CFGF_NONE),
+
+    CFG_INT((char*)"population_size", 50, CFGF_NONE),
+
+    CFG_STR((char*)"fitness_type",(char*)"fault_rate",CFGF_NONE),
+    CFG_STR((char*)"cut_type",(char*)"random",CFGF_NONE),
+
+    CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
+    CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
+    CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
+
+    CFG_BOOL((char*)"normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
+    CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
+    CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
+
+    CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
     CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
+};
+
+const char *fitness_types[] =
+{
+    "fault_rate",
+    "fault_rate_linear_min_length",
+    NULL
+};
+
+const char *cut_types[] =
+{
+    "half",
+    "single_random",
+    "double_random",
+    NULL
 };
 
 cfg_t* config::open_cfg()
@@ -74,46 +96,50 @@ bool config::load_config()
 
     cfg_t *cfg = open_cfg();
 
-    config_bool[CONFIG_LOG]        = cfg_getbool(cfg, "log.enable");
-    config_string[CONFIG_LOG_PATH] = cfg_getstr(cfg, "log.path");
-    config_bool[CONFIG_DEBUG]      = cfg_getbool(cfg, "log.debug");
-    config_bool[CONFIG_VERBOSE]    = cfg_getbool(cfg, "log.verbose");    
-    config_bool[CONFIG_GRAPHICS]   = cfg_getbool(cfg, "log.graphics");
-    config_bool[CONFIG_LOG_MATING]     = cfg_getbool(cfg, "log.mating");
-    config_bool[CONFIG_LOG_MUTATIONS]  = cfg_getbool(cfg, "log.mutations");
-    config_bool[CONFIG_LOG_SIMULATION] = cfg_getbool(cfg, "log.simulation");
+    config_bool[CONFIG_DEBUG]    = cfg_getbool(cfg, "debug");
+    config_bool[CONFIG_VERBOSE]  = cfg_getbool(cfg, "verbose");
+    config_bool[CONFIG_LOG]      = cfg_getbool(cfg, "log");
+    config_bool[CONFIG_GRAPHICS] = cfg_getbool(cfg, "graphics");
 
-    config_bool[CONFIG_PRINT_PROGRESS_BAR]          = cfg_getbool(cfg, "print.progress_bar");
-    config_bool[CONFIG_PRINT_BEST]                  = cfg_getbool(cfg, "print.best");
-    config_bool[CONFIG_PRINT_AVG_CHROMOSOME_LENGTH] = cfg_getbool(cfg, "print.avg_chromosome_length");
-    config_bool[CONFIG_PRINT_AVG_FITNESS]           = cfg_getbool(cfg, "print.avg_fitness");
-    config_bool[CONFIG_PRINT_POPULATION_SIZE]       = cfg_getbool(cfg, "print.population_size");
+    config_bool[CONFIG_PRINT_PROGRESS_BAR]          = cfg_getbool(cfg, "print_progress_bar");
+    config_bool[CONFIG_PRINT_BEST]                  = cfg_getbool(cfg, "print_best");
+    config_bool[CONFIG_PRINT_AVG_CHROMOSOME_LENGTH] = cfg_getbool(cfg, "print_avg_chromosome_length");
+    config_bool[CONFIG_PRINT_AVG_FITNESS]           = cfg_getbool(cfg, "print_avg_fitness");
+    config_bool[CONFIG_PRINT_POPULATION_SIZE]       = cfg_getbool(cfg, "print_population_size");
+    config_bool[CONFIG_LOG_MATING]                  = cfg_getbool(cfg, "log_mating");
+    config_bool[CONFIG_LOG_MUTATIONS]               = cfg_getbool(cfg, "log_mutations");
+    config_bool[CONFIG_LOG_SIMULATION]              = cfg_getbool(cfg, "log_simulation");
+    config_bool[CONFIG_READ_FAULTS_FILE]            = cfg_getbool(cfg, "read_faults_file");
 
-    config_string[CONFIG_SIMULATOR_PATH]  = cfg_getstr(cfg, "simulator.path");
-    config_string[CONFIG_SIMULATOR_BIN]   = cfg_getstr(cfg, "simulator.bin");
-    config_string[CONFIG_SIMULATOR_ARGS]  = cfg_getstr(cfg, "simulator.args");
-    config_string[CONFIG_TEST_FILE_OUT]   = cfg_getstr(cfg, "simulator.test_file_out");
-    config_string[CONFIG_TEST_FILE_IN]    = cfg_getstr(cfg, "simulator.test_file_in");
-    config_bool[CONFIG_READ_FAULTS_FILE]  = cfg_getbool(cfg, "simulator.read_faults_file");
+    config_string[CONFIG_SIMULATOR_PATH]  = cfg_getstr(cfg, "simulator_path");
+    config_string[CONFIG_SIMULATOR_BIN]   = cfg_getstr(cfg, "simulator_bin");
+    config_string[CONFIG_SIMULATOR_ARGS]  = cfg_getstr(cfg, "simulator_args");
+    config_string[CONFIG_SIMULATOR_PATCH] = cfg_getstr(cfg, "simulator_patch");
+    config_string[CONFIG_TEST_FILE_OUT]   = cfg_getstr(cfg, "test_file_out");
+    config_string[CONFIG_TEST_FILE_IN]    = cfg_getstr(cfg, "test_file_in");
+    config_string[CONFIG_LOG_PATH]        = cfg_getstr(cfg, "log_path");
 
-    config_string[CONFIG_THREAD_PREFIX] = cfg_getstr(cfg, "thread.prefix");
-    config_int[CONFIG_THREAD_SLOTS]     = cfg_getint(cfg, "thread.slots");
+    config_string[CONFIG_THREAD_PREFIX] = cfg_getstr(cfg, "thread_prefix");
+    config_int[CONFIG_THREAD_SLOTS]     = cfg_getint(cfg, "thread_slots");
 
-    config_int[CONFIG_MAX_GENERATIONS]          = cfg_getint(cfg, "ga.max_generations");
-    config_int[CONFIG_POPULATION_SIZE]          = cfg_getint(cfg, "ga.population_size");
-    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]    = cfg_getint(cfg, "ga.chromosome_max_len");
-    config_int[CONFIG_CHROMOSOME_START_LEN_MIN] = cfg_getint(cfg, "ga.chromosome_start_len_min");
-    config_int[CONFIG_CHROMOSOME_START_LEN_MAX] = cfg_getint(cfg, "ga.chromosome_start_len_max");
-    config_bool[CONFIG_NORMALIZED_FITNESS]      = cfg_getbool(cfg, "ga.normalized_fitness");
-    config_int[CONFIG_FITNESS_TYPE]             = cfg_getint(cfg, "ga.fitness_type");
-    config_float[CONFIG_MATING_RATE]            = cfg_getfloat(cfg, "ga.mating_rate");
-    config_float[CONFIG_MATING_FRACTION]        = cfg_getfloat(cfg, "ga.mating_fraction");
-    config_float[CONFIG_MUTATION_RATE]          = cfg_getfloat(cfg, "ga.mutation_rate");
-    config_int[CONFIG_CUT_TYPE]                 = cfg_getint(cfg, "ga.cut_type");   
-    config_int[CONFIG_MAX_RETEST]               = cfg_getint(cfg, "ga.max_retest");
-    config_int[CONFIG_MAX_STALL]                = cfg_getint(cfg, "ga.max_stall");
-    config_float[CONFIG_MUTATION_STALL_RATE]    = cfg_getfloat(cfg, "ga.mutation_stall_rate"); 
+    config_int[CONFIG_MAX_GENERATIONS] = cfg_getint(cfg, "max_generations");
+    config_int[CONFIG_MAX_RETEST]       = cfg_getint(cfg, "max_retest");
+    config_int[CONFIG_MAX_STALL]       = cfg_getint(cfg, "max_stall");
+    config_bool[CONFIG_CHECK_STALL]    = cfg_getbool(cfg, "check_stall");
     
+    config_int[CONFIG_POPULATION_SIZE] = cfg_getint(cfg, "population_size");
+    config_string[CONFIG_FITNESS_TYPE] = cfg_getstr(cfg, "fitness_type");
+    config_string[CONFIG_CUT_TYPE]     = cfg_getstr(cfg, "cut_type");   
+
+    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]      = cfg_getint(cfg, "chromosome_max_len");
+    config_int[CONFIG_CHROMOSOME_START_LEN_MIN] = cfg_getint(cfg, "chromosome_start_len_min");
+    config_int[CONFIG_CHROMOSOME_START_LEN_MAX] = cfg_getint(cfg, "chromosome_start_len_max");
+
+    config_bool[CONFIG_NORMALIZED_FITNESS] = cfg_getbool(cfg, "normalized_fitness");
+    config_float[CONFIG_MATING_RATE]       = cfg_getfloat(cfg, "mating_rate");
+    config_float[CONFIG_MATING_FRACTION]   = cfg_getfloat(cfg, "mating_fraction");
+
+    config_float[CONFIG_MUTATION_RATE] = cfg_getfloat(cfg, "mutation_rate");
     config_bool[CONFIG_MUTATION_LENGTH_GENE] = cfg_getbool(cfg, "mutation_length_gene");
 
     cfg_free(cfg);
@@ -123,17 +149,16 @@ bool config::load_config()
 
 void config::post_init_config()
 {
+    int ret;
+
     config_int[CONFIG_CHROMOSOME_NUM] = read_n_inputs();
 
     if (!file_exists(config_string[CONFIG_LOG_PATH]))  // usare dir_exists
-        mkdir(config_string[CONFIG_LOG_PATH].c_str(), 0777);
+        mkdir(config_string[CONFIG_LOG_PATH].c_str(),0777);
 
-    if (config_string[CONFIG_LOAD_LOG_FILENAME] == "")
-    {
-        stringstream str;
-        str << "rm -f " << config_string[CONFIG_LOG_PATH] << "/*.log";
-        int ret = system(str.str().c_str());
-    }
+    stringstream str;
+    str << "rm -f " << config_string[CONFIG_LOG_PATH] << "/*.log";
+    ret = system(str.str().c_str());
 
     check_config();
     init_log_profiles();
@@ -148,11 +173,11 @@ void config::init_log_profiles()
     LOG->add_profile(l_profile);
 
     l_profile = new logger_profile("events", config_string[CONFIG_LOG_PATH]);
-    l_profile->set_opt(L_APPEND | L_FILE_LOG);
+    l_profile->set_opt(L_APPEND | L_FILE_LOG | L_CLOSE);
     LOG->add_profile(l_profile);
     
     l_profile = new logger_profile("generations", config_string[CONFIG_LOG_PATH]);
-    l_profile->set_opt(L_STATIC | L_FILE_LOG | L_INCREMENTAL | L_CLOSE);
+    l_profile->set_opt(L_FILE_LOG | L_INCREMENTAL | L_CLOSE);
     LOG->add_profile(l_profile);
 }
 
@@ -164,7 +189,10 @@ void config::help_config()
 
 int config::load_args(int argc, char **argv)
 {
-    int opt;
+    char *c_value = NULL;
+    int index;
+    int opt, tmp_i;
+
     opterr = 0;
 
     while ((opt = getopt (argc, argv, "hdt:c:s:l:")) != -1)
@@ -188,13 +216,11 @@ int config::load_args(int argc, char **argv)
                 load_config();
             break;
             case 't':
-            {
-                int tmp_i = atoi(optarg);                 
+                tmp_i = atoi(optarg);                 
                 if (tmp_i > 0)
                     config_int[CONFIG_THREAD_SLOTS] = tmp_i;
                 else
                     cout << "wrong -t parameter. you must use a value > 0 " << endl;
-            }
             break;
             case 's':
                 if (file_exists(optarg))  //TODO controllare che sia una dir con dir_exists
@@ -206,8 +232,9 @@ int config::load_args(int argc, char **argv)
             case 'l':
                 if (file_exists(optarg))
                     config_string[CONFIG_LOAD_LOG_FILENAME] = optarg;
-                else                    
-                    cout << "wrong -s parameter. you must use a valid generation log file" << endl;
+                else
+                    cout << "wrong -s parameter. you must use a valid generation log file" 
+                         << endl << endl;
             break;
             case '?':
                 if (optopt == 'c')
@@ -227,7 +254,7 @@ int config::load_args(int argc, char **argv)
                 break;
         }    
 
-    for (int index = optind; index < argc; index++)
+    for (index = optind; index < argc; index++)
         cout << "non-option argument " << argv[index] << endl;
 
     post_init_config();
