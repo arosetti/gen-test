@@ -112,31 +112,31 @@ void ga_engine::evolve()
             s_tmp += "/best_fitness.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_fitness();
-            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
 
             s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
             s_tmp += "/best_fault_coverage.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_individual()->get_fault_coverage();
-            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
 
             s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
             s_tmp += "/best_chromosome_length.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_individual()->get_chromosome_length();
-            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
 
             s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
             s_tmp += "/max_fault_coverage.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_fault_coverage();
-            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
             
             s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
             s_tmp += "/max_chromosome_length.log";
             ss_tmp.str("");
             ss_tmp <<  pop->get_best_chromosome_length();
-            LOG->log_static(s_tmp.c_str(), true, ss_tmp.str().c_str());
+            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
             
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");

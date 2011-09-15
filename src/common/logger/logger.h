@@ -4,8 +4,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <stdarg.h>
 #include <vector>
+
+#include "../typedefs.h"
+
+
 #define LOG logger::get_instance()
 //#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
 
@@ -29,6 +34,7 @@ enum logger_mask
 struct logger_profile  // da trasformare in classe
 {
     string name, path;
+    ofstream ff;
     pthread_mutex_t  l_mutex;
 
     uint32 l_mask;
@@ -68,10 +74,13 @@ class logger
 
     static logger*          l_singleton;
     pthread_mutex_t  mutex_log;
+    vector<logger_profile> vct_profiles;
 
     logger();
 
     public:
+
+    ~logger();
 
     static logger* get_instance()
     {
