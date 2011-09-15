@@ -7,17 +7,18 @@ logger::logger()
 
 logger::~logger()
 {
-    vector<logger_profile>::iterator itr;
+    vector<logger_profile*>::iterator itr;
 
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
     {
-        (*itr).ff.close();
+        (*itr)->ff.close();
+        delete (*itr);
     }
     releaselock();
 }
 
-void logger::add_profile(logger_profile l_profile)
+void logger::add_profile(logger_profile *l_profile)
 {
     getlock();
     vct_profiles.push_back(l_profile);
@@ -26,15 +27,15 @@ void logger::add_profile(logger_profile l_profile)
 
 logger_profile* logger::get_profile(string profile)
 {
-    vector<logger_profile>::iterator itr;
+    vector<logger_profile*>::iterator itr;
 
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
     {
-        if ((*itr).name == profile)
+        if ((*itr)->name == profile)
         {
             releaselock();
-            return &(*itr);
+            return (*itr);
         }
     }
 

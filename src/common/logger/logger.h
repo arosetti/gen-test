@@ -74,7 +74,7 @@ class logger
 
     static logger*          l_singleton;
     pthread_mutex_t  mutex_log;
-    vector<logger_profile> vct_profiles;
+    vector<logger_profile*> vct_profiles;
 
     logger();
 
@@ -89,7 +89,7 @@ class logger
         return l_singleton;
     };
 
-    void add_profile(logger_profile l_profile);
+    void add_profile(logger_profile *l_profile);
     logger_profile* get_profile(string profile);
     string get_filename(string profile);
 

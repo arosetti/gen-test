@@ -1,5 +1,25 @@
-changeset:   304:b871afc2b79b
+changeset:   308:58f0508742ef
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 13:47:43 2011 +0200
+sommario:    * fix generici logger.h logger.cpp
+
+changeset:   307:044077c517f3
+utente:      Lazzalf
+data:        Thu Sep 15 13:05:48 2011 +0200
+sommario:    Aggiornamento config
+
+changeset:   306:8d77d607509e
+utente:      Lazzalf
+data:        Thu Sep 15 13:04:32 2011 +0200
+sommario:    Config
+
+changeset:   305:01bd47294f12
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 11:59:24 2011 +0200
+sommario:    * modificata classe logger.h per supportare i profili di log e il print senza log
+
+changeset:   304:b871afc2b79b
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 15 01:12:01 2011 +0200
 sommario:    * inseriti vari tipi di log, prima loggavo in maniera errata
@@ -41,22 +61,22 @@ data:        Tue Sep 13 23:44:26 2011 +0200
 sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
 
 changeset:   296:d746fe3e6a3c
-genitore:    294:85d875e04010
-genitore:    295:3d8fc8ae45bd
+genitore:    295:85d875e04010
+genitore:    294:3d8fc8ae45bd
 utente:      Lazzalf
 data:        Tue Sep 13 21:21:07 2011 +0200
 sommario:    Merge
 
-changeset:   295:3d8fc8ae45bd
+changeset:   295:85d875e04010
 genitore:    293:217c283c5f02
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Tue Sep 13 19:05:22 2011 +0200
-sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
-
-changeset:   294:85d875e04010
 utente:      Lazzalf
 data:        Tue Sep 13 15:38:59 2011 +0200
 sommario:    Leggera modifica alla fitness
+
+changeset:   294:3d8fc8ae45bd
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 19:05:22 2011 +0200
+sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
 
 changeset:   293:217c283c5f02
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -276,22 +296,22 @@ data:        Fri Sep 09 21:55:30 2011 +0200
 sommario:    fix lettura piedini del circuito
 
 changeset:   252:af1d4234628a
-genitore:    250:b04b20622638
-genitore:    251:221be332c88a
+genitore:    251:b04b20622638
+genitore:    250:221be332c88a
 utente:      Lazzalf
 data:        Fri Sep 09 20:58:47 2011 +0200
 sommario:    Merge
 
-changeset:   251:221be332c88a
+changeset:   251:b04b20622638
 genitore:    249:b459b3096c4d
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Fri Sep 09 20:35:01 2011 +0200
-sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
-
-changeset:   250:b04b20622638
 utente:      Lazzalf
 data:        Fri Sep 09 20:57:42 2011 +0200
 sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
+
+changeset:   250:221be332c88a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 20:35:01 2011 +0200
+sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
 
 changeset:   249:b459b3096c4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
