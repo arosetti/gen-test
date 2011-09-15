@@ -425,7 +425,7 @@ void population::mate_individuals()
     if (mating_pool.empty())
     {
         if (conf->get_bool_config(CONFIG_LOG))
-            LOG->log("logs/mating.log",true, "mating_pool is empty\n");
+            LOG->log("mating", "mating_pool is empty\n");
         return;
     }
     individual_id_list::iterator itr = mating_pool.begin();
@@ -559,7 +559,7 @@ void population::log(uint32 generation) const
         count++;
     }
 
-    LOG->log_static(generations_logfile, false, out.str().c_str());
+    LOG->log_static("generation", out.str().c_str());
 }
 
 int population::load_log(string filename)

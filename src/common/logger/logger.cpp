@@ -1,7 +1,5 @@
 #include "logger.h"
 
-vector<logger_profile> vct_profiles;
-
 logger::logger()
 {
     pthread_mutex_init(&mutex_log, NULL);
@@ -9,18 +7,20 @@ logger::logger()
 
 logger::~logger()
 {
+    vector<logger_profile>::iterator itr;
+
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
     {
-        *(itr).ff.close();
+        (*itr).ff.close();
     }
     releaselock();
 }
 
-void logger::add_profile(logger_profile l_profileile)
+void logger::add_profile(logger_profile l_profile)
 {
     getlock();
-    vct_profiles.push_back(l_profileile);
+    vct_profiles.push_back(l_profile);
     releaselock();
 }
 
@@ -31,10 +31,10 @@ logger_profile* logger::get_profile(string profile)
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
     {
-        if (*(itr)->name == profile)
+        if ((*itr).name == profile)
         {
             releaselock();
-            return &*(itr);
+            return &(*itr);
         }
     }
 
@@ -46,17 +46,21 @@ logger_profile* logger::get_profile(string profile)
 
 string logger::get_filename(string profile)
 {
+    string file;
     logger_profile *l_profile = get_profile(profile);
+
     file  = l_profile->path;
     file += "/";
     file += l_profile->name;
     if (l_profile->get_opt(L_INCREMENTAL))
     {
         stringstream str;
-        str << l_profile->++count;
+        
+        str << ++(l_profile->count);
         file += str.str();
     }
     file += ".log";
+    return file;
 }
 
 bool logger::log(string profile, const char *fmt, ...)
@@ -90,7 +94,7 @@ bool logger::log_static(string profile, const char *str)
         cout << str << endl;
     }
 
-    if (!l_profile->get_opt(L_FILE_LOG)
+    if (!l_profile->get_opt(L_FILE_LOG))
         return true;
 
     file = get_filename(profile);
