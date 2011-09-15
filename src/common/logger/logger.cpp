@@ -116,7 +116,6 @@ bool logger::log_static(string profile, string fname, const char *str)
     }
     else
     {
-        cout << file << endl;
         perror("logger");
         return true;
     }
@@ -129,9 +128,9 @@ bool logger::info(string profile, const char *fmt, ...)
     static char buffer[BSIZE];
     int ret;
 
-    if (l_profile->get_opt(L_VERBOSE))
-        logger_profile *l_profile = get_profile(profile);
-    else
+    logger_profile *l_profile = get_profile(profile);
+
+    if (!l_profile || !l_profile->get_opt(L_VERBOSE))
        return false;
 
     va_list ap;
