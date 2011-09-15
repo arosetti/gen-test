@@ -46,14 +46,10 @@ void ga_engine::evolve()
     while ( generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
         time_start(time);
-        INFO("verbose", "\n# generation: %d\n");
+        INFO("verbose", "\n# generation: %d\n", generation);
 
         if (conf->get_int_config(CONFIG_POPULATION_SIZE))
             INFO("verbose", "* population size: %d\n", pop->size());
-
-        /*if (conf->verbose && conf->read_faults_file)
-            INFO("verbose", "* resetting faults\n");
-        pop->reset_faults();*/
 
         INFO("verbose", "* executing tests on %d thread(s)\n", conf->get_int_config(CONFIG_THREAD_SLOTS));
         pop->test_population();
@@ -89,7 +85,7 @@ void ga_engine::evolve()
         if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_PRINT_BEST))
         {
             INFO("verbose", "* best individual info:\n");
-            pop->print_best();
+            pop->print((individual*) pop->get_best_individual());
         }
 
         if (conf->get_bool_config(CONFIG_LOG))
@@ -100,21 +96,22 @@ void ga_engine::evolve()
             LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
             LOG("events", "best_individual_fault_coverage", "%f", pop->get_best_individual()->get_fault_coverage());
             LOG("events", "best_individual_chromosome_length", "%d", pop->get_best_individual()->get_chromosome_length());
-            LOG("events", "best_fault_coverage", "%f", pop->get_best_fault_coverage());
-            LOG("events", "max_chromosome_length", "%f", pop->get_best_chromosome_length());
+            LOG("events", "max_fault_coverage", "%f", pop->get_max_fault_coverage());
+            LOG("events", "max_chromosome_length", "%f", pop->get_max_chromosome_length());
 
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }
 
-        if (conf->get_bool_config(CONFIG_STOP_AT_100) &&  pop->get_best_fault_coverage() == 100.f)
+        if (conf->get_bool_config(CONFIG_STOP_AT_100) &&  
+            pop->get_best_individual()->get_fault_coverage() == 100.0f)
         {
-            INFO("verbose", "100% faults found!!! stoppig program\n");
+            INFO("verbose", "all faults have been found!!! stoppig program\n");
             break;
         }
 
         INFO("verbose",  "* transfer best individuals\n");
-        pop->transfer_bests();
+        pop->transfer_best();
 
         INFO("verbose",  "* mating individuals\n");
         pop->mate_individuals();
