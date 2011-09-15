@@ -6,6 +6,7 @@
 #define CONFIG_H
 
 #include "common/utility.h"
+#include "common/logger/logger.h"
 
 using namespace std;
 
@@ -94,9 +95,9 @@ class config
         std::string get_string_config(enum config_string);
         float       get_float_config(enum config_float);
 
-        bool load_config();        
+        bool load_config();
         void post_init_config();
-        
+        void init_log_profiles();
         void help_config();
         void check_config();
 

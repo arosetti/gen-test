@@ -146,7 +146,7 @@ bool config::load_config()
 
     return true;
 }
-    
+
 void config::post_init_config()
 {
     int ret;
@@ -161,6 +161,16 @@ void config::post_init_config()
     ret = system(str.str().c_str());
 
     check_config();
+    init_log_profiles();
+}
+
+void config::init_log_profiles()
+{
+    logger_profile *l_profile;
+
+    l_profile = new logger_profile("info", config_string[CONFIG_LOG_PATH]);
+    l_profile->set_opt();
+    LOG->add_profile(profile);
 }
 
 void config::help_config()
