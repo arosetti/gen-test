@@ -160,9 +160,9 @@ void individual::set_fitness(float f) // deprecated
 
 void individual::calc_fitness()
 {
-    if (conf->get_string_config(CONFIG_FITNESS_TYPE) == "fault_rate")
+    if (conf->get_int_config(CONFIG_FITNESS_TYPE) == 1)
         fitness = (float)(100 * detected) / (float)(n_tests);
-    else if (conf->get_string_config(CONFIG_FITNESS_TYPE)  == "fault_rate_min_length")
+    else if (conf->get_int_config(CONFIG_FITNESS_TYPE)  == 2)
         fitness = ((float)(detected) / (float)(n_tests)) -
                  ((float)get_chromosome_length() / (4.0f * (float)(n_tests))) + 1.0f;
     else

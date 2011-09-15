@@ -29,41 +29,22 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"thread.slots",  4, CFGF_NONE),   
     
     CFG_INT((char*)"ga.max_generations",  100, CFGF_NONE),
-    CFG_INT((char*)"ga.population_size", 50, CFGF_NONE),
+    CFG_INT((char*)"ga.population_size", 50, CFGF_NONE),    
+    CFG_INT((char*)"ga.chromosome_max_len", 1000 , CFGF_NONE),
+    CFG_INT((char*)"ga.chromosome_start_len_min",  10, CFGF_NONE),
+    CFG_INT((char*)"ga.chromosome_start_len_max",  20, CFGF_NONE),
+    CFG_BOOL((char*)"ga.normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
+    CFG_INT((char*)"ga.fitness_type", 1, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.mating_fraction", 0.5f, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
+    CFG_INT((char*)"ga.cut_type",1,CFGF_NONE),
     CFG_INT((char*)"ga.max_retest", 1, CFGF_NONE),
     CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mutation_stall_rate", 0.30f, CFGF_NONE),    
-
-    CFG_STR((char*)"fitness_type",(char*)"fault_rate",CFGF_NONE),
-    CFG_STR((char*)"cut_type",(char*)"random",CFGF_NONE),
-
-    CFG_INT((char*)"chromosome_max_len", 100 , CFGF_NONE),
-    CFG_INT((char*)"chromosome_start_len_min",  10, CFGF_NONE),
-    CFG_INT((char*)"chromosome_start_len_max",  20, CFGF_NONE),
-
-    CFG_BOOL((char*)"normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
-    CFG_FLOAT((char*)"mating_fraction", 0.5f, CFGF_NONE),
-    CFG_FLOAT((char*)"mating_rate", 0.1f, CFGF_NONE),
-
-    CFG_FLOAT((char*)"mutation_rate", 0.05f, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.mutation_stall_rate", 0.30f, CFGF_NONE),
     
     CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
-};
-
-const char *fitness_types[] =
-{
-    "fault_rate",
-    "fault_rate_linear_min_length",
-    NULL
-};
-
-const char *cut_types[] =
-{
-    "half",
-    "single_random",
-    "double_random",
-    NULL
 };
 
 cfg_t* config::open_cfg()
@@ -118,24 +99,20 @@ bool config::load_config()
     config_string[CONFIG_THREAD_PREFIX] = cfg_getstr(cfg, "thread.prefix");
     config_int[CONFIG_THREAD_SLOTS]     = cfg_getint(cfg, "thread.slots");
 
-    config_int[CONFIG_MAX_GENERATIONS] = cfg_getint(cfg, "ga.max_generations");
-    config_int[CONFIG_POPULATION_SIZE] = cfg_getint(cfg, "ga.population_size");
-    config_int[CONFIG_MAX_RETEST]      = cfg_getint(cfg, "ga.max_retest");
-    config_int[CONFIG_MAX_STALL]       = cfg_getint(cfg, "ga.max_stall");
-    config_float[CONFIG_MUTATION_STALL_RATE] = cfg_getfloat(cfg, "ga.mutation_stall_rate");    
-    
-    config_string[CONFIG_FITNESS_TYPE] = cfg_getstr(cfg, "fitness_type");
-    config_string[CONFIG_CUT_TYPE]     = cfg_getstr(cfg, "cut_type");   
-
-    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]    = cfg_getint(cfg, "chromosome_max_len");
-    config_int[CONFIG_CHROMOSOME_START_LEN_MIN] = cfg_getint(cfg, "chromosome_start_len_min");
-    config_int[CONFIG_CHROMOSOME_START_LEN_MAX] = cfg_getint(cfg, "chromosome_start_len_max");
-
-    config_bool[CONFIG_NORMALIZED_FITNESS] = cfg_getbool(cfg, "normalized_fitness");
-    config_float[CONFIG_MATING_RATE]       = cfg_getfloat(cfg, "mating_rate");
-    config_float[CONFIG_MATING_FRACTION]   = cfg_getfloat(cfg, "mating_fraction");
-
-    config_float[CONFIG_MUTATION_RATE] = cfg_getfloat(cfg, "mutation_rate");
+    config_int[CONFIG_MAX_GENERATIONS]          = cfg_getint(cfg, "ga.max_generations");
+    config_int[CONFIG_POPULATION_SIZE]          = cfg_getint(cfg, "ga.population_size");
+    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]    = cfg_getint(cfg, "ga.chromosome_max_len");
+    config_int[CONFIG_CHROMOSOME_START_LEN_MIN] = cfg_getint(cfg, "ga.chromosome_start_len_min");
+    config_int[CONFIG_CHROMOSOME_START_LEN_MAX] = cfg_getint(cfg, "ga.chromosome_start_len_max");
+    config_bool[CONFIG_NORMALIZED_FITNESS]      = cfg_getbool(cfg, "ga.normalized_fitness");
+    config_int[CONFIG_FITNESS_TYPE]             = cfg_getint(cfg, "ga.fitness_type");
+    config_float[CONFIG_MATING_RATE]            = cfg_getfloat(cfg, "ga.mating_rate");
+    config_float[CONFIG_MATING_FRACTION]        = cfg_getfloat(cfg, "ga.mating_fraction");
+    config_float[CONFIG_MUTATION_RATE]          = cfg_getfloat(cfg, "ga.mutation_rate");
+    config_int[CONFIG_CUT_TYPE]                 = cfg_getint(cfg, "ga.cut_type");   
+    config_int[CONFIG_MAX_RETEST]               = cfg_getint(cfg, "ga.max_retest");
+    config_int[CONFIG_MAX_STALL]                = cfg_getint(cfg, "ga.max_stall");
+    config_float[CONFIG_MUTATION_STALL_RATE]    = cfg_getfloat(cfg, "ga.mutation_stall_rate"); 
     
     config_bool[CONFIG_MUTATION_LENGTH_GENE] = cfg_getbool(cfg, "mutation_length_gene");
 
