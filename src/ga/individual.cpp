@@ -78,7 +78,7 @@ void individual::dna_mutate(float mutation_rate)
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * get_dna_length();
 
-    if (conf->log && conf->log_mutations)
+    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MUTATIONS))
     {
         //LOG in generation{x}-mutations.log ... in individual non sappiamo la generazione attuale...
         cout << count << " mutation event(s)!"<<endl;
@@ -110,7 +110,7 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColNum() - 1);
 
-    if (conf->log && conf->log_mating)
+    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
     {
         cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
         cout << "dna_2 (" << pos+1 << ", " << 
@@ -127,7 +127,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         GetStrColSize(dna_1) != dna->GetRowNum() ||
         GetStrColSize(dna_2) != dna->GetRowNum())
         return;
-    if (conf->log && conf->log_mating)
+    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
         cout << "# merging DNA" << endl; 
 
     // ridimensiona il dna alla somma delle colonne di dna_1
@@ -139,7 +139,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
     // attacco il secondo pezzo di dna
     dna->AttachCols(dna_2);
 
-    if (conf->log && conf->log_mating)
+    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
     {
         dna->Print();
         cout << endl;
@@ -160,9 +160,9 @@ void individual::set_fitness(float f) // deprecated
 
 void individual::calc_fitness()
 {
-    if (conf->fitness_type == "fault_rate")
+    if (conf->get_string_config(CONFIG_FITNESS_TYPE) == "fault_rate")
         fitness = (float)(100 * detected) / (float)(n_tests);
-    else if (conf->fitness_type == "fault_rate_min_length")
+    else if (conf->get_string_config(CONFIG_FITNESS_TYPE)  == "fault_rate_min_length")
         fitness = ((float)(detected) / (float)(n_tests)) -
                  ((float)get_chromosome_length() / (4.0f * (float)(n_tests))) + 1.0f;
     else

@@ -9,59 +9,104 @@
 
 using namespace std;
 
+enum config_bool
+{
+    CONFIG_DEBUG = 0,
+    CONFIG_VERBOSE,
+    CONFIG_LOG,
+    CONFIG_GRAPHICS,
+    CONFIG_PRINT_PROGRESS_BAR,
+    CONFIG_PRINT_POPULATION_SIZE,
+    CONFIG_PRINT_BEST,
+    CONFIG_PRINT_AVG_FITNESS,
+    CONFIG_PRINT_AVG_CHROMOSOME_LENGTH,
+    CONFIG_LOG_MATING,
+    CONFIG_LOG_MUTATIONS,
+    CONFIG_LOG_SIMULATION,
+    CONFIG_READ_FAULTS_FILE,
+    CONFIG_CHECK_STALL,
+    CONFIG_NORMALIZED_FITNESS,
+    CONFIG_MUTATION_LENGTH_GENE,
+    CONFIG_MAX_BOOL,
+};
+
+enum config_int
+{
+    CONFIG_THREAD_SLOTS = 0,
+    CONFIG_MAX_GENERATIONS,
+    CONFIG_MAX_STALL,
+    CONFIG_MAX_RETEST,
+    CONFIG_POPULATION_SIZE,
+    CONFIG_CHROMOSOME_NUM,
+    CONFIG_CHROMOSOME_MAX_LENGTH,
+    CONFIG_CHROMOSOME_START_LEN_MIN,
+    CONFIG_CHROMOSOME_START_LEN_MAX,
+    CONFIG_MAX_INT,
+};
+
+enum config_string
+{
+    CONFIG_CONF_FILENAME = 0,
+    CONFIG_LOAD_LOG_FILENAME,
+    CONFIG_MAIN_PATH,
+    CONFIG_LOG_PATH,
+    CONFIG_SIMULATOR_PATH,
+    CONFIG_SIMULATOR_BIN,
+    CONFIG_SIMULATOR_PATCH,
+    CONFIG_SIMULATOR_ARGS,
+    CONFIG_TEST_FILE_OUT,
+    CONFIG_TEST_FILE_IN,
+    CONFIG_THREAD_PREFIX,
+    CONFIG_CUT_TYPE,
+    CONFIG_FITNESS_TYPE,
+    CONFIG_MAX_STRING,
+};
+
+enum config_float
+{
+    CONFIG_MATING_FRACTION = 0,
+    CONFIG_MATING_RATE,
+    CONFIG_MUTATION_RATE,
+    CONFIG_MAX_FLOAT,
+};
+
 //! Contiene i parametri di configurazione
 /**
  *
  */
-typedef struct config
+class config
 {
-    string conf_filename, load_log_filename, main_path, log_path;
-    bool debug, verbose, log, graphics;
+        bool         config_bool[CONFIG_MAX_BOOL];
+        int          config_int[CONFIG_MAX_INT];
+        std::string  config_string[CONFIG_MAX_STRING];
+        float        config_float[CONFIG_MAX_FLOAT];
+    public: 
+        config();
+        //~config();
 
-    bool print_progress_bar, print_population_size, print_best,
-         print_avg_fitness, print_avg_chromosome_length;
+        //void set_bool_config(config_bool, bool);
+        //void set_int_config(config_int, int);
+        //void set_string_config(config_string, std::string);
+        //void set_float_config(config_string, float);
 
-    bool log_mating, log_mutations, log_simulation;
+        bool        get_bool_config(enum config_bool);
+        int         get_int_config(enum config_int);
+        std::string get_string_config(enum config_string);
+        float       get_float_config(enum config_float);
 
-    string simulator_path, simulator_bin, simulator_patch,
-           simulator_args;
-    string test_file_out, test_file_in;
+        bool load_config();        
+        void post_init_config();
+        
+        void help_config();
+        void check_config();
 
-    bool read_faults_file;
-
-    string thread_prefix;
-    uint32 thread_slots, max_threads;
-
-    uint32 max_generations, max_stall, max_retest;
-    bool check_stall;
-
-    uint32 population_size;
-
-    string cut_type, fitness_type;
-
-    uint32 chromosome_num;
-    uint32 chromosome_max_len;
-    uint32 chromosome_start_len_min, chromosome_start_len_max;
-
-    bool   normalized_fitness;
-    float  mating_fraction;
-    float  mating_rate;
-    float  mutation_rate;
-    bool   mutation_length_gene;
-} config;
-
-extern config *conf;
-
-void init_config();
-void post_init_config();
-bool load_config();
-void help_config();
-void check_config();
-
-
-int  load_args(int argc, char **argv);
-void help_args();
-
-void interactive();
+        int  load_args(int argc, char **argv);
+        void help_args();
+    private:
+      
+        cfg_t* open_cfg();
+};
 
 #endif
+
+

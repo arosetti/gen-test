@@ -1,10 +1,12 @@
 #include "simulation_utility.h"
 
+extern config* conf;
+
 string get_thread_subdir(uint32 id)
 {
     stringstream out;
     out << id;
-    string subdir = conf->thread_prefix;
+    string subdir = conf->get_string_config(CONFIG_THREAD_PREFIX);
     subdir += out.str();
     addslash(subdir);
 
@@ -16,12 +18,12 @@ string get_sim_path(int id)
     string path;
     char *buffer = new char[1024];
 
-    if (conf->simulator_path.c_str()[0] != '/')
+    if (conf->get_string_config(CONFIG_SIMULATOR_PATH).c_str()[0] != '/')
     {
-        path = conf->main_path;
+        path = conf->get_string_config(CONFIG_MAIN_PATH);
         addslash(path);
     }
-    path += conf->simulator_path;
+    path += conf->get_string_config(CONFIG_SIMULATOR_PATH);
 
     addslash(path);
 
@@ -35,7 +37,7 @@ string get_sim_path(int id)
 string get_bin_path(int id)
 {
     string path = get_sim_path(id);
-    path += conf->simulator_bin;
+    path += conf->get_string_config(CONFIG_SIMULATOR_BIN);
 
     return path;
 }
@@ -59,14 +61,14 @@ string get_faults_path(int id)
 
 string get_patch_path(int id) //TODO sistemare il return
 {
-    string path = conf->simulator_patch;
+    string path = conf->get_string_config(CONFIG_SIMULATOR_PATCH);
     return path;
 }
 
 string get_input_file_path(int id)
 {
     string path = get_sim_path(id);
-    path += conf->test_file_in;
+    path += conf->get_string_config(CONFIG_TEST_FILE_IN);
 
     return path;
 }
@@ -74,7 +76,7 @@ string get_input_file_path(int id)
 string get_output_file_path(int id)
 {
     string path = get_sim_path(id);
-    path += conf->test_file_out;
+    path += conf->get_string_config(CONFIG_TEST_FILE_OUT);
 
     return path;
 }
@@ -82,21 +84,21 @@ string get_output_file_path(int id)
 string get_log_file_path(uint32 gen)
 {
     stringstream str;
-    str << conf->main_path << "/" << conf->log_path << "/" << "generaton" << gen << ".log";
+    str << conf->get_string_config(CONFIG_MAIN_PATH) << "/" << conf->get_string_config(CONFIG_LOG_PATH) << "/" << "generaton" << gen << ".log";
 
     return str.str();
 }
 
 void clean_env()
 {
-    if (conf->debug && conf->verbose)
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
         cout << "* simulation: cleaning environment" << endl;
 
     remove(get_faults_path(-1).c_str());
     remove(get_input_file_path(-1).c_str());
     remove(get_output_file_path(-1).c_str());
 
-    for(int i = 0 ; i < conf->thread_slots; i++)
+    for(int i = 0 ; i < conf->get_int_config(CONFIG_THREAD_SLOTS); i++)
     {
         remove(get_faults_path(i).c_str());
         remove(get_input_file_path(i).c_str());
@@ -113,10 +115,10 @@ void init_env()
 
     clean_env();
 
-    if (conf->debug && conf->verbose)
-        cout << "* simulation: initing \"" << conf->simulator_path << "\" using " << conf->thread_slots << " thread(s)" << endl;
+    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
+        cout << "* simulation: initing \"" << conf->get_string_config(CONFIG_SIMULATOR_PATH) << "\" using " << conf->get_int_config(CONFIG_THREAD_SLOTS) << " thread(s)" << endl;
 
-    for(int i = 0 ; i < conf->thread_slots ; i++ )
+    for(int i = 0 ; i < conf->get_int_config(CONFIG_THREAD_SLOTS) ; i++ )
     {
         mkdir(get_sim_path(i).c_str(), 0777);
         ret = symlink(get_outputnet_path(-1).c_str(), get_outputnet_path(i).c_str());

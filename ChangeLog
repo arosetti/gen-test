@@ -41,22 +41,22 @@ data:        Tue Sep 13 23:44:26 2011 +0200
 sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
 
 changeset:   296:d746fe3e6a3c
-genitore:    295:85d875e04010
-genitore:    294:3d8fc8ae45bd
+genitore:    294:85d875e04010
+genitore:    295:3d8fc8ae45bd
 utente:      Lazzalf
 data:        Tue Sep 13 21:21:07 2011 +0200
 sommario:    Merge
 
-changeset:   295:85d875e04010
+changeset:   295:3d8fc8ae45bd
 genitore:    293:217c283c5f02
-utente:      Lazzalf
-data:        Tue Sep 13 15:38:59 2011 +0200
-sommario:    Leggera modifica alla fitness
-
-changeset:   294:3d8fc8ae45bd
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 13 19:05:22 2011 +0200
 sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
+
+changeset:   294:85d875e04010
+utente:      Lazzalf
+data:        Tue Sep 13 15:38:59 2011 +0200
+sommario:    Leggera modifica alla fitness
 
 changeset:   293:217c283c5f02
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -276,22 +276,22 @@ data:        Fri Sep 09 21:55:30 2011 +0200
 sommario:    fix lettura piedini del circuito
 
 changeset:   252:af1d4234628a
-genitore:    251:b04b20622638
-genitore:    250:221be332c88a
+genitore:    250:b04b20622638
+genitore:    251:221be332c88a
 utente:      Lazzalf
 data:        Fri Sep 09 20:58:47 2011 +0200
 sommario:    Merge
 
-changeset:   251:b04b20622638
+changeset:   251:221be332c88a
 genitore:    249:b459b3096c4d
-utente:      Lazzalf
-data:        Fri Sep 09 20:57:42 2011 +0200
-sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
-
-changeset:   250:221be332c88a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 09 20:35:01 2011 +0200
 sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
+
+changeset:   250:b04b20622638
+utente:      Lazzalf
+data:        Fri Sep 09 20:57:42 2011 +0200
+sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
 
 changeset:   249:b459b3096c4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

@@ -8,7 +8,7 @@ void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
-    if (conf->read_faults_file)
+    if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
         remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_ind())
@@ -120,23 +120,23 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         return false;
 
     int tried = 0;
-    while (!is_tested() && tried < (conf->max_retest + 1))
+    while (!is_tested() && tried < (conf->get_int_config(CONFIG_MAX_RETEST) + 1))
     {
         try
         {
             sim_test.execute(get_dna(), sim_id);
             sim_test.get_results(sim_id, n_tests, detected);
-            if (conf->read_faults_file)
+            if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
                 GetFaultsFile(sim_id, g_test);
             test();
         }
         catch (char const* str)
         {
             tried++;
-            if (conf->debug && conf->verbose)
+            if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
             {
                 cout << "caught exception: " << str << endl; // log
-                if (tried < (conf->max_retest + 1))
+                if (tried < (conf->get_int_config(CONFIG_MAX_RETEST) + 1))
                     cout << "retesting try " << tried << endl;
             }
         }
