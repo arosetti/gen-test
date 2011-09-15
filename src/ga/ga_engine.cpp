@@ -107,11 +107,11 @@ void ga_engine::evolve()
             cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
 
-            //LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
-            //LOG("events", "best_individual_fault_coverage", "%f", pop->get_best_individual()->get_fault_coverage());
-            //LOG("events", "best_individual_chromosome_length", "%d", pop->get_best_individual()->get_chromosome_length());
-            //LOG("events", "best_fault_coverage", "%f", pop->get_best_fault_coverage());
-            //LOG("events", "max_chromosome_length", "%f", pop->get_best_chromosome_length());
+            LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
+            LOG("events", "best_individual_fault_coverage", "%f", pop->get_best_individual()->get_fault_coverage());
+            LOG("events", "best_individual_chromosome_length", "%d", pop->get_best_individual()->get_chromosome_length());
+            LOG("events", "best_fault_coverage", "%f", pop->get_best_fault_coverage());
+            LOG("events", "max_chromosome_length", "%f", pop->get_best_chromosome_length());
 
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
