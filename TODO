@@ -1,0 +1,46 @@
+#####nomi variabili#####
+-nomi variabili autocommentanti.
+-nomi delle variabili relative ad un modello univoco
+ -> genetico (meglio questo)
+ -> circuitale
+-nomi variabili con lettere minuscole e parole separate da _
+
+#####classi-strutture#####
++ documentazioni doxygen
+
++ classe ga_engine
+
++ classe population
+
++ classe individual
+
++ classe simulator
+   + prevedere ricompilazione del simulatore.
+
++ classe bitmatrix
+   + ottimizzare i return di stringhe con puntatori
+   + oppure utilizzare sempre tipi bitmatrix e rimuovere completamente l'uso di matrici string
+
++ config.h
+
++ classe astrazione random (std_random, /dev/random, altri algoritmi)
+
+#REVISIONE CODICE
+rimuovere codice deprecato
+revisione nomi variabili/funzioni
+commenti doxygen
+#fare sempre un test con valgrind per identificare i leak ;)
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
+
+
+####TODO
+- altre statistiche, indice di differenza in qualche maniera dire quanti cloni ci sono nella popolazione
+- inserire quanti sono stati testati o skippati in fondo alla barra.
+-migliorare sistema logging
+    - log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
+    - log colori e timestamps
+- non cancellare i .log se si usa -l
+- funzione di utility per leggere tutto il contenuto di un file.
+
+- rivedere le funzioni get_best ecc utilizzare sempre il ritorno individual* invece di fare mille funzioni best_qui best_la best_su best_giu
+    - funzioni get_best_individual get_worst_individual get_random_individual

@@ -1,0 +1,84 @@
+diff -Naur Cpp/BaseClasses/BaseSyncActionClass.h Cpp_x//BaseClasses/BaseSyncActionClass.h
+--- Cpp/BaseClasses/BaseSyncActionClass.h	2011-07-27 14:27:55.268279522 +0200
++++ Cpp_x//BaseClasses/BaseSyncActionClass.h	2011-07-27 14:29:45.000000000 +0200
+@@ -35,7 +35,7 @@
+ #include "BaseGroupClass.h"
+ #include "../Simulator/UserDistributions.h"
+ #include <stdlib.h>
+-#include <iostream>
++#include <iostream.h>
+ #include "debug.h"
+ #include "assert.h"
+ 
+diff -Naur Cpp/BaseClasses/List.h Cpp_x//BaseClasses/List.h
+--- Cpp/BaseClasses/List.h	2011-07-27 14:27:55.201613339 +0200
++++ Cpp_x//BaseClasses/List.h	2011-07-27 14:29:45.000000000 +0200
+@@ -26,7 +26,7 @@
+ #ifndef __MOBIUS_LIST_H_
+ #define __MOBIUS_LIST_H_
+ 
+-#include <iostream>
++#include <iostream.h>
+ //#include "BaseStateVariableClass.h"
+ 
+ /**
+diff -Naur Cpp/BaseClasses/SAN/ExtendedPlace.h Cpp_x//BaseClasses/SAN/ExtendedPlace.h
+--- Cpp/BaseClasses/SAN/ExtendedPlace.h	2011-07-27 14:27:55.231613122 +0200
++++ Cpp_x//BaseClasses/SAN/ExtendedPlace.h	2011-07-27 14:29:45.000000000 +0200
+@@ -27,7 +27,7 @@
+ #include "../state/SharableSV.h"
+ #include "../StandardErrors.h"
+ #include "../debug.h"
+-#include <iostream>
++#include <iostream.h>
+ 
+ /** This class describes the base state variable class for stochastic activity networks
+  *
+diff -Naur Cpp/BaseClasses/SAN/Place.h Cpp_x//BaseClasses/SAN/Place.h
+--- Cpp/BaseClasses/SAN/Place.h	2011-07-27 14:27:55.231613122 +0200
++++ Cpp_x//BaseClasses/SAN/Place.h	2011-07-27 14:29:45.000000000 +0200
+@@ -27,7 +27,7 @@
+ #include "../state/SharableSV.h"
+ #include "../StandardErrors.h"
+ #include "../debug.h"
+-#include <iostream>
++#include <iostream.h>
+ 
+ /** This class describes the base state variable class for stochastic activity networks
+  *
+diff -Naur Cpp/BaseClasses/SAN/ReadOnlyPlace.h Cpp_x//BaseClasses/SAN/ReadOnlyPlace.h
+--- Cpp/BaseClasses/SAN/ReadOnlyPlace.h	2011-07-27 14:27:55.231613122 +0200
++++ Cpp_x//BaseClasses/SAN/ReadOnlyPlace.h	2011-07-27 14:29:45.000000000 +0200
+@@ -26,7 +26,7 @@
+ 
+ #include "../state/ReadOnlySV.h"
+ #include "../StandardErrors.h"
+-#include <iostream>
++#include <iostream.h>
+ 
+ /**
+  *  This is the default implementation of
+diff -Naur Cpp/BaseClasses/state/SharedPointer.h Cpp_x//BaseClasses/state/SharedPointer.h
+--- Cpp/BaseClasses/state/SharedPointer.h	2011-07-27 14:27:55.254946286 +0200
++++ Cpp_x//BaseClasses/state/SharedPointer.h	2011-07-27 14:29:45.000000000 +0200
+@@ -26,7 +26,7 @@
+ 
+ #include "../debug.h"
+ #include "../BaseStateVariableClass.h"
+-#include <iostream>
++#include <iostream.h>
+ #include <stdio.h>
+ 
+ /** This class is an element of a linked list used to keep
+diff -Naur Cpp/Simulator/UserDistributions.h Cpp_x//Simulator/UserDistributions.h
+--- Cpp/Simulator/UserDistributions.h	2011-07-27 14:27:55.034947878 +0200
++++ Cpp_x//Simulator/UserDistributions.h	2011-07-27 14:29:47.000000000 +0200
+@@ -28,7 +28,7 @@
+ #include "RandomNumberGenerator.h"
+ #include "../BaseClasses/StandardErrors.h"
+ #include "../BaseClasses/debug.h"
+-#include <iostream>
++#include <iostream.h>
+ 
+ /**
+  * Derived distribution class.  See Distributions for method descriptions.
