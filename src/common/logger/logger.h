@@ -29,6 +29,7 @@ enum logger_mask
     L_INCREMENTAL = 0x00040,
     L_COLOR       = 0x00080,
     L_TIMESTAMP   = 0x00100,
+    L_CLOSE       = 0x00200
 };
 
 struct logger_profile  // da trasformare in classe
@@ -40,8 +41,10 @@ struct logger_profile  // da trasformare in classe
     uint32 l_mask;
     uint32 color, count;
 
-    logger_profile()
+    logger_profile(string l_name, string l_path)
     {
+        name = l_name;
+        path = l_path;
         count = color = 0;
         l_mask = 0;
         pthread_mutex_init(&l_mutex, NULL);
@@ -91,10 +94,10 @@ class logger
 
     void add_profile(logger_profile *l_profile);
     logger_profile* get_profile(string profile);
-    string get_filename(string profile);
+    string get_filename(string profile, string fname);
 
-    bool log(string profile, const char *s_format, ...);
-    bool log_static(string profile, const char *str);
+    bool log(string profile, string fname, const char *s_format, ...);
+    bool log_static(string profile, string fname, const char *str);
 
     inline void  getlock()
     {

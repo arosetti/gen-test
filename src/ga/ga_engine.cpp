@@ -37,8 +37,6 @@ void ga_engine::evolve()
     float last_best_fitness = 0;
     timer time;
     uint32 stall = 0;
-    string       s_tmp;
-    stringstream ss_tmp;
 
     if (!conf)
     {
@@ -106,38 +104,15 @@ void ga_engine::evolve()
 
         if (conf->get_bool_config(CONFIG_LOG))
         {
-            cout << "* logging generation " << generation << " to file" << endl;  // snellire qua sotto
+            cout << "* logging generation " << generation << " to file" << endl;
             pop->log(generation);
-            s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
-            s_tmp += "/best_fitness.log";
-            ss_tmp.str("");
-            ss_tmp <<  pop->get_best_fitness();
-            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
 
-            s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
-            s_tmp += "/best_fault_coverage.log";
-            ss_tmp.str("");
-            ss_tmp <<  pop->get_best_individual()->get_fault_coverage();
-            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
+            LOG->log("events", "best_individual_fitness", "%f", pop->get_best_fitness());
+            LOG->log("events", "best_individual_fault_coverage", "%f", pop->get_best_individual()->get_fault_coverage());
+            LOG->log("events", "best_individual_chromosome_length", "%d", pop->get_best_individual()->get_chromosome_length());
+            LOG->log("events", "best_fault_coverage", "%f", pop->get_best_fault_coverage());
+            LOG->log("events", "max_chromosome_length", "%f", pop->get_best_chromosome_length());
 
-            s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
-            s_tmp += "/best_chromosome_length.log";
-            ss_tmp.str("");
-            ss_tmp <<  pop->get_best_individual()->get_chromosome_length();
-            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
-
-            s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
-            s_tmp += "/max_fault_coverage.log";
-            ss_tmp.str("");
-            ss_tmp <<  pop->get_best_fault_coverage();
-            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
-            
-            s_tmp = conf->get_string_config(CONFIG_LOG_PATH);
-            s_tmp += "/max_chromosome_length.log";
-            ss_tmp.str("");
-            ss_tmp <<  pop->get_best_chromosome_length();
-            LOG->log_static(s_tmp.c_str(), ss_tmp.str().c_str());
-            
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }

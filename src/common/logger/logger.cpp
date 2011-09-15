@@ -15,11 +15,17 @@ logger::~logger()
         (*itr)->ff.close();
         delete (*itr);
     }
+
+    vct_profiles.clear();
+
     releaselock();
 }
 
 void logger::add_profile(logger_profile *l_profile)
 {
+    if(!l_profile)
+        return;
+
     getlock();
     vct_profiles.push_back(l_profile);
     releaselock();
@@ -45,14 +51,17 @@ logger_profile* logger::get_profile(string profile)
     return NULL;
 }
 
-string logger::get_filename(string profile)
+string logger::get_filename(string profile, string fname)
 {
     string file;
     logger_profile *l_profile = get_profile(profile);
 
+    if(!l_profile)
+        return "";
+
     file  = l_profile->path;
-    file += "/";
-    file += l_profile->name;
+    file += "/";  // addslash da fixare
+    file += fname;
     if (l_profile->get_opt(L_INCREMENTAL))
     {
         stringstream str;
@@ -64,7 +73,7 @@ string logger::get_filename(string profile)
     return file;
 }
 
-bool logger::log(string profile, const char *fmt, ...)
+bool logger::log(string profile, string fname, const char *fmt, ...)
 {
     static char buffer[BUF_SIZE];
     int ret;
@@ -75,7 +84,7 @@ bool logger::log(string profile, const char *fmt, ...)
     va_end(ap);
 
     if (ret)
-        return log_static(profile, buffer);
+        return log_static(profile, fname, buffer);
     else
     {
         perror("vsnprintf");
@@ -84,10 +93,13 @@ bool logger::log(string profile, const char *fmt, ...)
 }
 
 
-bool logger::log_static(string profile, const char *str)
+bool logger::log_static(string profile, string fname, const char *str)
 {
     logger_profile *l_profile = get_profile(profile);
     string file;
+
+    if (!l_profile)
+        return false;
 
     if (l_profile->get_opt(L_PRINT))
     {
@@ -98,7 +110,7 @@ bool logger::log_static(string profile, const char *str)
     if (!l_profile->get_opt(L_FILE_LOG))
         return true;
 
-    file = get_filename(profile);
+    file = get_filename(profile, fname);
 
     if (!l_profile->ff.is_open())
     {
@@ -112,6 +124,8 @@ bool logger::log_static(string profile, const char *str)
     {
         l_profile->lock();
         l_profile->ff << str << endl;
+        if (l_profile->get_opt(L_CLOSE))
+            l_profile->ff.close();
         l_profile->unlock();
     }
     else

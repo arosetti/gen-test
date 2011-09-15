@@ -143,7 +143,7 @@ bool config::load_config()
 
     return true;
 }
-    
+
 void config::post_init_config()
 {
     config_int[CONFIG_CHROMOSOME_NUM] = read_n_inputs();
@@ -159,6 +159,24 @@ void config::post_init_config()
     }
 
     check_config();
+    init_log_profiles();
+}
+
+void config::init_log_profiles()
+{
+    logger_profile *l_profile;
+
+    l_profile = new logger_profile("info", "");
+    l_profile->set_opt(L_VERBOSE | L_COLOR | L_PRINT);
+    LOG->add_profile(l_profile);
+
+    l_profile = new logger_profile("events", config_string[CONFIG_LOG_PATH]);
+    l_profile->set_opt(L_APPEND | L_FILE_LOG);
+    LOG->add_profile(l_profile);
+    
+    l_profile = new logger_profile("generations", config_string[CONFIG_LOG_PATH]);
+    l_profile->set_opt(L_STATIC | L_FILE_LOG | L_INCREMENTAL | L_CLOSE);
+    LOG->add_profile(l_profile);
 }
 
 void config::help_config()
