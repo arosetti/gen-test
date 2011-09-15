@@ -71,7 +71,7 @@ void ga_engine::evolve()
             cout << "* calculating population fitnesses" << endl;
         pop->eval_fitnesses();
 
-        if (conf->get_bool_config(CONFIG_CHECK_STALL))
+        if (conf->get_int_config(CONFIG_MAX_STALL))
         {
             if (conf->get_bool_config(CONFIG_VERBOSE))
                 cout << "* checking stall: " << stall << endl;
@@ -88,7 +88,7 @@ void ga_engine::evolve()
             {
                 if (conf->get_bool_config(CONFIG_VERBOSE))
                     cout << "  setting high mutation rate for 1 iteration" << endl;
-                pop->set_mutation_rate(0.5f); // magic number
+                pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_STALL_RATE));
             }
         }
 

@@ -59,11 +59,13 @@ string get_faults_path(int id)
 }
 
 
+/*
 string get_patch_path(int id) //TODO sistemare il return
 {
     string path = conf->get_string_config(CONFIG_SIMULATOR_PATCH);
     return path;
 }
+*/
 
 string get_input_file_path(int id)
 {
