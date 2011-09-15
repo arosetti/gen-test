@@ -42,6 +42,7 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"ga.max_retest", 1, CFGF_NONE),
     CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mutation_stall_rate", 0.30f, CFGF_NONE),
+    CFG_BOOL((char*)"ga.stop_at_100", (cfg_bool_t)true, CFGF_NONE),    
     
     CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
@@ -113,6 +114,7 @@ bool config::load_config()
     config_int[CONFIG_MAX_RETEST]               = cfg_getint(cfg, "ga.max_retest");
     config_int[CONFIG_MAX_STALL]                = cfg_getint(cfg, "ga.max_stall");
     config_float[CONFIG_MUTATION_STALL_RATE]    = cfg_getfloat(cfg, "ga.mutation_stall_rate"); 
+    config_bool[CONFIG_STOP_AT_100]             = cfg_getbool(cfg, "ga.stop_at_100"); 
     
     config_bool[CONFIG_MUTATION_LENGTH_GENE] = cfg_getbool(cfg, "mutation_length_gene");
 

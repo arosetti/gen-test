@@ -100,7 +100,7 @@ void ga_engine::evolve()
         {
             cout << "* best individual info:" << endl;
             pop->print_best();
-        }
+        }              
 
         if (conf->get_bool_config(CONFIG_LOG))
         {
@@ -115,6 +115,12 @@ void ga_engine::evolve()
 
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
+        }
+
+        if (conf->get_bool_config(CONFIG_STOP_AT_100) &&  pop->get_best_fault_coverage() == 100.f)
+        {
+            cout << "find 100% faults, stop program" << endl;
+            exit(0);
         }
 
         if (conf->get_bool_config(CONFIG_VERBOSE))
