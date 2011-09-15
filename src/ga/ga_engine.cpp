@@ -46,28 +46,24 @@ void ga_engine::evolve()
     while ( generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
         time_start(time);
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << endl << "# generation: " << generation << endl;
+        INFO("info", "\n# generation: %d\n");
 
-        if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_int_config(CONFIG_POPULATION_SIZE))
-            cout << "* population size: " << pop->size() << endl;
+        if (conf->get_int_config(CONFIG_POPULATION_SIZE))
+            INFO("info", "* population size: %d\n", pop->size());
 
         /*if (conf->verbose && conf->read_faults_file)
-            cout << "* resetting faults" << endl;
+            INFO("info", "* resetting faults\n");
         pop->reset_faults();*/
 
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* executing tests on " << conf->get_int_config(CONFIG_THREAD_SLOTS) << " thread(s)" << endl;
+        INFO("info", "* executing tests on %d thread(s)\n", conf->get_int_config(CONFIG_THREAD_SLOTS));
         pop->test_population();
 
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* calculating population fitnesses" << endl;
+        INFO("info", "* calculating population fitnesses\n");
         pop->eval_fitnesses();
 
         if (conf->get_int_config(CONFIG_MAX_STALL))
         {
-            if (conf->get_bool_config(CONFIG_VERBOSE))
-                cout << "* checking stall: " << stall << endl;
+            INFO("info", "* checking stall: %d\n");
             if (last_best_fitness < pop->get_best_fitness())
             {
                 last_best_fitness = pop->get_best_fitness();
@@ -79,27 +75,26 @@ void ga_engine::evolve()
 
             if (stall != 0 && (stall % conf->get_int_config(CONFIG_MAX_STALL)) == 0)
             {
-                if (conf->get_bool_config(CONFIG_VERBOSE))
-                    cout << "  setting high mutation rate for 1 iteration" << endl;
+                INFO("info", "  setting high mutation rate for 1 iteration\n");
                 pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_STALL_RATE));
             }
         }
 
-        if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_PRINT_AVG_CHROMOSOME_LENGTH))
-            cout << "* average chromosome length: " << pop->get_avg_chromosome_length() << " bit" << endl;
+        if (conf->get_bool_config(CONFIG_PRINT_AVG_CHROMOSOME_LENGTH))
+            INFO("info", "* average chromosome length: %d bit.\n", pop->get_avg_chromosome_length());
 
-        if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_PRINT_AVG_FITNESS))
-            cout << "* average fitness: " << pop->get_avg_fitness() << endl;
+        if (conf->get_bool_config(CONFIG_PRINT_AVG_FITNESS))
+            INFO("info", "* average fitness: %f\n", pop->get_avg_fitness());
 
         if (conf->get_bool_config(CONFIG_VERBOSE) && conf->get_bool_config(CONFIG_PRINT_BEST))
         {
-            cout << "* best individual info:" << endl;
+            INFO("info", "* best individual info:\n");
             pop->print_best();
-        }              
+        }
 
         if (conf->get_bool_config(CONFIG_LOG))
         {
-            cout << "* logging generation " << generation << " to file" << endl;
+            INFO("info", "* logging generation %d to file\n");
             pop->log(generation);
 
             LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
@@ -114,28 +109,24 @@ void ga_engine::evolve()
 
         if (conf->get_bool_config(CONFIG_STOP_AT_100) &&  pop->get_best_fault_coverage() == 100.f)
         {
-            cout << "find 100% faults, stop program" << endl;
-            exit(0);
+            INFO("info", "100% faults found!!! stoppig program\n");
+            break;
         }
 
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* transfer best individuals" << endl;
+        INFO("info",  "* transfer best individuals\n");
         pop->transfer_bests();
 
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* mating individuals" << endl;
+        INFO("info",  "* mating individuals\n");
         pop->mate_individuals();
 
         if (conf->get_bool_config(CONFIG_MUTATION_LENGTH_GENE))
         {
-            if (conf->get_bool_config(CONFIG_VERBOSE))
-                cout << "* shrinking fattest individuals" << endl;
+            INFO("info", "* shrinking fattest individuals\n");
             pop->fattest_individuals_shrink();
         }
 
         time_stop(time);
 
-        if (conf->get_bool_config(CONFIG_VERBOSE))
-            cout << "* iteration time: " << time_format(time_diff(time)) << endl;
+        INFO("info",  "* iteration time: %s\n", time_format(time_diff(time)).c_str());
     }
 }
