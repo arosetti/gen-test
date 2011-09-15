@@ -71,7 +71,7 @@ class population
     uint32  size() const;
     void    log(uint32) const;
     int     load_log(string);
-    void    print() const;
+    string    to_string() const;
     void    print_best();
 
     individual* get_next_ind();

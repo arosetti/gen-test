@@ -7,7 +7,7 @@ logger::logger()
 
 logger::~logger()
 {
-    vector<logger_profile*>::iterator itr;
+    vector<log_profile*>::iterator itr;
 
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
@@ -21,7 +21,7 @@ logger::~logger()
     releaselock();
 }
 
-void logger::add_profile(logger_profile *l_profile)
+void logger::add_profile(log_profile *l_profile)
 {
     if(!l_profile)
         return;
@@ -31,9 +31,9 @@ void logger::add_profile(logger_profile *l_profile)
     releaselock();
 }
 
-logger_profile* logger::get_profile(string profile)
+log_profile* logger::get_profile(string profile)
 {
-    vector<logger_profile*>::iterator itr;
+    vector<log_profile*>::iterator itr;
 
     getlock();
     for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
@@ -52,7 +52,7 @@ logger_profile* logger::get_profile(string profile)
 string logger::get_filename(string profile, string fname)
 {
     string file;
-    logger_profile *l_profile = get_profile(profile);
+    log_profile *l_profile = get_profile(profile);
 
     if(!l_profile)
         return "";
@@ -64,11 +64,19 @@ string logger::get_filename(string profile, string fname)
     {
         stringstream str;
         
-        str << ++(l_profile->count);
+        str << l_profile->count;
         file += str.str();
     }
     file += ".log";
     return file;
+}
+
+void logger::set_count(string profile, unsigned int val)
+{
+    log_profile *l_profile = get_profile(profile);
+
+    if (l_profile && l_profile->get_opt(L_INCREMENTAL))
+        l_profile->count = val;
 }
 
 bool logger::log(string profile, string fname, const char *fmt, ...)
@@ -93,7 +101,7 @@ bool logger::log(string profile, string fname, const char *fmt, ...)
 
 bool logger::log_static(string profile, string fname, const char *str)
 {
-    logger_profile *l_profile = get_profile(profile);
+    log_profile *l_profile = get_profile(profile);
 
     if (!l_profile)
         return false;
@@ -128,7 +136,7 @@ bool logger::info(string profile, const char *fmt, ...)
     static char buffer[BSIZE];
     int ret;
 
-    logger_profile *l_profile = get_profile(profile);
+    log_profile *l_profile = get_profile(profile);
 
     if (!l_profile || !l_profile->get_opt(L_VERBOSE))
        return false;
