@@ -570,19 +570,8 @@ void population::print_best()
 
 void population::log(uint32 generation) const
 {
-    string generations_logfile;
-    individual_map::const_iterator itr;
-    uint32 count = 0;
-    stringstream out;
-
-    for (itr = pool->begin(); itr != pool->end(); ++itr)
-    {
-        out << "individual: #" << count << endl;
-        out << (*itr).second->info() << endl;
-        count++;
-    }
-
-    LOG_STATIC("generations", "generation", out.str().c_str());
+    LOG_PTR->set_count("generations", generation);
+    LOG_STATIC("generations", "generation", to_string().c_str());
 }
 
 int population::load_log(string filename)
@@ -662,17 +651,20 @@ int population::load_log(string filename)
     return generation;
 }
 
-void population::print() const
+string population::to_string() const
 {
     individual_map::const_iterator itr;
     uint32 count = 0;
+    stringstream str;
 
     for (itr = pool->begin(); itr != pool->end(); ++itr)
     {
-        cout << "individual: #" << count << endl;
-        cout << (*itr).second->info() << endl;
         count++;
+        str << "individual: #" << count << endl;
+        str << (*itr).second->info() << endl;
     }
+
+    return str.str();
 }
 
 individual* population::get_next_ind()

@@ -26,13 +26,13 @@ enum logger_mask
     L_APPEND      = 0x00001,
     L_DEBUG       = 0x00002,
     L_VERBOSE     = 0x00004,
-    L_INCREMENTAL = 0x00008, // inc con una funzione o sempre?
+    L_INCREMENTAL = 0x00008,
     L_COLOR       = 0x00010,
     L_TIMESTAMP   = 0x00020,
     L_CLOSE       = 0x00040
 };
 
-struct logger_profile  // da trasformare in classe
+struct log_profile  // da trasformare in classe
 {
     string name, path;
     ofstream ff;
@@ -41,7 +41,7 @@ struct logger_profile  // da trasformare in classe
     uint32 l_mask;
     uint32 color, count;
 
-    logger_profile(string l_name, string l_path)
+    log_profile(string l_name, string l_path)
     {
         name = l_name;
         path = l_path;
@@ -77,7 +77,7 @@ class logger
 
     static logger*          l_singleton;
     pthread_mutex_t  mutex_log;
-    vector<logger_profile*> vct_profiles;
+    vector<log_profile*> vct_profiles;
 
     logger();
 
@@ -92,10 +92,10 @@ class logger
         return l_singleton;
     };
 
-    void add_profile(logger_profile *l_profile);
-    logger_profile* get_profile(string profile);
+    void add_profile(log_profile *l_profile);
+    log_profile* get_profile(string profile);
     string get_filename(string profile, string fname);
-
+    void  set_count(string profile, unsigned int val);
     bool log(string profile, string fname, const char *s_format, ...);
     bool log_static(string profile, string fname, const char *str);
     bool info(string profile, const char *s_format, ...);

@@ -51,3 +51,4 @@ simulator/b??/output_faults
 simulator/b??/input_signals
 simulator/b??/faults.txt
 simulator/b??/sim_*/*
+nohup.out
