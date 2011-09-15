@@ -143,7 +143,7 @@ bool logger::info(string profile, const char *fmt, ...)
         l_profile->lock();
         cout << buffer;
         cout.flush();
-        l_profile->lock();
+        l_profile->unlock();
     }
     else
     {

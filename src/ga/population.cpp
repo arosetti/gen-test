@@ -252,6 +252,31 @@ float population::get_best_chromosome_length()
     return best_chromosome_length;
 }
 
+const individual* population::get_worst_individual()
+{
+    individual_map::const_iterator itr;
+    individual* ind = NULL;
+    float worst_fitness = 0;
+    uint32 shortest = 0;
+
+    if (!pool->size())
+        return 0;
+
+    for (itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        if (worst_fitness >= (*itr).second->get_fitness())
+        {
+            // tra due individui con fitness uguali scelgo il più corto 
+            if (ind && (*itr).second->get_dna_length() < ind->get_dna_length())
+                continue;
+            worst_fitness = (*itr).second->get_fitness();
+            ind  = (*itr).second;
+        }
+    }
+
+    return ind;
+}
+
 const individual* population::get_best_individual()
 {
     individual_map::const_iterator itr;
