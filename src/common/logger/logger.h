@@ -10,11 +10,14 @@
 
 #include "../typedefs.h"
 
+#define LOG_PTR  logger::get_instance()
+#define LOG(_profile, _fname, _fmt, ...) logger::get_instance()->log(_profile, _fname, _fmt, ...)
+#define LOG_STATIC(_profile, _fname, _str) logger::get_instance()->log_static(_profile, _fname, _str)
+#define INFO(_profile, _fmt, ...) logger::get_instance()->info(_profile, _fmt, ...)
 
-#define LOG logger::get_instance()
 //#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
 
-#define BUF_SIZE 4096
+#define BSIZE 4096
 
 using namespace std;
 
@@ -23,13 +26,10 @@ enum logger_mask
     L_APPEND      = 0x00001,
     L_DEBUG       = 0x00002,
     L_VERBOSE     = 0x00004,
-    L_PRINT       = 0x00008,
-    L_FILE_LOG    = 0x00010,
-    L_STATIC      = 0x00020,
-    L_INCREMENTAL = 0x00040,
-    L_COLOR       = 0x00080,
-    L_TIMESTAMP   = 0x00100,
-    L_CLOSE       = 0x00200
+    L_INCREMENTAL = 0x00008, // inc con una funzione o sempre?
+    L_COLOR       = 0x00010,
+    L_TIMESTAMP   = 0x00020,
+    L_CLOSE       = 0x00040
 };
 
 struct logger_profile  // da trasformare in classe
@@ -98,6 +98,8 @@ class logger
 
     bool log(string profile, string fname, const char *s_format, ...);
     bool log_static(string profile, string fname, const char *str);
+    bool info(string profile, const char *s_format, ...);
+
 
     inline void  getlock()
     {
