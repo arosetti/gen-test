@@ -1,13 +1,66 @@
 #include "logger.h"
 
+vector<logger_profile> vct_profiles;
+
 logger::logger()
 {
     pthread_mutex_init(&mutex_log, NULL);
 }
 
-bool logger::log(string file, bool append, const char *fmt, ...)
+logger::~logger()
 {
-    ofstream ff;
+    getlock();
+    for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
+    {
+        *(itr).ff.close();
+    }
+    releaselock();
+}
+
+void logger::add_profile(logger_profile l_profileile)
+{
+    getlock();
+    vct_profiles.push_back(l_profileile);
+    releaselock();
+}
+
+logger_profile* logger::get_profile(string profile)
+{
+    vector<logger_profile>::iterator itr;
+
+    getlock();
+    for (itr = vct_profiles.begin(); itr != vct_profiles.end(); ++itr)
+    {
+        if (*(itr)->name == profile)
+        {
+            releaselock();
+            return &*(itr);
+        }
+    }
+
+    releaselock();
+    cout << "profile not found!" << endl;
+
+    return NULL;
+}
+
+string logger::get_filename(string profile)
+{
+    logger_profile *l_profile = get_profile(profile);
+    file  = l_profile->path;
+    file += "/";
+    file += l_profile->name;
+    if (l_profile->get_opt(L_INCREMENTAL))
+    {
+        stringstream str;
+        str << l_profile->++count;
+        file += str.str();
+    }
+    file += ".log";
+}
+
+bool logger::log(string profile, const char *fmt, ...)
+{
     static char buffer[BUF_SIZE];
     int ret;
 
@@ -17,7 +70,7 @@ bool logger::log(string file, bool append, const char *fmt, ...)
     va_end(ap);
 
     if (ret)
-        return log_static(file, append, buffer);
+        return log_static(profile, buffer);
     else
     {
         perror("vsnprintf");
@@ -25,21 +78,36 @@ bool logger::log(string file, bool append, const char *fmt, ...)
     }
 }
 
-bool logger::log_static(string file, bool append, const char *str)
+
+bool logger::log_static(string profile, const char *str)
 {
-    ofstream ff;
+    logger_profile *l_profile = get_profile(profile);
+    string file;
 
-    getlock();
-
-    if (append)
-        ff.open(file.c_str(), ios::out | ios::app);
-    else
-        ff.open(file.c_str(), ios::out);
-
-    if (ff.is_open())
+    if (l_profile->get_opt(L_PRINT))
     {
-        ff << str << endl;
-        ff.close();
+        // colori e timestamps
+        cout << str << endl;
+    }
+
+    if (!l_profile->get_opt(L_FILE_LOG)
+        return true;
+
+    file = get_filename(profile);
+
+    if (!l_profile->ff.is_open())
+    {
+        if (l_profile->get_opt(L_APPEND))
+            l_profile->ff.open(file.c_str(), ios::out | ios::app);
+        else
+            l_profile->ff.open(file.c_str(), ios::out);
+    }
+
+    if (l_profile->ff.is_open())
+    {
+        l_profile->lock();
+        l_profile->ff << str << endl;
+        l_profile->unlock();
     }
     else
     {

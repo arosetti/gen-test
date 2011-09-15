@@ -5,13 +5,62 @@
 #include <fstream>
 #include <string>
 #include <stdarg.h>
-
+#include <vector>
 #define LOG logger::get_instance()
 //#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
 
 #define BUF_SIZE 4096
 
 using namespace std;
+
+enum logger_mask
+{
+    L_APPEND      = 0x00001,
+    L_DEBUG       = 0x00002,
+    L_VERBOSE     = 0x00004,
+    L_PRINT       = 0x00008,
+    L_FILE_LOG    = 0x00010,
+    L_STATIC      = 0x00020,
+    L_INCREMENTAL = 0x00040,
+    L_COLOR       = 0x00080,
+    L_TIMESTAMP   = 0x00100,
+};
+
+struct logger_profile  // da trasformare in classe
+{
+    string name, path;
+    pthread_mutex_t  l_mutex;
+
+    uint32 l_mask;
+    uint32 color, count;
+
+    logger_profile()
+    {
+        count = color = 0;
+        l_mask = 0;
+        pthread_mutex_init(&l_mutex, NULL);
+    }
+
+    void set_opt(uint32 l_m)
+    {
+        l_mask |= l_m;
+    }
+
+    bool get_opt(uint32 l_m)
+    {
+        return l_mask & l_m;
+    }
+
+    void lock()
+    {
+        pthread_mutex_lock(&l_mutex);
+    }
+
+    void unlock()
+    {
+        pthread_mutex_unlock(&l_mutex);
+    }
+};
 
 class logger
 {
@@ -31,8 +80,12 @@ class logger
         return l_singleton;
     };
 
-    bool log(string file, bool append, const char *s_format, ...);
-    bool log_static(string file, bool append, const char *str);
+    void add_profile(logger_profile l_profile);
+    logger_profile* get_profile(string profile);
+    string get_filename(string profile);
+
+    bool log(string profile, const char *s_format, ...);
+    bool log_static(string profile, const char *str);
 
     inline void  getlock()
     {
