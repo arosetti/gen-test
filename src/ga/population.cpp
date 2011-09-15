@@ -283,20 +283,26 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
     string dna_a_1, dna_a_2;
     string dna_b_1, dna_b_2;
 
-    if (conf->get_string_config(CONFIG_CUT_TYPE) == "double_random")
+    switch (conf->get_int_config(CONFIG_CUT_TYPE))
     {
-        cut_a = randmm(1, ind_a->get_chromosome_length());
-        cut_b = randmm(1, ind_b->get_chromosome_length());
-    }
-    else if (conf->get_string_config(CONFIG_CUT_TYPE) == "single_random")
-    {   
-        uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
-        cut_a = cut_b = randmm(1, cmin);
-    }
-    else if (conf->get_string_config(CONFIG_CUT_TYPE) == "half")
-    {
-        cut_a = ind_a->get_chromosome_length()/2;
-        cut_b = ind_b->get_chromosome_length()/2;
+        case 1: // Double Random
+            {
+                cut_a = randmm(1, ind_a->get_chromosome_length());
+                cut_b = randmm(1, ind_b->get_chromosome_length());
+            }
+            break;
+        case 2: // Single Random
+            {
+                uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
+                cut_a = cut_b = randmm(1, cmin);
+            }            
+            break;
+        case 3: // Half
+            {
+                cut_a = ind_a->get_chromosome_length()/2;
+                cut_b = ind_b->get_chromosome_length()/2;
+            }
+            break;
     }
     
     if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_MATING))
