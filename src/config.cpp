@@ -146,8 +146,15 @@ void config::post_init_config()
 void config::init_log_profiles()
 {
     log_profile *l_profile;
-    
-    // passare a logger una maschera con le impostazioni di sistema per controllare cosa fare con i profili
+
+    if (config_bool[CONFIG_DEBUG])
+        LOG_PTR->set_mask(L_DEBUG);
+
+    if (config_bool[CONFIG_VERBOSE])
+        LOG_PTR->set_mask(L_VERBOSE);
+
+    if (config_bool[CONFIG_LOG])
+        LOG_PTR->set_mask(L_ENABLE);
 
     l_profile = new log_profile("verbose", "");
     l_profile->set_opt(L_VERBOSE | L_COLOR);
@@ -161,8 +168,8 @@ void config::init_log_profiles()
     l_profile->set_opt(L_APPEND | L_CLOSE);
     LOG_PTR->add_profile(l_profile);
     
-    l_profile = new log_profile("events_debug", config_string[CONFIG_LOG_PATH]);
-    l_profile->set_opt(L_APPEND | L_CLOSE | L_DEBUG);
+    l_profile = new log_profile("mating_events", config_string[CONFIG_LOG_PATH]);
+    l_profile->set_opt(L_APPEND | L_CLOSE | L_DEBUG | L_INCREMENTAL);
     LOG_PTR->add_profile(l_profile);
     
     l_profile = new log_profile("generations", config_string[CONFIG_LOG_PATH]);

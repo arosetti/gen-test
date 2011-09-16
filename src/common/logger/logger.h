@@ -15,8 +15,6 @@
 #define LOG_STATIC(_profile, _fname, _str) logger::get_instance()->log_static(_profile, _fname, _str)
 #define INFO(_profile, _fmt, ...) logger::get_instance()->info(_profile, _fmt, ##__VA_ARGS__)
 
-//#define LOG(_file, _log, _append) logger::get_instance()->log(_file, _log, _append)
-
 #define BSIZE 4096
 
 using namespace std;
@@ -29,10 +27,11 @@ enum logger_mask
     L_INCREMENTAL = 0x00008,
     L_COLOR       = 0x00010,
     L_TIMESTAMP   = 0x00020,
-    L_CLOSE       = 0x00040
+    L_CLOSE       = 0x00040,
+    L_ENABLE      = 0X00080
 };
 
-struct log_profile  // da trasformare in classe
+struct log_profile
 {
     string name, path;
     ofstream ff;
@@ -78,10 +77,13 @@ class logger
     static logger*          l_singleton;
     pthread_mutex_t  mutex_log;
     vector<log_profile*> vct_profiles;
+    uint32 mask;
 
     logger();
 
     public:
+
+
 
     ~logger();
 
@@ -100,6 +102,16 @@ class logger
     bool log_static(string profile, string fname, const char *str);
     bool info(string profile, const char *s_format, ...);
 
+
+    inline void set_mask(uint32 msk)
+    {
+        mask |= msk;
+    }
+
+    inline bool get_mask(uint32 msk)
+    {
+        return mask & msk;
+    }
 
     inline void  getlock()
     {
