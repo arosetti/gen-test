@@ -41,7 +41,7 @@ void bitmatrix::Randomize(uint32 row, uint32 col)
     if (row >= m_rows || col >= m_cols)
         return;
 
-    if (randmm(0,1))
+    if (randb())
         Unset(row, col);
     else
         Set(row, col);
