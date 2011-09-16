@@ -114,13 +114,13 @@ void ga_engine::evolve()
             LOG("events", "avg_fault_coverage", "%f", pop->get_avg_fault_coverage());
             LOG("events", "avg_fitness", "%f", pop->get_avg_fitness());
             LOG("events", "avg_chromosome_length", "%f", pop->get_avg_chromosome_length());
-            
+
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }
 
-        if (conf->get_bool_config(CONFIG_STOP_AT_100) &&  
-            pop->get_best_individual()->get_fault_coverage() == 100.0f)
+        if (conf->get_bool_config(CONFIG_STOP_AT_100) && 
+            pop->get_best_individual()->get_fault_coverage() == 1.0f)
         {
             INFO("verbose", "all faults have been found!!! stoppig program\n");
             break;

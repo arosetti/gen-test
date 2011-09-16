@@ -78,7 +78,7 @@ void individual::dna_mutate(float mutation_rate)
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * get_dna_length();
 
-    LOG("ga_events", "mutation", "# mutation event! count: %d\n", count);
+    LOG("ga_events", "mutation", "# mutation event! count: %f\n", count);
 
     while (count >= 1.0f)
     {

@@ -58,7 +58,7 @@ string logger::get_filename(string profile, string fname)
         return "";
 
     file  = l_profile->path;
-    file += "/";  // addslash da fixare
+    file += "/";
     file += fname;
     if (l_profile->get_opt(L_INCREMENTAL))
     {

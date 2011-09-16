@@ -327,7 +327,7 @@ bool config::get_bool_config(enum config_bool e_conf)
 {
     if (e_conf >= CONFIG_MAX_BOOL)
         exit(1); // Errore
-    
+
     return config_bool[e_conf];
 }
 
@@ -335,7 +335,7 @@ int config::get_int_config(enum config_int e_conf)
 {
     if (e_conf >= CONFIG_MAX_INT)
         exit(1); // Errore
-    
+
     return config_int[e_conf];
 }
 
@@ -351,6 +351,6 @@ float config::get_float_config(enum config_float e_conf)
 {
     if (e_conf >= CONFIG_MAX_FLOAT)
         exit(1); // Errore
-    
+
     return config_float[e_conf];
 }
