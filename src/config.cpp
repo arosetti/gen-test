@@ -185,10 +185,10 @@ void config::help_config()
 
 int config::load_args(int argc, char **argv)
 {
-    int opt;
+    int opt, tmp_i;
     opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hdt:c:s:l:")) != -1)
+    while ((opt = getopt (argc, argv, "c:hdp:t:s:l:")) != -1)
         switch (opt)
         {
             case 'h':
@@ -208,13 +208,20 @@ int config::load_args(int argc, char **argv)
                 cout << "* loading config from" << optarg << endl;
                 load_config();
             break;
+            case 'p':
+                tmp_i = atoi(optarg);
+                if (tmp_i == 0 || tmp_i == 1)
+                    config_bool[CONFIG_PRINT_PROGRESS_BAR] = (bool) tmp_i;
+                else
+                    cout << "wrong -p parameter. you must use a bool value" << endl;
+            break;
             case 't':
             {
-                int tmp_i = atoi(optarg);                 
+                tmp_i = atoi(optarg);
                 if (tmp_i > 0)
                     config_int[CONFIG_THREAD_SLOTS] = tmp_i;
                 else
-                    cout << "wrong -t parameter. you must use a value > 0 " << endl;
+                    cout << "wrong -t parameter. you must use a value > 0" << endl;
             }
             break;
             case 's':
@@ -262,6 +269,7 @@ void config::help_args()
     cout << "-h                  :  help" << endl;
     cout << "-d                  :  debug mode on" << endl;
     cout << "-c <filename>       :  alternative config filename" << endl;
+    cout << "-p <0, 1>           :  print progress progress bar" << endl;
     cout << "-t <threads>        :  set thread number" << endl;
     cout << "-s <simulator path> :  set simulator directory" << endl;
     cout << "-l <log file>       :  load execution from log" << endl;
