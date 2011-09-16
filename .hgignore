@@ -52,3 +52,4 @@ simulator/b??/input_signals
 simulator/b??/faults.txt
 simulator/b??/sim_*/*
 nohup.out
+graphs/*

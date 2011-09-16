@@ -27,5 +27,5 @@ rm -Rf autom4te.cache/ stamp-h1 config.status install-sh \
        config.h.in depcomp missing  INSTALL \ > /dev/null 2>&1
 rm -f src/bitmatrix/bitmatrix_test src/simulation/simulation_test src/common/logger/logger_test
 
-rm -f logs/* *.log gentest.gdb
+#rm -f logs/* *.log
 
