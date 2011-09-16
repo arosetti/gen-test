@@ -170,7 +170,7 @@ void config::init_log_profiles()
     l_profile->set_opt(L_APPEND | L_CLOSE);
     LOG_PTR->add_profile(l_profile);
     
-    l_profile = new log_profile("mating_events", config_string[CONFIG_LOG_PATH]);
+    l_profile = new log_profile("ga_events", config_string[CONFIG_LOG_PATH]);
     l_profile->set_opt(L_APPEND | L_CLOSE | L_DEBUG | L_INCREMENTAL);
     LOG_PTR->add_profile(l_profile);
     

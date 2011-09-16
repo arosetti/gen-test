@@ -78,11 +78,7 @@ void individual::dna_mutate(float mutation_rate)
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * get_dna_length();
 
-    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MUTATIONS))
-    {
-        //LOG in generation{x}-mutations.log ... in individual non sappiamo la generazione attuale...
-        cout << count << " mutation event(s)!"<<endl;
-    }
+    LOG("ga_events", "mutation", "# mutation event! count: %d\n", count);
 
     while (count >= 1.0f)
     {
@@ -107,15 +103,13 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
     if (pos > dna->GetColNum())
         return;
 
+    LOG_STATIC("ga_events", "mating", "# splitting DNA\n"); 
+
     dna_1 = dna->GetCols(0, pos);
     dna_2 = dna->GetCols(pos + 1, dna->GetColNum() - 1);
 
-    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
-    {
-        cout << "dna_1 (0, " << pos << ")" << endl << dna_1 << endl;
-        cout << "dna_2 (" << pos+1 << ", " << 
-             dna->GetColNum() << ")" << endl << dna_2 << endl;
-    }
+    LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos, dna_1.c_str());
+    LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos+1, dna->GetColNum(), dna_2.c_str());
 }
 
 void individual::dna_merge(string& dna_1, string& dna_2)
@@ -127,8 +121,8 @@ void individual::dna_merge(string& dna_1, string& dna_2)
         GetStrColSize(dna_1) != dna->GetRowNum() ||
         GetStrColSize(dna_2) != dna->GetRowNum())
         return;
-    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
-        cout << "# merging DNA" << endl; 
+
+    LOG_STATIC("ga_events", "mating", "# merging DNA\n"); 
 
     // ridimensiona il dna alla somma delle colonne di dna_1
     set_chromosome_length(GetStrRowSize(dna_1));
@@ -139,11 +133,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
     // attacco il secondo pezzo di dna
     dna->AttachCols(dna_2);
 
-    if (conf->get_bool_config(CONFIG_LOG) && conf->get_bool_config(CONFIG_LOG_MATING))
-    {
-        dna->Print();
-        cout << endl;
-    }
+    LOG("ga_events", "mating", "%s\n", dna->ToString().c_str());  // TODO da inserire tutti gli if log.mating
 
     untest();
 }
@@ -160,6 +150,9 @@ void individual::set_fitness(float f) // deprecated
 
 void individual::calc_fitness()
 {
+    if (!n_tests)
+        return;
+
     if (conf->get_int_config(CONFIG_FITNESS_TYPE) == 1)
         fitness = (float)(100 * detected) / (float)(n_tests);
     else if (conf->get_int_config(CONFIG_FITNESS_TYPE)  == 2)
@@ -167,10 +160,9 @@ void individual::calc_fitness()
                  ((float)get_chromosome_length() / (10.0f * (float)(n_tests))) + 1.0f;
     else
     {
-        cout << "please, select a valid fitness type" << endl;
+        INFO("verbose", "please, select a valid fitness type\n");
         exit(1);
     }
-    
 }
 
 float individual::get_fault_coverage() const
