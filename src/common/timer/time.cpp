@@ -67,17 +67,3 @@ string time_format(float sec)
 
     return out.str();
 }
-
-unsigned time_seed()
-{
-    time_t now = time ( 0 );
-    unsigned char *p = (unsigned char *)&now;
-    unsigned seed = 0;
-    size_t i;
-
-    for ( i = 0; i < sizeof now; i++ )
-        seed = seed * ( UCHAR_MAX + 2U ) + p[i];
-
-    return seed;
-}
-

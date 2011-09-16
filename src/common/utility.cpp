@@ -32,20 +32,6 @@ uint32 get_columns()
     return atoi(str);
 }
 
-// questo rand utilizza i bit più alti della variabile generata da rand.
-// dovrebbero essere migliori.
-// source: http://eternallyconfuzzled.com/arts/jsw_art_rand.aspx
-
-double uniform_deviate ( int seed )
-{
-    return seed * ( 1.0 / ( RAND_MAX + 1.0 ) );
-}
-
-uint32 randmm(uint32 min, uint32 max)
-{
-    return min + uniform_deviate(rand()) * (( max - min ) + 1);
-}
-
 void addslash(string &str)
 {
      if (str.at(str.length()-1) != '/')

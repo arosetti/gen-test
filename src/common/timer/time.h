@@ -25,6 +25,4 @@ double time_diff(timer &time);
 
 string time_format(float sec);
 
-unsigned time_seed();
-
 #endif

@@ -53,3 +53,6 @@ simulator/b??/faults.txt
 simulator/b??/sim_*/*
 nohup.out
 graphs/*
+src/common/rand/.dirstamp
+src/common/rand/.deps/rand.Po
+src/common/rand/.deps/.dirstamp
