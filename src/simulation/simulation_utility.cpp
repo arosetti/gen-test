@@ -58,15 +58,6 @@ string get_faults_path(int id)
     return path;
 }
 
-
-/*
-string get_patch_path(int id) //TODO sistemare il return
-{
-    string path = conf->get_string_config(CONFIG_SIMULATOR_PATCH);
-    return path;
-}
-*/
-
 string get_input_file_path(int id)
 {
     string path = get_sim_path(id);
@@ -94,7 +85,7 @@ string get_log_file_path(uint32 gen)
 void clean_env()
 {
     if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
-        cout << "* simulation: cleaning environment" << endl;
+        INFO("verbose", "* simulation: cleaning environment\n");
 
     remove(get_faults_path(-1).c_str());
     remove(get_input_file_path(-1).c_str());
@@ -116,14 +107,15 @@ void init_env()
     int ret;
 
     clean_env();
-
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
-        cout << "* simulation: initing \"" << conf->get_string_config(CONFIG_SIMULATOR_PATH) << "\" using " << conf->get_int_config(CONFIG_THREAD_SLOTS) << " thread(s)" << endl;
+    INFO("verbose","* simulation: initing \"%s\" using %d thread(s)\n", 
+          conf->get_string_config(CONFIG_SIMULATOR_PATH).c_str(),
+          conf->get_int_config(CONFIG_THREAD_SLOTS));
 
     for(int i = 0 ; i < conf->get_int_config(CONFIG_THREAD_SLOTS) ; i++ )
     {
         mkdir(get_sim_path(i).c_str(), 0777);
-        ret = symlink(get_outputnet_path(-1).c_str(), get_outputnet_path(i).c_str());
+        ret = symlink(get_outputnet_path(-1).c_str(),
+                      get_outputnet_path(i).c_str());
         if (ret)
             perror("symlink");
         ret = symlink(get_bin_path(-1).c_str(), get_bin_path(i).c_str());

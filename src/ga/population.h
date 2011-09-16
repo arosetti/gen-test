@@ -33,12 +33,11 @@ class population
 
     float mutation_rate;
 
-    float best_fitness;
-    float worst_fitness;
+    individual *best_individual;
+    individual *worst_individual;
 
     individual* get_random_individual() const;
     individual* new_random_individual();
-    individual* get_fattest_individual();
 
     void    create_mating_pool();
     void    crossover(individual*&, individual*&);
@@ -56,12 +55,11 @@ class population
     float   get_avg_fitness() const;
     float   get_avg_fault_coverage() const;
     float   get_avg_chromosome_length() const;
-    float   get_best_fitness();
-    float   get_worst_fitness();
-    float   get_max_fault_coverage();
-    float   get_max_chromosome_length();
+    float   get_max_fault_coverage() const;        //min?
+    float   get_max_chromosome_length() const;     //min?
     const individual* get_best_individual();
     const individual* get_worst_individual();
+    const individual* get_fattest_individual();
 
     void    transfer_best();
     void    mate_individuals();
@@ -74,7 +72,7 @@ class population
     void    log(uint32) const;
     int     load_log(string);
 
-    individual* get_next_ind();
+    individual* get_next_individual();
     void dec_threads();
     void inc_threads();
     void inc_barlink();

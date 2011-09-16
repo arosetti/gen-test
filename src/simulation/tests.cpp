@@ -11,7 +11,7 @@ void *SimulationThread(void *arg)
     if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
         remove(get_faults_path(t_param->sim_id).c_str());
 
-    while (individual* ind = t_param->pop->get_next_ind())
+    while (individual* ind = t_param->pop->get_next_individual())
     {        
         if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
             usleep(10);

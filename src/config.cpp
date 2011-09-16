@@ -14,6 +14,7 @@ cfg_opt_t opts[] =
 
     CFG_BOOL((char*)"print.progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.best",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print.worst",(cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_fitness",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_fault_coverage",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
@@ -87,6 +88,7 @@ bool config::load_config()
 
     config_bool[CONFIG_PRINT_PROGRESS_BAR]          = cfg_getbool(cfg, "print.progress_bar");
     config_bool[CONFIG_PRINT_BEST]                  = cfg_getbool(cfg, "print.best");
+    config_bool[CONFIG_PRINT_WORST]                 = cfg_getbool(cfg, "print.worst");
     config_bool[CONFIG_PRINT_AVG_CHROMOSOME_LENGTH] = cfg_getbool(cfg, "print.avg_chromosome_length");
     config_bool[CONFIG_PRINT_AVG_FAULT_COVERAGE]    = cfg_getbool(cfg, "print.avg_fault_coverage");
     config_bool[CONFIG_PRINT_AVG_FITNESS]           = cfg_getbool(cfg, "print.avg_fitness");
@@ -148,13 +150,13 @@ void config::init_log_profiles()
     log_profile *l_profile;
 
     if (config_bool[CONFIG_DEBUG])
-        LOG_PTR->set_mask(L_DEBUG);
+        LOG_PTR->set_opt(L_DEBUG);
 
     if (config_bool[CONFIG_VERBOSE])
-        LOG_PTR->set_mask(L_VERBOSE);
+        LOG_PTR->set_opt(L_VERBOSE);
 
     if (config_bool[CONFIG_LOG])
-        LOG_PTR->set_mask(L_ENABLE);
+        LOG_PTR->set_opt(L_LOG);
 
     l_profile = new log_profile("verbose", "");
     l_profile->set_opt(L_VERBOSE | L_COLOR);
