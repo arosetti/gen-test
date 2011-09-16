@@ -145,7 +145,23 @@ float population::get_avg_chromosome_length() const
         sum_length += (*itr).second->get_chromosome_length();
     }
 
-    return sum_length/pool->size();
+    return sum_length / (float) pool->size();
+}
+
+float population::get_avg_fault_coverage() const
+{
+    float sum_fault_coverage = 0;
+
+    if (!pool->size())
+        return 0;
+
+    individual_map::const_iterator itr = pool->begin();
+    for (; itr != pool->end(); ++itr)
+    {
+        sum_fault_coverage += (*itr).second->get_fault_coverage();
+    }
+
+    return sum_fault_coverage/pool->size();
 }
 
 float population::get_avg_fitness() const
@@ -254,7 +270,8 @@ const individual* population::get_worst_individual()
     {
         if (worst_fitness >= (*itr).second->get_fitness())
         {
-            if (ind && (*itr).second->get_dna_length() < ind->get_dna_length())
+            if (ind && (best_fitness == (*itr).second->get_fitness()) 
+                && (*itr).second->get_dna_length() < ind->get_dna_length())
                 continue;
             worst_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
@@ -279,7 +296,8 @@ const individual* population::get_best_individual()
         if (best_fitness <= (*itr).second->get_fitness())
         {
             // tra due individui con fitness uguali scelgo il più corto 
-            if (ind && (*itr).second->get_dna_length() > ind->get_dna_length())
+            if (ind && (best_fitness == (*itr).second->get_fitness()) 
+                && (*itr).second->get_dna_length() > ind->get_dna_length())
                 continue;
             best_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
@@ -599,7 +617,7 @@ int population::load_log(string filename)
     delete[] buffer;
 
     int generation = 0;
-    sscanf(filename.c_str(), "generation%d.log", &generation);
+    sscanf(filename.c_str(), "logs/generation%d.log", &generation); // TODO migliorare questo hack
 
     return generation;
 }

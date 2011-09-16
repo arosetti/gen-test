@@ -54,6 +54,7 @@ class population
     void    eval_fitnesses();
 
     float   get_avg_fitness() const;
+    float   get_avg_fault_coverage() const;
     float   get_avg_chromosome_length() const;
     float   get_best_fitness();
     float   get_worst_fitness();

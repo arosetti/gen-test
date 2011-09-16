@@ -15,6 +15,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print.progress_bar",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.best",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_fitness",(cfg_bool_t)true, CFGF_NONE),
+    CFG_BOOL((char*)"print.avg_fault_coverage",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.population_size",(cfg_bool_t)true, CFGF_NONE),    
 
@@ -87,6 +88,7 @@ bool config::load_config()
     config_bool[CONFIG_PRINT_PROGRESS_BAR]          = cfg_getbool(cfg, "print.progress_bar");
     config_bool[CONFIG_PRINT_BEST]                  = cfg_getbool(cfg, "print.best");
     config_bool[CONFIG_PRINT_AVG_CHROMOSOME_LENGTH] = cfg_getbool(cfg, "print.avg_chromosome_length");
+    config_bool[CONFIG_PRINT_AVG_FAULT_COVERAGE]    = cfg_getbool(cfg, "print.avg_fault_coverage");
     config_bool[CONFIG_PRINT_AVG_FITNESS]           = cfg_getbool(cfg, "print.avg_fitness");
     config_bool[CONFIG_PRINT_POPULATION_SIZE]       = cfg_getbool(cfg, "print.population_size");
 

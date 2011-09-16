@@ -1,5 +1,16 @@
-changeset:   322:db9f0633c9c1
+changeset:   324:583a1f001eb8
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:04:05 2011 +0200
+sommario:    Inserita l'etichetta 0.1.8 per il changeset 6091be24cfeb
+
+changeset:   323:6091be24cfeb
+tag:         0.1.8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:03:53 2011 +0200
+sommario:    * versione 0.1.8
+
+changeset:   322:db9f0633c9c1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 15 21:01:41 2011 +0200
 sommario:    * fix display generazione
