@@ -99,9 +99,15 @@ void ga_engine::evolve()
             LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
             LOG("events", "best_individual_fault_coverage", "%f", pop->get_best_individual()->get_fault_coverage());
             LOG("events", "best_individual_chromosome_length", "%d", pop->get_best_individual()->get_chromosome_length());
+            LOG("events", "worst_individual_fitness", "%f", pop->get_worst_individual()->get_fitness());
+            LOG("events", "worst_individual_fault_coverage", "%f", pop->get_worst_individual()->get_fault_coverage());
+            LOG("events", "worst_individual_chromosome_length", "%f", pop->get_worst_individual()->get_chromosome_length());
             LOG("events", "max_fault_coverage", "%f", pop->get_max_fault_coverage());
             LOG("events", "max_chromosome_length", "%f", pop->get_max_chromosome_length());
-
+            LOG("events", "avg_fault_coverage", "%f", pop->get_avg_fault_coverage());
+            LOG("events", "avg_fitness", "%f", pop->get_avg_fitness());
+            LOG("events", "avg_chromosome_length", "%f", pop->get_avg_chromosome_length());
+            
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
         }
