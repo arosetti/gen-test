@@ -271,7 +271,7 @@ const individual* population::get_worst_individual()
         if (worst_fitness >= (*itr).second->get_fitness())
         {
             if (ind && (best_fitness == (*itr).second->get_fitness()) 
-                && (*itr).second->get_dna_length() < ind->get_dna_length())
+                && (*itr).second->get_chromosome_length() < ind->get_chromosome_length())
                 continue;
             worst_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
@@ -297,7 +297,7 @@ const individual* population::get_best_individual()
         {
             // tra due individui con fitness uguali scelgo il più corto 
             if (ind && (best_fitness == (*itr).second->get_fitness()) 
-                && (*itr).second->get_dna_length() > ind->get_dna_length())
+                && (*itr).second->get_chromosome_length() > ind->get_chromosome_length())
                 continue;
             best_fitness = (*itr).second->get_fitness();
             ind  = (*itr).second;
