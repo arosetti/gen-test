@@ -39,7 +39,7 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 -migliorare sistema logging
     - log divisi per tipo di operazione o log globali per mutazione - crossover ecc. necessità di mutex per l'accesso
     - log colori e timestamps
-- non cancellare i .log se si usa -l
+
 - funzione di utility per leggere tutto il contenuto di un file.
 
 - rivedere le funzioni get_best ecc utilizzare sempre il ritorno individual* invece di fare mille funzioni best_qui best_la best_su best_giu

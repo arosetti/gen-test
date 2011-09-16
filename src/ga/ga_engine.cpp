@@ -59,7 +59,7 @@ void ga_engine::evolve()
 
         if (conf->get_int_config(CONFIG_MAX_STALL))
         {
-            INFO("verbose", "* checking stall: %d\n");
+            INFO("verbose", "* checking stall: %d\n", stall);
             if (last_best_fitness < pop->get_best_fitness())
             {
                 last_best_fitness = pop->get_best_fitness();
@@ -77,7 +77,10 @@ void ga_engine::evolve()
         }
 
         if (conf->get_bool_config(CONFIG_PRINT_AVG_CHROMOSOME_LENGTH))
-            INFO("verbose", "* average chromosome length: %d bit.\n", pop->get_avg_chromosome_length());
+            INFO("verbose", "* average chromosome length: %f bit.\n", pop->get_avg_chromosome_length());
+
+        if (conf->get_bool_config(CONFIG_PRINT_AVG_FAULT_COVERAGE))
+            INFO("verbose", "* average fault coverage: %f\n", pop->get_avg_fault_coverage());
 
         if (conf->get_bool_config(CONFIG_PRINT_AVG_FITNESS))
             INFO("verbose", "* average fitness: %f\n", pop->get_avg_fitness());
@@ -90,7 +93,7 @@ void ga_engine::evolve()
 
         if (conf->get_bool_config(CONFIG_LOG))
         {
-            INFO("verbose", "* logging generation %d to file\n");
+            INFO("verbose", "* logging generation %d to file\n", generation);
             pop->log(generation);
 
             LOG("events", "best_individual_fitness", "%f", pop->get_best_fitness());
