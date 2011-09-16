@@ -79,10 +79,30 @@ void logger::set_count(string profile, unsigned int val)
         l_profile->count = val;
 }
 
+bool logger::check_profile(log_profile *l_profile)
+{
+    if (!l_profile)
+        return false;
+
+    if (!get_opt(L_LOG) && l_profile->get_opt(L_LOG))
+        return false;
+
+    if (!get_opt(L_DEBUG) && l_profile->get_opt(L_DEBUG))
+        return false;
+
+    if (!get_opt(L_VERBOSE) && l_profile->get_opt(L_VERBOSE))
+        return false;
+
+    return true;
+}
+
 bool logger::log(string profile, string fname, const char *fmt, ...)
 {
     static char buffer[BSIZE];
     int ret;
+
+    if(!check_profile(get_profile(profile)))
+        return false;
 
     va_list ap;
     va_start(ap, fmt);
@@ -103,7 +123,7 @@ bool logger::log_static(string profile, string fname, const char *str)
 {
     log_profile *l_profile = get_profile(profile);
 
-    if (!l_profile)
+    if(!check_profile(l_profile))
         return false;
 
     if (!l_profile->ff.is_open())
@@ -133,13 +153,12 @@ bool logger::log_static(string profile, string fname, const char *str)
 
 bool logger::info(string profile, const char *fmt, ...)
 {
+    log_profile *l_profile = get_profile(profile);
     static char buffer[BSIZE];
     int ret;
 
-    log_profile *l_profile = get_profile(profile);
-
-    if (!l_profile || !l_profile->get_opt(L_VERBOSE))
-       return false;
+    if(!check_profile(l_profile))
+        return false;
 
     va_list ap;
     va_start(ap, fmt);
@@ -159,4 +178,3 @@ bool logger::info(string profile, const char *fmt, ...)
         return 0;
     }
 }
-

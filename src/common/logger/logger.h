@@ -28,7 +28,7 @@ enum logger_mask
     L_COLOR       = 0x00010,
     L_TIMESTAMP   = 0x00020,
     L_CLOSE       = 0x00040,
-    L_ENABLE      = 0X00080
+    L_LOG         = 0X00080
 };
 
 struct log_profile
@@ -80,10 +80,9 @@ class logger
     uint32 mask;
 
     logger();
+    bool  check_profile(log_profile *l_profile);
 
     public:
-
-
 
     ~logger();
 
@@ -94,21 +93,22 @@ class logger
         return l_singleton;
     };
 
-    void add_profile(log_profile *l_profile);
-    log_profile* get_profile(string profile);
-    string get_filename(string profile, string fname);
-    void  set_count(string profile, unsigned int val);
-    bool log(string profile, string fname, const char *s_format, ...);
-    bool log_static(string profile, string fname, const char *str);
-    bool info(string profile, const char *s_format, ...);
+    void          add_profile(log_profile *l_profile);
+    log_profile*  get_profile(string profile);
+    string        get_filename(string profile, string fname);
+    void          set_count(string profile, unsigned int val);
+
+    bool   log(string profile, string fname, const char *s_format, ...);
+    bool   log_static(string profile, string fname, const char *str);
+    bool   info(string profile, const char *s_format, ...);
 
 
-    inline void set_mask(uint32 msk)
+    inline void set_opt(uint32 msk)
     {
         mask |= msk;
     }
 
-    inline bool get_mask(uint32 msk)
+    inline bool get_opt(uint32 msk)
     {
         return mask & msk;
     }
@@ -122,7 +122,6 @@ class logger
     {
         pthread_mutex_unlock(&mutex_log);
     }
-
 };
 
 #endif
