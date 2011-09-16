@@ -1,5 +1,15 @@
-changeset:   324:583a1f001eb8
+changeset:   326:bb615115310b
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 03:58:54 2011 +0200
+sommario:    * fix in get_{best,worst}_individual
+
+changeset:   325:89a7cb322984
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 02:23:58 2011 +0200
+sommario:    * aggiunto parametro e funzione avg_fault_coverage
+
+changeset:   324:583a1f001eb8
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 15 21:04:05 2011 +0200
 sommario:    Inserita l'etichetta 0.1.8 per il changeset 6091be24cfeb

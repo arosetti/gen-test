@@ -4,9 +4,23 @@ logger *logger::l_singleton = NULL;
 
 bool file_exists(string filename)
 {
-    struct stat sts;
-    if (stat(filename.c_str(), &sts) == -1 && errno == ENOENT)
-        return false;
+    struct stat sb;
+    stat(filename.c_str(), &sb);
+
+    if (errno == ENOENT || (sb.st_mode & S_IFMT) != S_IFREG)
+    return false;
+
+    return true;
+}
+
+bool dir_exists(string dirname)
+{
+    struct stat sb;
+    stat(dirname.c_str(), &sb);
+
+    if (errno == ENOENT || (sb.st_mode & S_IFMT) != S_IFDIR)
+    return false;
+
     return true;
 }
 
@@ -34,29 +48,6 @@ uint32 randmm(uint32 min, uint32 max)
 
 void addslash(string &str)
 {
-    if (str.c_str()[str.length()] != '/')
+     if (str.at(str.length()-1) != '/')
         str += "/";
-}
-
-void step_progress_bar(long i,int steps,long elements)
-{
-    long j,k,d=elements/steps;
-
-    if(i>elements)
-        i=elements;
-    if(i<0)
-        i=0;
-
-    printf("[");
-    for(j=0;j<=i/d;j++) 
-        printf("=");
-    for(k=0;k<=(steps-j);k++) 
-        printf(" ");
-    printf("] %d%%", (int)(100*i/elements));
-    if(i!=elements)
-        printf("\r");
-    else
-        printf("\n");
-
-    fflush(stdout);
 }
