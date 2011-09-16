@@ -14,8 +14,7 @@ void sigint_callback_handler(int);
 
 int main(int argc, char **argv)
 {
-    srand(time_seed());
-
+    init_rand_seed();
     ga_engine ga;
 
     cout << PACKAGE_STRING << ": a gentetic algorithm program ";

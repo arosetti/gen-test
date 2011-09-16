@@ -14,11 +14,11 @@
 #include "defines.h"
 #include "typedefs.h"
 #include "logger/logger.h"
+#include "rand/rand.h"
 
 bool file_exists(string filename);
 bool dir_exists(string dirname);
 uint32 get_columns();
-uint32 randmm(uint32, uint32);
 
 void addslash(string &str);
 

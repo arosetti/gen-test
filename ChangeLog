@@ -1,5 +1,15 @@
-changeset:   326:bb615115310b
+changeset:   328:b1536c0482c9
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 12:08:40 2011 +0200
+sommario:    * aggiunta una maschera per tutta la classe logger utilizzata per confrontare
+
+changeset:   327:016f0c7af0a1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 11:54:54 2011 +0200
+sommario:    * rimossa step_progress_bar
+
+changeset:   326:bb615115310b
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 16 03:58:54 2011 +0200
 sommario:    * fix in get_{best,worst}_individual
