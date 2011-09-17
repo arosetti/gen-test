@@ -316,11 +316,17 @@ void config::check_config() // TODO inserire altri controlli
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value, setting chromosome_start_len_min = chromosome_start_len_max" << endl;
     }
 
+    if (config_int[CONFIG_CHROMOSOME_NUM] < CUT_DOUBLE_RANDOM || config_int[CONFIG_CHROMOSOME_NUM] >= MAX_CUT_TYPE)
+    {
+        config_int[CONFIG_CHROMOSOME_NUM] = CUT_DOUBLE_RANDOM;
+        cout << "Invalid cut_type, setting to " << config_int[CONFIG_CHROMOSOME_NUM] << endl;
+    }
+
     if (config_int[CONFIG_CHROMOSOME_NUM] <= 0)
     {
         cout << "chromosome number is <=0, error reading simulator output.net" << endl;
         exit(1);
-    }
+    }    
 }
 
 bool config::get_bool_config(enum config_bool e_conf)
