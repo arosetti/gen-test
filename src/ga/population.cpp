@@ -320,9 +320,7 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 void population::create_mating_pool()
 {
     weight_map m_weight_map;
-    uint32 total_weight = 0;
-    float best_fitness = get_best_individual()->get_fitness(),
-          worst_fitness = get_worst_individual()->get_fitness();
+    uint32 total_weight = 0;    
 
     mating_pool.clear();
 
@@ -331,6 +329,9 @@ void population::create_mating_pool()
 
     LOG_STATIC("events", "mating", "create_mating_pool\n");
 
+    float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
+    float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
+
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         float fitness = (*itr).second->get_fitness();
@@ -338,8 +339,10 @@ void population::create_mating_pool()
             continue;
 
         if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
+        {
             if (best_fitness - worst_fitness != 0.0f)
                 fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
+        }
 
         uint32 u_fitness = uint32(fitness * 1000);
 
