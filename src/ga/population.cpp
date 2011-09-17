@@ -589,7 +589,7 @@ int population::load_log(string filename)
     delete[] buffer;
 
     int generation = 0;
-    sscanf(filename.c_str(), "logs/generation%d.log", &generation); // TODO migliorare questo hack
+    sscanf(filename.c_str(), "generation%d.log", &generation); // TODO migliorare questo hack
 
     return generation;
 }
