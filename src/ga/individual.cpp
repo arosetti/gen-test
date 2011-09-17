@@ -153,15 +153,19 @@ void individual::calc_fitness()
     if (!n_tests)
         return;
 
-    if (conf->get_int_config(CONFIG_FITNESS_TYPE) == 1)
-        fitness = (float)(100 * detected) / (float)(n_tests);
-    else if (conf->get_int_config(CONFIG_FITNESS_TYPE)  == 2)
-        fitness = ((float)(detected) / (float)(n_tests)) -
-                 ((float)get_chromosome_length() / (30.0f * (float)(n_tests))) + 1.0f;
-    else
+    switch (conf->get_int_config(CONFIG_FITNESS_TYPE))
     {
-        INFO("verbose", "please, select a valid fitness type\n");
-        exit(1);
+        case 1:
+            fitness = (float)(100 * detected) / (float)(n_tests);
+            break;
+        case 2:
+            fitness = ((float)(detected) / (float)(n_tests)) -
+                 ((float)get_chromosome_length() / (30.0f * (float)(n_tests))) + 1.0f;
+            break;
+        default:
+            INFO("verbose", "please, select a valid fitness type\n");
+            exit(1);
+            break;
     }
 }
 

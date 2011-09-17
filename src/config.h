@@ -10,11 +10,15 @@
 
 using namespace std;
 
-#define CUT_DOUBLE_RANDOM 1
-#define CUT_SINGLE_RANDOM 2
-#define CUT_HALF          3
-
 static vector<pthread_t> threads_id;
+
+enum e_cut_type
+{
+    CUT_DOUBLE_RANDOM = 1,
+    CUT_SINGLE_RANDOM,
+    CUT_HALF,
+    MAX_CUT_TYPE,
+};
 
 enum config_bool
 {
