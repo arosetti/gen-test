@@ -157,7 +157,7 @@ void individual::calc_fitness()
         fitness = (float)(100 * detected) / (float)(n_tests);
     else if (conf->get_int_config(CONFIG_FITNESS_TYPE)  == 2)
         fitness = ((float)(detected) / (float)(n_tests)) -
-                 ((float)get_chromosome_length() / (10.0f * (float)(n_tests))) + 1.0f;
+                 ((float)get_chromosome_length() / (30.0f * (float)(n_tests))) + 1.0f;
     else
     {
         INFO("verbose", "please, select a valid fitness type\n");
