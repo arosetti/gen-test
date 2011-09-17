@@ -209,56 +209,48 @@ float population::get_max_chromosome_length() const
 
 const individual* population::get_best_individual()
 {
-    individual_map::const_iterator itr;
     float best_fitness = 0;
-    uint32 shortest = 0;
-
-    if (!pool->size())
-        return 0;
 
     if (!best_individual)
-        for (itr = pool->begin(); itr != pool->end(); ++itr)
-        {
-            if (best_fitness <= (*itr).second->get_fitness())
+        if (pool->size())
+            for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
             {
-                if (best_individual 
-                    && (best_fitness == (*itr).second->get_fitness()) 
-                    && (*itr).second->get_chromosome_length() > 
-                        best_individual->get_chromosome_length())
-                    continue;
-                best_fitness = (*itr).second->get_fitness();
-                best_individual = (*itr).second;
+                if (best_fitness <= (*itr).second->get_fitness())
+                {
+                    if (best_individual 
+                        && (best_fitness == (*itr).second->get_fitness()) 
+                        && best_individual->get_fault_coverage() > (*itr).second->get_fault_coverage())
+                        continue;
+
+                    best_fitness = (*itr).second->get_fitness();
+                    best_individual = (*itr).second;
+                }
             }
-        }
 
     return best_individual;
 }
 
 const individual* population::get_worst_individual()
-{
-    individual_map::const_iterator itr;
-    individual* ind = (individual*) get_best_individual();
-    uint32 shortest = 0;
-
-    if (!ind || !pool->size())
-        return 0;
-
-    if (worst_individual)
-        return worst_individual;
-
-    worst_individual = ind;
-
-    for (itr = pool->begin(); itr != pool->end(); ++itr)
+{ 
+    if (!worst_individual)
     {
+        if (individual* ind = (individual*) get_best_individual())
+            worst_individual = ind;
+        else
+            return NULL;
 
-        if (worst_individual->get_fitness() > (*itr).second->get_fitness())
-        {
-            if ((worst_individual->get_fitness() == (*itr).second->get_fitness()) 
-                    && (*itr).second->get_chromosome_length() <
-                        worst_individual->get_chromosome_length())
-                continue;
-            worst_individual = (*itr).second;
-        }
+        if (pool->size())
+            for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+            {
+                if (worst_individual->get_fitness() >= (*itr).second->get_fitness())
+                {
+                    if (worst_individual->get_fitness() == (*itr).second->get_fitness()
+                        && worst_individual->get_fault_coverage() < (*itr).second->get_fault_coverage())
+                        continue;
+
+                    worst_individual = (*itr).second;
+                }
+            }
     }
 
     return worst_individual;
