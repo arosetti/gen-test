@@ -229,6 +229,11 @@ string individual::info(bool format)
     return out.str();
 }
 
+bool individual::operator == (const individual& ind)
+{
+    return dna->ToString() == ind.dna->ToString();
+}
+
 bool individual::operator < (const individual& ind)
 {
     return fitness < ind.get_fitness();
