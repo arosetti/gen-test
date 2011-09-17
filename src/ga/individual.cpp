@@ -112,7 +112,30 @@ void individual::dna_split(uint32 pos, string &dna_1, string &dna_2)
     LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos+1, dna->GetColNum(), dna_2.c_str());
 }
 
-void individual::dna_merge(string& dna_1, string& dna_2)
+void individual::dna_split(uint32 pos_1, uint32 pos_2, string &dna_1, string &dna_2, string &dna_3)
+{
+    if (pos_1 > dna->GetColNum() || pos_2 > dna->GetColNum())
+        return;
+
+    if (pos_1 > pos_2)
+    {
+        uint32 temp_pos = pos_1;
+        pos_1 = pos_2;
+        pos_2 = temp_pos;    
+    }
+
+    LOG_STATIC("ga_events", "mating", "# splitting DNA\n");
+   
+    dna_1 = dna->GetCols(0, pos_1);
+    dna_2 = dna->GetCols(pos_1 + 1, pos_2); // if pos_1 == pos_2 ritorna ""
+    dna_2 = dna->GetCols(pos_2 + 1, dna->GetColNum()-1);
+
+    LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1.c_str());
+    LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, pos_2, dna_2.c_str());
+    LOG("ga_events", "mating", "dna_3 (%d,%d)\n%s\n", pos_2+1, dna->GetColNum(), dna_3.c_str());
+}
+
+/*void individual::dna_merge(string& dna_1, string& dna_2)
 {
     string new_dna;
 
@@ -127,7 +150,7 @@ void individual::dna_merge(string& dna_1, string& dna_2)
     // ridimensiona il dna alla somma delle colonne di dna_1
     set_chromosome_length(GetStrRowSize(dna_1));
 
-    // copio dna_1 nel dna */
+    // copio dna_1 nel dna
     dna->SetCols(dna_1, 0);
 
     // attacco il secondo pezzo di dna
@@ -136,7 +159,65 @@ void individual::dna_merge(string& dna_1, string& dna_2)
     LOG("ga_events", "mating", "%s\n", dna->ToString().c_str());  // TODO da inserire tutti gli if log.mating
 
     untest();
+}*/
+
+void individual::dna_merge(string& dna_1, string& dna_2)
+{
+    LOG_STATIC("ga_events", "mating", "# merging DNA\n"); 
+
+    if (dna_1.length() && GetStrColSize(dna_1) == dna->GetRowNum())
+    {
+        set_chromosome_length(GetStrRowSize(dna_1));
+        dna->SetCols(dna_1, 0);
+
+        if (dna_2.length() && GetStrColSize(dna_2) == dna->GetRowNum())
+            dna->AttachCols(dna_2);
+    }
+    else if (dna_2.length() && GetStrColSize(dna_2) == dna->GetRowNum())
+    {
+        set_chromosome_length(GetStrRowSize(dna_2));
+        dna->SetCols(dna_2, 0);
+    }
+
+    LOG("ga_events", "mating", "%s\n", dna->ToString().c_str());  // TODO da inserire tutti gli if log.mating
+
+    untest();
 }
+
+void individual::dna_merge(string& dna_1, string& dna_2, string& dna_3)
+{
+    LOG_STATIC("ga_events", "mating", "# merging DNA\n"); 
+
+    if (dna_1.length() && GetStrColSize(dna_1) == dna->GetRowNum())
+    {
+        set_chromosome_length(GetStrRowSize(dna_1));
+        dna->SetCols(dna_1, 0);
+
+        if (dna_2.length() && GetStrColSize(dna_2) == dna->GetRowNum())
+            dna->AttachCols(dna_2);
+
+        if (dna_3.length() && GetStrColSize(dna_3) == dna->GetRowNum())
+            dna->AttachCols(dna_3);
+    }
+    else if (dna_2.length() && GetStrColSize(dna_2) == dna->GetRowNum())
+    {
+        set_chromosome_length(GetStrRowSize(dna_2));
+        dna->SetCols(dna_2, 0);
+
+        if (dna_3.length() && GetStrColSize(dna_3) == dna->GetRowNum())
+            dna->AttachCols(dna_3);
+    }
+    else if (dna_3.length() && GetStrColSize(dna_3) == dna->GetRowNum())
+    {
+        set_chromosome_length(GetStrRowSize(dna_3));
+        dna->SetCols(dna_3, 0);
+    }
+
+    LOG("ga_events", "mating", "%s\n", dna->ToString().c_str());  // TODO da inserire tutti gli if log.mating
+
+    untest();
+}
+
 
 float individual::get_fitness()  const
 {
