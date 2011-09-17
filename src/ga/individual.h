@@ -57,7 +57,7 @@ class individual: public tests
     void    chromosome_random(uint32);
 
     string  info(bool format = true);
-
+    bool operator == (const individual&);
     bool operator < (const individual&);
 };
 
