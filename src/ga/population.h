@@ -18,6 +18,7 @@ typedef std::pair<uint32, individual*> individual_pair;
 typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
+extern vector<pthread_t> threads_id;
 
 //! Contenitore della popolazione
 /**

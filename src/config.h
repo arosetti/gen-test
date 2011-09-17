@@ -14,6 +14,8 @@ using namespace std;
 #define CUT_SINGLE_RANDOM 2
 #define CUT_HALF          3
 
+static vector<pthread_t> threads_id;
+
 enum config_bool
 {
     CONFIG_DEBUG = 0,
@@ -34,7 +36,7 @@ enum config_bool
     CONFIG_NORMALIZED_FITNESS,
     CONFIG_STOP_AT_100,
     CONFIG_MUTATION_LENGTH_GENE,
-    CONFIG_MAX_BOOL,
+    CONFIG_MAX_BOOL
 };
 
 enum config_int
@@ -45,7 +47,7 @@ enum config_int
     CONFIG_FITNESS_TYPE,
     CONFIG_CUT_TYPE,
     CONFIG_MAX_STALL,
-    CONFIG_MAX_RETEST,    
+    CONFIG_MAX_RETEST,
     CONFIG_CHROMOSOME_NUM,
     CONFIG_CHROMOSOME_MAX_LENGTH,
     CONFIG_CHROMOSOME_START_LEN_MIN,
@@ -64,7 +66,7 @@ enum config_string
     CONFIG_SIMULATOR_ARGS,
     CONFIG_TEST_FILE_OUT,
     CONFIG_TEST_FILE_IN,
-    CONFIG_THREAD_PREFIX,        
+    CONFIG_THREAD_PREFIX,
     CONFIG_MAX_STRING,
 };
 
@@ -83,37 +85,35 @@ enum config_float
  */
 class config
 {
-        bool         config_bool[CONFIG_MAX_BOOL];
-        int          config_int[CONFIG_MAX_INT];
-        std::string  config_string[CONFIG_MAX_STRING];
-        float        config_float[CONFIG_MAX_FLOAT];
+    bool         config_bool[CONFIG_MAX_BOOL];
+    int          config_int[CONFIG_MAX_INT];
+    std::string  config_string[CONFIG_MAX_STRING];
+    float        config_float[CONFIG_MAX_FLOAT];
+
+    cfg_t* open_cfg();
+
     public: 
-        config();
-        //~config();
+    config();
+    //~config();
 
-        //void set_bool_config(config_bool, bool);
-        //void set_int_config(config_int, int);
-        //void set_string_config(config_string, std::string);
-        //void set_float_config(config_string, float);
+    //void set_bool_config(config_bool, bool);
+    //void set_int_config(config_int, int);
+    //void set_string_config(config_string, std::string);
+    //void set_float_config(config_string, float);
 
-        bool        get_bool_config(enum config_bool);
-        int         get_int_config(enum config_int);
-        std::string get_string_config(enum config_string);
-        float       get_float_config(enum config_float);
+    bool        get_bool_config(enum config_bool);
+    int         get_int_config(enum config_int);
+    std::string get_string_config(enum config_string);
+    float       get_float_config(enum config_float);
 
-        bool load_config();
-        void post_init_config();
-        void init_log_profiles();
-        void help_config();
-        void check_config();
+    bool load_config();
+    void post_init_config();
+    void init_log_profiles();
+    void help_config();
+    void check_config();
 
-        int  load_args(int argc, char **argv);
-        void help_args();
-    private:
-      
-        cfg_t* open_cfg();
+    int  load_args(int argc, char **argv);
+    void help_args();
 };
 
 #endif
-
-

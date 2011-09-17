@@ -120,8 +120,9 @@ void population::test_population()
                 delete t_params;
                 continue;
             }
-            else
-                inc_threads();
+
+            threads_id.push_back(tid);
+            inc_threads();
         }
 
     while (n_thread)
