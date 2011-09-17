@@ -1,5 +1,41 @@
-changeset:   329:fc99fd42fe1e
+changeset:   336:a733cd57c5f6
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 03:29:33 2011 +0200
+sommario:    * kill dei thread quando il programma riceve SIGINT
+
+changeset:   335:f18114340a58
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 01:29:07 2011 +0200
+sommario:    * fix stop_at_100, la fault coverage va da 0 a 1.0f, non sarà mai 100.0f
+
+changeset:   334:e2ae55db7973
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 01:08:31 2011 +0200
+sommario:    * fix nome profilo sbagliato
+
+changeset:   333:272d9ce1078f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:17:32 2011 +0200
+sommario:    Inserita l'etichetta 0.1.9 per il changeset 5e486d779037
+
+changeset:   332:5e486d779037
+tag:         0.1.9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:17:19 2011 +0200
+sommario:    versione 0.1.9
+
+changeset:   331:4cf25f77d660
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:07:20 2011 +0200
+sommario:    * aggiornato gnuplot.conf
+
+changeset:   330:ad32aa3c8df3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 15:55:01 2011 +0200
+sommario:    * progress bar disabilitata nella modalità debugger
+
+changeset:   329:fc99fd42fe1e
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 16 15:22:26 2011 +0200
 sommario:    * aggiunti file rand.cpp e rand.h per una possibile implementazione di diversi tipi di rand.cpp
