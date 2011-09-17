@@ -18,9 +18,10 @@ int main(int argc, char **argv)
     init_rand_seed();
     ga_engine ga;
 
-    INFO("verbose", "%s: a gentetic algorithm program ", PACKAGE_STRING);
-    INFO("verbose", "used to generate test patterns for simulated circuits.\n");
-    INFO("verbose", "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011\n\n");
+    cout << PACKAGE_STRING << ": a gentetic algorithm program ";
+    cout << "used to generate test patterns for simulated circuits." << endl;
+    cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
+    cout << endl;
 
     signal(SIGINT, sigint_callback_handler);
 
