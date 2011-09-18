@@ -1,5 +1,61 @@
-changeset:   336:a733cd57c5f6
+changeset:   346:33695befb526
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:02:43 2011 +0200
+sommario:    * aggiunta rand_gaussian
+
+changeset:   345:01ff209e0090
+utente:      Lazzalf
+data:        Sat Sep 17 15:10:00 2011 +0200
+sommario:    Individual
+
+changeset:   344:306e2e18f278
+genitore:    342:53751d69f662
+genitore:    343:4917928c6a24
+utente:      Lazzalf
+data:        Sat Sep 17 13:09:26 2011 +0200
+sommario:    Merge
+
+changeset:   343:4917928c6a24
+genitore:    341:215f17fbccd5
+utente:      Lazzalf
+data:        Sat Sep 17 13:08:29 2011 +0200
+sommario:    * Fix numerazione generation
+
+changeset:   342:53751d69f662
+genitore:    340:01166fba9021
+genitore:    341:215f17fbccd5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 13:07:29 2011 +0200
+sommario:    Merge
+
+changeset:   341:215f17fbccd5
+genitore:    339:ebe234939429
+utente:      Lazzalf
+data:        Sat Sep 17 12:56:24 2011 +0200
+sommario:    * CleanUp e qualche Check
+
+changeset:   340:01166fba9021
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 13:03:54 2011 +0200
+sommario:    * inserito operatore == negli individual, confronta il dna
+
+changeset:   339:ebe234939429
+utente:      Lazzalf
+data:        Sat Sep 17 12:26:13 2011 +0200
+sommario:    Fix possible crash
+
+changeset:   338:561d4f009e4f
+utente:      Lazzalf
+data:        Sat Sep 17 12:16:31 2011 +0200
+sommario:    * Modificati population::get_best_individual() e population::get_worst_individual() per scegliere attraverso i fault rilevati a pari fitness e non la lunghezza
+
+changeset:   337:4e0ee212e025
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 03:56:06 2011 +0200
+sommario:    * revert degli info
+
+changeset:   336:a733cd57c5f6
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 17 03:29:33 2011 +0200
 sommario:    * kill dei thread quando il programma riceve SIGINT
