@@ -468,6 +468,7 @@ void population::mate_individuals()
     if (mating_pool.size() == (index + 1))
     {
         ind_a_cloned = new individual(*(*pool->find(*itr)).second);
+        ind_a_cloned->dna_mutate(mutation_rate);
         temp_pool->insert(temp_pool->end(),
             individual_pair(temp_pool->size(), ind_a_cloned));
     }
