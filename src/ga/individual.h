@@ -2,6 +2,7 @@
 #define INDIVIDUAL_H
 
 #include <sstream>
+#include <cmath>
 
 #include "../common/utility.h"
 #include "../bitmatrix/bitmatrix.h"
