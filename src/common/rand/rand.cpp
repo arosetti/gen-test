@@ -37,3 +37,36 @@ bool randb()
 {
    return (drand48() >= 0.5f);
 }
+
+double rand_gaussian(double eta, double sigma)
+{
+    static bool cached = false;
+    static double cached_value;
+    double rsquare, factor, r1, r2;
+
+    if(cached)
+    {
+        cached = false;
+        return cached_value;
+    }
+    
+    do
+    {
+        r1 = 2.0 * drand48() - 1.0;
+        r2 = 2.0 * drand48() - 1.0;
+        rsquare = r1*r1 + r2*r2;
+    }
+    while(rsquare >= 1.0 || rsquare == 0.0);
+
+    double polar = -2.0 * log(rsquare) / rsquare;
+
+    if(polar > 0.0)
+        factor = sqrt(polar);
+    else
+        factor = 0.0;
+
+    cached_value = r1 * factor;
+    cached = true;
+
+    return ((r2 * factor) * sigma + eta);
+}
