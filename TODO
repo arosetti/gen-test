@@ -33,14 +33,11 @@ commenti doxygen
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./gentest
 
 
-####TODO
+#### TODO
 - altre statistiche, indice di differenza in qualche maniera dire quanti cloni ci sono nella popolazione
 - inserire quanti sono stati testati o skippati in fondo alla barra.
--migliorare sistema logging
+- migliorare sistema logging
     - log colori e timestamps
 
-- funzione di utility per leggere tutto il contenuto di un file.
-
-- cut di dna a doppio taglio?
 - se si selezionano percentuali di accoppiamento troppo ma troppo basse si potrebbe
   selezionare 0 o 1 individui, controllare che vada cmq tutto bene
