@@ -316,14 +316,11 @@ void config::check_config() // TODO inserire altri controlli
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value, setting chromosome_start_len_min = chromosome_start_len_max" << endl;
     }
 
-// ma che è mi scavola il b03 che ha 5 piedini :S
-/*
-    if (config_int[CONFIG_CHROMOSOME_NUM] < CUT_DOUBLE_RANDOM || config_int[CONFIG_CHROMOSOME_NUM] >= MAX_CUT_TYPE)
+    if (config_int[CONFIG_CUT_TYPE] < CUT_DOUBLE_RANDOM || config_int[CONFIG_CUT_TYPE] >= MAX_CUT_TYPE)
     {
-        config_int[CONFIG_CHROMOSOME_NUM] = CUT_DOUBLE_RANDOM;
-        cout << "Invalid cut_type, setting to " << config_int[CONFIG_CHROMOSOME_NUM] << endl;
+        config_int[CONFIG_CUT_TYPE] = CUT_DOUBLE_RANDOM;
+        cout << "Invalid cut_type, setting to " << config_int[CONFIG_CUT_TYPE] << endl;
     }
-*/
 
     if (config_int[CONFIG_CHROMOSOME_NUM] <= 0)
     {
