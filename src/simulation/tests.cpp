@@ -135,7 +135,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
             tried++;
             if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
             {
-                cout << "caught exception: " << str << endl; // log
+                cout << "caught exception: " << str << endl;
                 if (tried < (conf->get_int_config(CONFIG_MAX_RETEST) + 1))
                     cout << "retesting try " << tried << endl;
             }
