@@ -10,11 +10,6 @@ simulation::~simulation()
 
 }
 
-void simulation::rebuild()
-{
-
-}
-
 bool simulation::execute(string dna, uint32 id)
 {
     int status, ret, f_ret;
