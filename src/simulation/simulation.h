@@ -16,7 +16,6 @@ class simulation
     uint32 n_fautls;
 
     bool setup_input_file(string,uint32);
-    string read_output(uint32);
 
     public:
     simulation();

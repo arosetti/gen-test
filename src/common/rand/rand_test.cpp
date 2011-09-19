@@ -55,4 +55,10 @@ int main()
     fclose(ff);
 
     system("gnuplot rand.gnuplot > /dev/null 2>&1");
+
+    // il random non va bene
+    for (i = 0 ; i<1500; i++)
+    {
+        printf("%d ", randmm(0,1));
+    }
 }
