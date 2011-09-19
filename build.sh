@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# = 0 ] ; then
-    echo -e "usage ./build.sh {[clean] || [strip] || [dist] || [run] || [run_debug]}\n"
+    echo -e "usage ./build.sh {[],[release], [profile], [debug], [dist], [clean]}\n"
 fi
 
 DOXYGEN=`which doxygen`
@@ -11,7 +11,16 @@ if [ -e gentest ] ; then
 fi
 
 ./autogen.sh
-./configure
+
+if [ "$1" = "release" ]; then
+    ./configure --enable-release
+elif [ "$1" = "profile" ]; then
+    ./configure --enable-profile
+elif [ "$1" = "debug" ]; then
+    ./configure --enable-debug
+else
+    ./configure
+fi
 
 make -j5
 
@@ -23,18 +32,9 @@ if [ "$1" = "clean" ] ; then
     ./clean.sh
 fi
 
-if [ "$1" = "strip" ] ; then
+if [ "$1" = "release" ] ; then
     strip gentest
 fi
 
 echo "* generazione doxygen"
 $DOXYGEN Doxyfile > /dev/null 2>&1
-
-if [ "$1" = "run" ] ; then
-    ./gentest
-fi
-
-if [ "$1" = "debug" ] ; then
-    ./debugger
-fi
-
