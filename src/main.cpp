@@ -40,12 +40,19 @@ int main(int argc, char **argv)
 
 void sigint_callback_handler(int signum)
 {
+    int ret;
     vector<pthread_t>::iterator itr = threads_id.begin();
+    string cmd;
 
-    INFO("verbose", "caught SIGINT signal\n");
+    INFO("verbose", "\n\n* caught SIGINT signal\n");
+    INFO("verbose", "* killing simulators\n");  // TODO creare i segnali dei thread
+    exec_command("killall %s > /dev/null 2>&1", 
+                 conf->get_string_config(CONFIG_SIMULATOR_BIN).c_str());
     INFO("verbose", "* killing simulation threads\n");
     for( ; itr != threads_id.end(); ++itr)
         pthread_kill(*itr, SIGINT);
+
+
 
     clean_env();
 

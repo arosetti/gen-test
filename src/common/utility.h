@@ -16,10 +16,15 @@
 #include "logger/logger.h"
 #include "rand/rand.h"
 
-bool file_exists(string filename);
-bool dir_exists(string dirname);
+#define CMAXSIZE 256
+
+bool   file_exists(string filename);
+bool   dir_exists(string dirname);
+void   addslash(string &str);
+char*  read_file(const char *filename);
+
 uint32 get_columns();
 
-void addslash(string &str);
+int    exec_command(const char *fmt, ...);
 
 #endif

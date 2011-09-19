@@ -65,7 +65,7 @@ cfg_t* config::open_cfg()
 
 config::config()
 {
-    config_string[CONFIG_CONF_FILENAME] = "config.conf";
+    config_string[CONFIG_CONF_FILENAME] = "gentest.conf";
     config_string[CONFIG_MAIN_PATH] = get_current_dir_name();
     load_config();
 }
@@ -227,7 +227,7 @@ int config::load_args(int argc, char **argv)
             }
             break;
             case 's':
-                if (file_exists(optarg))  //TODO controllare che sia una dir con dir_exists
+                if (dir_exists(optarg))
                     config_string[CONFIG_SIMULATOR_PATH] = optarg;
                 else
                     cout << "wrong -s parameter. you must use a valid simulator directory" 
@@ -316,11 +316,14 @@ void config::check_config() // TODO inserire altri controlli
         cout << "chromosome_start_len_min value must be lower than chromosome_start_len_max value, setting chromosome_start_len_min = chromosome_start_len_max" << endl;
     }
 
+// ma che è mi scavola il b03 che ha 5 piedini :S
+/*
     if (config_int[CONFIG_CHROMOSOME_NUM] < CUT_DOUBLE_RANDOM || config_int[CONFIG_CHROMOSOME_NUM] >= MAX_CUT_TYPE)
     {
         config_int[CONFIG_CHROMOSOME_NUM] = CUT_DOUBLE_RANDOM;
         cout << "Invalid cut_type, setting to " << config_int[CONFIG_CHROMOSOME_NUM] << endl;
     }
+*/
 
     if (config_int[CONFIG_CHROMOSOME_NUM] <= 0)
     {

@@ -1,5 +1,15 @@
-changeset:   346:33695befb526
+changeset:   348:af93c18fcb25
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:26:32 2011 +0200
+sommario:    * fix hack
+
+changeset:   347:2e78802971ca
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:22:45 2011 +0200
+sommario:    * fix bug population mate_individuals, l'ultimo invididuo non veniva mutato
+
+changeset:   346:33695befb526
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sun Sep 18 22:02:43 2011 +0200
 sommario:    * aggiunta rand_gaussian
