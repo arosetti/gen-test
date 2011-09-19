@@ -332,11 +332,11 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
                     cout << ind_b->info() << endl;
                 }
                 
-                ind_a->dna_split(cut_a_1, dna_a_1, dna_a_2);
-                ind_b->dna_split(cut_b_1, dna_b_1, dna_b_2);
+                ind_a->dna_split(cut_a_1, &dna_a_1, &dna_a_2);
+                ind_b->dna_split(cut_b_1, &dna_b_1, &dna_b_2);
 
-                ind_a->dna_merge(dna_a_1, dna_b_2);
-                ind_b->dna_merge(dna_b_1, dna_a_2);
+                ind_a->dna_merge(&dna_a_1, &dna_b_2);
+                ind_b->dna_merge(&dna_b_1, &dna_a_2);
             }
             break;
         case CUT_TWO_POINTS_DOUBLE_RANDOM:
@@ -347,11 +347,11 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
                     // TODO
                 }
 
-                ind_a->dna_split(cut_a_1, cut_a_2, dna_a_1, dna_a_2, dna_a_3);
-                ind_b->dna_split(cut_b_1, cut_b_2, dna_b_1, dna_b_2, dna_b_3);
+                ind_a->dna_split(cut_a_1, &dna_a_1, &dna_a_2, cut_a_2, &dna_a_3);
+                ind_b->dna_split(cut_b_1, &dna_b_1, &dna_b_2, cut_b_2, &dna_b_3);
 
-                ind_a->dna_merge(dna_a_1, dna_b_2, dna_a_3);
-                ind_b->dna_merge(dna_b_1, dna_a_2, dna_b_3);
+                ind_a->dna_merge(&dna_a_1, &dna_b_2, &dna_a_3);
+                ind_b->dna_merge(&dna_b_1, &dna_a_2, &dna_b_3);
             }
             break;
     }
