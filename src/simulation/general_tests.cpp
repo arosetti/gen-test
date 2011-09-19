@@ -101,7 +101,7 @@ bool general_tests::LoadFile(individual_map* pool)
         if (p_buffer != "in") //!!!!
         {
             string block = "";
-            for (int i = 0; i < p_buffer.size(); i++)
+            for (int i = 0; i < (int) p_buffer.size(); i++)
                 block += "!";
 
             if (p_buffer == block)

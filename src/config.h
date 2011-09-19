@@ -19,7 +19,7 @@ enum e_cut_type
     CUT_HALF,
     CUT_TWO_POINTS_DOUBLE_RANDOM,
     CUT_TWO_POINTS_SINGLE_RANDOM,
-    MAX_CUT_TYPE,
+    MAX_CUT_TYPE
 };
 
 enum config_bool
@@ -58,7 +58,7 @@ enum config_int
     CONFIG_CHROMOSOME_MAX_LENGTH,
     CONFIG_CHROMOSOME_START_LEN_MIN,
     CONFIG_CHROMOSOME_START_LEN_MAX,
-    CONFIG_MAX_INT,
+    CONFIG_MAX_INT
 };
 
 enum config_string
@@ -73,7 +73,7 @@ enum config_string
     CONFIG_TEST_FILE_OUT,
     CONFIG_TEST_FILE_IN,
     CONFIG_THREAD_PREFIX,
-    CONFIG_MAX_STRING,
+    CONFIG_MAX_STRING
 };
 
 enum config_float

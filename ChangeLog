@@ -1,5 +1,77 @@
-changeset:   348:af93c18fcb25
+changeset:   361:ec8f20ac9ab0
 tag:         tip
+utente:      Lazzalf
+data:        Mon Sep 19 21:21:05 2011 +0200
+sommario:    * Unite le due dna_split e le due dna_merge
+
+changeset:   360:44e620d6ed9a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 21:12:11 2011 +0200
+sommario:    Inserita l'etichetta 0.2.0 per il changeset 3eb695f348f9
+
+changeset:   359:3eb695f348f9
+tag:         0.2.0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 21:12:01 2011 +0200
+sommario:    * versione 0.2.0
+
+changeset:   358:dfa94cd715b3
+utente:      Lazzalf
+data:        Mon Sep 19 20:46:42 2011 +0200
+sommario:    * Fix copia-incolla andato male XD
+
+changeset:   357:c80cf3ec24b3
+genitore:    356:d6a73fac7df7
+genitore:    355:b24918a7b7f3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:09:19 2011 +0200
+sommario:    Merge
+
+changeset:   356:d6a73fac7df7
+genitore:    354:6b01fdc2e314
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:08:10 2011 +0200
+sommario:    * rimossa funzione rebuild
+
+changeset:   355:b24918a7b7f3
+genitore:    354:6b01fdc2e314
+genitore:    350:bfe8ce6de456
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:05:29 2011 +0200
+sommario:    Merge
+
+changeset:   354:6b01fdc2e314
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:29:41 2011 +0200
+sommario:    * cambio nome default del file di config
+
+changeset:   353:f7bb3f72fb1d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:19:49 2011 +0200
+sommario:    #imported patch
+
+changeset:   352:009f999da826
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:12:45 2011 +0200
+sommario:    * ripristino permessi di non esecuzione sui sorgenti
+
+changeset:   351:3b6700eb0908
+genitore:    348:af93c18fcb25
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:07:22 2011 +0200
+sommario:    * inserita funzione read_file
+
+changeset:   350:bfe8ce6de456
+utente:      Lazzalf
+data:        Mon Sep 19 18:01:52 2011 +0200
+sommario:    * Inserito due tipi di two points crossover
+
+changeset:   349:6c14cbe03b51
+utente:      Lazzalf
+data:        Mon Sep 19 17:40:03 2011 +0200
+sommario:    * non serve eseguire *.cpp e *.h
+
+changeset:   348:af93c18fcb25
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sun Sep 18 22:26:32 2011 +0200
 sommario:    * fix hack
