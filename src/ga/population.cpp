@@ -276,45 +276,85 @@ const individual* population::get_fattest_individual()
 
 void population::crossover(individual *& ind_a, individual *& ind_b)
 {
-    uint32 cut_a,cut_b;
-    string dna_a_1, dna_a_2;
-    string dna_b_1, dna_b_2;
+    uint32 cut_a_1, cut_a_2, cut_b_1, cut_b_2;
+    string dna_a_1, dna_a_2, dna_a_3;
+    string dna_b_1, dna_b_2, dna_b_3;
 
     switch (conf->get_int_config(CONFIG_CUT_TYPE))
     {
         case CUT_DOUBLE_RANDOM:
             {
-                cut_a = randmm(1, ind_a->get_chromosome_length());
-                cut_b = randmm(1, ind_b->get_chromosome_length());
+                cut_a_1 = randmm(1, ind_a->get_chromosome_length());
+                cut_b_1 = randmm(1, ind_b->get_chromosome_length());  
             }
             break;
         case CUT_SINGLE_RANDOM:
             {
                 uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
-                cut_a = cut_b = randmm(1, cmin);
+                cut_a_1 = cut_b_1 = randmm(1, cmin);
             }            
             break;
         case CUT_HALF:
             {
-                cut_a = ind_a->get_chromosome_length()/2;
-                cut_b = ind_b->get_chromosome_length()/2;
+                cut_a_1 = ind_a->get_chromosome_length()/2;
+                cut_b_1 = ind_b->get_chromosome_length()/2;
+            }
+            break;
+        case CUT_TWO_POINTS_DOUBLE_RANDOM:
+            {    
+                cut_a_1 = randmm(1, ind_a->get_chromosome_length());
+                cut_a_2 = randmm(1, ind_a->get_chromosome_length());
+
+                cut_b_1 = randmm(1, ind_b->get_chromosome_length());
+                cut_b_2 = randmm(1, ind_b->get_chromosome_length()); 
+            }
+            break;
+        case CUT_TWO_POINTS_SINGLE_RANDOM:
+            {
+                uint32 cmin = min((int)ind_a->get_chromosome_length(), (int)ind_b->get_chromosome_length());
+                cut_a_1 = cut_b_1 = randmm(1, cmin);
+                cut_a_2 = cut_b_2 = randmm(1, cmin);
+            }            
+            break;
+    } 
+
+    switch (conf->get_int_config(CONFIG_CUT_TYPE))
+    {
+        case CUT_DOUBLE_RANDOM:
+        case CUT_SINGLE_RANDOM:
+        case CUT_HALF:
+            {
+                if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_MATING))
+                {
+                    cout << "split " << cut_a_1 << "/" << ind_a->get_chromosome_length();
+                    cout << "," << cut_b_1 << "/" << ind_b->get_chromosome_length() << endl;
+                    cout << ind_a->info() << endl;
+                    cout << ind_b->info() << endl;
+                }
+                
+                ind_a->dna_split(cut_a_1, dna_a_1, dna_a_2);
+                ind_b->dna_split(cut_b_1, dna_b_1, dna_b_2);
+
+                ind_a->dna_merge(dna_a_1, dna_b_2);
+                ind_b->dna_merge(dna_b_1, dna_a_2);
+            }
+            break;
+        case CUT_TWO_POINTS_DOUBLE_RANDOM:
+        case CUT_TWO_POINTS_SINGLE_RANDOM:
+            {
+                if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_MATING))
+                {
+                    // TODO
+                }
+
+                ind_a->dna_split(cut_a_1, cut_a_2, dna_a_1, dna_a_2, dna_a_3);
+                ind_b->dna_split(cut_b_1, cut_b_2, dna_b_1, dna_b_2, dna_b_3);
+
+                ind_a->dna_merge(dna_a_1, dna_b_2, dna_a_3);
+                ind_b->dna_merge(dna_b_1, dna_a_2, dna_b_3);
             }
             break;
     }
-    
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_MATING))
-    {
-        cout << "split " << cut_a << "/" << ind_a->get_chromosome_length();
-        cout << "," << cut_b << "/" << ind_b->get_chromosome_length() << endl;
-        cout << ind_a->info() << endl;
-        cout << ind_b->info() << endl;
-    }
-    
-    ind_a->dna_split(cut_a, dna_a_1, dna_a_2);
-    ind_b->dna_split(cut_b, dna_b_1, dna_b_2);
-
-    ind_a->dna_merge(dna_a_1, dna_b_2);
-    ind_b->dna_merge(dna_b_1, dna_a_2);
 }
 
 void population::create_mating_pool()

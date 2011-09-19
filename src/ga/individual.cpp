@@ -317,6 +317,7 @@ string individual::info(bool format)
 bool individual::operator == (const individual& ind)
 {
     return dna->ToString() == ind.dna->ToString();
+
 }
 
 bool individual::operator < (const individual& ind)
