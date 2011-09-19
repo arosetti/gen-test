@@ -131,29 +131,11 @@ void init_env()
 
 uint32 read_n_inputs()
 {
-    ifstream sim_net_file;
     char *buffer = NULL, *p_buffer = NULL;
     uint32 n_inputs = 0;
-    int length = 0;
 
-    sim_net_file.open(get_outputnet_path(-1).c_str(), ios::binary);
-
-    if (!sim_net_file.is_open())
-    {
-        printf("file: %s\n", get_outputnet_path(-1).c_str());
-        perror("simulator output.net");
+    if ((buffer = read_file(get_outputnet_path(-1).c_str())) == 0)
         return 0;
-    }
-
-    sim_net_file.seekg (0, ios::end);
-    length = sim_net_file.tellg();
-    sim_net_file.seekg (0, ios::beg);
-
-    buffer = new char[length + 1];
-
-    sim_net_file.read (buffer,length);
-    sim_net_file.close();
-    buffer[length] = 0;
 
     p_buffer = strtok(buffer,"\n");
     while (p_buffer != NULL)
