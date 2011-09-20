@@ -373,13 +373,14 @@ void population::create_mating_pool()
             break;
         case STOCASTIC_UNIVERSAL:
             {
-
+                sort();
+                stocastic_universal(mating_pool, conf->get_float_config(CONFIG_MATING_FRACTION));
             }   
             break;
     }   
 }
 
-void population::roulette_wheel(individual_id_list id_pool, float fraction)
+void population::roulette_wheel(individual_id_list& id_pool, float fraction)
 {
     id_pool.clear();
 
@@ -429,6 +430,55 @@ void population::roulette_wheel(individual_id_list id_pool, float fraction)
          }
     }
 }
+
+void population::stocastic_universal(individual_id_list& id_pool, float fraction)
+{
+    id_pool.clear();
+
+    weight_map m_weight_map;
+    uint32 total_weight = 0;
+    float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
+    float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
+
+    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        float fitness = (*itr).second->get_fitness();
+        if (!fitness)
+            continue;
+
+        if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
+        {
+            if (best_fitness - worst_fitness != 0.0f)
+                fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
+        }
+
+        uint32 u_fitness = uint32(fitness * 1000);
+
+        total_weight += u_fitness;
+        m_weight_map[(*itr).first] = u_fitness;
+    }
+
+    if (!m_weight_map.size())
+        return;
+    
+    uint32 selected_weight = randmm(0, total_weight / uint32(pool->size() * fraction));
+    uint32 weight = 0;
+    weight_map::const_iterator itr = m_weight_map.begin();
+    for (uint32 i = 0; i < uint32(pool->size() * fraction); i++)
+    {        
+         for (; itr != m_weight_map.end(); ++itr)
+         {
+             weight += itr->second;
+             if (selected_weight < weight)
+             {
+                 id_pool.push_front(itr->first);
+                 break;
+             }
+         }
+         selected_weight += total_weight / uint32(pool->size() * fraction);
+    }
+}
+
 
 void population::transfer_best()
 {
