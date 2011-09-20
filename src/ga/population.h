@@ -74,6 +74,7 @@ class population
     void    fattest_individuals_shrink();
 
     uint32  size() const;
+    uint32  tested_size() const;
     string  to_string() const;
     void    print(individual*) const;
     void    log(uint32) const;
