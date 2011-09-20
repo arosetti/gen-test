@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# = 0 ] ; then
-    echo -e "usage ./build.sh {[],[release], [profile], [debug], [dist], [clean]}\n"
+    echo -e "usage ./build.sh {[], [release], [profile], [debug], [dist], [clean]}\n"
 fi
 
 DOXYGEN=`which doxygen`
@@ -22,7 +22,8 @@ else
     ./configure
 fi
 
-make -j5
+count=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //' | wc -l)
+make -j$count
 
 if [ "$1" = "dist" ] ; then
     make dist-bzip2

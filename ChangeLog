@@ -1,5 +1,20 @@
-changeset:   362:477e3cf114e1
+changeset:   365:99854c71659e
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 09:46:45 2011 +0200
+sommario:    * cambio parametro numerico nell'elemento di handicap della fitness 2
+
+changeset:   364:61445b957a8b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 03:24:19 2011 +0200
+sommario:    Backout eseguito sul changeset: 256ea87e27fc
+
+changeset:   363:256ea87e27fc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 02:00:10 2011 +0200
+sommario:    * fix check stall
+
+changeset:   362:477e3cf114e1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 20 01:38:46 2011 +0200
 sommario:    * aggiornato configure.ac in modo da supportare alcuni argomenti di ingresso:
