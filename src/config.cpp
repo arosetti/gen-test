@@ -220,10 +220,10 @@ int config::load_args(int argc, char **argv)
             case 't':
             {
                 tmp_i = atoi(optarg);
-                if (tmp_i > 0)
+                if (tmp_i >= 0)
                     config_int[CONFIG_THREAD_SLOTS] = tmp_i;
                 else
-                    cout << "wrong -t parameter. you must use a value > 0" << endl;
+                    cout << "wrong -t parameter. you must use a value >= 0" << endl;
             }
             break;
             case 's':
@@ -282,14 +282,14 @@ void config::check_config() // TODO inserire altri controlli
 {
     if (config_int[CONFIG_THREAD_SLOTS] <= 0)
     {
-        config_int[CONFIG_THREAD_SLOTS] = 1;
-        cout << "Use at least one thread in thread_slots, setting to " << config_int[CONFIG_THREAD_SLOTS] << endl;
+        config_int[CONFIG_THREAD_SLOTS] = sysconf( _SC_NPROCESSORS_ONLN ) + 1;
+        cout << "thread_slots must be positive, setting to " << config_int[CONFIG_THREAD_SLOTS] << endl;
     }
 
     if (config_int[CONFIG_MAX_RETEST] < 0)
     {
         config_int[CONFIG_MAX_RETEST] = 0;
-        cout << "use max_retest >= 0, setting to " << config_int[CONFIG_MAX_RETEST] << endl;
+        cout << "max_retest must be non negative, setting to " << config_int[CONFIG_MAX_RETEST] << endl;
     }
     
     if (config_int[CONFIG_POPULATION_SIZE] <= 1) 

@@ -59,3 +59,5 @@ src/common/rand/.deps/.dirstamp
 src/common/rand/rand_test
 *.patch
 *.diff
+src/common/rand/rand.dat
+src/common/rand/gaussian.dat
