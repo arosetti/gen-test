@@ -368,19 +368,73 @@ void population::create_mating_pool()
     {
         case ROULETTE_WHEEL:
             {
-                roulette_wheel(mating_pool, conf->get_float_config(CONFIG_MATING_FRACTION));
+                roulette_wheel(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }
             break;
         case STOCASTIC_UNIVERSAL:
             {
                 sort();
-                stocastic_universal(mating_pool, conf->get_float_config(CONFIG_MATING_FRACTION));
+                stocastic_universal(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }   
+            break;
+        case SELECT_BEST:
+            {
+                select_best(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
+            }
             break;
     }   
 }
 
-void population::roulette_wheel(individual_id_list& id_pool, float fraction)
+void population::transfer()
+{  
+    if (!pool->size())
+        return;
+
+    uint32 transfer_num = uint32(conf->get_int_config(CONFIG_POPULATION_SIZE)) -
+                          uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION));
+
+    if (conf->get_float_config(CONFIG_MATING_FRACTION) == 1.0f)
+        return;
+
+    transfer_num = transfer_num ? transfer_num : 1;
+
+    INFO("debug", "transferring %d individual(s) from old population\n", transfer_num);
+
+    individual_id_list id_pool;
+
+    switch (conf->get_int_config(CONFIG_TRANSFER_SELECT_TYPE))
+    {
+        case ROULETTE_WHEEL:
+            {
+                roulette_wheel(id_pool, transfer_num);
+            }
+            break;
+        case STOCASTIC_UNIVERSAL:
+            {
+                sort();
+                stocastic_universal(id_pool, transfer_num);
+            }   
+            break;
+        case SELECT_BEST:
+            {
+                select_best(id_pool, transfer_num);
+            }
+            break;
+    }
+
+    if (!temp_pool)
+        temp_pool = new individual_map;
+
+    temp_pool->clear();
+    
+    for (individual_id_list::iterator itr = id_pool.begin(); itr != id_pool.end(); ++itr)
+    {
+        individual *ind_cloned = new individual(*(*pool->find(*itr)).second);
+        temp_pool->insert(temp_pool->end(), individual_pair(temp_pool->size(), ind_cloned));
+    }
+}
+
+void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
 {
     id_pool.clear();
 
@@ -401,6 +455,7 @@ void population::roulette_wheel(individual_id_list& id_pool, float fraction)
                 fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
         }
 
+
         uint32 u_fitness = uint32(fitness * 1000);
 
         total_weight += u_fitness;
@@ -414,7 +469,7 @@ void population::roulette_wheel(individual_id_list& id_pool, float fraction)
     uint32 weight;
     weight_map::const_iterator itr;
 
-    for (uint32 i = 0; i < uint32(pool->size() * fraction); i++)
+    for (uint32 i = 0; i < number; i++)
     {
          selected_weight = randmm(0, total_weight);
          weight = 0;
@@ -431,7 +486,7 @@ void population::roulette_wheel(individual_id_list& id_pool, float fraction)
     }
 }
 
-void population::stocastic_universal(individual_id_list& id_pool, float fraction)
+void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 {
     id_pool.clear();
 
@@ -461,10 +516,10 @@ void population::stocastic_universal(individual_id_list& id_pool, float fraction
     if (!m_weight_map.size())
         return;
     
-    uint32 selected_weight = randmm(0, total_weight / uint32(pool->size() * fraction));
+    uint32 selected_weight = randmm(0, total_weight / number);
     uint32 weight = 0;
     weight_map::const_iterator itr = m_weight_map.begin();
-    for (uint32 i = 0; i < uint32(pool->size() * fraction); i++)
+    for (uint32 i = 0; i < number; i++)
     {        
          for (; itr != m_weight_map.end(); ++itr)
          {
@@ -475,11 +530,44 @@ void population::stocastic_universal(individual_id_list& id_pool, float fraction
                  break;
              }
          }
-         selected_weight += total_weight / uint32(pool->size() * fraction);
+         selected_weight += total_weight / number;
     }
 }
 
+void population::select_best(individual_id_list& id_pool, uint32 number)
+{   
 
+    typedef std::pair<uint32, float> best_pair;
+    std::list<best_pair> best_map;
+    
+    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        for (std::list<best_pair>::iterator itr2 = best_map.begin();; ++itr2)
+        {  
+            if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
+            {        
+                if (itr2 == best_map.end() && best_map.size() >= number)
+                    break;
+                
+                best_map.insert(itr2, best_pair((*itr).first, (*itr).second->get_fitness()));
+                
+                if (best_map.size() > number)
+                {   
+                    itr2 = best_map.end();
+                    best_map.erase(--itr2);
+                }
+                break;
+            }
+        }
+    }
+    
+    id_pool.clear();
+
+    for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
+        id_pool.insert(id_pool.end(), (*itr2).first);
+}
+
+/*
 void population::transfer_best()
 {
     uint32 transfer_num = uint32(conf->get_int_config(CONFIG_POPULATION_SIZE)) - uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION));
@@ -524,7 +612,7 @@ void population::transfer_best()
         individual *ind_cloned = new individual(*((*itr2).first));
         temp_pool->insert(temp_pool->end(), individual_pair(temp_pool->size(), ind_cloned));
     }
-}
+}*/
 
 void population::sort()
 {

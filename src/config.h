@@ -22,10 +22,11 @@ enum e_cut_type
     MAX_CUT_TYPE
 };
 
-enum e_mating_type
+enum e_select_type
 {
     ROULETTE_WHEEL = 1,
     STOCASTIC_UNIVERSAL,
+    SELECT_BEST,
     MAX_MATING_TYPE
 };
 
@@ -60,6 +61,7 @@ enum config_int
     CONFIG_FITNESS_TYPE,
     CONFIG_CUT_TYPE,
     CONFIG_MATING_SELECT_TYPE,
+    CONFIG_TRANSFER_SELECT_TYPE,
     CONFIG_MAX_STALL,
     CONFIG_MAX_RETEST,
     CONFIG_CHROMOSOME_NUM,

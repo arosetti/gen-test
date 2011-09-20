@@ -126,8 +126,8 @@ void ga_engine::evolve()
             break;
         }
 
-        INFO("verbose",  "* transfer best individuals\n");
-        pop->transfer_best();
+        INFO("verbose",  "* transfer individuals\n");
+        pop->transfer();
 
         INFO("verbose",  "* mating individuals\n");
         pop->mate_individuals();
