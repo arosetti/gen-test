@@ -24,7 +24,7 @@ enum e_cut_type
 
 enum e_mating_type
 {
-    ROULETTE_WHEEL,
+    ROULETTE_WHEEL = 1,
     STOCASTIC_UNIVERSAL,
     MAX_MATING_TYPE
 };

@@ -81,7 +81,8 @@ class population
     
     private:
 
-    void    roulette_wheel(individual_id_list id_pool, float fraction);
+    void roulette_wheel(individual_id_list& id_pool, float fraction);
+    void stocastic_universal(individual_id_list& id_pool, float fraction);
 
     inline void  mutex_init()
     {

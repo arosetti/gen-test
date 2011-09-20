@@ -285,7 +285,6 @@ void config::check_config() // TODO inserire altri controlli
     if (config_int[CONFIG_THREAD_SLOTS] <= 0)
     {
         config_int[CONFIG_THREAD_SLOTS] = sysconf( _SC_NPROCESSORS_ONLN ) + 1;
-        cout << "thread_slots must be positive, setting to " << config_int[CONFIG_THREAD_SLOTS] << endl;
     }
 
     if (config_int[CONFIG_MAX_RETEST] < 0)
