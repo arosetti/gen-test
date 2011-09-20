@@ -358,17 +358,33 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 }
 
 void population::create_mating_pool()
-{
-    weight_map m_weight_map;
-    uint32 total_weight = 0;    
-
-    mating_pool.clear();
-
+{  
     if (!pool->size())
         return;
 
     LOG_STATIC("events", "mating", "create_mating_pool\n");
 
+    switch (conf->get_int_config(CONFIG_MATING_SELECT_TYPE))
+    {
+        case ROULETTE_WHEEL:
+            {
+                roulette_wheel(mating_pool, conf->get_float_config(CONFIG_MATING_FRACTION));
+            }
+            break;
+        case STOCASTIC_UNIVERSAL:
+            {
+
+            }   
+            break;
+    }   
+}
+
+void population::roulette_wheel(individual_id_list id_pool, float fraction)
+{
+    id_pool.clear();
+
+    weight_map m_weight_map;
+    uint32 total_weight = 0;
     float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
     float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
 
@@ -397,9 +413,9 @@ void population::create_mating_pool()
     uint32 weight;
     weight_map::const_iterator itr;
 
-    for (uint32 i = 0; i < uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION)); i++)
+    for (uint32 i = 0; i < uint32(pool->size() * fraction); i++)
     {
-         selected_weight = randmm(0,total_weight);
+         selected_weight = randmm(0, total_weight);
          weight = 0;
 
          for (itr = m_weight_map.begin(); itr != m_weight_map.end(); ++itr)
@@ -407,7 +423,7 @@ void population::create_mating_pool()
              weight += itr->second;
              if (selected_weight < weight)
              {
-                 mating_pool.push_front(itr->first);
+                 id_pool.push_front(itr->first);
                  break;
              }
          }
@@ -458,6 +474,34 @@ void population::transfer_best()
         individual *ind_cloned = new individual(*((*itr2).first));
         temp_pool->insert(temp_pool->end(), individual_pair(temp_pool->size(), ind_cloned));
     }
+}
+
+void population::sort()
+{
+    if (!pool->size())
+        return;
+
+    typedef std::pair<individual*, float> best_pair;
+    std::list<best_pair> best_map;
+    
+    for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
+    {
+        for (std::list<best_pair>::iterator itr2 = best_map.begin();; ++itr2)
+        {  
+            if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
+            {                
+                best_map.insert(itr2, best_pair((*itr).second, (*itr).second->get_fitness()));
+                break;
+            }
+        }
+    }
+
+    individual_map* order_pool = new individual_map;
+    for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
+        order_pool->insert(order_pool->end(), individual_pair(order_pool->size(), (*itr2).first));
+
+    delete pool;
+    pool = order_pool;
 }
 
 void population::mate_individuals()

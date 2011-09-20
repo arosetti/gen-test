@@ -22,6 +22,13 @@ enum e_cut_type
     MAX_CUT_TYPE
 };
 
+enum e_mating_type
+{
+    ROULETTE_WHEEL,
+    STOCASTIC_UNIVERSAL,
+    MAX_MATING_TYPE
+};
+
 enum config_bool
 {
     CONFIG_DEBUG = 0,
@@ -52,6 +59,7 @@ enum config_int
     CONFIG_POPULATION_SIZE,
     CONFIG_FITNESS_TYPE,
     CONFIG_CUT_TYPE,
+    CONFIG_MATING_SELECT_TYPE,
     CONFIG_MAX_STALL,
     CONFIG_MAX_RETEST,
     CONFIG_CHROMOSOME_NUM,

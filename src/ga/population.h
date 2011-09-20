@@ -49,6 +49,7 @@ class population
     ~population();
 
     void    new_random_population();
+    void    sort();   
 
     void    test_population();
     void    eval_fitnesses();
@@ -79,6 +80,8 @@ class population
     void inc_barlink();
     
     private:
+
+    void    roulette_wheel(individual_id_list id_pool, float fraction);
 
     inline void  mutex_init()
     {

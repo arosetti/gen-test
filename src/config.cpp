@@ -37,6 +37,7 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"ga.chromosome_start_len_max",  20, CFGF_NONE),
     CFG_BOOL((char*)"ga.normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
     CFG_INT((char*)"ga.fitness_type", 1, CFGF_NONE),
+    CFG_INT((char*)"ga.mating_select_type", 1, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mating_fraction", 0.5f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
@@ -111,6 +112,7 @@ bool config::load_config()
     config_int[CONFIG_CHROMOSOME_START_LEN_MAX] = cfg_getint(cfg, "ga.chromosome_start_len_max");
     config_bool[CONFIG_NORMALIZED_FITNESS]      = cfg_getbool(cfg, "ga.normalized_fitness");
     config_int[CONFIG_FITNESS_TYPE]             = cfg_getint(cfg, "ga.fitness_type");
+    config_int[CONFIG_MATING_SELECT_TYPE]       = cfg_getint(cfg, "ga.mating_select_type");
     config_float[CONFIG_MATING_RATE]            = cfg_getfloat(cfg, "ga.mating_rate");
     config_float[CONFIG_MATING_FRACTION]        = cfg_getfloat(cfg, "ga.mating_fraction");
     config_float[CONFIG_MUTATION_RATE]          = cfg_getfloat(cfg, "ga.mutation_rate");
@@ -320,6 +322,12 @@ void config::check_config() // TODO inserire altri controlli
     {
         config_int[CONFIG_CUT_TYPE] = CUT_DOUBLE_RANDOM;
         cout << "Invalid cut_type, setting to " << config_int[CONFIG_CUT_TYPE] << endl;
+    }
+
+    if (config_int[CONFIG_MATING_SELECT_TYPE] < ROULETTE_WHEEL || config_int[CONFIG_MATING_SELECT_TYPE] >= MAX_MATING_TYPE)
+    {
+        config_int[CONFIG_MATING_SELECT_TYPE] = ROULETTE_WHEEL;
+        cout << "Invalid ga.mating_select_type, setting to " << config_int[CONFIG_MATING_SELECT_TYPE] << endl;
     }
 
     if (config_int[CONFIG_CHROMOSOME_NUM] <= 0)
