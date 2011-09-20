@@ -504,7 +504,7 @@ void population::mate_individuals()
         index +=2; 
     }
 
-    /* Se ne rimane uno che non ha trovato moglie lo copio nella nuova map */
+    // Se ne rimane uno che non ha trovato moglie lo copio nella nuova map
     if (mating_pool.size() == (index + 1))
     {
         ind_a_cloned = new individual(*(*pool->find(*itr)).second);
@@ -513,7 +513,7 @@ void population::mate_individuals()
             individual_pair(temp_pool->size(), ind_a_cloned));
     }
 
-    /* Elimino la vecchia generazione e la sostituisco con la nuova */
+    // Elimino la vecchia generazione e la sostituisco con la nuova
     clear_population();
     pool = temp_pool;
     temp_pool = NULL;

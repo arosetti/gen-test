@@ -107,7 +107,6 @@ void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 po
 
     if (pos_2)
     {
-
         if (pos_1 > pos_2)
         {
             uint32 temp_pos = pos_1;
@@ -119,17 +118,17 @@ void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 po
         *dna_2 = dna->GetCols(pos_1 + 1, pos_2); // if pos_1 == pos_2 ritorna ""
         *dna_3 = dna->GetCols(pos_2 + 1, dna->GetColNum()-1);
 
-        LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, (*dna_1).c_str());
-        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, pos_2, (*dna_2).c_str());
-        LOG("ga_events", "mating", "dna_3 (%d,%d)\n%s\n", pos_2+1, dna->GetColNum(), (*dna_3).c_str());
+        LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1->c_str());
+        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, pos_2, dna_2->c_str());
+        LOG("ga_events", "mating", "dna_3 (%d,%d)\n%s\n", pos_2+1, dna->GetColNum(), dna_3->c_str());
     }
     else
     {
         *dna_1 = dna->GetCols(0, pos_1);
         *dna_2 = dna->GetCols(pos_1 + 1, dna->GetColNum() - 1);
 
-        LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, (*dna_1).c_str());
-        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, dna->GetColNum(), (*dna_2).c_str());
+        LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1->c_str());
+        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, dna->GetColNum(), dna_2->c_str());
 
     }    
 }
@@ -218,7 +217,7 @@ string individual::get_chromosome(uint32 crom)  const
 
 void individual::set_chromosome(uint32 crom, string str)
 {
-    if (crom>= chromosome_number)
+    if (crom >= chromosome_number)
         return;
 
     dna->SetRow(str, crom);
@@ -267,8 +266,6 @@ string individual::info(bool format)
 bool individual::operator == (const individual& ind)
 {
     return dna->ToString() == ind.dna->ToString();
-
-
 }
 
 bool individual::operator < (const individual& ind)
