@@ -12,6 +12,13 @@ using namespace std;
 
 static vector<pthread_t> threads_id;
 
+enum e_fitness_type
+{
+    FAULT_RATE = 1,
+    FAULT_RATE_MIN_LENGTH,
+    MAX_FITNESS_TYPE
+};
+
 enum e_cut_type
 {
     CUT_DOUBLE_RANDOM = 1,

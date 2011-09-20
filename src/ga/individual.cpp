@@ -185,10 +185,10 @@ void individual::calc_fitness()
 
     switch (conf->get_int_config(CONFIG_FITNESS_TYPE))
     {
-        case 1:
+        case FAULT_RATE:
             fitness = (float)(100 * detected) / (float)(n_tests);
             break;
-        case 2:
+        case FAULT_RATE_MIN_LENGTH:
             fitness = ((float)(detected) / (float)(n_tests)) -
                  ((float)get_chromosome_length() / (10.0f * (float)(n_tests))) + 1.0f;
             break;
