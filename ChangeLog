@@ -1,5 +1,10 @@
-changeset:   365:99854c71659e
+changeset:   366:74230a69c5bc
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 09:56:45 2011 +0200
+sommario:    * build.sh rileva il numero di cpu/thread e compila con quella quantità
+
+changeset:   365:99854c71659e
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 20 09:46:45 2011 +0200
 sommario:    * cambio parametro numerico nell'elemento di handicap della fitness 2
