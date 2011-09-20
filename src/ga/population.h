@@ -40,7 +40,7 @@ class population
     individual* get_random_individual() const;
     individual* new_random_individual();
 
-    void    create_mating_pool();
+    void    create_mating_pool();    
     void    crossover(individual*&, individual*&);
     void    clear_population();
 
@@ -63,7 +63,7 @@ class population
     const individual* get_worst_individual();
     const individual* get_fattest_individual();
 
-    void    transfer_best();
+    void    transfer();
     void    mate_individuals();
     void    set_mutation_rate(float rate);
     void    fattest_individuals_shrink();
@@ -81,8 +81,9 @@ class population
     
     private:
 
-    void roulette_wheel(individual_id_list& id_pool, float fraction);
-    void stocastic_universal(individual_id_list& id_pool, float fraction);
+    void roulette_wheel(individual_id_list& id_pool, uint32 number);
+    void stocastic_universal(individual_id_list& id_pool, uint32 number);
+    void select_best(individual_id_list& id_pool, uint32 number);
 
     inline void  mutex_init()
     {
