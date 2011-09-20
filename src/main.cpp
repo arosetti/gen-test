@@ -52,8 +52,6 @@ void sigint_callback_handler(int signum)
     for( ; itr != threads_id.end(); ++itr)
         pthread_kill(*itr, SIGINT);
 
-
-
     clean_env();
 
     time_stop(t_gentest);

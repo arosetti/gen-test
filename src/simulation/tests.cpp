@@ -12,10 +12,12 @@ void *SimulationThread(void *arg)
         remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_individual())
-    {        
-        if (ind->ExecuteTest(t_param->sim_id, t_param->g_test))
-            usleep(10);
-        t_param->pop->inc_barlink();
+    {
+        if (!ind->is_tested())
+        {
+            t_param->pop->inc_barlink();
+            ind->ExecuteTest(t_param->sim_id, t_param->g_test);
+        }
     }
 
     t_param->pop->dec_threads();
@@ -116,9 +118,6 @@ bool tests::FindFault(uint32 fault)
 
 bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
-    if (is_tested())
-        return false;
-
     int tried = 0;
     while (!is_tested() && tried < (conf->get_int_config(CONFIG_MAX_RETEST) + 1))
     {
@@ -156,7 +155,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         return false;
     }
 
-    EmptyFaults(g_test);    
+    EmptyFaults(g_test);
 
     int fault_index = 0;
 
