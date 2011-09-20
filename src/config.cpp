@@ -38,7 +38,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"ga.normalized_fitness", (cfg_bool_t)false, CFGF_NONE),
     CFG_INT((char*)"ga.fitness_type", 1, CFGF_NONE),
     CFG_INT((char*)"ga.mating_select_type", 1, CFGF_NONE),
-    CFG_INT((char*)"ga.trasfer_select_type", 3, CFGF_NONE),
+    CFG_INT((char*)"ga.transfer_select_type", 3, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mating_fraction", 0.5f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
