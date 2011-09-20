@@ -1,5 +1,6 @@
 #include "population.h"
 #include <unistd.h>
+#include <libgen.h>
 
 population::population()
 {
@@ -809,7 +810,8 @@ int population::load_log(string filename)
     delete[] buffer;
 
     int generation = 0;
-    sscanf(filename.c_str(), "generation%d.log", &generation); // TODO migliorare questo hack
+
+    sscanf(basename((char*)filename.c_str()), "generation%d.log", &generation); // TODO migliorare questo hack
 
     return generation;
 }
