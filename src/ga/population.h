@@ -38,11 +38,16 @@ class population
     individual *worst_individual;
 
     individual* get_random_individual() const;
-    individual* new_random_individual();
+    individual* new_random_individual();  
 
-    void    create_mating_pool();    
+    void    create_mating_pool();
+    void    normalize(float& fitness);   
     void    crossover(individual*&, individual*&);
     void    clear_population();
+
+    void roulette_wheel(individual_id_list& id_pool, uint32 number);
+    void stocastic_universal(individual_id_list& id_pool, uint32 number);
+    void select_best(individual_id_list& id_pool, uint32 number);
 
     public:
     population();
@@ -80,10 +85,6 @@ class population
     void inc_barlink();
     
     private:
-
-    void roulette_wheel(individual_id_list& id_pool, uint32 number);
-    void stocastic_universal(individual_id_list& id_pool, uint32 number);
-    void select_best(individual_id_list& id_pool, uint32 number);
 
     inline void  mutex_init()
     {

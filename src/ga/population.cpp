@@ -439,9 +439,7 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
     id_pool.clear();
 
     weight_map m_weight_map;
-    uint32 total_weight = 0;
-    float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
-    float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
+    uint32 total_weight = 0;    
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -449,12 +447,7 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
         if (!fitness)
             continue;
 
-        if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
-        {
-            if (best_fitness - worst_fitness != 0.0f)
-                fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
-        }
-
+        normalize(fitness);
 
         uint32 u_fitness = uint32(fitness * 1000);
 
@@ -492,8 +485,6 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 
     weight_map m_weight_map;
     uint32 total_weight = 0;
-    float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
-    float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
@@ -501,11 +492,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
         if (!fitness)
             continue;
 
-        if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
-        {
-            if (best_fitness - worst_fitness != 0.0f)
-                fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
-        }
+        normalize(fitness);        
 
         uint32 u_fitness = uint32(fitness * 1000);
 
@@ -535,7 +522,8 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 }
 
 void population::select_best(individual_id_list& id_pool, uint32 number)
-{   
+{
+    id_pool.clear();
 
     typedef std::pair<uint32, float> best_pair;
     std::list<best_pair> best_map;
@@ -565,6 +553,18 @@ void population::select_best(individual_id_list& id_pool, uint32 number)
 
     for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
         id_pool.insert(id_pool.end(), (*itr2).first);
+}
+
+void population::normalize(float& fitness)
+{
+    if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))  // Normalized
+    {
+        float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
+        float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
+
+        if (best_fitness - worst_fitness != 0.0f)
+            fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
+    }
 }
 
 /*
