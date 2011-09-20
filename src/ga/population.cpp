@@ -390,8 +390,7 @@ void population::transfer()
     if (!pool->size())
         return;
 
-    uint32 transfer_num = uint32(conf->get_int_config(CONFIG_POPULATION_SIZE)) -
-                          uint32(conf->get_int_config(CONFIG_POPULATION_SIZE) * conf->get_float_config(CONFIG_MATING_FRACTION));
+    uint32 transfer_num = uint32(pool->size()) - uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
 
     if (conf->get_float_config(CONFIG_MATING_FRACTION) == 1.0f)
         return;
