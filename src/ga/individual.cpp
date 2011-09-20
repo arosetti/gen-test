@@ -174,7 +174,7 @@ float individual::get_fitness()  const
     return fitness;
 }
 
-void individual::set_fitness(float f) // deprecated
+void individual::set_fitness(float f)
 {
     fitness = f;
 }
@@ -191,7 +191,7 @@ void individual::calc_fitness()
             break;
         case 2:
             fitness = ((float)(detected) / (float)(n_tests)) -
-                 ((float)get_chromosome_length() / (30.0f * (float)(n_tests))) + 1.0f;
+                 ((float)get_chromosome_length() / (10.0f * (float)(n_tests))) + 1.0f;
             break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");
