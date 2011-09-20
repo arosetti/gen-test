@@ -388,14 +388,12 @@ void population::create_mating_pool()
 void population::transfer()
 {  
     if (!pool->size())
-        return;
-
-    uint32 transfer_num = uint32(pool->size()) - uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
+        return;   
 
     if (conf->get_float_config(CONFIG_MATING_FRACTION) == 1.0f)
         return;
 
-    transfer_num = transfer_num ? transfer_num : 1;
+    uint32 transfer_num = uint32(pool->size()) - uint32(float(pool->size()) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
     INFO("debug", "transferring %d individual(s) from old population\n", transfer_num);
 
