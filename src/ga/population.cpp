@@ -384,7 +384,7 @@ void population::create_mating_pool()
     if (!pool->size())
         return;
 
-    mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION);
+    mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
 
     INFO("debug", "* selecting %d individual(s) for mating using ", mating_num);
     if (conf->get_bool_config(CONFIG_LOG_MATING))
