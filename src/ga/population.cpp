@@ -394,7 +394,7 @@ void population::create_mating_pool()
             break;
         case STOCASTIC_UNIVERSAL:
             {
-                sort();
+                // sort();
                 stocastic_universal(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }   
             break;
@@ -429,7 +429,7 @@ void population::transfer()
         break;
         case STOCASTIC_UNIVERSAL:
         {
-            sort();
+            // sort();
             stocastic_universal(id_pool, transfer_num);
         }
         break;

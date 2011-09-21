@@ -197,6 +197,9 @@ void individual::calc_fitness()
             exit(1);
             break;
     }
+
+    if (fitness < 0.0f)
+        fitness = 0.01f;
 }
 
 float individual::get_fault_coverage() const
