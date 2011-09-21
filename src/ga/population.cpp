@@ -382,6 +382,7 @@ void population::create_mating_pool()
     if (!pool->size())
         return;
 
+    INFO("debug", "* selecting %d individual(s) for mating using ", transfer_num);
     if (conf->get_bool_config(CONFIG_LOG_MATING))
         LOG_STATIC("mating_events", "mating", "create_mating_pool\n");
 
@@ -391,34 +392,37 @@ void population::create_mating_pool()
     {
         case ROULETTE_WHEEL:
             {
+                INFO("debug", "roulette weel selection\n");
                 roulette_wheel(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }
             break;
         case STOCASTIC_UNIVERSAL:
             {
+                INFO("debug", "stocastic universal selection\n");
                 // sort();
                 stocastic_universal(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }   
             break;
         case SELECT_BEST:
             {
+                INFO("debug", "select best ones\n");
                 select_best(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
             }
             break;
-    }   
+    }
 }
 
 void population::transfer()
 {  
     if (!pool->size())
-        return;   
+        return;
 
     if (conf->get_float_config(CONFIG_MATING_FRACTION) == 1.0f)
         return;
 
     uint32 transfer_num = uint32(pool->size()) - uint32(float(pool->size()) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
-    INFO("debug", "copying %d individual(s) from old population\n", transfer_num);
+    INFO("debug", "copying %d individual(s) using ", transfer_num);
 
     individual_id_list id_pool;    
 
@@ -426,6 +430,7 @@ void population::transfer()
     {
         case ROULETTE_WHEEL:
         {
+            INFO("debug", "roulette wheel\n");
             if (conf->get_bool_config(CONFIG_ALWAYS_TRANSFER_THE_BEST))
             {
                 select_best(id_pool, 1);
@@ -437,6 +442,7 @@ void population::transfer()
         break;
         case STOCASTIC_UNIVERSAL:
         {
+            INFO("debug", "stocastic universal\n");
             if (conf->get_bool_config(CONFIG_ALWAYS_TRANSFER_THE_BEST))
             {
                 select_best(id_pool, 1);
@@ -451,6 +457,7 @@ void population::transfer()
         break;
         case SELECT_BEST:
         {
+            INFO("debug", "select best ones\n");
             select_best(id_pool, transfer_num);
         }
         break;
@@ -586,7 +593,7 @@ void population::normalize(float& fitness)
     if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))
     {
         float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
-        float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;    
+        float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
 
         if (best_fitness - worst_fitness != 0.0f)
             fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
