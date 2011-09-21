@@ -84,8 +84,7 @@ string get_log_file_path(uint32 gen)
 
 void clean_env()
 {
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
-        INFO("verbose", "* simulation: cleaning environment\n");
+    INFO("verbose", "* simulation: cleaning environment\n");
 
     remove(get_faults_path(-1).c_str());
     remove(get_input_file_path(-1).c_str());
