@@ -1,0 +1,2000 @@
+changeset:   381:c2beafa56512
+tag:         tip
+utente:      Lazzalf
+data:        Tue Sep 20 18:34:48 2011 +0200
+sommario:    Fix lettura da file generationX.log
+
+changeset:   380:3fed7453813d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 16:43:50 2011 +0200
+sommario:    Inserita l'etichetta 0.2.1 per il changeset 75d0397fdf02
+
+changeset:   379:75d0397fdf02
+tag:         0.2.1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 16:43:39 2011 +0200
+sommario:    * versione 0.2.1
+
+changeset:   378:33cd06ff607e
+genitore:    376:543386b27c8e
+genitore:    377:29e9ca246f72
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 16:36:50 2011 +0200
+sommario:    Merge
+
+changeset:   377:29e9ca246f72
+genitore:    375:463a760536ca
+utente:      Lazzalf
+data:        Tue Sep 20 16:29:53 2011 +0200
+sommario:    CleanUp
+
+changeset:   376:543386b27c8e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 16:36:01 2011 +0200
+sommario:    * aggiunto enum e_fitness_type
+
+changeset:   375:463a760536ca
+utente:      Lazzalf
+data:        Tue Sep 20 16:18:30 2011 +0200
+sommario:    Small change
+
+changeset:   374:74a1f737d8f9
+utente:      Lazzalf
+data:        Tue Sep 20 15:59:43 2011 +0200
+sommario:    * Spostata la normalizzazione in una funzione
+
+changeset:   373:f97763671fe6
+utente:      Lazzalf
+data:        Tue Sep 20 15:29:52 2011 +0200
+sommario:    Fix typos
+
+changeset:   372:5d1f015763b2
+utente:      Lazzalf
+data:        Tue Sep 20 15:28:29 2011 +0200
+sommario:    * Inserita possibilità di selezionare il transfer
+
+changeset:   371:e08cbe282c7f
+utente:      Lazzalf
+data:        Tue Sep 20 14:33:59 2011 +0200
+sommario:    * Fix some typos
+
+changeset:   370:c2f6367522bd
+utente:      Lazzalf
+data:        Tue Sep 20 14:07:53 2011 +0200
+sommario:    * Riorganizzato population per inserimento di altri tipi di selezione di mating pool
+
+changeset:   369:9234cd3ef531
+utente:      Lazzalf
+data:        Tue Sep 20 11:39:48 2011 +0200
+sommario:    * CleanUp
+
+changeset:   368:aec03ef22834
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 11:35:42 2011 +0200
+sommario:    * se thread_slots è zero, il config rileva il numero di processori e imposta
+
+changeset:   367:d25acceaa03d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 11:06:44 2011 +0200
+sommario:    * fix script tarlogs.sh
+
+changeset:   366:74230a69c5bc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 09:56:45 2011 +0200
+sommario:    * build.sh rileva il numero di cpu/thread e compila con quella quantità
+
+changeset:   365:99854c71659e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 09:46:45 2011 +0200
+sommario:    * cambio parametro numerico nell'elemento di handicap della fitness 2
+
+changeset:   364:61445b957a8b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 03:24:19 2011 +0200
+sommario:    Backout eseguito sul changeset: 256ea87e27fc
+
+changeset:   363:256ea87e27fc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 02:00:10 2011 +0200
+sommario:    * fix check stall
+
+changeset:   362:477e3cf114e1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 01:38:46 2011 +0200
+sommario:    * aggiornato configure.ac in modo da supportare alcuni argomenti di ingresso:
+
+changeset:   361:ec8f20ac9ab0
+utente:      Lazzalf
+data:        Mon Sep 19 21:21:05 2011 +0200
+sommario:    * Unite le due dna_split e le due dna_merge
+
+changeset:   360:44e620d6ed9a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 21:12:11 2011 +0200
+sommario:    Inserita l'etichetta 0.2.0 per il changeset 3eb695f348f9
+
+changeset:   359:3eb695f348f9
+tag:         0.2.0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 21:12:01 2011 +0200
+sommario:    * versione 0.2.0
+
+changeset:   358:dfa94cd715b3
+utente:      Lazzalf
+data:        Mon Sep 19 20:46:42 2011 +0200
+sommario:    * Fix copia-incolla andato male XD
+
+changeset:   357:c80cf3ec24b3
+genitore:    356:d6a73fac7df7
+genitore:    355:b24918a7b7f3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:09:19 2011 +0200
+sommario:    Merge
+
+changeset:   356:d6a73fac7df7
+genitore:    354:6b01fdc2e314
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:08:10 2011 +0200
+sommario:    * rimossa funzione rebuild
+
+changeset:   355:b24918a7b7f3
+genitore:    354:6b01fdc2e314
+genitore:    350:bfe8ce6de456
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 20:05:29 2011 +0200
+sommario:    Merge
+
+changeset:   354:6b01fdc2e314
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:29:41 2011 +0200
+sommario:    * cambio nome default del file di config
+
+changeset:   353:f7bb3f72fb1d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:19:49 2011 +0200
+sommario:    #imported patch
+
+changeset:   352:009f999da826
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:12:45 2011 +0200
+sommario:    * ripristino permessi di non esecuzione sui sorgenti
+
+changeset:   351:3b6700eb0908
+genitore:    348:af93c18fcb25
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 19 19:07:22 2011 +0200
+sommario:    * inserita funzione read_file
+
+changeset:   350:bfe8ce6de456
+utente:      Lazzalf
+data:        Mon Sep 19 18:01:52 2011 +0200
+sommario:    * Inserito due tipi di two points crossover
+
+changeset:   349:6c14cbe03b51
+utente:      Lazzalf
+data:        Mon Sep 19 17:40:03 2011 +0200
+sommario:    * non serve eseguire *.cpp e *.h
+
+changeset:   348:af93c18fcb25
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:26:32 2011 +0200
+sommario:    * fix hack
+
+changeset:   347:2e78802971ca
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:22:45 2011 +0200
+sommario:    * fix bug population mate_individuals, l'ultimo invididuo non veniva mutato
+
+changeset:   346:33695befb526
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 18 22:02:43 2011 +0200
+sommario:    * aggiunta rand_gaussian
+
+changeset:   345:01ff209e0090
+utente:      Lazzalf
+data:        Sat Sep 17 15:10:00 2011 +0200
+sommario:    Individual
+
+changeset:   344:306e2e18f278
+genitore:    342:53751d69f662
+genitore:    343:4917928c6a24
+utente:      Lazzalf
+data:        Sat Sep 17 13:09:26 2011 +0200
+sommario:    Merge
+
+changeset:   343:4917928c6a24
+genitore:    341:215f17fbccd5
+utente:      Lazzalf
+data:        Sat Sep 17 13:08:29 2011 +0200
+sommario:    * Fix numerazione generation
+
+changeset:   342:53751d69f662
+genitore:    340:01166fba9021
+genitore:    341:215f17fbccd5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 13:07:29 2011 +0200
+sommario:    Merge
+
+changeset:   341:215f17fbccd5
+genitore:    339:ebe234939429
+utente:      Lazzalf
+data:        Sat Sep 17 12:56:24 2011 +0200
+sommario:    * CleanUp e qualche Check
+
+changeset:   340:01166fba9021
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 13:03:54 2011 +0200
+sommario:    * inserito operatore == negli individual, confronta il dna
+
+changeset:   339:ebe234939429
+utente:      Lazzalf
+data:        Sat Sep 17 12:26:13 2011 +0200
+sommario:    Fix possible crash
+
+changeset:   338:561d4f009e4f
+utente:      Lazzalf
+data:        Sat Sep 17 12:16:31 2011 +0200
+sommario:    * Modificati population::get_best_individual() e population::get_worst_individual() per scegliere attraverso i fault rilevati a pari fitness e non la lunghezza
+
+changeset:   337:4e0ee212e025
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 03:56:06 2011 +0200
+sommario:    * revert degli info
+
+changeset:   336:a733cd57c5f6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 03:29:33 2011 +0200
+sommario:    * kill dei thread quando il programma riceve SIGINT
+
+changeset:   335:f18114340a58
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 01:29:07 2011 +0200
+sommario:    * fix stop_at_100, la fault coverage va da 0 a 1.0f, non sarà mai 100.0f
+
+changeset:   334:e2ae55db7973
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 01:08:31 2011 +0200
+sommario:    * fix nome profilo sbagliato
+
+changeset:   333:272d9ce1078f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:17:32 2011 +0200
+sommario:    Inserita l'etichetta 0.1.9 per il changeset 5e486d779037
+
+changeset:   332:5e486d779037
+tag:         0.1.9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:17:19 2011 +0200
+sommario:    versione 0.1.9
+
+changeset:   331:4cf25f77d660
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 17 00:07:20 2011 +0200
+sommario:    * aggiornato gnuplot.conf
+
+changeset:   330:ad32aa3c8df3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 15:55:01 2011 +0200
+sommario:    * progress bar disabilitata nella modalità debugger
+
+changeset:   329:fc99fd42fe1e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 15:22:26 2011 +0200
+sommario:    * aggiunti file rand.cpp e rand.h per una possibile implementazione di diversi tipi di rand.cpp
+
+changeset:   328:b1536c0482c9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 12:08:40 2011 +0200
+sommario:    * aggiunta una maschera per tutta la classe logger utilizzata per confrontare
+
+changeset:   327:016f0c7af0a1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 11:54:54 2011 +0200
+sommario:    * rimossa step_progress_bar
+
+changeset:   326:bb615115310b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 03:58:54 2011 +0200
+sommario:    * fix in get_{best,worst}_individual
+
+changeset:   325:89a7cb322984
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 16 02:23:58 2011 +0200
+sommario:    * aggiunto parametro e funzione avg_fault_coverage
+
+changeset:   324:583a1f001eb8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:04:05 2011 +0200
+sommario:    Inserita l'etichetta 0.1.8 per il changeset 6091be24cfeb
+
+changeset:   323:6091be24cfeb
+tag:         0.1.8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:03:53 2011 +0200
+sommario:    * versione 0.1.8
+
+changeset:   322:db9f0633c9c1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 21:01:41 2011 +0200
+sommario:    * fix display generazione
+
+changeset:   321:c49e7e2cde3d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 20:12:07 2011 +0200
+sommario:    * inserita set_count
+
+changeset:   320:630883714e64
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 18:04:09 2011 +0200
+sommario:    * altri info aggiornati
+
+changeset:   319:6ef266b28564
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 17:49:51 2011 +0200
+sommario:    * fix define ( ancora più fighi )
+
+changeset:   318:fb96aed937f5
+utente:      Lazzalf
+data:        Thu Sep 15 17:38:39 2011 +0200
+sommario:    Inserito config ga.stop_at_100
+
+changeset:   317:32284249b6c5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 16:43:57 2011 +0200
+sommario:    * fix compile define (strafighi) del logger
+
+changeset:   316:e48da36b80c2
+utente:      Lazzalf
+data:        Thu Sep 15 16:36:24 2011 +0200
+sommario:    Fix compile
+
+changeset:   315:24ca6b12fd65
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 16:15:29 2011 +0200
+sommario:    * inserita funzione info
+
+changeset:   314:a82aa5068035
+utente:      Lazzalf
+data:        Thu Sep 15 16:02:37 2011 +0200
+sommario:    Altre modifiche al config e a variabili ad esso collegate
+
+changeset:   313:0bf2ce79ae75
+genitore:    312:ff93d9acbb28
+genitore:    311:bdb3472eb4fe
+utente:      Lazzalf
+data:        Thu Sep 15 15:25:10 2011 +0200
+sommario:    Merge
+
+changeset:   312:ff93d9acbb28
+genitore:    309:2567a390242d
+utente:      Lazzalf
+data:        Thu Sep 15 15:21:31 2011 +0200
+sommario:    Rifacimento del config, ancora in WIP
+
+changeset:   311:bdb3472eb4fe
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 15:22:01 2011 +0200
+sommario:    * cleanups
+
+changeset:   310:e9f632321973
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 14:28:24 2011 +0200
+sommario:    * aggiunta funzione init_log_profiles
+
+changeset:   309:2567a390242d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 13:58:30 2011 +0200
+sommario:    * fix compile logger
+
+changeset:   308:58f0508742ef
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 13:47:43 2011 +0200
+sommario:    * fix generici logger.h logger.cpp
+
+changeset:   307:044077c517f3
+utente:      Lazzalf
+data:        Thu Sep 15 13:05:48 2011 +0200
+sommario:    Aggiornamento config
+
+changeset:   306:8d77d607509e
+utente:      Lazzalf
+data:        Thu Sep 15 13:04:32 2011 +0200
+sommario:    Config
+
+changeset:   305:01bd47294f12
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 11:59:24 2011 +0200
+sommario:    * modificata classe logger.h per supportare i profili di log e il print senza log
+
+changeset:   304:b871afc2b79b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 01:12:01 2011 +0200
+sommario:    * inseriti vari tipi di log, prima loggavo in maniera errata
+
+changeset:   303:fc9ff9eadafa
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 15 00:27:16 2011 +0200
+sommario:    cleanups
+
+changeset:   302:936d71091915
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 20:52:17 2011 +0200
+sommario:    * reinseriti profili fitness
+
+changeset:   301:e7b9990d3200
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 12:25:22 2011 +0200
+sommario:    * read_faultstxt -> read_faults_file
+
+changeset:   300:05c286396a6b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 02:01:13 2011 +0200
+sommario:    Inserita l'etichetta 0.1.7 per il changeset 71103021cab3
+
+changeset:   299:71103021cab3
+tag:         0.1.7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 02:01:02 2011 +0200
+sommario:    * versione 0.1.7
+
+changeset:   298:7992050c81b1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 14 01:48:28 2011 +0200
+sommario:    * fixata la load_log. (deve ancora rilevare il numero di generazione dal nome del file).
+
+changeset:   297:d2fb76a4dd59
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 23:44:26 2011 +0200
+sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
+
+changeset:   296:d746fe3e6a3c
+genitore:    295:85d875e04010
+genitore:    294:3d8fc8ae45bd
+utente:      Lazzalf
+data:        Tue Sep 13 21:21:07 2011 +0200
+sommario:    Merge
+
+changeset:   295:85d875e04010
+genitore:    293:217c283c5f02
+utente:      Lazzalf
+data:        Tue Sep 13 15:38:59 2011 +0200
+sommario:    Leggera modifica alla fitness
+
+changeset:   294:3d8fc8ae45bd
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 19:05:22 2011 +0200
+sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
+
+changeset:   293:217c283c5f02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 15:34:03 2011 +0200
+sommario:    * chmod +x sull'eseguibile del simulatore in fase di init_env
+
+changeset:   292:554baf06b3e4
+utente:      Lazzalf
+data:        Tue Sep 13 12:49:46 2011 +0200
+sommario:    * Inserita funzione get_worst_fitness
+
+changeset:   291:c6e7fbd12f02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 20:00:28 2011 +0200
+sommario:    * shrink di tutti gli individui che superano la dimensione massima
+
+changeset:   290:a4da2fa94931
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 15:20:57 2011 +0200
+sommario:    * inserita log_static per evitare overflow con i log delle generazioni che non
+
+changeset:   289:a2d5e2555ec8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 14:41:09 2011 +0200
+sommario:    * manca l'header di individual aggiornato
+
+changeset:   288:6d17be798d02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Sep 12 14:39:57 2011 +0200
+sommario:    * modificata classe logger
+
+changeset:   287:9db43c4c9ce6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:50:54 2011 +0200
+sommario:    Inserita l'etichetta 0.1.6 per il changeset 7e54be1399ce
+
+changeset:   286:7e54be1399ce
+tag:         0.1.6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:50:46 2011 +0200
+sommario:    versione 0.1.6
+
+changeset:   285:7c117d396e36
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:49:56 2011 +0200
+sommario:    fix get_fattest_individual
+
+changeset:   284:889419734615
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:33:55 2011 +0200
+sommario:    fix compile
+
+changeset:   283:59aa8d4d56d8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:21:04 2011 +0200
+sommario:    * inserita fattest_individual_shrink
+
+changeset:   282:cc70303437f9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 19:05:28 2011 +0200
+sommario:    * inserita get_fattest_individual()
+
+changeset:   281:1a96e6b23645
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 18:21:32 2011 +0200
+sommario:    * inserito booleano mutation_length_gene
+
+changeset:   280:d896c3dae6a2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 15:39:43 2011 +0200
+sommario:    .hgignore updated
+
+changeset:   279:76b800a3e2df
+utente:      Lazzalf
+data:        Sat Sep 10 15:13:04 2011 +0200
+sommario:    Fix inside check
+
+changeset:   278:a42fbc6a03c2
+utente:      Lazzalf
+data:        Sat Sep 10 15:10:08 2011 +0200
+sommario:    Fix multithreading crash
+
+changeset:   277:19b010484904
+genitore:    274:ecc355701301
+genitore:    276:73ac199fd32f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 14:12:51 2011 +0200
+sommario:    Merge^2
+
+changeset:   276:73ac199fd32f
+genitore:    275:d577f2c7b2bd
+genitore:    273:1b46a267dc95
+utente:      Lazzalf
+data:        Sat Sep 10 12:41:39 2011 +0200
+sommario:    Merge
+
+changeset:   275:d577f2c7b2bd
+genitore:    258:4743c28d0119
+utente:      Lazzalf
+data:        Sat Sep 10 12:40:54 2011 +0200
+sommario:    Test
+
+changeset:   274:ecc355701301
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 14:11:45 2011 +0200
+sommario:    * inserite opzioni -t e -s
+
+changeset:   273:1b46a267dc95
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 12:35:04 2011 +0200
+sommario:    Inserita l'etichetta 0.1.5 per il changeset aa47160b273e
+
+changeset:   272:aa47160b273e
+tag:         0.1.5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 12:34:53 2011 +0200
+sommario:    * versione 0.1.5
+
+changeset:   271:ab4129e3f3a9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 12:03:04 2011 +0200
+sommario:    * info numero threads nella label di esecuzione dei test.
+
+changeset:   270:9466289aba13
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 11:19:30 2011 +0200
+sommario:    fix mutazione, meglio lavorare solo sul rate ma usare un valore più alto
+
+changeset:   269:82fac9639789
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 10:29:13 2011 +0200
+sommario:    * inserita load_log (non testata)
+
+changeset:   268:ed6f019fddb4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 09:44:39 2011 +0200
+sommario:    inserita avg_chromosome_length
+
+changeset:   267:3458cc7b6efc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:59:36 2011 +0200
+sommario:    fix calcolo mutation_rate
+
+changeset:   266:362810343e36
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:56:21 2011 +0200
+sommario:    possibile miglioramente della dna_mutate
+
+changeset:   265:8f30c8ec798b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:36:04 2011 +0200
+sommario:    rinominata classe BarGoLink in prog_bar, funzioni, variabili.
+
+changeset:   264:f1226453d153
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 10 01:24:25 2011 +0200
+sommario:    * rimozione dei log dell'esecuzione precedente in caso di nuova esecuzione.
+
+changeset:   263:fbdf0160262e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 23:37:40 2011 +0200
+sommario:    real_fix2 time_format
+
+changeset:   262:ea8d099bafe9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 23:27:27 2011 +0200
+sommario:    patch spostate nella cartella simulator
+
+changeset:   261:6fb538f61de7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 23:09:34 2011 +0200
+sommario:    Inserita l'etichetta 0.1.4 per il changeset 484e7bdfd52e
+
+changeset:   260:484e7bdfd52e
+tag:         0.1.4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 23:09:19 2011 +0200
+sommario:    versione 0.1.4
+
+changeset:   259:20f95f4a618c
+genitore:    258:4743c28d0119
+genitore:    257:20cba6756b5d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 22:46:37 2011 +0200
+sommario:    Merge
+
+changeset:   258:4743c28d0119
+genitore:    255:c7585e8d67d9
+utente:      Lazzalf
+data:        Fri Sep 09 22:37:06 2011 +0200
+sommario:    Check in set_mutation_rate
+
+changeset:   257:20cba6756b5d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 22:45:33 2011 +0200
+sommario:    real_fix time_format
+
+changeset:   256:7cc97f773a8e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 22:38:23 2011 +0200
+sommario:    fix vari funzione time_format
+
+changeset:   255:c7585e8d67d9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 22:32:44 2011 +0200
+sommario:    fix mutation
+
+changeset:   254:85c3668cfb10
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 22:25:45 2011 +0200
+sommario:    * adesso il callback di SIGINT scrive il tempo totale di esecuzione.
+
+changeset:   253:cb6d7d869df4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 21:55:30 2011 +0200
+sommario:    fix lettura piedini del circuito
+
+changeset:   252:af1d4234628a
+genitore:    251:b04b20622638
+genitore:    250:221be332c88a
+utente:      Lazzalf
+data:        Fri Sep 09 20:58:47 2011 +0200
+sommario:    Merge
+
+changeset:   251:b04b20622638
+genitore:    249:b459b3096c4d
+utente:      Lazzalf
+data:        Fri Sep 09 20:57:42 2011 +0200
+sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
+
+changeset:   250:221be332c88a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 20:35:01 2011 +0200
+sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
+
+changeset:   249:b459b3096c4d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 19:13:27 2011 +0200
+sommario:    inserita funzione clean_env()
+
+changeset:   248:a60bbcdf5e7f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 16:35:02 2011 +0200
+sommario:    aggiornamenti parametri e configurazioni
+
+changeset:   247:7135ec88caea
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 15:22:31 2011 +0200
+sommario:    aggiornato configure.ac
+
+changeset:   246:96e6c7d99464
+genitore:    245:104bef85ead4
+genitore:    243:242f8fceae07
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 14:34:16 2011 +0200
+sommario:    Merge
+
+changeset:   245:104bef85ead4
+utente:      Lazzalf
+data:        Fri Sep 09 14:07:32 2011 +0200
+sommario:    tests::GetFaultsFile a volte fa crashare, c'è da rivedere il parser in un altra maniera. Disattivato temporaneamente.
+
+changeset:   244:552e91c24d19
+genitore:    242:ace3f68f384e
+utente:      Lazzalf
+data:        Fri Sep 09 13:25:08 2011 +0200
+sommario:    Inserita ProgressBar
+
+changeset:   243:242f8fceae07
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 20:06:05 2011 +0200
+sommario:    Inserita l'etichetta 0.1.3 per il changeset ace3f68f384e
+
+changeset:   242:ace3f68f384e
+tag:         0.1.3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 20:05:38 2011 +0200
+sommario:    * nuova versione 0.1.3
+
+changeset:   241:5515c0db1de2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 19:00:42 2011 +0200
+sommario:    * cleanups tests.cpp
+
+changeset:   240:092539b7d36a
+utente:      Lazzalf
+data:        Thu Sep 08 17:34:07 2011 +0200
+sommario:    Fix Typo and crash XD
+
+changeset:   239:3b9fc88e8d61
+utente:      Lazzalf
+data:        Thu Sep 08 17:29:53 2011 +0200
+sommario:    MultiThreading
+
+changeset:   238:a5aee66ec5d6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 17:07:03 2011 +0200
+sommario:    * aggiunta funzione step_progress_bar
+
+changeset:   237:85b145f677fb
+utente:      Lazzalf
+data:        Thu Sep 08 17:00:29 2011 +0200
+sommario:    * Small change in test for try fix a crash
+
+changeset:   236:6b46251d6051
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:56:36 2011 +0200
+sommario:    * crossover_type rinominato in cut_type.
+
+changeset:   235:0fc52d5e4718
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:54:25 2011 +0200
+sommario:    * inserita la possibilità di definire diversi profili di crossover / fitness.
+
+changeset:   234:273957290376
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 15:28:31 2011 +0200
+sommario:    creazione della cartella di log se non esiste
+
+changeset:   233:958b6905f037
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:58:57 2011 +0200
+sommario:    * alcuni controlli di validità del config sono stati spostati dalla population,
+
+changeset:   232:a1cfb59f852f
+utente:      Lazzalf
+data:        Thu Sep 08 14:41:14 2011 +0200
+sommario:    * CleanUp
+
+changeset:   231:3110c7c84cee
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:34:26 2011 +0200
+sommario:    aggiunto max_retest
+
+changeset:   230:ce11ffa421b1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 14:25:57 2011 +0200
+sommario:    rimossa mutation_strength
+
+changeset:   229:99607b5e9221
+utente:      Lazzalf
+data:        Thu Sep 08 14:20:12 2011 +0200
+sommario:    Population
+
+changeset:   228:0f10e47efce1
+utente:      Lazzalf
+data:        Thu Sep 08 13:23:19 2011 +0200
+sommario:    Fix inizializzazione n_thread
+
+changeset:   227:900d99fac963
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:24:45 2011 +0200
+sommario:    rinominati i file start e starter in debug e debugger
+
+changeset:   226:10d2258d3b23
+genitore:    224:4264bb94083c
+genitore:    225:c7eb09918d0f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:18:34 2011 +0200
+sommario:    Merge
+
+changeset:   225:c7eb09918d0f
+genitore:    223:7d7c5b3d3ba4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:17:01 2011 +0200
+sommario:    aggiornato build.sh
+
+changeset:   224:4264bb94083c
+utente:      Lazzalf
+data:        Thu Sep 08 10:03:21 2011 +0200
+sommario:    Inserito starter per GDB debug
+
+changeset:   223:7d7c5b3d3ba4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:56:07 2011 +0200
+sommario:    configurazione default aggiornata
+
+changeset:   222:dd22111b871e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:28:44 2011 +0200
+sommario:    Inserita l'etichetta 0.1.2 per il changeset b1615f984061
+
+changeset:   221:b1615f984061
+tag:         0.1.2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:28:21 2011 +0200
+sommario:    log_dir configurabile
+
+changeset:   220:1658f00d8d27
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 16:07:08 2011 +0200
+sommario:    fix nell'esecuzione della simulazione
+
+changeset:   219:7d9388c9bb1d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 15:17:32 2011 +0200
+sommario:    esecuzione con fork e waitpid, si blocca.
+
+changeset:   218:9e594b0f64e3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 13:17:56 2011 +0200
+sommario:    hgignore updated
+
+changeset:   217:c94704b1b7e2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Sep 07 13:16:02 2011 +0200
+sommario:    individuato il problema principale.
+
+changeset:   216:7bc60ebbe8f4
+utente:      Lazzalf
+data:        Tue Sep 06 23:36:41 2011 +0200
+sommario:    typo
+
+changeset:   215:656a3e5e5511
+utente:      Lazzalf
+data:        Tue Sep 06 23:27:53 2011 +0200
+sommario:    Inseriti try/catch per recupero errori del simulatore
+
+changeset:   214:8d29588cec7f
+utente:      Lazzalf
+data:        Tue Sep 06 22:35:56 2011 +0200
+sommario:    tests
+
+changeset:   213:2d6584f9e671
+utente:      Lazzalf
+data:        Tue Sep 06 22:13:34 2011 +0200
+sommario:    * Fix millisecondi in secondi
+
+changeset:   212:04c1a38c13a3
+utente:      Lazzalf
+data:        Tue Sep 06 16:18:28 2011 +0200
+sommario:    Fix in tests class
+
+changeset:   211:0c81b14a9801
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 16:07:45 2011 +0200
+sommario:    fix thread in simulation_setup e simulaton
+
+changeset:   210:a8f9c1b9223c
+utente:      Lazzalf
+data:        Tue Sep 06 16:01:35 2011 +0200
+sommario:    Fix parametro e clean up
+
+changeset:   209:c2051aa46d82
+utente:      Lazzalf
+data:        Tue Sep 06 15:49:51 2011 +0200
+sommario:    * Fix some typos
+
+changeset:   208:3e096c068347
+utente:      Lazzalf
+data:        Tue Sep 06 15:25:08 2011 +0200
+sommario:    Modificate classi per gestione thread
+
+changeset:   207:9bf9965efd5b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 14:59:22 2011 +0200
+sommario:    cleanups
+
+changeset:   206:2f71fec64f1f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 14:35:20 2011 +0200
+sommario:    aggiunti file simulation_setup
+
+changeset:   205:81a9a75d1063
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 06 11:32:19 2011 +0200
+sommario:    gestione parametri thread e inizializzazione cartelle di simulazione
+
+changeset:   204:8eafa652338b
+utente:      Lazzalf
+data:        Tue Sep 06 10:49:04 2011 +0200
+sommario:    Test
+
+changeset:   203:ce9dbbffbbac
+utente:      Lazzalf
+data:        Tue Sep 06 10:43:10 2011 +0200
+sommario:    General_test
+
+changeset:   202:267fff811181
+genitore:    201:32e73b3593e2
+genitore:    200:4d592130704a
+utente:      Lazzalf
+data:        Tue Sep 06 10:39:40 2011 +0200
+sommario:    Merge
+
+changeset:   201:32e73b3593e2
+genitore:    198:6dcaec62c61d
+utente:      Lazzalf
+data:        Tue Sep 06 10:37:10 2011 +0200
+sommario:    Population
+
+changeset:   200:4d592130704a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Aug 31 14:12:34 2011 +0200
+sommario:    inserito file net del circuito b03. è necessario inserire il binario del b03 a mano.
+
+changeset:   199:3766be6c2dcc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Aug 31 14:11:16 2011 +0200
+sommario:    * aggiornato il sistema di randomizzazione,
+
+changeset:   198:6dcaec62c61d
+utente:      Lazzalf
+data:        Mon Aug 29 12:32:20 2011 +0200
+sommario:    Test
+
+changeset:   197:2b798097c36b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 26 12:51:03 2011 +0200
+sommario:    aggiunta deletecol (non testata)
+
+changeset:   196:c478fc2be3f5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 14:20:47 2011 +0200
+sommario:    cleanups
+
+changeset:   195:d69bbeb24ee4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 13:10:39 2011 +0200
+sommario:    modificata transfer_bests() in modo da trasferire almeno un individuo,
+
+changeset:   194:4ca643884afb
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Aug 20 12:35:13 2011 +0200
+sommario:    fix costruttore di copia di individual
+
+changeset:   193:8c92dc742e14
+utente:      Lazzalf
+data:        Sat Aug 20 01:33:40 2011 +0200
+sommario:    tests
+
+changeset:   192:3428e66b6497
+utente:      Lazzalf
+data:        Fri Aug 19 22:20:03 2011 +0200
+sommario:    Individual
+
+changeset:   191:f35c9cc91112
+utente:      Lazzalf
+data:        Fri Aug 19 21:16:45 2011 +0200
+sommario:    Ottimizzazione: se il dna di un individuo non viene modificato non verrà ritestato nella successiva generazione.
+
+changeset:   190:4ab5b2cd7647
+utente:      Lazzalf
+data:        Fri Aug 19 20:43:50 2011 +0200
+sommario:    Tests
+
+changeset:   189:f45a0292ac94
+utente:      Lazzalf
+data:        Fri Aug 19 16:11:12 2011 +0200
+sommario:    Tests
+
+changeset:   188:6ffe32e049ba
+utente:      Lazzalf
+data:        Fri Aug 19 15:44:46 2011 +0200
+sommario:    Simulation
+
+changeset:   187:5a19ed1c71f8
+utente:      Lazzalf
+data:        Fri Aug 19 15:33:57 2011 +0200
+sommario:    Individual e Tests
+
+changeset:   186:0313f03dc645
+utente:      Lazzalf
+data:        Fri Aug 19 14:34:41 2011 +0200
+sommario:    Aggiustata Changelog dopo il Merge
+
+changeset:   185:15cd73b6115d
+utente:      Lazzalf
+data:        Fri Aug 19 14:33:52 2011 +0200
+sommario:    General_tests
+
+changeset:   184:696d1a22980a
+genitore:    183:1f695b5d382d
+genitore:    182:feeb3c85498c
+utente:      Lazzalf
+data:        Fri Aug 19 14:31:06 2011 +0200
+sommario:    Merge
+
+changeset:   183:1f695b5d382d
+genitore:    179:de3f4db94b5b
+utente:      Lazzalf
+data:        Fri Aug 19 14:25:23 2011 +0200
+sommario:    General_tests
+
+changeset:   182:feeb3c85498c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 13:43:32 2011 +0200
+sommario:    fix esecuzione del crossover...
+
+changeset:   181:d778e338f896
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 12:56:21 2011 +0200
+sommario:    fix simulazione con directory assolute o relative.
+
+changeset:   180:6725d63e524a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 11:43:41 2011 +0200
+sommario:    La mutazione si fa successivamente a un crossover con una certa probabilità.
+
+changeset:   179:de3f4db94b5b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 11:02:53 2011 +0200
+sommario:    eliminata ridondanza in alcuni parametri del simulator
+
+changeset:   178:560407403834
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Aug 19 10:52:33 2011 +0200
+sommario:    * aggiornato script di build in modo da essere più veloce. chiamare una volta,
+
+changeset:   177:5636bf33d481
+utente:      Lazzalf
+data:        Thu Aug 18 13:44:57 2011 +0200
+sommario:    Population
+
+changeset:   176:2964f1c14a6d
+utente:      Lazzalf
+data:        Thu Aug 18 13:42:42 2011 +0200
+sommario:    Population
+
+changeset:   175:f3d9ef71da45
+utente:      Lazzalf
+data:        Wed Aug 17 18:55:04 2011 +0200
+sommario:    Population
+
+changeset:   174:18f866014dfb
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 31 14:59:14 2011 +0200
+sommario:    inserita libProject.patch per supportare più esecuzioni di simulatori allo stesso istante
+
+changeset:   173:0cb30678b27f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 31 11:49:38 2011 +0200
+sommario:    aggiunto supporto al salvataggio della configurazione data dalla modalità interativa
+
+changeset:   172:b91e81df5a91
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 31 11:48:32 2011 +0200
+sommario:    primi test su una fitness alternativa
+
+changeset:   171:615f3253bbbd
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:27:50 2011 +0200
+sommario:    Inserita l'etichetta 0.1.1 per il changeset 96b83b521cc7
+
+changeset:   170:96b83b521cc7
+tag:         0.1.1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:27:44 2011 +0200
+sommario:    versione 0.1.1
+
+changeset:   169:7d323e2635ea
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 18:25:09 2011 +0200
+sommario:    implementata la funzione read_n_inputs, legge il numero di piedini dal file
+
+changeset:   168:f43864650e7a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 14:29:01 2011 +0200
+sommario:    aggiornato sistema di input della configurazione da terminale e da .config
+
+changeset:   167:0a6ce4815655
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 11:26:17 2011 +0200
+sommario:    modificati alcuni commenti doxygen
+
+changeset:   166:4480af36e3c7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 11:25:22 2011 +0200
+sommario:    inserita delete_matrix per eliminare la matrice dalla memoria.
+
+changeset:   165:973a3fecd69d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 02:39:35 2011 +0200
+sommario:    memory leak trovati da valgrind fixati! :)
+
+changeset:   164:f99ef899f367
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 29 02:37:15 2011 +0200
+sommario:    inserita funzione per gestire i parametri da linea di comando.
+
+changeset:   163:58268aafc854
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 20:26:07 2011 +0200
+sommario:    inserita funzione per l'output dei secondi in formato   year day hour min sec
+
+changeset:   162:82d7feadb957
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:55:48 2011 +0200
+sommario:    Inserita l'etichetta 0.1.0 per il changeset 475c0dca925c
+
+changeset:   161:475c0dca925c
+tag:         0.1.0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:55:37 2011 +0200
+sommario:    versione 0.1.0
+
+changeset:   160:2dc6fd33fad4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 18:54:40 2011 +0200
+sommario:    fix bug nel costruttore di individual
+
+changeset:   159:8342ab16c75d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 10:39:55 2011 +0200
+sommario:    updated build.sh clean.sh
+
+changeset:   158:8a590d00f490
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 10:39:34 2011 +0200
+sommario:    adesso la fintess si calcola nell'individual
+
+changeset:   157:3fab6d59d7e8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 00:45:18 2011 +0200
+sommario:    cleanup vari
+
+changeset:   156:4db6db311a3b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 00:43:16 2011 +0200
+sommario:    inserito il print della avg_fitness
+
+changeset:   155:70fed7edf6e2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 28 00:02:38 2011 +0200
+sommario:    aggiornati i file time.cpp e time.h.
+
+changeset:   154:8727b3577925
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 23:38:59 2011 +0200
+sommario:    adesso la fitness è un vero float e non int...
+
+changeset:   153:1fa6588dc571
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:12:35 2011 +0200
+sommario:    Inserita l'etichetta 0.0.9 per il changeset 7e6b571e32c7
+
+changeset:   152:7e6b571e32c7
+tag:         0.0.9
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:12:25 2011 +0200
+sommario:    versione 0.0.9
+
+changeset:   151:f1ad54b31db5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:11:27 2011 +0200
+sommario:    test.sh
+
+changeset:   150:0a0e5ee6b418
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 21:11:16 2011 +0200
+sommario:    clean della funzione evolve()
+
+changeset:   149:485bf6ce75b5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 20:59:02 2011 +0200
+sommario:    creato script di test per la classe logger come per gli altri componenti.
+
+changeset:   148:c34540e92a0b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 20:57:51 2011 +0200
+sommario:    fix bug cambio directory
+
+changeset:   147:3c0cce719672
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 19:52:05 2011 +0200
+sommario:    fix prima si calcolano le fitness poi il resto...
+
+changeset:   146:56485953b0a3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 19:25:29 2011 +0200
+sommario:    prima versione "funzionante"
+
+changeset:   145:51076e3935fb
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 18:04:32 2011 +0200
+sommario:    clean simulation.cpp
+
+changeset:   144:f3cea022c78f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:59:34 2011 +0200
+sommario:    Inserita l'etichetta 0.0.8 per il changeset 87870aa953a4
+
+changeset:   143:87870aa953a4
+tag:         0.0.8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:59:23 2011 +0200
+sommario:    versione 0.0.8
+
+changeset:   142:f89ee4184e3d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:56:58 2011 +0200
+sommario:    eseguita con successo una prima simulazione con il programma di test
+
+changeset:   141:2c72473aa5c7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:02:29 2011 +0200
+sommario:    scriptino compilazione bitmatrix_test
+
+changeset:   140:d1d262e48d19
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:01:53 2011 +0200
+sommario:    fix simulation_test
+
+changeset:   139:8fe9296e9ffc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 17:01:20 2011 +0200
+sommario:    eseguita prima simulazione con il programma di test.
+
+changeset:   138:9183f5d92d4d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 14:55:27 2011 +0200
+sommario:    patch per far compilare il simulatore.
+
+changeset:   137:70a8c72b7ef3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 13:29:55 2011 +0200
+sommario:    inserite le funzioni base che permettono di misurare i tempi di esecuzione di
+
+changeset:   136:175e0c7f2c02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 13:29:01 2011 +0200
+sommario:    continuano i lavori sulla classe simulation
+
+changeset:   135:2b08a1837de0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 27 00:18:17 2011 +0200
+sommario:    abbozzate execute_simulation, setup_simulator_input_file
+
+changeset:   134:a0c9c1d2748a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 19:26:57 2011 +0200
+sommario:    inizio dei lavori sulla classe simulation
+
+changeset:   133:60510d24fc00
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 19:26:34 2011 +0200
+sommario:    Inserita l'etichetta 0.0.7 per il changeset 6eef42033c92
+
+changeset:   132:6eef42033c92
+tag:         0.0.7
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 19:26:24 2011 +0200
+sommario:    versione 0.0.7
+
+changeset:   131:e2dfb45c12f4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 17:21:40 2011 +0200
+sommario:    cleanup dei cout di debug
+
+changeset:   130:84b621da104a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 15:35:19 2011 +0200
+sommario:    adesso le sottomatrici colonna sono messe in colonna.
+
+changeset:   129:4bc86ea8e3ce
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 08:45:53 2011 +0200
+sommario:    fix StrTranspose
+
+changeset:   128:0b585887fd84
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 01:27:49 2011 +0200
+sommario:    corretto .hgtags
+
+changeset:   127:98e167e87fb5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 01:26:39 2011 +0200
+sommario:    hgignore aggiornato
+
+changeset:   126:70f811952628
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 01:25:43 2011 +0200
+sommario:    Inserita l'etichetta versione 0.0.6 per il changeset 9d24882e3c7c
+
+changeset:   125:9d24882e3c7c
+tag:         0.0.6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 01:25:26 2011 +0200
+sommario:    0.0.6
+
+changeset:   124:cdcd6ef02898
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 26 00:12:41 2011 +0200
+sommario:    implementata funzione per ottenere la matrice trasposta.
+
+changeset:   123:91c0b62e80cc
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 25 19:10:47 2011 +0200
+sommario:    inserita la funzione info() su individual,
+
+changeset:   122:7f0eddb1e90c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 25 18:41:36 2011 +0200
+sommario:    implementata AttachCols
+
+changeset:   121:75fb0d362bce
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 25 00:00:11 2011 +0200
+sommario:    implementata dna_split
+
+changeset:   120:dec3b3e2c6e4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 23:33:29 2011 +0200
+sommario:    implementata string GetCols(uint32 col_a, uint32 col_b) restituisce la stringa contenente le colonne trasposte.
+
+changeset:   119:9f3e0049b5df
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 22:38:00 2011 +0200
+sommario:    modificati i nomi delle funzioni bitmatrix GetRows,GetCols,GetCells in previsione di implementazioni di funzioni che selezionano un'intervallo di colonne/righe.
+
+changeset:   118:c7281a96b2e4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 03:30:41 2011 +0200
+sommario:    inserita funzione di crossover con punti di taglio singoli verticali.
+
+changeset:   117:98c1f376c183
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 02:00:36 2011 +0200
+sommario:    alcuni cambi di nomi a variabili
+
+changeset:   116:fd39080636c1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:39:22 2011 +0200
+sommario:    Inserita l'etichetta 0.0.5 per il changeset 72cd75f1e825
+
+changeset:   115:72cd75f1e825
+tag:         0.0.5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:38:49 2011 +0200
+sommario:    versione 0.0.5
+
+changeset:   114:ef5c1a06adae
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:37:32 2011 +0200
+sommario:    riorganizzazione della posizione delle funzioni
+
+changeset:   113:e01b91cde657
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Jul 24 01:20:33 2011 +0200
+sommario:    fix della mate_individuals(), commentata completamente.
+
+changeset:   112:f52d081db4b0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 21:07:36 2011 +0200
+sommario:    aggiornamenti vari su population / individual / ga_engine. ci sono un paio di crash.
+
+changeset:   111:267f7bff451f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 17:44:34 2011 +0200
+sommario:    implementata mate_individuals ( ancora da perfezionare )
+
+changeset:   110:0baf1dee7c6b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 16:29:02 2011 +0200
+sommario:    remove print_kill
+
+changeset:   109:0c0f605a5657
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 16:23:50 2011 +0200
+sommario:    fix crash null pointer
+
+changeset:   108:38e4eada7ed2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 16:02:42 2011 +0200
+sommario:    kill_individual -> empty_population
+
+changeset:   107:fb82d6f8c4f1
+utente:      Lazzalf
+data:        Sat Jul 23 15:49:24 2011 +0200
+sommario:    Population
+
+changeset:   106:86733144e330
+utente:      Lazzalf
+data:        Sat Jul 23 15:44:16 2011 +0200
+sommario:    Population
+
+changeset:   105:40127a9051c9
+utente:      Lazzalf
+data:        Sat Jul 23 15:40:02 2011 +0200
+sommario:    Population
+
+changeset:   104:694a179dbc5e
+utente:      Lazzalf
+data:        Sat Jul 23 15:20:58 2011 +0200
+sommario:    Population
+
+changeset:   103:4bb1ee3e54e8
+utente:      Lazzalf
+data:        Sat Jul 23 15:18:17 2011 +0200
+sommario:    Population
+
+changeset:   102:69b8733ac388
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 14:52:48 2011 +0200
+sommario:    fix compile nuova architettura
+
+changeset:   101:d3f0ac01763e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 14:35:39 2011 +0200
+sommario:    update log delle generazioni
+
+changeset:   100:958b5d27bc02
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 14:35:14 2011 +0200
+sommario:    fix conversione list a map nella classe population
+
+changeset:   99:63e3157d4527
+utente:      Lazzalf
+data:        Sat Jul 23 13:51:24 2011 +0200
+sommario:    Population
+
+changeset:   98:98c4bee2eb40
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 13:23:26 2011 +0200
+sommario:    population update
+
+changeset:   97:2540e86d84e6
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 12:14:26 2011 +0200
+sommario:    fix delete classe logger
+
+changeset:   96:beba1946b285
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 12:10:38 2011 +0200
+sommario:    inserita la classe logger con design pattern singleton
+
+changeset:   95:1be41f1955cf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Jul 23 00:50:52 2011 +0200
+sommario:    fix compile
+
+changeset:   94:995b99bc954f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 22:25:47 2011 +0200
+sommario:    iteration rinominato, generation
+
+changeset:   93:243f4d034071
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 18:19:39 2011 +0200
+sommario:    update README
+
+changeset:   92:bd504bc306de
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 17:54:16 2011 +0200
+sommario:    generazione della documentazione latex
+
+changeset:   91:c01e6663f1d0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 17:32:45 2011 +0200
+sommario:    inserito Doxyfile
+
+changeset:   90:9744e2308e2d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:47:43 2011 +0200
+sommario:    Inserita l'etichetta 0.0.4 per il changeset 2708601336ff
+
+changeset:   89:2708601336ff
+tag:         0.0.4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:47:16 2011 +0200
+sommario:    versione 0.0.4
+
+changeset:   88:6d4ad9f36d35
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:46:16 2011 +0200
+sommario:    update TODO
+
+changeset:   87:9fbdd577746e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:34:57 2011 +0200
+sommario:    inserita print_all a scopo di debug ( in futuro modificherò per dare output a file nella cartella logs )
+
+changeset:   86:12f67450daba
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 15:24:52 2011 +0200
+sommario:    generazione di individual con lunghezza compresa tra due valori, uno di max e uno di min.
+
+changeset:   85:9e26102cd30d
+genitore:    83:697965025251
+genitore:    84:d99fef23453c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:48:50 2011 +0200
+sommario:    Merge
+
+changeset:   84:d99fef23453c
+genitore:    82:70f49e5d68bf
+utente:      Lazzalf
+data:        Fri Jul 22 14:38:01 2011 +0200
+sommario:    BitMatrix
+
+changeset:   83:697965025251
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:47:45 2011 +0200
+sommario:    update TODO
+
+changeset:   82:70f49e5d68bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:26:20 2011 +0200
+sommario:    fix doxygen classe ga_engine.h
+
+changeset:   81:faec6edafb78
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 14:25:15 2011 +0200
+sommario:    commenti doxygen della ga_engine.h
+
+changeset:   80:50c614ff14ac
+utente:      Lazzalf
+data:        Fri Jul 22 13:51:11 2011 +0200
+sommario:    General_test
+
+changeset:   79:121e1aae8b10
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 13:46:52 2011 +0200
+sommario:    inserimento classe parser, per in/out con il simulatore
+
+changeset:   78:33494023362c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 13:46:32 2011 +0200
+sommario:    aggiornamento nomi variabili in individual e population
+
+changeset:   77:09f5c5146e11
+utente:      Lazzalf
+data:        Fri Jul 22 13:08:06 2011 +0200
+sommario:    bitmatrix
+
+changeset:   76:76411a25f485
+utente:      Lazzalf
+data:        Fri Jul 22 12:35:43 2011 +0200
+sommario:    Test
+
+changeset:   75:6f7f8a937a90
+utente:      Lazzalf
+data:        Fri Jul 22 12:34:17 2011 +0200
+sommario:    General_tests
+
+changeset:   74:3bff82abd388
+utente:      Lazzalf
+data:        Fri Jul 22 12:33:31 2011 +0200
+sommario:    Tests
+
+changeset:   73:61b9f3c62f5f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Jul 22 00:54:46 2011 +0200
+sommario:    fix compile
+
+changeset:   72:9213ff1ad3e3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 20:36:39 2011 +0200
+sommario:    inserimento GetSize() nella bitmatrix
+
+changeset:   71:3441cc3f8afb
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 20:36:08 2011 +0200
+sommario:    Alcune modifiche ai parametri del config.
+
+changeset:   70:4b42f21d5150
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:45:00 2011 +0200
+sommario:    Inserita l'etichetta 0.0.3 per il changeset 445a09c1e064
+
+changeset:   69:445a09c1e064
+tag:         0.0.3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:44:30 2011 +0200
+sommario:    version 0.0.3
+
+changeset:   68:7ec0ed15900a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:24:53 2011 +0200
+sommario:    hgignore update
+
+changeset:   67:84675d078e00
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 14:17:50 2011 +0200
+sommario:    update config per supportare le classi della cartella simulation
+
+changeset:   66:e8477e0945d1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 13:43:40 2011 +0200
+sommario:    update ignore
+
+changeset:   65:cb1254c1ad54
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 13:43:16 2011 +0200
+sommario:    variabile config globale
+
+changeset:   64:078150f63de8
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 12:45:19 2011 +0200
+sommario:    update clean.sh .hgignore
+
+changeset:   63:1fef1ef321f2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 12:40:56 2011 +0200
+sommario:    ristrutturazione dell'architettura.
+
+changeset:   62:ce03a0b4cb2c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:25:44 2011 +0200
+sommario:    Inserita l'etichetta 0.0.2 per il changeset 0a42aa6ac566
+
+changeset:   61:0a42aa6ac566
+tag:         0.0.2
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:25:15 2011 +0200
+sommario:    version 0.0.2
+
+changeset:   60:202b7cbd41b3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 11:22:23 2011 +0200
+sommario:    fix globali, rinominazioni: gene->chromosome ; chromosome->dna
+
+changeset:   59:ed4e063be361
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 09:11:06 2011 +0200
+sommario:    inserita classe tests
+
+changeset:   58:5c0b37d71cf0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 01:19:09 2011 +0200
+sommario:    nuovi parametri di configurazione
+
+changeset:   57:a23818a2b607
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 01:10:54 2011 +0200
+sommario:    implementeta population::kill_individuals versione semplice
+
+changeset:   56:05ac5c60d8ae
+genitore:    55:dfc79ba499cf
+genitore:    54:5a9f9917dcd4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 00:29:10 2011 +0200
+sommario:    Merge
+
+changeset:   55:dfc79ba499cf
+genitore:    52:d4318765d7d1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Jul 21 00:25:07 2011 +0200
+sommario:    fix bug iteratori e funzione di mutazione
+
+changeset:   54:5a9f9917dcd4
+genitore:    53:0431c0fac6dc
+genitore:    52:d4318765d7d1
+utente:      Lazzalf
+data:        Wed Jul 20 23:00:23 2011 +0200
+sommario:    Merge
+
+changeset:   53:0431c0fac6dc
+genitore:    51:855ffdb53bba
+utente:      Lazzalf
+data:        Wed Jul 20 22:59:42 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   52:d4318765d7d1
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 22:54:25 2011 +0200
+sommario:    fix random
+
+changeset:   51:855ffdb53bba
+utente:      Lazzalf
+data:        Wed Jul 20 22:43:24 2011 +0200
+sommario:    Fix compile
+
+changeset:   50:3de2a36de2f8
+utente:      Lazzalf
+data:        Wed Jul 20 22:37:40 2011 +0200
+sommario:    bitmatrix
+
+changeset:   49:bbefa3f837ab
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 21:17:28 2011 +0200
+sommario:    bitmatrix fix
+
+changeset:   48:f7d0f93474b3
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 21:11:53 2011 +0200
+sommario:    bitmatrix cleanup variabili e una piccola ottimizzazione
+
+changeset:   47:3dc5f108e87b
+genitore:    46:8457f0736bac
+genitore:    45:f8bba97ce8e0
+utente:      Lazzalf
+data:        Wed Jul 20 19:52:54 2011 +0200
+sommario:    Merge
+
+changeset:   46:8457f0736bac
+genitore:    44:b1cdf04e5a02
+utente:      Lazzalf
+data:        Wed Jul 20 19:52:17 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   45:f8bba97ce8e0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 19:31:40 2011 +0200
+sommario:    classe individual, utilizzo delle nuove funzioni di bitmatrix
+
+changeset:   44:b1cdf04e5a02
+utente:      Lazzalf
+data:        Wed Jul 20 19:22:31 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   43:20842212332c
+genitore:    42:60a69836ad9c
+genitore:    41:ad184484057a
+utente:      Lazzalf
+data:        Wed Jul 20 19:17:03 2011 +0200
+sommario:    Merge
+
+changeset:   42:60a69836ad9c
+genitore:    40:664dad50abd6
+utente:      Lazzalf
+data:        Wed Jul 20 19:16:38 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   41:ad184484057a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 19:00:48 2011 +0200
+sommario:    cambio nomi variabili corte ; cleanups
+
+changeset:   40:664dad50abd6
+utente:      Lazzalf
+data:        Wed Jul 20 18:57:56 2011 +0200
+sommario:    Bitmatrix:
+
+changeset:   39:52ab388233a4
+utente:      Lazzalf
+data:        Wed Jul 20 18:55:05 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   38:57e79a8912e5
+utente:      Lazzalf
+data:        Wed Jul 20 18:44:22 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   37:97bf8963b606
+utente:      Lazzalf
+data:        Wed Jul 20 18:26:37 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   36:bae80ef4d06e
+utente:      Lazzalf
+data:        Wed Jul 20 18:21:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   35:af8b546a034b
+utente:      Lazzalf
+data:        Wed Jul 20 18:06:25 2011 +0200
+sommario:    Bitmatrix:
+
+changeset:   34:5a116a9e8bdd
+utente:      Lazzalf
+data:        Wed Jul 20 17:51:28 2011 +0200
+sommario:    BitMatrix
+
+changeset:   33:963e6af14cef
+utente:      lazzalf
+data:        Wed Jul 20 16:36:36 2011 +0200
+sommario:    Bitmatrix
+
+changeset:   32:f2e4dbc0ee55
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 16:03:56 2011 +0200
+sommario:    update script di compilazione
+
+changeset:   31:904d2135aa68
+genitore:    30:610027fe86e7
+genitore:    29:677b8f995a6a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:53:26 2011 +0200
+sommario:    Merge
+
+changeset:   30:610027fe86e7
+genitore:    27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:50:19 2011 +0200
+sommario:    remove old Makefile
+
+changeset:   29:677b8f995a6a
+utente:      Lazzalf
+data:        Wed Jul 20 15:44:40 2011 +0200
+sommario:    Fix compile
+
+changeset:   28:12ec81e75969
+genitore:    26:6275ed899571
+utente:      Lazzalf
+data:        Wed Jul 20 15:36:57 2011 +0200
+sommario:    BitMatrix:
+
+changeset:   27:05bcd140e0bf
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:44:39 2011 +0200
+sommario:    fix nome in AUTHORS
+
+changeset:   26:6275ed899571
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:32:18 2011 +0200
+sommario:    lettura della versione da config.h generato dagli autotools
+
+changeset:   25:782b2d20f041
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:22:43 2011 +0200
+sommario:    adding build.sh
+
+changeset:   24:26dd84bc3e50
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 15:13:22 2011 +0200
+sommario:    inserita compilazione con autotools!
+
+changeset:   23:a9112927beba
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 14:30:36 2011 +0200
+sommario:    gentest.conf->config.conf
+
+changeset:   22:69c6885da387
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:34:47 2011 +0200
+sommario:    coding style
+
+changeset:   21:f3a08e235552
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:29:39 2011 +0200
+sommario:    implementata population::get_avg_fitness ; fix ~ga_engine();
+
+changeset:   20:975661fa3cd8
+genitore:    17:d79479101e14
+genitore:    19:5ed28da5f18a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 13:08:59 2011 +0200
+sommario:    Merge
+
+changeset:   19:5ed28da5f18a
+utente:      Lazzalf
+data:        Wed Jul 20 12:26:03 2011 +0200
+sommario:    Fix compile
+
+changeset:   18:958eb6479635
+genitore:    16:daa63abd1dc5
+utente:      Lazzalf
+data:        Wed Jul 20 12:22:14 2011 +0200
+sommario:    BitMatrix: Inserita funzione Import
+
+changeset:   17:d79479101e14
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 12:40:28 2011 +0200
+sommario:    creata cartella common ; inserimento nuovi parametri per la configurazione
+
+changeset:   16:daa63abd1dc5
+genitore:    15:736aee0e74d7
+genitore:    14:7fd15bc6af39
+utente:      Lazzalf
+data:        Wed Jul 20 11:33:16 2011 +0200
+sommario:    Merge
+
+changeset:   15:736aee0e74d7
+genitore:    13:ecdf04bfe25c
+utente:      Lazzalf
+data:        Wed Jul 20 11:30:12 2011 +0200
+sommario:    Aggiustati check righe in bitmatrix
+
+changeset:   14:7fd15bc6af39
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 11:30:34 2011 +0200
+sommario:    fix generici ; implementata la modalità verbose in alcuni cout
+
+changeset:   13:ecdf04bfe25c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 11:02:23 2011 +0200
+sommario:    migliorato il sistema di input dei dati; possibilità di configurare
+
+changeset:   12:dfb489ebef7b
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 01:21:50 2011 +0200
+sommario:    update TODO viralex
+
+changeset:   11:3bbad753c392
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Jul 20 01:01:23 2011 +0200
+sommario:    update globale, adesso compila ma crasha su RandomizeAll
+
+changeset:   10:956ee92bf4e4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 23:16:27 2011 +0200
+sommario:    implementata tostring in bitmatrix ; update generici nelle classi genetiche
+
+changeset:   9:1dcf53e9e9f0
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 16:51:09 2011 +0200
+sommario:    hgignore update ; cleanups
+
+changeset:   8:2fcf7f5d0152
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 16:36:39 2011 +0200
+sommario:    clean bitmatrix.h bitmatrix.cpp
+
+changeset:   7:16967f72c7e5
+utente:      Lazzalf
+data:        Tue Jul 19 16:26:35 2011 +0200
+sommario:    Inserita classe bit_matrix per gestione di matrici di bit
+
+changeset:   6:6758032a1f75
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:59:49 2011 +0200
+sommario:    non rileva automaticamente i file rimossi ...
+
+changeset:   5:7ed679fc476f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:57:59 2011 +0200
+sommario:    errore di spelling nel nome del file ...
+
+changeset:   4:0ecd10f85e57
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 14:53:47 2011 +0200
+sommario:    update2 classi individual/population/ga_engine
+
+changeset:   3:e5aca8759ff4
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Jul 19 09:50:09 2011 +0200
+sommario:    update classi individual/population/ga_engine
+
+changeset:   2:956664702b6f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 22:18:08 2011 +0200
+sommario:    random stuff
+
+changeset:   1:6e8c484f4876
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 16:39:35 2011 +0200
+sommario:    system skeleton
+
+changeset:   0:6c2efb8a173f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Mon Jul 18 13:18:36 2011 +0200
+sommario:    primo commit
+
