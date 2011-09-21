@@ -176,7 +176,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
             switch (word)
             {
                 case 1: // The
-                case 2: // fault          
+                case 2: // fault
                 break;
                 case 3: // in or !!!!!!
                     if (Field == "in")
