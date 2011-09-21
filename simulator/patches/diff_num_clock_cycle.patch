@@ -1,0 +1,11 @@
+--- ITCb02RangeStudy_old.cpp	2011-07-27 14:37:26.617777696 +0200
++++ ITCb02RangeStudy.cpp	2011-07-26 18:00:54.000000000 +0200
+@@ -282,7 +282,7 @@
+ // set values for N_TEST_VECTORS
+ //******************************************************
+ void ITCb02RangeStudy::SetValues_N_TEST_VECTORS() {
+-  N_TEST_VECTORSValues[0] = 50;
++  N_TEST_VECTORSValues[0] = num_clock_cycle();
+ }
+ 
+ 
