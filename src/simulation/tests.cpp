@@ -15,8 +15,8 @@ void *SimulationThread(void *arg)
     {
         if (!ind->is_tested())
         {
-            t_param->pop->inc_barlink();
             ind->ExecuteTest(t_param->sim_id, t_param->g_test);
+            t_param->pop->inc_barlink();
         }
     }
 
@@ -176,7 +176,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
             switch (word)
             {
                 case 1: // The
-                case 2: // fault          
+                case 2: // fault
                 break;
                 case 3: // in or !!!!!!
                     if (Field == "in")
