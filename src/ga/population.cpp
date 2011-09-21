@@ -385,6 +385,8 @@ void population::create_mating_pool()
     if (conf->get_bool_config(CONFIG_LOG_MATING))
         LOG_STATIC("mating_events", "mating", "create_mating_pool\n");
 
+    mating_pool.clear();
+
     switch (conf->get_int_config(CONFIG_MATING_SELECT_TYPE))
     {
         case ROULETTE_WHEEL:
@@ -418,19 +420,33 @@ void population::transfer()
 
     INFO("debug", "copying %d individual(s) from old population\n", transfer_num);
 
-    individual_id_list id_pool;
+    individual_id_list id_pool;    
 
     switch (conf->get_int_config(CONFIG_TRANSFER_SELECT_TYPE))
     {
         case ROULETTE_WHEEL:
         {
-            roulette_wheel(id_pool, transfer_num);
+            if (conf->get_bool_config(CONFIG_ALWAYS_TRANSFER_THE_BEST))
+            {
+                select_best(id_pool, 1);
+                transfer_num--;
+            }
+            if (transfer_num)
+                roulette_wheel(id_pool, transfer_num);
         }
         break;
         case STOCASTIC_UNIVERSAL:
         {
-            sort();
-            stocastic_universal(id_pool, transfer_num);
+            if (conf->get_bool_config(CONFIG_ALWAYS_TRANSFER_THE_BEST))
+            {
+                select_best(id_pool, 1);
+                transfer_num--;
+            }
+            if (transfer_num)
+            {
+                sort();
+                stocastic_universal(id_pool, transfer_num);
+            }
         }
         break;
         case SELECT_BEST:
@@ -454,8 +470,6 @@ void population::transfer()
 
 void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
 {
-    id_pool.clear();
-
     weight_map m_weight_map;
     uint32 total_weight = 0;
 
@@ -490,7 +504,7 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
              weight += itr->second;
              if (selected_weight <= weight)
              {
-                 id_pool.push_front(itr->first);
+                 id_pool.push_back(itr->first);
                  break;
              }
          }
@@ -499,8 +513,6 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
 
 void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 {
-    id_pool.clear();
-
     weight_map m_weight_map;
     uint32 total_weight = 0;
 
@@ -531,7 +543,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
              weight += itr->second;
              if (selected_weight <= weight)
              {
-                 id_pool.push_front(itr->first);
+                 id_pool.push_back(itr->first);
                  break;
              }
          }
@@ -540,9 +552,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 }
 
 void population::select_best(individual_id_list& id_pool, uint32 number)
-{
-    id_pool.clear();
-
+{   
     typedef std::pair<uint32, float> best_pair;
     std::list<best_pair> best_map;
     
@@ -566,8 +576,6 @@ void population::select_best(individual_id_list& id_pool, uint32 number)
             }
         }
     }
-    
-    id_pool.clear();
 
     for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
         id_pool.insert(id_pool.end(), (*itr2).first);
