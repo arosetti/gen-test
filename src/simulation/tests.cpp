@@ -15,8 +15,8 @@ void *SimulationThread(void *arg)
     {
         if (!ind->is_tested())
         {
-            t_param->pop->inc_barlink();
             ind->ExecuteTest(t_param->sim_id, t_param->g_test);
+            t_param->pop->inc_barlink();
         }
     }
 
