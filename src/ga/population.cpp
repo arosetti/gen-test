@@ -488,7 +488,7 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
          for (itr = m_weight_map.begin(); itr != m_weight_map.end(); ++itr)
          {
              weight += itr->second;
-             if (selected_weight < weight)
+             if (selected_weight <= weight)
              {
                  id_pool.push_front(itr->first);
                  break;
@@ -529,7 +529,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
          for (; itr != m_weight_map.end(); ++itr)
          {
              weight += itr->second;
-             if (selected_weight < weight)
+             if (selected_weight <= weight)
              {
                  id_pool.push_front(itr->first);
                  break;
