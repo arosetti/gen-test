@@ -386,7 +386,7 @@ void population::create_mating_pool()
 
     mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
 
-    INFO("debug", "* selecting %d individual(s) for mating using ", mating_num);
+    INFO("debug", "  selecting %d individual(s) for mating using ", mating_num);
     if (conf->get_bool_config(CONFIG_LOG_MATING))
         LOG_STATIC("mating_events", "mating", "create_mating_pool\n");
 
@@ -426,7 +426,7 @@ void population::transfer()
 
     uint32 transfer_num = uint32(pool->size()) - uint32(float(pool->size()) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
-    INFO("verbose", "* copying %d individual(s) using ", transfer_num);
+    INFO("verbose", "  copying %d individual(s) using ", transfer_num);
 
     individual_id_list id_pool;    
 
