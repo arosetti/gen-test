@@ -429,7 +429,7 @@ void population::transfer()
         break;
         case STOCASTIC_UNIVERSAL:
         {
-            // sort();
+            sort();
             stocastic_universal(id_pool, transfer_num);
         }
         break;
