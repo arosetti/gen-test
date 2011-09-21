@@ -378,11 +378,15 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 }
 
 void population::create_mating_pool()
-{  
+{
+    uint32 mating_num;
+
     if (!pool->size())
         return;
 
-    INFO("debug", "* selecting %d individual(s) for mating using ", transfer_num);
+    mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION);
+
+    INFO("debug", "* selecting %d individual(s) for mating using ", mating_num);
     if (conf->get_bool_config(CONFIG_LOG_MATING))
         LOG_STATIC("mating_events", "mating", "create_mating_pool\n");
 
@@ -393,20 +397,20 @@ void population::create_mating_pool()
         case ROULETTE_WHEEL:
             {
                 INFO("debug", "roulette weel selection\n");
-                roulette_wheel(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
+                roulette_wheel(mating_pool, mating_num);
             }
             break;
         case STOCASTIC_UNIVERSAL:
             {
                 INFO("debug", "stocastic universal selection\n");
                 // sort();
-                stocastic_universal(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
+                stocastic_universal(mating_pool, mating_num);
             }   
             break;
         case SELECT_BEST:
             {
                 INFO("debug", "select best ones\n");
-                select_best(mating_pool, uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION)));
+                select_best(mating_pool, mating_num);
             }
             break;
     }
