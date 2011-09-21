@@ -396,13 +396,13 @@ void population::create_mating_pool()
     {
         case ROULETTE_WHEEL:
             {
-                INFO("debug", "roulette weel selection\n");
+                INFO("debug", "roulette weel\n");
                 roulette_wheel(mating_pool, mating_num);
             }
             break;
         case STOCASTIC_UNIVERSAL:
             {
-                INFO("debug", "stocastic universal selection\n");
+                INFO("debug", "stocastic universal\n");
                 // sort();
                 stocastic_universal(mating_pool, mating_num);
             }   
@@ -426,7 +426,7 @@ void population::transfer()
 
     uint32 transfer_num = uint32(pool->size()) - uint32(float(pool->size()) * conf->get_float_config(CONFIG_MATING_FRACTION));
 
-    INFO("debug", "copying %d individual(s) using ", transfer_num);
+    INFO("verbose", "* copying %d individual(s) using ", transfer_num);
 
     individual_id_list id_pool;    
 
