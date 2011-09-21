@@ -18,7 +18,7 @@ bool simulation::execute(string dna, uint32 id)
 
     if (!file_exists(get_bin_path(id).c_str()))
     {
-        INFO("verbose", "simulator binary does not exists.\n");
+        INFO("verbose", "* simulation: simulator binary does not exists.\n");
         exit(0);
     }
 
@@ -35,7 +35,7 @@ bool simulation::execute(string dna, uint32 id)
     else if (f_ret == -1)
     {
         perror("fork");
-        exit(1);
+        return false;
     }
 
     waitpid(f_ret, &status, 0);
@@ -98,7 +98,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (ret != 2)
         cout << "parsing error... ret " << ret << endl;
 
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_SIMULATION)) // TODO sistemare log
+    if (conf->get_bool_config(CONFIG_LOG_SIMULATION)) // TODO sistemare log
     {
         cout << "#total_faults " << n_total_faults << endl;
         cout << "#faults_detected " << n_faults << endl;
