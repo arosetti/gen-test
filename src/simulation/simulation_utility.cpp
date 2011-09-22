@@ -30,7 +30,7 @@ string get_sim_path(int id)
     if (id>=0)
         path += get_thread_subdir(id);
 
-    delete buffer;
+    delete[] buffer;
     return path;
 }
 
