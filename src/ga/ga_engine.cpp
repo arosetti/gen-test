@@ -72,7 +72,7 @@ void ga_engine::evolve()
             if (stall != 0 && (stall % conf->get_int_config(CONFIG_MAX_STALL)) == 0)
             {
                 INFO("verbose", "  setting high mutation rate for 1 iteration\n");
-                pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_STALL_RATE));
+                pop->set_mutation_rate(conf->get_float_config(CONFIG_MAX_MUTATION_RATE));
             }
         }
 
