@@ -269,7 +269,7 @@ int config::load_args(int argc, char **argv)
         cout << "non-option argument " << argv[index] << endl;
 
     post_init_config();
-     
+
     return 0;
 }
 
