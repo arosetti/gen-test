@@ -319,13 +319,13 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
         {
             uint32 cmin = min((int)ind_a->get_chromosome_length(),
                               (int)ind_b->get_chromosome_length());
-            cut_a_1 = cut_b_1 = cmin - u_cimi_random(1, cmin);
+            cut_a_1 = cut_b_1 = u_wheel_random(1, cmin);
         }
         break;
         case CUT_END_DOUBLE_RANDOM:
         {
-            cut_a_1 = ind_a->get_chromosome_length() - u_cimi_random(1, ind_a->get_chromosome_length());
-            cut_b_1 = ind_b->get_chromosome_length() - u_cimi_random(1, ind_b->get_chromosome_length());
+            cut_a_1 = u_wheel_random(1, ind_a->get_chromosome_length());
+            cut_b_1 = u_wheel_random(1, ind_b->get_chromosome_length());
         }
         break;
     }
@@ -563,6 +563,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
                  break;
              }
          }
+
          selected_weight += total_weight / number;
     }
 }
