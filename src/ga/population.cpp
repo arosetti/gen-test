@@ -315,19 +315,19 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
             cut_a_2 = cut_b_2 = randmm(1, cmin);
         }
         break;
-        case CUT_END_SINGLE_RANDOM:
-        {
-            uint32 cmin = min((int)ind_a->get_chromosome_length(),
-                              (int)ind_b->get_chromosome_length());
-            cut_a_1 = cut_b_1 = u_wheel_random(1, cmin);
-        }
-        break;
         case CUT_END_DOUBLE_RANDOM:
         {
             cut_a_1 = u_wheel_random(1, ind_a->get_chromosome_length());
             cut_b_1 = u_wheel_random(1, ind_b->get_chromosome_length());
         }
         break;
+        case CUT_END_SINGLE_RANDOM:
+        {
+            uint32 cmin = min((int)ind_a->get_chromosome_length(),
+                              (int)ind_b->get_chromosome_length());
+            cut_a_1 = cut_b_1 = u_wheel_random(1, cmin);
+        }
+        break;       
     }
 
     switch (conf->get_int_config(CONFIG_CUT_TYPE))
