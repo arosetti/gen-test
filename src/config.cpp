@@ -43,11 +43,11 @@ cfg_opt_t opts[] =
     CFG_FLOAT((char*)"ga.mating_fraction", 0.5f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.max_mutation_rate", 0.30f, CFGF_NONE),
     CFG_INT((char*)"ga.cut_type",1,CFGF_NONE),
     CFG_INT((char*)"ga.max_retest", 1, CFGF_NONE),
     CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
-    CFG_FLOAT((char*)"ga.mutation_stall_rate", 0.30f, CFGF_NONE),
-    CFG_BOOL((char*)"ga.stop_at_100", (cfg_bool_t)true, CFGF_NONE),    
+    CFG_BOOL((char*)"ga.stop_at_100", (cfg_bool_t)true, CFGF_NONE),
     
     CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
@@ -120,10 +120,10 @@ bool config::load_config()
     config_float[CONFIG_MATING_RATE]             = cfg_getfloat(cfg, "ga.mating_rate");
     config_float[CONFIG_MATING_FRACTION]         = cfg_getfloat(cfg, "ga.mating_fraction");
     config_float[CONFIG_MUTATION_RATE]           = cfg_getfloat(cfg, "ga.mutation_rate");
+    config_float[CONFIG_MAX_MUTATION_RATE]       = cfg_getfloat(cfg, "ga.max_mutation_rate");
     config_int[CONFIG_CUT_TYPE]                  = cfg_getint(cfg, "ga.cut_type");   
     config_int[CONFIG_MAX_RETEST]                = cfg_getint(cfg, "ga.max_retest");
     config_int[CONFIG_MAX_STALL]                 = cfg_getint(cfg, "ga.max_stall");
-    config_float[CONFIG_MUTATION_STALL_RATE]     = cfg_getfloat(cfg, "ga.mutation_stall_rate"); 
     config_bool[CONFIG_STOP_AT_100]              = cfg_getbool(cfg, "ga.stop_at_100"); 
     
     config_bool[CONFIG_MUTATION_LENGTH_GENE] = cfg_getbool(cfg, "mutation_length_gene");
@@ -137,7 +137,7 @@ void config::post_init_config()
 {
     config_int[CONFIG_CHROMOSOME_NUM] = read_n_inputs();
 
-    if (!file_exists(config_string[CONFIG_LOG_PATH]))  // usare dir_exists
+    if (!dir_exists(config_string[CONFIG_LOG_PATH]))
         mkdir(config_string[CONFIG_LOG_PATH].c_str(), 0777);
 
     if (config_string[CONFIG_LOAD_LOG_FILENAME] == "")
