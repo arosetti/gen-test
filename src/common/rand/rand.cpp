@@ -78,16 +78,15 @@ double rand_gaussian(double eta, double sigma)
 
 uint32 u_wheel_random(uint32 min, uint32 max)
 {
-    min-=min;
     max-=min;
-    uint32 total = (max*(max+1)-min*(min-1))/2; // Formula di Gauss        
+    uint32 total = (max*(max+1))/2; // (max*(max+1)-min*(min-1))/2; // Formula di Gauss        
     uint32 selected = randmm(0, total);
     total = 0;
-    for (uint32 i = min; i <= max; i++)
+    for (uint32 i = 0; i <= max; i++)
     {
         total += i;
         if (selected <= total)
-            return i;
+            return i + min;
     }
 }
 
