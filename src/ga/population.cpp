@@ -315,6 +315,19 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
             cut_a_2 = cut_b_2 = randmm(1, cmin);
         }
         break;
+        case CUT_END_SINGLE_RANDOM:
+        {
+            uint32 cmin = min((int)ind_a->get_chromosome_length(),
+                              (int)ind_b->get_chromosome_length());
+            cut_a_1 = cut_b_1 = u_wheel_random(1, cmin);
+        }
+        break;
+        case CUT_END_DOUBLE_RANDOM:
+        {
+            cut_a_1 = u_wheel_random(1, ind_a->get_chromosome_length());
+            cut_b_1 = u_wheel_random(1, ind_b->get_chromosome_length());
+        }
+        break;
     }
 
     switch (conf->get_int_config(CONFIG_CUT_TYPE))
@@ -322,6 +335,8 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
         case CUT_DOUBLE_RANDOM:
         case CUT_SINGLE_RANDOM:
         case CUT_HALF:
+        case CUT_END_SINGLE_RANDOM:
+        case CUT_END_DOUBLE_RANDOM:
         {
             if (conf->get_bool_config(CONFIG_LOG_MATING))
             {
@@ -469,12 +484,14 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
 {
     weight_map m_weight_map;
     uint32 total_weight = 0;
+    float back_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
+    back_fitness = back_fitness < 0.0f ? -back_fitness : 0.0f;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         float fitness = (*itr).second->get_fitness();
-        if (!fitness)
-            continue;
+
+        fitness += back_fitness;
 
         normalize(fitness);
 
@@ -512,12 +529,14 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 {
     weight_map m_weight_map;
     uint32 total_weight = 0;
+    float back_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
+    back_fitness = back_fitness < 0.0f ? -back_fitness : 0.0f;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         float fitness = (*itr).second->get_fitness();
-        if (!fitness)
-            continue;
+
+        fitness += back_fitness;
 
         normalize(fitness);
 
@@ -544,6 +563,7 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
                  break;
              }
          }
+
          selected_weight += total_weight / number;
     }
 }
@@ -581,9 +601,11 @@ void population::select_best(individual_id_list& id_pool, uint32 number)
 void population::normalize(float& fitness)
 {
     if (conf->get_bool_config(CONFIG_NORMALIZED_FITNESS))
-    {
-        float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
+    {        
         float worst_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
+        worst_fitness = worst_fitness < 0.0f ? -worst_fitness : 0.0f;
+        float best_fitness = get_best_individual() ? get_best_individual()->get_fitness() : 0.0f;
+        best_fitness += worst_fitness;
 
         if (best_fitness - worst_fitness != 0.0f)
             fitness = (fitness - worst_fitness) / (best_fitness - worst_fitness);
