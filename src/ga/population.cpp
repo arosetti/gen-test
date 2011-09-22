@@ -236,7 +236,7 @@ const individual* population::get_worst_individual()
         if (pool->size())
             for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
             {
-                if (*worst_individual > *((*itr).second))
+                if (!worst_individual || *worst_individual > *((*itr).second))
                 {
                     worst_individual = (*itr).second;
                 }
