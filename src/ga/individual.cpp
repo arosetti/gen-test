@@ -73,7 +73,7 @@ void individual::dna_random()
 }
 
 void individual::dna_mutate(float mutation_rate)
-{
+{    
     uint32 row_r = randmm(0, chromosome_number),
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * get_dna_length() * std::abs((double)rand_gaussian(1,1)); // HACK TEST
@@ -190,7 +190,7 @@ void individual::calc_fitness()
             break;
         case FAULT_RATE_MIN_LENGTH:
             fitness = ((float)(detected) / (float)(n_tests)) -
-                 ((float)get_chromosome_length() / (10.0f * (float)(n_tests))) + 1.0f;
+                 ((float)get_chromosome_length() / (10.0f * (float)(n_tests)));
             break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");
