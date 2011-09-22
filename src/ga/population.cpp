@@ -396,7 +396,7 @@ void population::create_mating_pool()
     {
         case ROULETTE_WHEEL:
             {
-                INFO("debug", "roulette weel\n");
+                INFO("debug", "roulette wheel\n");
                 roulette_wheel(mating_pool, mating_num);
             }
             break;
@@ -864,9 +864,6 @@ void population::inc_threads()
 
 void population::inc_barlink()
 {
-    if (!conf->get_bool_config(CONFIG_PRINT_PROGRESS_BAR))
-        return;
-
     getlock_pbar();
     p_bar.step();
     releaselock_pbar();
