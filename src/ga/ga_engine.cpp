@@ -116,7 +116,7 @@ void ga_engine::evolve()
             LOG("events", "avg_chromosome_length", "%f", pop->get_avg_chromosome_length());
 
             if (conf->get_bool_config(CONFIG_GRAPHICS))
-                int ret = system("gnuplot gnuplot.conf > /dev/null 2>&1");
+                int ret = system("gnuplot graphs.gnuplot > /dev/null 2>&1");
         }
 
         if (conf->get_bool_config(CONFIG_STOP_AT_100) && 

@@ -6,18 +6,6 @@ set grid
 show grid
 set size 2, 1
 
-#set noautoscale
-#set xrange [0:1000]
-#set yrange [0:1.8]
-
-
-#set terminal x11
-#set noborder
-#set nokey
-#set key spacing 0.01
-#set key reverse
-
-#set key box linestyle 0
 set key bottom right
 set pointsize 2
 set size square
@@ -27,6 +15,7 @@ set xlabel "Generations" font "Helvetica"
 #set xtic 1 10
 #set mytics 4
 #set ytic 0.05 0.05
+set yrange [0:1]
 set style line 1 lt 1 lw 5 lc 1
 
 set output "graphs/fitness.eps"
@@ -34,18 +23,13 @@ set ylabel "Fitness" font "Helvetica"
 plot 'logs/best_individual_fitness.log' title "best individual fitness" w lines lw 5 , 'logs/worst_individual_fitness.log' title "worst individual fitness" w lines lc 2 lw 1, 'logs/avg_fitness.log' title "average fitness" w lines lc 4 lw 3
 
 clear
-#set yrange [0:1]
-#set ytic 0.05 0.05
-
 
 set output "graphs/fault_coverage.eps"
 set ylabel "Fault Coverage" font "Helvetica"
 plot 'logs/best_individual_fault_coverage.log' title "best individual fault coverage" w lines lw 5 , 'logs/max_fault_coverage.log' title "max fault coverage" w lines lc 3 lw 3 , 'logs/worst_individual_fault_coverage.log' title "worst individual fault coverage" w lines lc 2 lw 1, 'logs/avg_fault_coverage.log' title "average fault coverage" w lines lc 4 lw 3
- 
+
 clear
 set autoscale
-set size 2, 2
-
 set ytic 1 5
 
 set output "graphs/chromosome_length.eps"
