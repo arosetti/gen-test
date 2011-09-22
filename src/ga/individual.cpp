@@ -76,7 +76,7 @@ void individual::dna_mutate(float mutation_rate)
 {    
     uint32 row_r = randmm(0, chromosome_number),
            col_r = randmm(0, get_chromosome_length());
-    float count = mutation_rate * get_dna_length() * std::abs((double)rand_gaussian(1,1)); // HACK TEST
+    float count = mutation_rate * (float) get_dna_length() * std::abs((double)rand_gaussian(1,1)); // HACK TEST
 
     LOG("ga_events", "mutation", "# mutation event! count: %f\n", count);
 

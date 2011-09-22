@@ -9,7 +9,7 @@ population::population()
     pool = new individual_map;
     temp_pool = NULL;
     n_thread = 0;
-    mutation_rate = 0.0f;
+    mutation_rate = conf->get_float_config(CONFIG_MUTATION_RATE);
     best_individual = NULL;
     worst_individual = NULL;
 
@@ -34,7 +34,7 @@ individual* population::get_random_individual() const
 
 individual* population::new_random_individual()
 {
-    uint32 len = randmm(conf->get_int_config(CONFIG_CHROMOSOME_START_LEN_MIN), 
+    uint32 len = randmm(conf->get_int_config(CONFIG_CHROMOSOME_START_LEN_MIN),
                         conf->get_int_config(CONFIG_CHROMOSOME_START_LEN_MAX));
 
     individual* ind = new individual(len, conf->get_int_config(CONFIG_CHROMOSOME_NUM));
