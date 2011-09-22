@@ -12,6 +12,7 @@ AC_CHECK_FUNCS(gettimeofday chdir chmod getopt fork waitpid)
 
 AC_CHECK_LIB(confuse, cfg_parse)
 AC_CHECK_LIB(pthread, pthread_create)
+#AC_CHECK_LIB(boost_random, normal_distribution)
 
 #profile
 AC_ARG_ENABLE(
@@ -55,6 +56,7 @@ else
 AC_DEFINE(ENABLE_RELEASE,0,[release option])
 fi
 
+#CXXFLAGS="$CXXFLAGS -std=c++0x"
 
 DISTCLEANFILES="Makefile.in"
 AC_SUBST(DISTCLEANFILES)
