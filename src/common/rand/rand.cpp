@@ -76,24 +76,22 @@ double rand_gaussian(double eta, double sigma)
     return ((r2 * factor) * sigma + eta);
 }
 
-// Da aggiustare
 uint32 u_wheel_random(uint32 min, uint32 max)
 {
-    uint32 total = 0;
-    for (uint32 i = min; i <= max; i++)
-         total += i-min+1;
-    
+    min-=min;
+    max-=min;
+    uint32 total = (max*(max+1)-min*(min-1))/2; // Formula di Gauss        
     uint32 selected = randmm(0, total);
     total = 0;
     for (uint32 i = min; i <= max; i++)
     {
-        total += i-min+1;
+        total += i;
         if (selected <= total)
             return i;
     }
-    return min;
 }
 
+// Da rivedere
 uint32 u_cimi_random(uint32 min, uint32 max)
 {
     double temp = pow((double)randmm(min, max), 2);
