@@ -469,12 +469,16 @@ void population::roulette_wheel(individual_id_list& id_pool, uint32 number)
 {
     weight_map m_weight_map;
     uint32 total_weight = 0;
+    float back_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
+    back_fitness = back_fitness < 0.0f ? -back_fitness : 0.0f;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         float fitness = (*itr).second->get_fitness();
         if (!fitness)
             continue;
+
+        fitness += back_fitness;
 
         normalize(fitness);
 
@@ -512,12 +516,16 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 {
     weight_map m_weight_map;
     uint32 total_weight = 0;
+    float back_fitness = get_worst_individual() ? get_worst_individual()->get_fitness() : 0.0f;
+    back_fitness = back_fitness < 0.0f ? -back_fitness : 0.0f;
 
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         float fitness = (*itr).second->get_fitness();
         if (!fitness)
             continue;
+
+        fitness += back_fitness;
 
         normalize(fitness);
 
