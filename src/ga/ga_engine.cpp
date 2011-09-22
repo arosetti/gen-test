@@ -43,7 +43,7 @@ void ga_engine::evolve()
 
     INFO("verbose", "* the population is going to evolve for %d generations!\n", conf->get_int_config(CONFIG_MAX_GENERATIONS));
 
-    while ( generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
+    while (!conf->get_int_config(CONFIG_MAX_GENERATIONS) || generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
         time_start(time);
         INFO("verbose", "\n# generation: %d\n", generation);
