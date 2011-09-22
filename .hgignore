@@ -2,6 +2,11 @@ syntax: glob
 
 *.o
 *~
+*.patch
+*.diff
+*.dat
+*.eps
+*.log
 gentest
 autom4te.cache/*
 stamp-h1
@@ -42,8 +47,6 @@ src/*.spw
 doxygen-html/*
 doxygen-latex/*
 logs/*
-*.eps
-*.log
 src/bitmatrix/bitmatrix_test
 src/common/logger/logger_test
 simulator/b??/sim_FPGASim_Linux
@@ -57,7 +60,3 @@ src/common/rand/.dirstamp
 src/common/rand/.deps/rand.Po
 src/common/rand/.deps/.dirstamp
 src/common/rand/rand_test
-*.patch
-*.diff
-src/common/rand/rand.dat
-src/common/rand/gaussian.dat
