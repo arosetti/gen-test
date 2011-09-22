@@ -7,4 +7,4 @@ mkdir -p graphs
 echo -e "creating *.eps\n"
 gnuplot gnuplot.conf
 echo -e "creating $tar"
-tar -cJf $tar graphs/*.eps logs/* gentest.conf gnuplot.conf system.log
+tar -cJf $tar graphs/*.eps logs/* gentest.conf graphs.gnuplot system.log
