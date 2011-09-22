@@ -13,8 +13,8 @@ set size square
 
 set xlabel "Generations" font "Helvetica"
 #set xtic 1 10
-#set mytics 4
-#set ytic 0.05 0.05
+set mytics 2
+set ytic 0.05 0.05
 set yrange [0:1]
 set style line 1 lt 1 lw 5 lc 1
 
