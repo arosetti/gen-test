@@ -60,6 +60,7 @@ class individual: public tests
     string  info(bool format = true);
     bool operator == (const individual&);
     bool operator < (const individual&);
+    bool operator > (const individual& ind);
 };
 
 #endif

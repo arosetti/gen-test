@@ -211,20 +211,12 @@ float population::get_max_chromosome_length() const
 
 const individual* population::get_best_individual()
 {
-    float best_fitness = 0;
-
     if (!best_individual)
         if (pool->size())
             for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
             {
-                if (best_fitness <= (*itr).second->get_fitness())
+                if (!best_individual || *best_individual < *((*itr).second))
                 {
-                    if (best_individual 
-                        && (best_fitness == (*itr).second->get_fitness()) 
-                        && best_individual->get_fault_coverage() > (*itr).second->get_fault_coverage())
-                        continue;
-
-                    best_fitness = (*itr).second->get_fitness();
                     best_individual = (*itr).second;
                 }
             }
@@ -244,12 +236,8 @@ const individual* population::get_worst_individual()
         if (pool->size())
             for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
             {
-                if (worst_individual->get_fitness() >= (*itr).second->get_fitness())
+                if (*worst_individual > *((*itr).second))
                 {
-                    if (worst_individual->get_fitness() == (*itr).second->get_fitness()
-                        && worst_individual->get_fault_coverage() < (*itr).second->get_fault_coverage())
-                        continue;
-
                     worst_individual = (*itr).second;
                 }
             }
@@ -379,12 +367,10 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
 
 void population::create_mating_pool()
 {
-    uint32 mating_num;
-
     if (!pool->size())
         return;
 
-    mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
+    uint32 mating_num = uint32(pool->size() * conf->get_float_config(CONFIG_MATING_FRACTION));
 
     INFO("debug", "  selecting %d individual(s) for mating using ", mating_num);
     if (conf->get_bool_config(CONFIG_LOG_MATING))
@@ -564,19 +550,19 @@ void population::stocastic_universal(individual_id_list& id_pool, uint32 number)
 
 void population::select_best(individual_id_list& id_pool, uint32 number)
 {   
-    typedef std::pair<uint32, float> best_pair;
+    typedef std::pair<uint32, individual*> best_pair;
     std::list<best_pair> best_map;
     
     for (individual_map::const_iterator itr = pool->begin(); itr != pool->end(); ++itr)
     {
         for (std::list<best_pair>::iterator itr2 = best_map.begin();; ++itr2)
         {  
-            if (itr2 == best_map.end() || (*itr2).second < (*itr).second->get_fitness())
+            if (itr2 == best_map.end() || *((*itr2).second) < *((*itr).second))
             {        
                 if (itr2 == best_map.end() && best_map.size() >= number)
                     break;
                 
-                best_map.insert(itr2, best_pair((*itr).first, (*itr).second->get_fitness()));
+                best_map.insert(itr2, best_pair((*itr).first, (*itr).second));
                 
                 if (best_map.size() > number)
                 {   
@@ -589,7 +575,7 @@ void population::select_best(individual_id_list& id_pool, uint32 number)
     }
 
     for (std::list<best_pair>::iterator itr2 = best_map.begin(); itr2 != best_map.end(); ++itr2)
-        id_pool.insert(id_pool.end(), (*itr2).first);
+        id_pool.push_back((*itr2).first);
 }
 
 void population::normalize(float& fitness)

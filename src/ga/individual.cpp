@@ -273,5 +273,28 @@ bool individual::operator == (const individual& ind)
 
 bool individual::operator < (const individual& ind)
 {
-    return fitness < ind.get_fitness();
+    if (fitness < ind.get_fitness())
+        return true;
+    if (fitness == ind.get_fitness())
+    {
+        if (get_fault_coverage() < ind.get_fault_coverage())
+            return true;
+        if (get_fault_coverage() == ind.get_fault_coverage() && get_chromosome_length() > ind.get_chromosome_length())
+            return true;
+    }
+    return false;
+}
+
+bool individual::operator > (const individual& ind)
+{
+    if (fitness > ind.get_fitness())
+        return true;
+    if (fitness == ind.get_fitness())
+    {
+        if (get_fault_coverage() > ind.get_fault_coverage())
+            return true;
+        if (get_fault_coverage() == ind.get_fault_coverage() && get_chromosome_length() < ind.get_chromosome_length())
+            return true;
+    }
+    return false;
 }
