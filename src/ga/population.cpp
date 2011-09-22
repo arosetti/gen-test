@@ -315,6 +315,19 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
             cut_a_2 = cut_b_2 = randmm(1, cmin);
         }
         break;
+        case CUT_END_SINGLE_RANDOM:
+        {
+            uint32 cmin = min((int)ind_a->get_chromosome_length(),
+                              (int)ind_b->get_chromosome_length());
+            cut_a_1 = cut_b_1 = cmin - u_cimi_random(1, cmin);
+        }
+        break;
+        case CUT_END_DOUBLE_RANDOM:
+        {
+            cut_a_1 = ind_a->get_chromosome_length() - u_cimi_random(1, ind_a->get_chromosome_length());
+            cut_b_1 = ind_b->get_chromosome_length() - u_cimi_random(1, ind_b->get_chromosome_length());
+        }
+        break;
     }
 
     switch (conf->get_int_config(CONFIG_CUT_TYPE))
@@ -322,6 +335,8 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
         case CUT_DOUBLE_RANDOM:
         case CUT_SINGLE_RANDOM:
         case CUT_HALF:
+        case CUT_END_SINGLE_RANDOM:
+        case CUT_END_DOUBLE_RANDOM:
         {
             if (conf->get_bool_config(CONFIG_LOG_MATING))
             {

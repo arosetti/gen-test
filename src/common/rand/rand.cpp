@@ -33,6 +33,11 @@ uint32 randmm(uint32 min, uint32 max)
     return min + uniform_deviate(rand()) * (( max - min ) + 1);
 }
 
+double drandmm(double min, double max)
+{
+    return min + drand48() * (( max - min ) + 1);
+}
+
 bool randb()
 {
    return (drand48() >= 0.5f);
@@ -69,4 +74,36 @@ double rand_gaussian(double eta, double sigma)
     cached = true;
 
     return ((r2 * factor) * sigma + eta);
+}
+
+// Da aggiustare
+uint32 u_wheel_random(uint32 min, uint32 max)
+{
+    uint32 total = 0;
+    for (uint32 i = min; i <= max; i++)
+         total += i-min+1;
+    
+    uint32 selected = randmm(0, total);
+    total = 0;
+    for (uint32 i = min; i <= max; i++)
+    {
+        total += i-min+1;
+        if (selected <= total)
+            return i;
+    }
+    return min;
+}
+
+uint32 u_cimi_random(uint32 min, uint32 max)
+{
+    double temp = pow((double)randmm(min, max), 2);
+    temp = temp / pow((double)max+1, 2);
+    return uint32 (temp * max)+1;
+}
+
+double d_cimi_random(double min, double max)
+{
+    double temp = pow((double)drandmm(min, max), 2);
+    temp = temp / pow((double)max+1, 2);
+    return temp * max + 1.0f;
 }
