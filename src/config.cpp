@@ -69,8 +69,10 @@ cfg_t* config::open_cfg()
 
 config::config()
 {
+    char *buffer = get_current_dir_name();
     config_string[CONFIG_CONF_FILENAME] = "gentest.conf";
-    config_string[CONFIG_MAIN_PATH] = get_current_dir_name();
+    config_string[CONFIG_MAIN_PATH] = buffer;
+    delete[] buffer;
     load_config();
 }
 
