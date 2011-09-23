@@ -19,7 +19,6 @@ typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 extern vector<pthread_t> threads_id;
-extern pthread_mutex_t    mutex_end;
 
 //! Contenitore della popolazione
 /**
