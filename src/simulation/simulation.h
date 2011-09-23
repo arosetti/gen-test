@@ -1,5 +1,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #ifndef SIMULATION_H
 #define SIMULATION_H
