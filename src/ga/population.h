@@ -19,6 +19,7 @@ typedef std::list<uint32>              individual_id_list;
 
 extern config *conf;
 extern vector<pthread_t> threads_id;
+extern pthread_mutex_t    mutex_end;
 
 //! Contenitore della popolazione
 /**
@@ -94,26 +95,38 @@ class population
         pthread_mutex_init(&mutex_barlink, NULL);
     }
 
+    inline void mutex_destroy()
+    {
+        pthread_mutex_destroy(&mutex_ind_itr);
+        pthread_mutex_destroy(&mutex_n_thread);
+        pthread_mutex_destroy(&mutex_barlink);
+    }
+
     inline void  getlock_ind_itr()
     {
         pthread_mutex_lock(&mutex_ind_itr);
     }
+
     inline void  releaselock_ind_itr()
     {
         pthread_mutex_unlock(&mutex_ind_itr);
     }
+
     inline void  getlock_n_thread()
     {
         pthread_mutex_lock(&mutex_n_thread);
     }
+
     inline void  releaselock_n_thread()
     {
         pthread_mutex_unlock(&mutex_n_thread);
     }
+
     inline void  getlock_pbar()
     {
         pthread_mutex_lock(&mutex_barlink);
     }
+
     inline void  releaselock_pbar()
     {
         pthread_mutex_unlock(&mutex_barlink);

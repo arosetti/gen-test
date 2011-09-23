@@ -8,6 +8,7 @@
 using namespace std;
 
 config *conf = NULL;
+pthread_mutex_t    mutex_end;
 static timer t_gentest;
 extern vector<pthread_t> threads_id;
 
@@ -23,6 +24,7 @@ int main(int argc, char **argv)
     cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
     cout << endl;
 
+    pthread_mutex_init(&mutex_end, NULL);
     signal(SIGINT, sigint_callback_handler);
     //signal(SIGKILL, sigint_callback_handler);
 
@@ -32,7 +34,7 @@ int main(int argc, char **argv)
     time_start(t_gentest);
     ga.init();
     ga.evolve();
-    while(1);
+
     return 0;
 }
 
@@ -44,13 +46,13 @@ void sigint_callback_handler(int signum)
 
     INFO("verbose", "\n\n* caught SIGINT signal\n");
 
-while(1);
+    //pthread_mutex_lock(&mutex_end);
 
     INFO("verbose", "* killing simulation threads\n");
     for( ; itr != threads_id.end(); ++itr)
         pthread_cancel(*itr);
 
-    INFO("verbose", "* killing simulators\n");  // TODO creare i segnali dei thread
+    INFO("verbose", "* killing simulators\n");
     exec_command("killall %s > /dev/null 2>&1", 
                  conf->get_string_config(CONFIG_SIMULATOR_BIN).c_str());
 
@@ -63,5 +65,5 @@ while(1);
     delete conf;
     delete LOG_PTR;
 
-    exit(signum);
+    pthread_exit(NULL);
 }
