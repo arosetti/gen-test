@@ -161,7 +161,7 @@ float population::get_avg_fault_coverage() const
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
-        sum_fault_coverage += (*itr).second->get_fault_coverage();
+        sum_fault_coverage += (*itr).second->GetFaultCoverage();
     }
 
     return sum_fault_coverage/pool->size();
@@ -190,8 +190,8 @@ float population::get_max_fault_coverage() const
     individual_map::const_iterator itr = pool->begin();
     for (; itr != pool->end(); ++itr)
     {
-        if (best_fault_coverage < (*itr).second->get_fault_coverage())
-            best_fault_coverage = (*itr).second->get_fault_coverage();
+        if (best_fault_coverage < (*itr).second->GetFaultCoverage())
+            best_fault_coverage = (*itr).second->GetFaultCoverage();
     }
     return best_fault_coverage;
 }

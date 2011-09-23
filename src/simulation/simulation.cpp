@@ -22,7 +22,7 @@ bool simulation::execute(string dna, uint32 id)
         exit(0);
     }
 
-    f_ret = vfork();
+    f_ret = fork(); //vfork();
     if (f_ret == 0)
     {   
         ret = chdir((char *)get_sim_path(id).c_str());

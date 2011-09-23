@@ -51,14 +51,22 @@ tests::~tests()
 
 }
 
-uint32 tests::GetTestNumber()
+uint32 tests::GetTestNumber() const
 {
     return n_tests;
 }
 
-uint32 tests::GetDetectedNumber()
+uint32 tests::GetDetectedNumber() const
 {
     return detected;
+}
+
+float tests::GetFaultCoverage() const
+{
+    if (n_tests)
+        return (float)(detected) / (float)(n_tests);
+    else
+        return 0.0f;
 }
 
 void tests::EmptyFaults(general_tests* g_test)
