@@ -12,7 +12,9 @@ simulation::~simulation()
 
 bool simulation::execute(string dna, uint32 id)
 {
-    int status, ret, f_ret;
+    int status, ret;
+    pid_t pid;
+    string args;
 
     setup_input_file(dna, id);
 
@@ -22,23 +24,38 @@ bool simulation::execute(string dna, uint32 id)
         exit(0);
     }
 
-    f_ret = fork(); //vfork();
-    if (f_ret == 0)
-    {   
+    pid = fork(); // con vfork gdb si blocca
+    if (pid == 0)
+    {
+        int fd;
         ret = chdir((char *)get_sim_path(id).c_str());
-        ret = exec_command("./%s %s%s > /dev/null 2>&1",
-                          conf->get_string_config(CONFIG_SIMULATOR_BIN).c_str(),
-                          conf->get_string_config(CONFIG_SIMULATOR_ARGS).c_str(),
-                          conf->get_string_config(CONFIG_TEST_FILE_OUT).c_str());
+
+        if((fd = open("/dev/null", O_RDWR | O_CREAT, 0777)) == -1)
+        {
+            perror("open");
+            _exit(0);
+        }
+
+        dup2(fd, STDOUT_FILENO);
+        dup2(fd, STDERR_FILENO);
+        close(fd);
+
+        ret = execle(get_bin_path(id).c_str(),
+                     conf->get_string_config(CONFIG_SIMULATOR_BIN).c_str(),
+                     "-N", "1", "-a",
+                     conf->get_string_config(CONFIG_TEST_FILE_OUT).c_str()
+                     , NULL, environ);
+
+        perror("execle"); // qui non ci arriva mai ( si spera :D )
         _exit(0);
     }
-    else if (f_ret == -1)
+    else if (pid == -1)
     {
         perror("fork");
         return false;
     }
 
-    waitpid(f_ret, &status, 0);
+    waitpid(pid, &status, 0);
 
     return true;
 }

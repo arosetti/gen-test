@@ -24,6 +24,7 @@ int main(int argc, char **argv)
     cout << endl;
 
     signal(SIGINT, sigint_callback_handler);
+    //signal(SIGKILL, sigint_callback_handler);
 
     conf = new config;
     conf->load_args(argc, argv);
@@ -31,10 +32,7 @@ int main(int argc, char **argv)
     time_start(t_gentest);
     ga.init();
     ga.evolve();
-
-    delete conf;
-    delete LOG_PTR;
-
+    while(1);
     return 0;
 }
 
@@ -45,6 +43,8 @@ void sigint_callback_handler(int signum)
     string cmd;
 
     INFO("verbose", "\n\n* caught SIGINT signal\n");
+
+while(1);
 
     INFO("verbose", "* killing simulation threads\n");
     for( ; itr != threads_id.end(); ++itr)
@@ -60,5 +60,8 @@ void sigint_callback_handler(int signum)
     INFO("verbose", "* program time: %s\n" , time_format(time_diff(t_gentest)).c_str());
 
     cout.flush();
+    delete conf;
+    delete LOG_PTR;
+
     exit(signum);
 }
