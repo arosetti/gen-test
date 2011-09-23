@@ -39,3 +39,23 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
     - completare tutti i logging.
     - info tipo di crossover usato.
 
+#ulteriore riduzione dei test
+-----------------------------------------------------
+ricercare e mappare i cloni.
+negli individui da testare ci devono esere solo individui unici
+mettiamo che ho alcuni individui uguali da testare, dovrei eseguire un solo test
+e poi scrivere il risultato su tutti i cloni
+
+testo, poi cerco i cloni e metto i risultati in tutti quelli uguali all'individuo.
+
+-----------------------------------------------------
+esempio possibile define per i config
+
+conf->get_int_config(CONFIG_THREAD_SLOTS)
+CONF_INT(C_THREAD_SLOTS);
+
+
+CONF_INT
+CONF_FLOAT
+CONF_BOOL
+-----------------------------------------------------

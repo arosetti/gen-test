@@ -96,9 +96,16 @@ void population::test_population()
     ind_itr = pool->begin();
     uint32 untested = size() - tested_size();
     n_thread = 0;
+    pthread_t      tid[conf->get_int_config(CONFIG_THREAD_SLOTS)];
+    pthread_attr_t tattr;
+    int ret;
+    void *status;
 
     if (conf->get_bool_config(CONFIG_PRINT_PROGRESS_BAR))
         p_bar.init(untested);
+
+    ret = pthread_attr_init(&tattr);
+    ret = pthread_attr_setdetachstate(&tattr, PTHREAD_CREATE_JOINABLE);
 
     if (ind_itr != pool->end())
         for (int i = 0; i < conf->get_int_config(CONFIG_THREAD_SLOTS); i++)
@@ -108,29 +115,21 @@ void population::test_population()
             t_params->g_test = &test;
             t_params->sim_id = i;
 
-            pthread_t tid;
-            pthread_attr_t tattr;
-            int ret;
-
-            // per riusare i thread R.I.P.
-            ret = pthread_attr_init(&tattr);
-            ret = pthread_attr_setdetachstate(&tattr, PTHREAD_CREATE_DETACHED);
-
-            if (ret = pthread_create(&tid, &tattr, SimulationThread, (void*)t_params))
+            if (ret = pthread_create(&tid[i], &tattr, SimulationThread, (void*)t_params))
             {
                 perror("pthread_create");
                 delete t_params;
                 continue;
             }
 
-            threads_id.push_back(tid);
+            threads_id.push_back(tid[i]);
             inc_threads();
         }
 
-    while (n_thread)
-    {
-        usleep(30);
-    }
+    for (int i = 0; i < conf->get_int_config(CONFIG_THREAD_SLOTS); i++)
+        pthread_join(tid[i], &status);
+
+    pthread_attr_destroy(&tattr);
 
     INFO("verbose", "\n* %d/%d individuals tested\n", untested, size());
 }
