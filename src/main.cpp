@@ -8,11 +8,11 @@
 using namespace std;
 
 config *conf = NULL;
-pthread_mutex_t    mutex_end;
 static timer t_gentest;
-extern vector<pthread_t> threads_id;
+//extern vector<pthread_t> threads_id;
 
-void sigint_callback_handler(int);
+void exit(void);
+void sigint_handler(int sig);
 
 int main(int argc, char **argv)
 {
@@ -24,9 +24,8 @@ int main(int argc, char **argv)
     cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
     cout << endl;
 
-    pthread_mutex_init(&mutex_end, NULL);
-    signal(SIGINT, sigint_callback_handler);
-    //signal(SIGKILL, sigint_callback_handler);
+    signal(SIGINT, sigint_handler);
+    atexit(exit);
 
     conf = new config;
     conf->load_args(argc, argv);
@@ -35,35 +34,21 @@ int main(int argc, char **argv)
     ga.init();
     ga.evolve();
 
-    return 0;
-}
-
-void sigint_callback_handler(int signum)
-{
-    int ret;
-    vector<pthread_t>::iterator itr = threads_id.begin();
-    string cmd;
-
-    INFO("verbose", "\n\n* caught SIGINT signal\n");
-
-    //pthread_mutex_lock(&mutex_end);
-
-    INFO("verbose", "* killing simulation threads\n");
-    for( ; itr != threads_id.end(); ++itr)
-        pthread_cancel(*itr);
-
-    INFO("verbose", "* killing simulators\n");
-    exec_command("killall %s > /dev/null 2>&1", 
-                 conf->get_string_config(CONFIG_SIMULATOR_BIN).c_str());
-
-    clean_env();
-
-    time_stop(t_gentest);
-    INFO("verbose", "* program time: %s\n" , time_format(time_diff(t_gentest)).c_str());
-
-    cout.flush();
     delete conf;
     delete LOG_PTR;
 
-    pthread_exit(NULL);
+    return 0;
+}
+
+void sigint_handler(int sig)
+{
+    exit();
+    signal(SIGINT, SIG_DFL);
+    kill(getpid(), SIGINT); // harakiri
+}
+
+void exit(void)
+{
+    time_stop(t_gentest);
+    INFO("verbose", "\n\n* program execution time: %s\n" , time_format(time_diff(t_gentest)).c_str());
 }

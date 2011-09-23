@@ -127,10 +127,8 @@ void population::test_population()
             inc_threads();
         }
 
-    //pthread_mutex_lock(&mutex_end);
     for (int i = 0; i < conf->get_int_config(CONFIG_THREAD_SLOTS); i++)
         pthread_join(tid[i], &status);
-    //pthread_mutex_unlock(&mutex_end);
 
     pthread_attr_destroy(&tattr);
 
