@@ -27,8 +27,9 @@ class tests
         tests(const tests&);
         ~tests();
 
-        uint32 GetTestNumber();
-        uint32 GetDetectedNumber();
+        uint32 GetTestNumber() const;
+        uint32 GetDetectedNumber() const;
+        float  GetFaultCoverage() const;
 
         uint32 GetFaultsSize();
         set<uint32> const& GetFaultsList() const;

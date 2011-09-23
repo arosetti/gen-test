@@ -1,18 +1,14 @@
 #include "individual.h"
 
-individual::individual(uint32 chrom_len, uint32 chrom_num)
+individual::individual(uint32 chromosome_len, uint32 chromosome_num)
 {
-    chromosome_length = chrom_len;
-    chromosome_number = chrom_num;
     fitness = 0;
-    dna = new bitmatrix(chromosome_number, chromosome_length);
+    dna = new bitmatrix(chromosome_num, chromosome_len);
     tested = false;
 }
 
 individual::individual(const individual &ind) : tests (ind)
 {
-    chromosome_length = ind.chromosome_length;
-    chromosome_number = ind.chromosome_number;
     fitness = ind.fitness;
     dna = new bitmatrix(*ind.dna);
     tested = ind.tested;
@@ -51,19 +47,7 @@ void individual::set_dna(string str)
 
 uint32 individual::get_dna_length()  const
 {
-    return chromosome_number * get_chromosome_length();
-}
-
-uint32 individual::get_chromosome_number()  const
-{
-    return chromosome_number;
-}
-
-void individual::set_chromosome_number(uint32 l)
-{
-    chromosome_number = l;
-    dna->Resize(dna->GetRowNum(), chromosome_number);
-    untest();
+    return get_chromosome_number() * get_chromosome_length();
 }
 
 void individual::dna_random()
@@ -74,7 +58,7 @@ void individual::dna_random()
 
 void individual::dna_mutate(float mutation_rate)
 {    
-    uint32 row_r = randmm(0, chromosome_number),
+    uint32 row_r = randmm(0, get_chromosome_number()),
            col_r = randmm(0, get_chromosome_length());
     float count = mutation_rate * (float) get_dna_length() * std::abs((double)rand_gaussian(1,1)); // HACK TEST
 
@@ -83,7 +67,7 @@ void individual::dna_mutate(float mutation_rate)
     while (count >= 1.0f)
     {
         dna->Flip(row_r,col_r);
-        row_r = randmm(0, chromosome_number);
+        row_r = randmm(0, get_chromosome_number());
         col_r = randmm(0, get_chromosome_length());
         count--;
     }
@@ -96,6 +80,7 @@ void individual::dna_mutate(float mutation_rate)
 void individual::dna_shrink()
 {
     dna->DeleteCol(randmm(0, get_chromosome_length()));
+    untest();
 }
 
 void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 pos_2,  string* dna_3)
@@ -129,8 +114,7 @@ void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 po
 
         LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1->c_str());
         LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, dna->GetColNum(), dna_2->c_str());
-
-    }    
+    }
 }
 
 void individual::dna_merge(string* dna_1, string* dna_2, string* dna_3)
@@ -163,7 +147,6 @@ void individual::dna_merge(string* dna_1, string* dna_2, string* dna_3)
     }
 
     LOG("ga_events", "mating", "%s\n", dna->ToString().c_str());  // TODO da inserire tutti gli if log.mating
-
     untest();
 }
 
@@ -202,17 +185,9 @@ void individual::calc_fitness()
         fitness = 0.01f;
 }
 
-float individual::get_fault_coverage() const
-{
-    if (n_tests)
-        return (float)(detected) / (float)(n_tests);
-    else
-        return 0;
-}
-
 string individual::get_chromosome(uint32 crom)  const
 {
-    if (crom >= chromosome_number)
+    if (crom >= get_chromosome_number())
         return "";
 
     return dna->GetRow(crom);
@@ -220,7 +195,7 @@ string individual::get_chromosome(uint32 crom)  const
 
 void individual::set_chromosome(uint32 crom, string str)
 {
-    if (crom >= chromosome_number)
+    if (crom >= get_chromosome_number())
         return;
 
     dna->SetRow(str, crom);
@@ -234,8 +209,18 @@ uint32  individual::get_chromosome_length()  const
 
 void  individual::set_chromosome_length(uint32 len)
 {
-    chromosome_length = len;
-    dna->Resize(chromosome_number, len);
+    dna->Resize(get_chromosome_number(), len);
+    untest();
+}
+
+uint32 individual::get_chromosome_number()  const
+{
+    return dna->GetRowNum();
+}
+
+void individual::set_chromosome_number(uint32 chromosome_num)
+{
+    dna->Resize(dna->GetRowNum(), chromosome_num);
     untest();
 }
 
@@ -277,9 +262,9 @@ bool individual::operator < (const individual& ind)
         return true;
     if (fitness == ind.get_fitness())
     {
-        if (get_fault_coverage() < ind.get_fault_coverage())
+        if (GetFaultCoverage() < ind.GetFaultCoverage())
             return true;
-        if (get_fault_coverage() == ind.get_fault_coverage() && get_chromosome_length() > ind.get_chromosome_length())
+        if (GetFaultCoverage() == ind.GetFaultCoverage() && get_chromosome_length() > ind.get_chromosome_length())
             return true;
     }
     return false;
@@ -291,9 +276,9 @@ bool individual::operator > (const individual& ind)
         return true;
     if (fitness == ind.get_fitness())
     {
-        if (get_fault_coverage() > ind.get_fault_coverage())
+        if (GetFaultCoverage() > ind.GetFaultCoverage())
             return true;
-        if (get_fault_coverage() == ind.get_fault_coverage() && get_chromosome_length() < ind.get_chromosome_length())
+        if (GetFaultCoverage() == ind.GetFaultCoverage() && get_chromosome_length() < ind.get_chromosome_length())
             return true;
     }
     return false;
