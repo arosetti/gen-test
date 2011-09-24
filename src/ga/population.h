@@ -71,6 +71,7 @@ class population
     void    transfer();
     void    mate_individuals();
     void    set_mutation_rate(float rate);
+    float   get_mutation_rate() const;
     void    fattest_individuals_shrink();
 
     uint32  size() const;
