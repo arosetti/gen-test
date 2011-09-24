@@ -8,6 +8,10 @@ void *SimulationThread(void *arg)
 {
     thread_params* t_param = (thread_params*) arg;
 
+    sigset_t mask;
+    sigfillset(&mask);
+    pthread_sigmask(SIG_BLOCK, &mask, NULL);
+
     if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
         remove(get_faults_path(t_param->sim_id).c_str());
 

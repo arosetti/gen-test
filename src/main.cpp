@@ -21,7 +21,8 @@ int main(int argc, char **argv)
 
     cout << PACKAGE_STRING << ": a gentetic algorithm program ";
     cout << "used to generate test patterns for simulated circuits." << endl;
-    cout << "authors: Alessandro Rosetti - Daniele Lazzarini (C) 2011" << endl;
+    cout << "authors: Alessandro Rosetti - Daniele Lazzarini" << endl;
+    cout << "license: GPLv3" << endl;
     cout << endl;
 
     signal(SIGINT, sigint_handler);
@@ -49,6 +50,8 @@ void sigint_handler(int sig)
 
 void exit(void)
 {
+    INFO("verbose", "\n\n");
+    clean_env();
     time_stop(t_gentest);
-    INFO("verbose", "\n\n* program execution time: %s\n" , time_format(time_diff(t_gentest)).c_str());
+    INFO("verbose", "* program execution time: %s\n" , time_format(time_diff(t_gentest)).c_str());
 }
