@@ -31,7 +31,7 @@ void ga_engine::init()
 
 void ga_engine::evolve()
 {
-    float last_best_fitness = 0;
+    float last_best_fitness = 0, step;
     timer time;
     uint32 stall = 0;
 
@@ -57,23 +57,39 @@ void ga_engine::evolve()
         INFO("verbose", "* calculating population fitnesses\n");
         pop->eval_fitnesses();
 
-        if (conf->get_int_config(CONFIG_MAX_STALL))
+        switch(conf->get_int_config(CONFIG_MUTATION_TYPE))
         {
-            INFO("verbose", "* checking stall: %d\n", stall);
-            if (last_best_fitness < pop->get_best_individual()->get_fitness())
-            {
-                last_best_fitness = pop->get_best_individual()->get_fitness();
-                pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_RATE));
-                stall = 0;
-            }
-            else
-                stall++;
+            case MUTATION_STATIC:
+            break;
+            case MUTATION_DYNAMIC:
+                step = (conf->get_float_config(CONFIG_MAX_MUTATION_RATE) - conf->get_float_config(CONFIG_MUTATION_RATE)) / 
+                        (float) conf->get_int_config(CONFIG_MAX_GENERATIONS);
+                pop->set_mutation_rate(pop->get_mutation_rate() - step);
+                if (pop->get_mutation_rate() < conf->get_float_config(CONFIG_MUTATION_RATE))
+                    pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_RATE));
+                INFO("verbose", "* mutation rate: %f\n", pop->get_mutation_rate());
+            break;
+            case MUTATION_STALL_CHECK:
+                if (conf->get_int_config(CONFIG_MAX_STALL))
+                {
+                    INFO("verbose", "* checking stall: %d\n", stall);
+                    if (last_best_fitness < pop->get_best_individual()->get_fitness())
+                    {
+                        last_best_fitness = pop->get_best_individual()->get_fitness();
+                        INFO("verbose", "  setting normal mutation rate: %f\n", conf->get_float_config(CONFIG_MUTATION_RATE));
+                        pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_RATE));
+                        stall = 0;
+                    }
+                    else
+                        stall++;
 
-            if (stall != 0 && (stall % conf->get_int_config(CONFIG_MAX_STALL)) == 0)
-            {
-                INFO("verbose", "  setting high mutation rate for 1 iteration\n");
-                pop->set_mutation_rate(conf->get_float_config(CONFIG_MAX_MUTATION_RATE));
-            }
+                    if (stall != 0 && (stall % conf->get_int_config(CONFIG_MAX_STALL)) == 0)
+                    {
+                        INFO("verbose", "  setting high mutation rate: %f\n", conf->get_float_config(CONFIG_MAX_MUTATION_RATE));
+                        pop->set_mutation_rate(conf->get_float_config(CONFIG_MAX_MUTATION_RATE));
+                    }
+                }
+            break;
         }
 
         if (conf->get_bool_config(CONFIG_PRINT_AVG_CHROMOSOME_LENGTH))

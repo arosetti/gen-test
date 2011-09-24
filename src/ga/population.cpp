@@ -9,7 +9,18 @@ population::population()
     pool = new individual_map;
     temp_pool = NULL;
     n_thread = 0;
-    mutation_rate = conf->get_float_config(CONFIG_MUTATION_RATE);
+
+    switch(conf->get_int_config(CONFIG_MUTATION_TYPE))
+    {
+        case MUTATION_STATIC:
+        case MUTATION_STALL_CHECK:
+            mutation_rate = conf->get_float_config(CONFIG_MUTATION_RATE);
+        break;
+        case MUTATION_DYNAMIC:
+            mutation_rate = conf->get_float_config(CONFIG_MAX_MUTATION_RATE);
+        break;
+    }
+
     best_individual = NULL;
     worst_individual = NULL;
 
@@ -706,6 +717,11 @@ void population::set_mutation_rate(float rate)
         mutation_rate = 0;
     else 
         mutation_rate = rate;
+}
+
+float population::get_mutation_rate() const
+{
+    return mutation_rate;
 }
 
 void population::fattest_individuals_shrink()

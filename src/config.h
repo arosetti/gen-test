@@ -12,6 +12,14 @@ using namespace std;
 
 static vector<pthread_t> threads_id;
 
+enum e_mutation_type
+{
+    MUTATION_STATIC = 1,
+    MUTATION_DYNAMIC,
+    MUTATION_STALL_CHECK,
+    MAX_MUTATION_TYPE
+};
+
 enum e_fitness_type
 {
     FAULT_RATE = 1,
@@ -60,7 +68,6 @@ enum config_bool
     CONFIG_NORMALIZED_FITNESS,
     CONFIG_STOP_AT_100,
     CONFIG_MUTATION_LENGTH_GENE,
-    CONFIG_DYNAMIC_MUTATION,
     CONFIG_MAX_BOOL
 };
 
@@ -79,6 +86,7 @@ enum config_int
     CONFIG_CHROMOSOME_MAX_LENGTH,
     CONFIG_CHROMOSOME_START_LEN_MIN,
     CONFIG_CHROMOSOME_START_LEN_MAX,
+    CONFIG_MUTATION_TYPE,
     CONFIG_MAX_INT
 };
 
