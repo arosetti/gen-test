@@ -47,9 +47,10 @@ void ga_engine::evolve()
     else
         INFO("verbose", "* the population is going to evolve!\n");
 
-    while (!conf->get_int_config(CONFIG_MAX_GENERATIONS) || generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
+    while (!conf->get_int_config(CONFIG_MAX_GENERATIONS) || generation < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
         time_start(time);
+        generation++;
         INFO("verbose", "\n# generation: %d\n", generation);
 
         if (conf->get_int_config(CONFIG_POPULATION_SIZE))
@@ -137,6 +138,7 @@ void ga_engine::evolve()
             LOG("events", "avg_fault_coverage", "%f", pop->get_avg_fault_coverage());
             LOG("events", "avg_fitness", "%f", pop->get_avg_fitness());
             LOG("events", "avg_chromosome_length", "%f", pop->get_avg_chromosome_length());
+            LOG("events", "mutation_rate", "%f", pop->get_mutation_rate());
 
             if (conf->get_bool_config(CONFIG_GRAPHICS))
                 int ret = system("gnuplot graphs.gnuplot > /dev/null 2>&1");

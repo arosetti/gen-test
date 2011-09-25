@@ -29,6 +29,12 @@ set ylabel "Fault Coverage" font "Helvetica"
 plot 'logs/best_individual_fault_coverage.log' title "best individual fault coverage" w lines lw 5 , 'logs/max_fault_coverage.log' title "max fault coverage" w lines lc 3 lw 3 , 'logs/worst_individual_fault_coverage.log' title "worst individual fault coverage" w lines lc 2 lw 1, 'logs/avg_fault_coverage.log' title "average fault coverage" w lines lc 4 lw 3
 
 clear
+
+set output "graphs/mutation_rate.eps"
+set ylabel "Mutation Rate" font "Helvetica"
+plot 'logs/mutation_rate.log' title "mutation rate" w lines lw 3
+
+clear
 set autoscale
 set ytic 1 5
 
