@@ -41,7 +41,11 @@ void ga_engine::evolve()
         return;
     }
 
-    INFO("verbose", "* the population is going to evolve for %d generations!\n", conf->get_int_config(CONFIG_MAX_GENERATIONS));
+    if (conf->get_int_config(CONFIG_MAX_GENERATIONS))
+        INFO("verbose", "* the population is going to evolve for %d generations!\n",
+             conf->get_int_config(CONFIG_MAX_GENERATIONS));
+    else
+        INFO("verbose", "* the population is going to evolve!\n");
 
     while (!conf->get_int_config(CONFIG_MAX_GENERATIONS) || generation++ < conf->get_int_config(CONFIG_MAX_GENERATIONS))
     {
