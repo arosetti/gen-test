@@ -35,15 +35,14 @@ int main(int argc, char **argv)
     ga.init();
     ga.evolve();
 
-    delete conf;
-    delete LOG_PTR;
-
     return 0;
 }
 
 void sigint_handler(int sig)
 {
     exit();
+    delete conf;
+    delete LOG_PTR;
     signal(SIGINT, SIG_DFL);
     kill(getpid(), SIGINT); // harakiri
 }

@@ -62,9 +62,12 @@ void ga_engine::evolve()
             case MUTATION_STATIC:
             break;
             case MUTATION_DYNAMIC:
-                step = (conf->get_float_config(CONFIG_MAX_MUTATION_RATE) - conf->get_float_config(CONFIG_MUTATION_RATE)) / 
-                        (float) conf->get_int_config(CONFIG_MAX_GENERATIONS);
-                pop->set_mutation_rate(pop->get_mutation_rate() - step);
+                //step = (conf->get_float_config(CONFIG_MAX_MUTATION_RATE) - conf->get_float_config(CONFIG_MUTATION_RATE)) / 
+                //        (float) (pop->get_best_individual()->GetFaultCoverage() * 100.0f);
+                step = conf->get_float_config(CONFIG_MUTATION_RATE) + 
+                       (conf->get_float_config(CONFIG_MAX_MUTATION_RATE) - conf->get_float_config(CONFIG_MUTATION_RATE)) *
+                       (1.0f - (float) (pop->get_best_individual()->GetFaultCoverage()));
+                pop->set_mutation_rate(/*pop->get_mutation_rate() - */step);
                 if (pop->get_mutation_rate() < conf->get_float_config(CONFIG_MUTATION_RATE))
                     pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_RATE));
                 INFO("verbose", "* mutation rate: %f\n", pop->get_mutation_rate());
