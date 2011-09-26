@@ -83,14 +83,14 @@ void individual::dna_shrink()
     untest();
 }
 
-void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 pos_2,  string* dna_3)
+void individual::dna_split(int pos_1, string* dna_1, string* dna_2, int pos_2,  string* dna_3)
 {
     if (pos_1 > dna->GetColNum() || pos_2 > dna->GetColNum())
         return;
 
     LOG_STATIC("ga_events", "mating", "# splitting DNA\n");
 
-    if (pos_2)
+    if (pos_2 >= 0)
     {
         if (pos_1 > pos_2)
         {
@@ -105,15 +105,15 @@ void individual::dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 po
 
         LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1->c_str());
         LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, pos_2, dna_2->c_str());
-        LOG("ga_events", "mating", "dna_3 (%d,%d)\n%s\n", pos_2+1, dna->GetColNum(), dna_3->c_str());
+        LOG("ga_events", "mating", "dna_3 (%d,%d)\n%s\n", pos_2+1, dna->GetColNum()-1, dna_3->c_str());
     }
     else
     {
         *dna_1 = dna->GetCols(0, pos_1);
-        *dna_2 = dna->GetCols(pos_1 + 1, dna->GetColNum() - 1);
+        *dna_2 = dna->GetCols(pos_1 + 1, dna->GetColNum()-1);
 
         LOG("ga_events", "mating", "dna_1 (0, %d)\n%s\n", pos_1, dna_1->c_str());
-        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, dna->GetColNum(), dna_2->c_str());
+        LOG("ga_events", "mating", "dna_2 (%d,%d)\n%s\n", pos_1+1, dna->GetColNum()-1, dna_2->c_str());
     }
 }
 
