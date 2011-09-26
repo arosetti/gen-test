@@ -64,17 +64,20 @@ void individual::dna_mutate(float mutation_rate)
 
     LOG("ga_events", "mutation", "# mutation event! count: %f\n", count);
 
+    if (count >= 1.0f)
+        untest();
     while (count >= 1.0f)
     {
         dna->Flip(row_r,col_r);
         row_r = randmm(0, get_chromosome_number());
         col_r = randmm(0, get_chromosome_length());
-        count--;
+        count--;        
     }
     if (uint32(count * 1000) > randmm(0,1000))
+    {
         dna->Flip(row_r,col_r);
-
-    untest();
+        untest();
+    }
 }
 
 void individual::dna_shrink()
