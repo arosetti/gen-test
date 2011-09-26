@@ -38,7 +38,7 @@ class individual: public tests
     void    dna_random();
     void    dna_mutate(float mutation_rate);
     void    dna_shrink();
-    void    dna_split(uint32 pos_1, string* dna_1, string* dna_2, uint32 pos_2 = 0,  string* dna_3 = NULL);
+    void    dna_split(int pos_1, string* dna_1, string* dna_2, int pos_2 = -1,  string* dna_3 = NULL);
     void    dna_merge(string* dna_1, string* dna_2, string* dna_3 = NULL);
 
     float   get_fitness() const;
