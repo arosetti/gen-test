@@ -1,5 +1,55 @@
-changeset:   425:ce50154ac452
+changeset:   435:97d597bfdbbd
 tag:         tip
+utente:      Lazzalf
+data:        Mon Sep 26 12:35:25 2011 +0200
+sommario:    * Small change to untest() in mutation
+
+changeset:   434:5944bd85b6ae
+utente:      Lazzalf
+data:        Mon Sep 26 12:19:45 2011 +0200
+sommario:    * Fix scelta punto di taglio
+
+changeset:   433:e02febd64a73
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 25 13:27:26 2011 +0200
+sommario:    * aggiunto grafico dell'andamento della mutation rate
+
+changeset:   432:0bfb4d6fc4ce
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 25 13:12:03 2011 +0200
+sommario:    * se il numero di generazioni è 0 (infinite) non scrivere che evolverà per 0 generazioni.
+
+changeset:   431:3b6c3360de58
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sun Sep 25 11:30:59 2011 +0200
+sommario:    * mutation rate legata al fault coverage del miglior individuo:
+
+changeset:   430:891dab80ce05
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 24 13:15:17 2011 +0200
+sommario:    * inserita mutation_type
+
+changeset:   429:5091eb456d33
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 24 02:22:11 2011 +0200
+sommario:    * bloccati i segnali di SIGINT sui thread
+
+changeset:   428:de12c227d192
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 24 01:11:38 2011 +0200
+sommario:    * segfault apparentemente risolto.
+
+changeset:   427:edf59bf93a11
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Sat Sep 24 00:43:44 2011 +0200
+sommario:    * tentativo fix segfault sempre WIP
+
+changeset:   426:ba38115b4b36
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 23 23:48:32 2011 +0200
+sommario:    * tentativo fix segfault fallito
+
+changeset:   425:ce50154ac452
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 23 21:33:14 2011 +0200
 sommario:    Inserita l'etichetta 0.2.2 per il changeset 19d39b1d73eb
