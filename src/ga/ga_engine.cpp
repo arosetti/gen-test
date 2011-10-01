@@ -119,7 +119,6 @@ void ga_engine::evolve()
         {
             INFO("verbose", "* worst individual info:\n");
             pop->print((individual*) pop->get_worst_individual());
-
         }
 
         if (conf->get_bool_config(CONFIG_LOG))
@@ -154,7 +153,7 @@ void ga_engine::evolve()
         INFO("verbose",  "* transfer individuals\n");
         pop->transfer();
 
-        INFO("verbose",  "* mating individuals\n");
+        INFO("verbose",  "* mating individuals using ");
         pop->mate_individuals();
 
         if (conf->get_bool_config(CONFIG_MUTATION_LENGTH_GENE))

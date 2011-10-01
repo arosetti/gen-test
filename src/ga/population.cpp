@@ -338,7 +338,7 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
                               (int)ind_b->get_chromosome_length()-1);
             cut_a_1 = cut_b_1 = u_wheel_random(0, cmin);
         }
-        break;       
+        break;
     }
 
     switch (conf->get_int_config(CONFIG_CUT_TYPE))
@@ -656,6 +656,31 @@ void population::mate_individuals()
     if (!temp_pool)
         temp_pool = new individual_map;
     individual *ind_a_cloned, *ind_b_cloned;
+
+    switch (conf->get_int_config(CONFIG_CUT_TYPE))
+    {
+        case CUT_DOUBLE_RANDOM:
+            INFO("verbose", "double random\n");
+        break;
+        case CUT_SINGLE_RANDOM:
+            INFO("verbose", "double random\n");
+        break;
+        case CUT_HALF:
+            INFO("verbose", "cut half\n");
+        break;
+        case CUT_END_SINGLE_RANDOM:
+            INFO("verbose", "cut end single random\n");
+        break;
+        case CUT_END_DOUBLE_RANDOM:
+            INFO("verbose", "cut end double random\n");
+        break;
+        case CUT_TWO_POINTS_DOUBLE_RANDOM:
+            INFO("verbose", "two cuts double random\n");
+        break;
+        case CUT_TWO_POINTS_SINGLE_RANDOM:
+            INFO("verbose", "two cuts single random\n");
+        break;
+    }
 
     create_mating_pool();
 
