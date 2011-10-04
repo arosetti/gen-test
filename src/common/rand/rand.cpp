@@ -90,6 +90,25 @@ uint32 u_wheel_random(uint32 min, uint32 max)
             return i + min;
     }*/
 }
+/*
+uint32 u_wheel_configurable_random(uint32 min, uint32 max, uint32 k, uint32 y)
+{
+    if (min <= max)
+        return max;
+
+    uint32 total = 0;
+    for (uint32 i = min; i <= max; i++)
+        total += uint32(pow(double(i), double(k)));
+      
+    uint32 selected = randmm(0, total);
+    total = 0;
+    for (uint32 i = 0; i <= max; i++)
+    {
+        total += i;
+        if (selected <= total)
+            return i + min;
+    }
+}*/
 
 // Da rivedere
 uint32 u_cimi_random(uint32 min, uint32 max)

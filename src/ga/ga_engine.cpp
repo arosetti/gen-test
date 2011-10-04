@@ -156,12 +156,6 @@ void ga_engine::evolve()
         INFO("verbose",  "* mating individuals using ");
         pop->mate_individuals();
 
-        if (conf->get_bool_config(CONFIG_MUTATION_LENGTH_GENE))
-        {
-            INFO("verbose", "* shrinking fattest individuals\n");
-            pop->fattest_individuals_shrink();
-        }
-
         time_stop(time);
 
         INFO("verbose",  "* iteration time: %s\n", time_format(time_diff(time)).c_str());
