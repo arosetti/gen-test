@@ -179,7 +179,7 @@ void individual::calc_fitness()
             break;
         case FAULT_RATE_MIN_LENGTH:
             fitness = ((float)(detected) / (float)(n_tests)) -
-                 ((float)get_chromosome_length() / (10.0f * (float)(n_tests)));
+                 ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
             break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");

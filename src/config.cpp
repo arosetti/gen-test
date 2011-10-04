@@ -52,7 +52,6 @@ cfg_opt_t opts[] =
     CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
     CFG_BOOL((char*)"ga.stop_at_100", (cfg_bool_t)true, CFGF_NONE),
 
-    CFG_BOOL((char*)"mutation_length_gene", (cfg_bool_t)false, CFGF_NONE),
     CFG_END()
 };
 
@@ -114,11 +113,11 @@ bool config::load_config()
 
     config_int[CONFIG_MAX_GENERATIONS]           = cfg_getint(cfg, "ga.max_generations");
     config_int[CONFIG_POPULATION_SIZE]           = cfg_getint(cfg, "ga.population_size");
-    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]     = cfg_getint(cfg, "ga.chromosome_max_len");
     config_int[CONFIG_CHROMOSOME_START_LEN_MIN]  = cfg_getint(cfg, "ga.chromosome_start_len_min");
     config_int[CONFIG_CHROMOSOME_START_LEN_MAX]  = cfg_getint(cfg, "ga.chromosome_start_len_max");
     config_bool[CONFIG_NORMALIZED_FITNESS]       = cfg_getbool(cfg, "ga.normalized_fitness");
     config_int[CONFIG_FITNESS_TYPE]              = cfg_getint(cfg, "ga.fitness_type");
+    config_int[CONFIG_CHROMOSOME_MAX_LENGTH]     = cfg_getint(cfg, "ga.chromosome_max_len");
     config_int[CONFIG_MATING_SELECT_TYPE]        = cfg_getint(cfg, "ga.mating_select_type");
     config_int[CONFIG_TRANSFER_SELECT_TYPE]      = cfg_getint(cfg, "ga.transfer_select_type");
     config_bool[CONFIG_ALWAYS_TRANSFER_THE_BEST] = cfg_getbool(cfg, "ga.always_transfer_the_best");
@@ -131,8 +130,6 @@ bool config::load_config()
     config_int[CONFIG_MAX_RETEST]                = cfg_getint(cfg, "ga.max_retest");
     config_int[CONFIG_MAX_STALL]                 = cfg_getint(cfg, "ga.max_stall");
     config_bool[CONFIG_STOP_AT_100]              = cfg_getbool(cfg, "ga.stop_at_100"); 
-    
-    config_bool[CONFIG_MUTATION_LENGTH_GENE] = cfg_getbool(cfg, "mutation_length_gene");
 
     cfg_free(cfg);
 
