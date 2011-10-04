@@ -1,0 +1,18 @@
+gentest
+
+gentest è congiuntamente con la documentazione e la relazione del lavoro, tesi triennale degli autori. (vedi il file AUTHORS).
+gentest è distribuito sotto licenza GPL-v3.
+
+Questo programma genera test-patterns per circuiti simulati (ad esempio fpga).
+Grazie ad un'algoritmo genetico e alla simulazione dei test-pattern con un simulatore, (simulatore generato dal tool Mobius) si riesce a generare pattern che riescono a rilevare gli errori che la simulazione crea all'interno del circuito.
+
+
+Dipendenze e librerie:
+
+sistema operativo GNU/Linux
+gcc
+automake
+autoconf
+doxygen  (per la generazione della documentazione)
+libconfuse 
+
