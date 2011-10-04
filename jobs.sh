@@ -6,21 +6,39 @@ echoc () {
   echo -e "\E["$1"m$2\E[0m";
 }
 
-mkdir -p jobs
+if [ $# -eq 1 ]; then
+    echoc 31 "using \"$1\" as jobdir"
+    JOBDIR=$1
+elif [ $# -gt 1 ]; then
+    echoc 31 "usage: $0 <jobdir>"
+    exit 1
+fi
+
+if [ ! -d $JOBDIR ];then
+    echoc 31 "jobdir \"$JOBDIR\" does not exists!"
+    exit 1;
+fi
+
+vjobs=$(ls -f $JOBDIR/*.conf)
 
 count=0
-v_jobs=$(ls -f jobs/*.conf)
-echoc 31 "${#v_jobs[*]} jobs found." 
-echoc 31 "$v_jobs"
-
-for j in $v_jobs ; do
-    echoc 32 "--------------------------------";
-    echoc 32 ">> $j $count of ${#v_jobs[*]}";
-    ./gentest -c $j
-    count++;
+for j in $vjobs ; do
+    count=`expr $count + 1`
 done
-cd - > /dev/null
 
-mv log*.tar.bz2 jobs
+njobs=$count
+count=0
+echoc 31 "njobs: $njobs\n\n$vjobs\n"
+
+
+for j in $vjobs ; do
+    echoc 32 "--------------------------------------------";
+    echoc 31 ">> running job \"$j\". ($count/$njobs)";
+    ./gentest -c $j #debugger?? così fa system.log
+    count=`expr $count + 1`
+    ./tarlogs.sh
+    echoc 31 "moving log to \"$JOBDIR\""
+    mv log*.tar.* $JOBDIR > /dev/null
+done
 
 
