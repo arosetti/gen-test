@@ -88,13 +88,13 @@ void individual::dna_shrink()
 
 void individual::dna_split(int pos_1, string* dna_1, string* dna_2, int pos_2,  string* dna_3)
 {
-    if (pos_1 > dna->GetColNum() || pos_2 > dna->GetColNum())
-        return;
-
     LOG_STATIC("ga_events", "mating", "# splitting DNA\n");
 
     if (pos_2 >= 0)
     {
+        if (pos_1 > dna->GetColNum() || pos_2 > dna->GetColNum())
+            return;
+
         if (pos_1 > pos_2)
         {
             uint32 temp_pos = pos_1;
@@ -112,6 +112,9 @@ void individual::dna_split(int pos_1, string* dna_1, string* dna_2, int pos_2,  
     }
     else
     {
+        if (pos_1 > dna->GetColNum())
+            return;
+
         *dna_1 = dna->GetCols(0, pos_1);
         *dna_2 = dna->GetCols(pos_1 + 1, dna->GetColNum()-1);
 
