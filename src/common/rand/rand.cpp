@@ -4,6 +4,7 @@
 // dovrebbero essere migliori.
 // source: http://eternallyconfuzzled.com/arts/jsw_art_rand.aspx
 
+
 unsigned time_seed()
 {
     time_t now = time ( 0 );
@@ -17,20 +18,19 @@ unsigned time_seed()
     return seed;
 }
 
-void init_rand_seed()
-{
-    srand(time_seed());
-    srand48(time_seed());
-}
-
 double uniform_deviate ( int seed )
 {
     return seed * ( 1.0 / ( RAND_MAX + 1.0 ) );
 }
 
+void init_rand_seed()
+{
+    srand48(time_seed());
+}
+
 uint32 randmm(uint32 min, uint32 max)
 {
-    return min + uniform_deviate(rand()) * (( max - min ) + 1);
+    return min + drand48() * (( max - min ) + 1);
 }
 
 double drandmm(double min, double max)
@@ -164,4 +164,28 @@ double d_cimi_random(double min, double max)
     double temp = pow((double)drandmm(min, max), 2);
     temp = temp / pow((double)max+1, 2);
     return temp * max + 1.0f;
+}
+
+double d_exponential_random(double min, double max, double k)
+{
+    double ny_max = pow(max, k);
+    double ny_min = pow(min, k);
+
+    double y_rnd = randmm(ny_min, ny_max);
+    double x_rnd = pow(y_rnd, 1/k);
+
+    //return max - x_rnd + min; // mirror
+    return x_rnd;
+}
+
+uint32 u_exponential_random(uint32 min, uint32 max, double k)
+{
+    double ny_max = pow(max, k);
+    double ny_min = pow(min, k);
+
+    double y_rnd = randmm(ny_min, ny_max);
+    uint32 x_rnd = ceil(pow(y_rnd, 1/k));
+
+    //return max - x_rnd + min; // mirror
+    return x_rnd;
 }
