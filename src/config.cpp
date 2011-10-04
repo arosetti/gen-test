@@ -218,7 +218,7 @@ int config::load_args(int argc, char **argv)
                     cout << "config file " << optarg << " does not exists!" << endl;
                     exit(1);
                 }
-                cout << "* loading config from" << optarg << endl;
+                cout << "* loading config from " << optarg << endl;
                 load_config();
             break;
             case 'p':
