@@ -1,5 +1,33 @@
-changeset:   441:8055075df5a7
+changeset:   446:886763c4b86a
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Oct 04 23:46:00 2011 +0200
+sommario:    * aggiunte {d,u}_exponential_random
+
+changeset:   445:778809806805
+genitore:    444:8bc3602bfb6b
+genitore:    443:903d5027d02c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Oct 04 22:19:35 2011 +0200
+sommario:    Merge
+
+changeset:   444:8bc3602bfb6b
+genitore:    442:cb968bdcd64d
+utente:      Lazzalf
+data:        Tue Oct 04 22:08:25 2011 +0200
+sommario:    * Modificata random per mettere il un esponente
+
+changeset:   443:903d5027d02c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Oct 04 22:00:50 2011 +0200
+sommario:    * makefile.am updated
+
+changeset:   442:cb968bdcd64d
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Oct 04 21:42:37 2011 +0200
+sommario:    * aggiornato e testato jobs.sh!!
+
+changeset:   441:8055075df5a7
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Oct 04 19:51:08 2011 +0200
 sommario:    * makefile.am aggiornato per includere gli script e i config nel tarball della release

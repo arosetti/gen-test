@@ -440,7 +440,7 @@ void population::transfer()
 
     INFO("verbose", "  copying %d individual(s) using ", transfer_num);
 
-    individual_id_list id_pool;    
+    individual_id_list id_pool;
 
     switch (conf->get_int_config(CONFIG_TRANSFER_SELECT_TYPE))
     {
