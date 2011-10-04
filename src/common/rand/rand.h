@@ -20,4 +20,7 @@ double   rand_gaussian(double, double);
 uint32   u_wheel_random(uint32 min, uint32 max, double k = 1);
 uint32   u_cimi_random(uint32 min, uint32 max);
 double   d_cimi_random(double min, double max);
+uint32   u_exponential_random(uint32 min, uint32 max, double k);
+double   d_exponential_random(double min, double max, double k);
+
 #endif
