@@ -30,11 +30,10 @@ njobs=$count
 count=0
 echoc 31 "njobs: $njobs\n\n$vjobs\n"
 
-
 for j in $vjobs ; do
     echoc 32 "--------------------------------------------";
     echoc 31 ">> running job \"$j\". ($count/$njobs)";
-    ./gentest -c $j #debugger?? così fa system.log
+    ./gentest -c $j #debugger?? TODO da passare i parametri internamente a gdb
     count=`expr $count + 1`
     ./tarlogs.sh
     echoc 31 "moving log to \"$JOBDIR\""

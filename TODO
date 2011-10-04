@@ -54,7 +54,6 @@ esempio possibile define per i config
 conf->get_int_config(CONFIG_THREAD_SLOTS)
 CONF_INT(C_THREAD_SLOTS);
 
-
 CONF_INT
 CONF_FLOAT
 CONF_BOOL
