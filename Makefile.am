@@ -20,5 +20,4 @@ gentest_SOURCES = src/ga/ga_engine.h src/ga/ga_engine.cpp   \
                   src/common/timer/time.h src/common/timer/time.cpp \
                   src/main.cpp
 
-dist_noinst_SCRIPTS = autogen.sh gentest.conf graphs.gnuplot Doxyfile build.sh autogen.sh jobs.sh
-
+dist_noinst_SCRIPTS = autogen.sh gentest.conf graphs.gnuplot Doxyfile build.sh autogen.sh jobs.sh clean.sh debugger gentest.gdb
