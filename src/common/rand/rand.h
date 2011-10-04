@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include <math.h>
+#include <iostream>
 
 #ifndef RAND_H
 #define RAND_H
@@ -16,8 +17,7 @@ uint32   randmm(uint32, uint32);
 double   drandmm(double min, double max);
 bool     randb();
 double   rand_gaussian(double, double);
-uint32   u_wheel_random(uint32 min, uint32 max);
-//uint32   u_wheel_configurable_random(uint32 min, uint32 max);
+uint32   u_wheel_random(uint32 min, uint32 max, double k = 1);
 uint32   u_cimi_random(uint32 min, uint32 max);
 double   d_cimi_random(double min, double max);
 #endif
