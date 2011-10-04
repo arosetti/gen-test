@@ -6,7 +6,7 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"log.enable",(cfg_bool_t)true, CFGF_NONE),
     CFG_STR((char*)"log.path",(char*)"logs",CFGF_NONE),
     CFG_BOOL((char*)"log.debug", (cfg_bool_t)false, CFGF_NONE),
-    CFG_BOOL((char*)"log.verbose",(cfg_bool_t)true, CFGF_NONE),    
+    CFG_BOOL((char*)"log.verbose",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"log.graphics",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"log.mating",(cfg_bool_t)false, CFGF_NONE),
     CFG_BOOL((char*)"log.mutations",(cfg_bool_t)false, CFGF_NONE),
@@ -18,20 +18,20 @@ cfg_opt_t opts[] =
     CFG_BOOL((char*)"print.avg_fitness",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_fault_coverage",(cfg_bool_t)true, CFGF_NONE),
     CFG_BOOL((char*)"print.avg_chromosome_length",(cfg_bool_t)true, CFGF_NONE),
-    CFG_BOOL((char*)"print.population_size",(cfg_bool_t)true, CFGF_NONE),    
+    CFG_BOOL((char*)"print.population_size",(cfg_bool_t)true, CFGF_NONE),
 
     CFG_STR((char*)"simulator.path",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator.bin",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator.args",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator.test_file_out",(char*)"",CFGF_NONE),
-    CFG_STR((char*)"simulator.test_file_in",(char*)"",CFGF_NONE), 
+    CFG_STR((char*)"simulator.test_file_in",(char*)"",CFGF_NONE),
     CFG_BOOL((char*)"simulator.read_faults_file",(cfg_bool_t)false, CFGF_NONE),
 
     CFG_STR((char*)"thread.prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread.slots",  4, CFGF_NONE),   
     
     CFG_INT((char*)"ga.max_generations",  100, CFGF_NONE),
-    CFG_INT((char*)"ga.population_size", 50, CFGF_NONE),    
+    CFG_INT((char*)"ga.population_size", 50, CFGF_NONE),
     CFG_INT((char*)"ga.chromosome_max_len", 1000 , CFGF_NONE),
     CFG_INT((char*)"ga.chromosome_start_len_min",  10, CFGF_NONE),
     CFG_INT((char*)"ga.chromosome_start_len_max",  20, CFGF_NONE),
@@ -44,6 +44,7 @@ cfg_opt_t opts[] =
     CFG_FLOAT((char*)"ga.mating_rate", 0.3f, CFGF_NONE),
 
     CFG_FLOAT((char*)"ga.mutation_rate", 0.05f, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.min_mutation_rate", 0.01f, CFGF_NONE),
     CFG_FLOAT((char*)"ga.max_mutation_rate", 0.30f, CFGF_NONE),
     CFG_INT((char*)"ga.mutation_type", 1, CFGF_NONE),
 
@@ -87,7 +88,7 @@ bool config::load_config()
     config_bool[CONFIG_LOG]        = cfg_getbool(cfg, "log.enable");
     config_string[CONFIG_LOG_PATH] = cfg_getstr(cfg, "log.path");
     config_bool[CONFIG_DEBUG]      = cfg_getbool(cfg, "log.debug");
-    config_bool[CONFIG_VERBOSE]    = cfg_getbool(cfg, "log.verbose");    
+    config_bool[CONFIG_VERBOSE]    = cfg_getbool(cfg, "log.verbose");
     config_bool[CONFIG_GRAPHICS]   = cfg_getbool(cfg, "log.graphics");
     config_bool[CONFIG_LOG_MATING]     = cfg_getbool(cfg, "log.mating");
     config_bool[CONFIG_LOG_MUTATIONS]  = cfg_getbool(cfg, "log.mutations");
@@ -124,9 +125,10 @@ bool config::load_config()
     config_float[CONFIG_MATING_RATE]             = cfg_getfloat(cfg, "ga.mating_rate");
     config_float[CONFIG_MATING_FRACTION]         = cfg_getfloat(cfg, "ga.mating_fraction");
     config_float[CONFIG_MUTATION_RATE]           = cfg_getfloat(cfg, "ga.mutation_rate");
+    config_float[CONFIG_MIN_MUTATION_RATE]       = cfg_getfloat(cfg, "ga.min_mutation_rate");
     config_float[CONFIG_MAX_MUTATION_RATE]       = cfg_getfloat(cfg, "ga.max_mutation_rate");
     config_int[CONFIG_MUTATION_TYPE]             = cfg_getint(cfg, "ga.mutation_type");
-    config_int[CONFIG_CUT_TYPE]                  = cfg_getint(cfg, "ga.cut_type");   
+    config_int[CONFIG_CUT_TYPE]                  = cfg_getint(cfg, "ga.cut_type");
     config_int[CONFIG_MAX_RETEST]                = cfg_getint(cfg, "ga.max_retest");
     config_int[CONFIG_MAX_STALL]                 = cfg_getint(cfg, "ga.max_stall");
     config_bool[CONFIG_STOP_AT_100]              = cfg_getbool(cfg, "ga.stop_at_100"); 

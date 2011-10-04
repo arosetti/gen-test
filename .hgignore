@@ -61,3 +61,4 @@ src/common/rand/.deps/rand.Po
 src/common/rand/.deps/.dirstamp
 src/common/rand/rand_test
 *.tar.*
+jobs/*
