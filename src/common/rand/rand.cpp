@@ -76,39 +76,80 @@ double rand_gaussian(double eta, double sigma)
     return ((r2 * factor) * sigma + eta);
 }
 
+/*
 uint32 u_wheel_random(uint32 min, uint32 max)
 {
     max-=min;
     uint32 total = (max*(max+1))/2; // (max*(max+1)-min*(min-1))/2; // Formula di Gauss   
     uint32 selected = randmm(0, total);
     return ceil((-1.0f + sqrt(1.0f + 8.0f * (double)selected)) / 2) + min;
-    /*total = 0;
-    for (uint32 i = 0; i <= max; i++)
-    {
-        total += i;
-        if (selected <= total)
-            return i + min;
-    }*/
-}
-/*
-uint32 u_wheel_configurable_random(uint32 min, uint32 max, uint32 k, uint32 y)
+}*/
+
+uint32 u_wheel_random(uint32 min, uint32 max, double k)
 {
-    if (min <= max)
+    if (min >= max)
         return max;
 
+    max -= min;
+
     uint32 total = 0;
-    for (uint32 i = min; i <= max; i++)
-        total += uint32(pow(double(i), double(k)));
+    for (uint32 i = 0; i <= max; i++)
+        total += uint32(pow(double(i), k));
       
     uint32 selected = randmm(0, total);
     total = 0;
     for (uint32 i = 0; i <= max; i++)
     {
-        total += i;
+        total += uint32(pow(double(i), k));
         if (selected <= total)
             return i + min;
     }
-}*/
+}
+
+/*
+uint32 u_wheel_configurable_random(int min, int max, double k, int y)
+{
+    if (min < 0 || max < 0)
+        return 0;
+
+    if (min >= max)
+        return max;    
+    
+    int new_min = min + y;
+    int new_max = max + y;
+
+    uint32 total = 0;
+    int j = new_min;
+    int i = min;
+    while (i <= max)
+    {
+        if (j >= 0 && j <= max)
+            total += uint32(pow(double(i), k));
+        i++;
+        j++;
+    }
+
+    if (!total)
+        return 0;
+      
+    uint32 selected = randmm(0, total);
+
+    j = new_min;
+    i = min;
+    total = 0;
+    while (i <= max)
+    {
+        if (j >= 0 && j <= max)
+        {
+            total += uint32(pow(double(i), k));
+            if (selected <= total)
+                return j;
+        }
+        i++;
+        j++;
+    }
+}
+*/
 
 // Da rivedere
 uint32 u_cimi_random(uint32 min, uint32 max)
