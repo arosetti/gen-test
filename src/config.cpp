@@ -48,7 +48,8 @@ cfg_opt_t opts[] =
     CFG_FLOAT((char*)"ga.max_mutation_rate", 0.30f, CFGF_NONE),
     CFG_INT((char*)"ga.mutation_type", 1, CFGF_NONE),
 
-    CFG_INT((char*)"ga.cut_type",1,CFGF_NONE),
+    CFG_INT((char*)"ga.cut_type", 1, CFGF_NONE),
+    CFG_FLOAT((char*)"ga.cut_end_exponent", 2.0f, CFGF_NONE),
     CFG_INT((char*)"ga.max_retest", 1, CFGF_NONE),
     CFG_INT((char*)"ga.max_stall", 10, CFGF_NONE),
     CFG_BOOL((char*)"ga.stop_at_100", (cfg_bool_t)true, CFGF_NONE),
@@ -129,6 +130,7 @@ bool config::load_config()
     config_float[CONFIG_MAX_MUTATION_RATE]       = cfg_getfloat(cfg, "ga.max_mutation_rate");
     config_int[CONFIG_MUTATION_TYPE]             = cfg_getint(cfg, "ga.mutation_type");
     config_int[CONFIG_CUT_TYPE]                  = cfg_getint(cfg, "ga.cut_type");
+    config_float[CONFIG_CUT_END_EXPONENT]        = cfg_getfloat(cfg, "ga.cut_end_exponent");
     config_int[CONFIG_MAX_RETEST]                = cfg_getint(cfg, "ga.max_retest");
     config_int[CONFIG_MAX_STALL]                 = cfg_getint(cfg, "ga.max_stall");
     config_bool[CONFIG_STOP_AT_100]              = cfg_getbool(cfg, "ga.stop_at_100"); 
