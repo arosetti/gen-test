@@ -83,7 +83,8 @@ uint32 u_wheel_random(uint32 min, uint32 max)
     uint32 total = (max*(max+1))/2; // (max*(max+1)-min*(min-1))/2; // Formula di Gauss   
     uint32 selected = randmm(0, total);
     return ceil((-1.0f + sqrt(1.0f + 8.0f * (double)selected)) / 2) + min;
-}*/
+}
+*/
 
 uint32 u_wheel_random(uint32 min, uint32 max, double k)
 {
@@ -104,66 +105,6 @@ uint32 u_wheel_random(uint32 min, uint32 max, double k)
         if (selected <= total)
             return i + min;
     }
-}
-
-/*
-uint32 u_wheel_configurable_random(int min, int max, double k, int y)
-{
-    if (min < 0 || max < 0)
-        return 0;
-
-    if (min >= max)
-        return max;    
-    
-    int new_min = min + y;
-    int new_max = max + y;
-
-    uint32 total = 0;
-    int j = new_min;
-    int i = min;
-    while (i <= max)
-    {
-        if (j >= 0 && j <= max)
-            total += uint32(pow(double(i), k));
-        i++;
-        j++;
-    }
-
-    if (!total)
-        return 0;
-      
-    uint32 selected = randmm(0, total);
-
-    j = new_min;
-    i = min;
-    total = 0;
-    while (i <= max)
-    {
-        if (j >= 0 && j <= max)
-        {
-            total += uint32(pow(double(i), k));
-            if (selected <= total)
-                return j;
-        }
-        i++;
-        j++;
-    }
-}
-*/
-
-// Da rivedere
-uint32 u_cimi_random(uint32 min, uint32 max)
-{
-    double temp = pow((double)randmm(min, max), 2);
-    temp = temp / pow((double)max+1, 2);
-    return uint32 (temp * max)+1;
-}
-
-double d_cimi_random(double min, double max)
-{
-    double temp = pow((double)drandmm(min, max), 2);
-    temp = temp / pow((double)max+1, 2);
-    return temp * max + 1.0f;
 }
 
 double d_exponential_random(double min, double max, double k)
