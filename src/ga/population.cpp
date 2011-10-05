@@ -328,15 +328,18 @@ void population::crossover(individual *& ind_a, individual *& ind_b)
         break;
         case CUT_END_DOUBLE_RANDOM:
         {
-            cut_a_1 = u_wheel_random(0, ind_a->get_chromosome_length()-1);
-            cut_b_1 = u_wheel_random(0, ind_b->get_chromosome_length()-1);
+            cut_a_1 = u_exponential_random(0, ind_a->get_chromosome_length()-1,
+                                           conf->get_float_config(CONFIG_CUT_END_EXPONENT));
+            cut_b_1 = u_exponential_random(0, ind_b->get_chromosome_length()-1,
+                                           conf->get_float_config(CONFIG_CUT_END_EXPONENT));
         }
         break;
         case CUT_END_SINGLE_RANDOM:
         {
             uint32 cmin = min((int)ind_a->get_chromosome_length()-1,
                               (int)ind_b->get_chromosome_length()-1);
-            cut_a_1 = cut_b_1 = u_wheel_random(0, cmin);
+            cut_a_1 = cut_b_1 = u_exponential_random(0, cmin,
+                                conf->get_float_config(CONFIG_CUT_END_EXPONENT));
         }
         break;
     }
@@ -440,7 +443,7 @@ void population::transfer()
 
     INFO("verbose", "  copying %d individual(s) using ", transfer_num);
 
-    individual_id_list id_pool;
+    individual_id_list id_pool;    
 
     switch (conf->get_int_config(CONFIG_TRANSFER_SELECT_TYPE))
     {

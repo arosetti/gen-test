@@ -67,11 +67,16 @@ void ga_engine::evolve()
             case MUTATION_STATIC:
             break;
             case MUTATION_DYNAMIC:
+                if (!conf->get_int_config(CONFIG_MAX_GENERATIONS))
+                {
+                    INFO("verbose", "* can't use mutation dynamic with an indefinite number of genrations\n");
+                    break;
+                }
                 step = (conf->get_float_config(CONFIG_MAX_MUTATION_RATE) - conf->get_float_config(CONFIG_MIN_MUTATION_RATE)) / 
                         (float) (conf->get_int_config(CONFIG_MAX_GENERATIONS));
                 pop->set_mutation_rate(pop->get_mutation_rate() - step);
-                if (pop->get_mutation_rate() < conf->get_float_config(CONFIG_MUTATION_RATE))
-                    pop->set_mutation_rate(conf->get_float_config(CONFIG_MUTATION_RATE));
+                if (pop->get_mutation_rate() < conf->get_float_config(CONFIG_MIN_MUTATION_RATE))
+                    pop->set_mutation_rate(conf->get_float_config(CONFIG_MIN_MUTATION_RATE));
                 INFO("verbose", "* mutation rate: %f\n", pop->get_mutation_rate());
             break;
             case MUTATION_STALL_CHECK:
