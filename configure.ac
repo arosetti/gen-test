@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT([gentest], [0.2.3])
+AC_INIT([gentest], [0.2.4])
 AC_PROG_CXX
 
 AC_CONFIG_MACRO_DIR([m4])
