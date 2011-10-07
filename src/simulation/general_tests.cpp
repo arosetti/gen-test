@@ -7,7 +7,7 @@ general_tests::general_tests()
 
 general_tests::~general_tests()
 {
-    pthread_mutex_destroy($mutex_gen_test);
+    pthread_mutex_destroy(&mutex_gen_test);
 }
 
 void general_tests::EmptyFaults()
