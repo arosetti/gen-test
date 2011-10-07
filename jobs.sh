@@ -35,9 +35,9 @@ for j in $vjobs ; do
     echoc 31 ">> running job \"$j\". ($count/$njobs)";
     ./gentest -c $j #debugger?? TODO da passare i parametri internamente a gdb
     count=`expr $count + 1`
-    ./tarlogs.sh
+    ./tarlogs.sh $j
     echoc 31 "moving log to \"$JOBDIR\""
-    mv log*.tar.* $JOBDIR > /dev/null
+    mv *conf*.tar.* $JOBDIR > /dev/null
 done
 
 
