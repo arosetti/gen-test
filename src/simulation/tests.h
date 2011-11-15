@@ -47,6 +47,8 @@ class tests
         virtual void   untest() = 0;
         
     protected:
+    
+        float calculate_neighbours_fault_factor(general_tests* g_test = NULL);
 
         uint32 detected;
         uint32 n_tests;

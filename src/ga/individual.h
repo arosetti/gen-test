@@ -43,7 +43,7 @@ class individual: public tests
 
     float   get_fitness() const;
     void    set_fitness(float);
-    void    calc_fitness();
+    void    calc_fitness(general_tests* g_test = NULL);
 
     string  get_chromosome(uint32) const;
     void    set_chromosome(uint32, string);
