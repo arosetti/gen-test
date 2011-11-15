@@ -52,7 +52,7 @@ class tests
 
         uint32 detected;
         uint32 n_tests;
-        double propagation_factor;
+        float propagation_factor;
 
         simulation sim_test;
 
