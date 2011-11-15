@@ -14,10 +14,6 @@ extern config *conf;
 
 class simulation
 {
-    uint32 n_total_faults;
-    uint32 n_fautls;
-    double propagation_factor;
-
     bool setup_input_file(string,uint32);
 
     public:
@@ -25,7 +21,7 @@ class simulation
     ~simulation();
 
     void get_results(uint32, uint32&, uint32&);
-    void get_results(uint32, uint32&, uint32&, double&);
+    void get_results(uint32, uint32&, uint32&, float&);
     bool execute(string,uint32);
     void rebuild();
     void patch();

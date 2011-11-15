@@ -127,7 +127,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     delete[] str;
 }
 
-void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults, double &propagation_f)
+void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults, float &propagation_f)
 {
     int ret;
     char *str = read_file(get_output_file_path(id).c_str());
@@ -136,8 +136,9 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     n_total_faults = 0;
     n_faults = 0;
     
-    ret = sscanf(str_s, "0,%d.0\n1,%d.0\n2,%f\n", (int*)&n_total_faults, (int*)&n_faults,(double*)&propagation_f);
-    if (ret != 2)
+    ret = sscanf(str_s, "0,%d.0\n1,%d.0\n2,%f\n", (int*)&n_total_faults, (int*)&n_faults,(float*)&propagation_f);
+    
+    if (ret != 3)
         cout << "parsing error... ret " << ret << endl;
 
     if (conf->get_bool_config(CONFIG_LOG_SIMULATION)) // TODO sistemare log
