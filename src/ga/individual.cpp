@@ -182,6 +182,14 @@ void individual::calc_fitness()
             fitness = ((float)(detected) / (float)(n_tests)) -
                  ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
             break;
+        case FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION:
+            fitness = ((float)(detected + propagation_factor) / (float)(n_tests)) -
+                 ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
+            break;
+        case FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS:
+            break;
+        case FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS:
+            break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");
             exit(1);

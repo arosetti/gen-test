@@ -136,7 +136,7 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         try
         {
             sim_test.execute(get_dna(), sim_id);
-            sim_test.get_results(sim_id, n_tests, detected);
+            sim_test.get_results(sim_id, n_tests, detected, propagation_factor);
             if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
                 GetFaultsFile(sim_id, g_test);
             test();
