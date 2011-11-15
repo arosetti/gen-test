@@ -137,7 +137,13 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         try
         {
             sim_test.execute(get_dna(), sim_id);
-            sim_test.get_results(sim_id, n_tests, detected, propagation_factor);
+
+            if (conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION ||
+                conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS)
+                sim_test.get_results(sim_id, n_tests, detected, propagation_factor);
+            else
+                sim_test.get_results(sim_id, n_tests, detected);
+
             if (conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS ||
                 conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS)
                 GetFaultsFile(sim_id, g_test);
