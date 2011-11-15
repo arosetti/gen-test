@@ -12,7 +12,8 @@ void *SimulationThread(void *arg)
     sigfillset(&mask);
     pthread_sigmask(SIG_BLOCK, &mask, NULL);
 
-    if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
+    if (conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS ||
+        conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS)
         remove(get_faults_path(t_param->sim_id).c_str());
 
     while (individual* ind = t_param->pop->get_next_individual())
@@ -137,7 +138,8 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         {
             sim_test.execute(get_dna(), sim_id);
             sim_test.get_results(sim_id, n_tests, detected, propagation_factor);
-            if (conf->get_bool_config(CONFIG_READ_FAULTS_FILE))
+            if (conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS ||
+                conf->get_int_config(CONFIG_FITNESS_TYPE) == FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS)
                 GetFaultsFile(sim_id, g_test);
             test();
         }

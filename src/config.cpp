@@ -25,7 +25,6 @@ cfg_opt_t opts[] =
     CFG_STR((char*)"simulator.args",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator.test_file_out",(char*)"",CFGF_NONE),
     CFG_STR((char*)"simulator.test_file_in",(char*)"",CFGF_NONE),
-    CFG_BOOL((char*)"simulator.read_faults_file",(cfg_bool_t)false, CFGF_NONE),
 
     CFG_STR((char*)"thread.prefix",(char*)"sim_",CFGF_NONE),
     CFG_INT((char*)"thread.slots",  4, CFGF_NONE),   
@@ -108,7 +107,6 @@ bool config::load_config()
     config_string[CONFIG_SIMULATOR_ARGS]  = cfg_getstr(cfg, "simulator.args");
     config_string[CONFIG_TEST_FILE_OUT]   = cfg_getstr(cfg, "simulator.test_file_out");
     config_string[CONFIG_TEST_FILE_IN]    = cfg_getstr(cfg, "simulator.test_file_in");
-    config_bool[CONFIG_READ_FAULTS_FILE]  = cfg_getbool(cfg, "simulator.read_faults_file");
 
     config_string[CONFIG_THREAD_PREFIX] = cfg_getstr(cfg, "thread.prefix");
     config_int[CONFIG_THREAD_SLOTS]     = cfg_getint(cfg, "thread.slots");
