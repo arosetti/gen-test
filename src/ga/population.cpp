@@ -99,7 +99,7 @@ void population::eval_fitnesses()
     for (; itr != pool->end(); ++itr)
     {
         if ((*itr).second)
-            (*itr).second->calc_fitness();
+            (*itr).second->calc_fitness(&test);
     }
 }
 

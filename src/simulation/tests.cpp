@@ -234,3 +234,14 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
 
     return true;
 }
+
+float tests::calculate_neighbours_fault_factor(general_tests* g_test)
+{   
+    float factor = 0.0f;
+    if (g_test)
+        for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
+        {         
+            factor += 1.0f/float(g_test->FindFault(*itr));
+        }
+    return factor;
+}

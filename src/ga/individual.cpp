@@ -168,7 +168,7 @@ void individual::set_fitness(float f)
     fitness = f;
 }
 
-void individual::calc_fitness()
+void individual::calc_fitness(general_tests* g_test)
 {
     if (!n_tests)
         return;
@@ -187,8 +187,13 @@ void individual::calc_fitness()
                  ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
             break;
         case FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS:
+            fitness = ((float)(detected + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests)) -
+                 ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
             break;
         case FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS:
+            fitness = ((float)(detected + propagation_factor + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests)) -
+                 ((float)get_chromosome_length() / ((float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH)));
+            break;
             break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");
