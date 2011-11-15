@@ -1,5 +1,33 @@
-changeset:   451:52cac4980038
+changeset:   456:0352820064bd
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Oct 07 10:31:24 2011 +0200
+sommario:    * hack rimosso
+
+changeset:   455:bb689d0f1c71
+utente:      Lazzalf
+data:        Fri Oct 07 10:21:15 2011 +0200
+sommario:    Fix Typo
+
+changeset:   454:816cbdc26d75
+genitore:    452:dedb4064e9c5
+genitore:    453:8501dbb81b16
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Oct 07 10:01:26 2011 +0200
+sommario:    Merge
+
+changeset:   453:8501dbb81b16
+genitore:    451:52cac4980038
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Wed Oct 05 20:57:08 2011 +0200
+sommario:    * aggiornati gli script usati per gestire i job: tarlogs.sh e jobs.sh
+
+changeset:   452:dedb4064e9c5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Oct 07 10:00:56 2011 +0200
+sommario:    * aggiunto mutex_destroy mancante
+
+changeset:   451:52cac4980038
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Oct 05 10:44:15 2011 +0200
 sommario:    Inserita l'etichetta 0.2.4 per il changeset eba75073c34a
