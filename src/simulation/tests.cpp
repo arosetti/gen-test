@@ -242,7 +242,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
                         if (g_test)
                         {      
                             g_test->getlock_gen_test(); 
-                            g_test->InsertFault(fault_index)
+                            g_test->InsertFault(fault_index);
                             g_test->releaselock_gen_test();                            
                         }
                     }
