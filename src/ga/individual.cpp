@@ -174,7 +174,7 @@ void individual::calc_fitness(general_tests* g_test)
         return;
 
     float chrom_len_factor = (float)get_chromosome_length() / 
-                           (float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH);
+                             (float)conf->get_int_config(CONFIG_CHROMOSOME_MAX_LENGTH);
 
     switch (conf->get_int_config(CONFIG_FITNESS_TYPE))
     {
@@ -185,13 +185,13 @@ void individual::calc_fitness(general_tests* g_test)
             fitness = (float)(detected) / (float)(n_tests) - chrom_len_factor;
             break;
         case FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION:
-            fitness = (float)(detected + propagation_factor) / (float)(n_tests) - chrom_len_factor;
+            fitness = ((float)(detected) + propagation_factor) / (float)(n_tests) - chrom_len_factor;
             break;
         case FAULT_RATE_MIN_LENGTH_WITH_NEIGHBOURS:
-            fitness = (float)(detected + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests) - chrom_len_factor;
+            fitness = ((float)(detected) + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests) - chrom_len_factor;
             break;
         case FAULT_RATE_MIN_LENGTH_MAX_PROPAGATION_WITH_NEIGHBOURS:
-            fitness = (float)(detected + propagation_factor + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests) - chrom_len_factor;
+            fitness = ((float)(detected) + propagation_factor + calculate_neighbours_fault_factor(g_test)) / (float)(n_tests) - chrom_len_factor;
             break;
         default:
             INFO("verbose", "please, select a valid fitness type\n");
@@ -200,7 +200,7 @@ void individual::calc_fitness(general_tests* g_test)
     }
 
     if (fitness < 0.0f)
-        fitness = 0.01f;
+        fitness = 0.00001f;
 }
 
 string individual::get_chromosome(uint32 crom)  const
