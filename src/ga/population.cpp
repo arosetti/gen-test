@@ -113,6 +113,9 @@ void population::test_population()
     int ret;
     void *status;
 
+    // Reset General Tests
+    test.EmptyFaults();
+
     if (conf->get_bool_config(CONFIG_PRINT_PROGRESS_BAR))
         p_bar.init(untested);
 

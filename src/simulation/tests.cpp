@@ -23,6 +23,8 @@ void *SimulationThread(void *arg)
             ind->ExecuteTest(t_param->sim_id, t_param->g_test);
             t_param->pop->inc_barlink();
         }
+        else
+            ind->UpdateFaults(t_param->g_test);
     }
 
     t_param->pop->dec_threads();
@@ -132,6 +134,19 @@ bool tests::FindFault(uint32 fault)
     return true;
 }
 
+void tests::UpdateFaults(general_tests* g_test)
+{
+    if (g_test)
+    {      
+        g_test->getlock_gen_test(); 
+        for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
+        {         
+            g_test->InsertFault(*itr);     
+        }        
+        g_test->releaselock_gen_test();
+    }
+}
+
 bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
 {
     int tried = 0;
@@ -154,7 +169,11 @@ bool tests::ExecuteTest(uint32 sim_id, general_tests* g_test)
         }
         catch (char const* str)
         {
-            tried++;
+            tried++;   
+            
+            // Svuota i fault in caso di errore
+            EmptyFaults(g_test);
+
             if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_VERBOSE))
             {
                 cout << "caught exception: " << str << endl;
@@ -178,7 +197,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         return false;
     }
 
-    EmptyFaults(g_test);
+    // EmptyFaults(g_test);
 
     int fault_index = 0;
 
@@ -252,7 +271,12 @@ float tests::calculate_neighbours_fault_factor(general_tests* g_test)
     if (g_test)
         for (set<uint32>::iterator itr = m_faults_set.begin(); itr != m_faults_set.end(); ++itr)
         {         
-            factor += 1.0f/float(g_test->FindFault(*itr));
+            if (!g_test->FindFault(*itr))
+            {
+                cout << (*itr) << ": " << g_test->FindFault(*itr) << "  " << endl;
+                exit(1);
+            }
+            factor += 1.0f/float(g_test->FindFault(*itr));        
         }
     return factor;
 }

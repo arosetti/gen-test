@@ -37,6 +37,7 @@ class tests
         bool   InsertFault(uint32 fault);
         bool   FindFault(uint32 fault);
         void   EmptyFaults(general_tests* g_test = NULL);
+        void   UpdateFaults(general_tests* g_test);
 
         bool   ExecuteTest(uint32 sim_id, general_tests* g_test = NULL);
         bool   GetFaultsFile(uint32 sim_id, general_tests* g_test = NULL);  // questa va in simulation
