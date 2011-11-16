@@ -197,7 +197,7 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
         return false;
     }
 
-    // EmptyFaults(g_test);
+    EmptyFaults(NULL);
 
     int fault_index = 0;
 
@@ -238,12 +238,12 @@ bool tests::GetFaultsFile(uint32 sim_id, general_tests* g_test)
                             return false;
                         }
 
-                        InsertFault(fault_index);
+                        InsertFault(fault_index);                        
                         if (g_test)
                         {      
                             g_test->getlock_gen_test(); 
-                            g_test->InsertFault(fault_index);
-                            g_test->releaselock_gen_test();
+                            g_test->InsertFault(fault_index)
+                            g_test->releaselock_gen_test();                            
                         }
                     }
                     word = 10;
