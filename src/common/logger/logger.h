@@ -97,6 +97,7 @@ class logger
     log_profile*  get_profile(string profile);
     string        get_filename(string profile, string fname);
     void          set_count(string profile, unsigned int val);
+    bool          profile_exists(string profile);
 
     bool   log(string profile, string fname, const char *s_format, ...);
     bool   log_static(string profile, string fname, const char *str);

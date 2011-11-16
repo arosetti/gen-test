@@ -40,6 +40,7 @@ tests::tests()
 {
     n_tests = 0;
     detected = 0;
+    propagation_factor = 0;
     m_faults_set.clear();
 }
 
@@ -47,6 +48,8 @@ tests::tests(const tests &m_test)
 {
     n_tests = m_test.n_tests;
     detected = m_test.detected;
+    detected = 0;
+    propagation_factor = m_test.propagation_factor;
     m_faults_set = m_test.m_faults_set;
     sim_test = m_test.sim_test;
 }

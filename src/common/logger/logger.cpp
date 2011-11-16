@@ -49,6 +49,11 @@ log_profile* logger::get_profile(string profile)
     return NULL;
 }
 
+bool logger::profile_exists(string profile)
+{
+   return !(get_profile(profile) == 0);
+}
+
 string logger::get_filename(string profile, string fname)
 {
     string file;
