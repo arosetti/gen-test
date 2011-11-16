@@ -75,10 +75,9 @@ bool simulation::setup_input_file(string dna, uint32 id)
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    LOG("sim_events", "simulation", "clocks: %d", clocks);
-    LOG("sim_events", "simulation", "inputs: %d", inputs);
+    //LOG("sim_events", "simulation", "clocks: %d", clocks);
+    //LOG("sim_events", "simulation", "inputs: %d", inputs);
 
-    
     stringstream out;
     out << clocks;
 
@@ -113,7 +112,7 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (ret != 2)
         LOG("sim_events", "simulation", "parsing error... ret is %d\n", ret);
 
-    LOG("sim_events", "simulation", "#total_faults       = %d\n", n_total_faults);
+    LOG("sim_events", "simulation", "#total_faults       = %d", n_total_faults);
     LOG("sim_events", "simulation", "#faults_detected    = %d\n", n_faults);
 
     remove(get_output_file_path(id).c_str());
@@ -136,8 +135,8 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     if (ret != 3)
         LOG("sim_events", "simulation", "parsing error... ret is %d\n", ret);
 
-    LOG("sim_events", "simulation", "#total_faults       = %d\n", n_total_faults);
-    LOG("sim_events", "simulation", "#faults_detected    = %d\n", n_faults);
+    LOG("sim_events", "simulation", "#total_faults       = %d", n_total_faults);
+    LOG("sim_events", "simulation", "#faults_detected    = %d", n_faults);
     LOG("sim_events", "simulation", "#propagation_factor = %f\n", propagation_f);
 
     remove(get_output_file_path(id).c_str());
