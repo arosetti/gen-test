@@ -160,22 +160,28 @@ void config::init_log_profiles()
 {
     log_profile *l_profile;
 
-    if (config_bool[CONFIG_DEBUG])
+    if (config_bool[CONFIG_DEBUG])  // deprecated
         LOG_PTR->set_opt(L_DEBUG);
 
-    if (config_bool[CONFIG_VERBOSE])
+    if (config_bool[CONFIG_VERBOSE]) // deprecated
         LOG_PTR->set_opt(L_VERBOSE);
 
-    if (config_bool[CONFIG_LOG])
+    if (config_bool[CONFIG_LOG]) // deprecated
         LOG_PTR->set_opt(L_LOG);
 
-    l_profile = new log_profile("verbose", "");
-    l_profile->set_opt(L_VERBOSE | L_COLOR);
-    LOG_PTR->add_profile(l_profile);
+    if (config_bool[CONFIG_VERBOSE])
+    {
+        l_profile = new log_profile("verbose", "");
+        l_profile->set_opt(L_VERBOSE | L_COLOR);
+        LOG_PTR->add_profile(l_profile);
+    }
 
-    l_profile = new log_profile("debug", "");
-    l_profile->set_opt(L_VERBOSE | L_DEBUG | L_COLOR);
-    LOG_PTR->add_profile(l_profile);
+    if (config_bool[CONFIG_DEBUG])
+    {
+        l_profile = new log_profile("debug", "");
+        l_profile->set_opt(L_VERBOSE | L_DEBUG | L_COLOR);
+        LOG_PTR->add_profile(l_profile);
+    }
 
     l_profile = new log_profile("events", config_string[CONFIG_LOG_PATH]);
     l_profile->set_opt(L_APPEND | L_CLOSE);
@@ -188,6 +194,13 @@ void config::init_log_profiles()
     l_profile = new log_profile("generations", config_string[CONFIG_LOG_PATH]);
     l_profile->set_opt(L_INCREMENTAL | L_CLOSE);
     LOG_PTR->add_profile(l_profile);
+
+    if (config_bool[CONFIG_LOG_SIMULATION])
+    {
+        l_profile = new log_profile("sim_events", config_string[CONFIG_LOG_PATH]);
+        l_profile->set_opt(L_APPEND | L_CLOSE);
+        LOG_PTR->add_profile(l_profile);
+    }
 }
 
 void config::help_config()

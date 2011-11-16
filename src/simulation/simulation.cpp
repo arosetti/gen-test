@@ -75,11 +75,9 @@ bool simulation::setup_input_file(string dna, uint32 id)
     int clocks = GetStrRowSize(dna);
     int inputs = GetStrColSize(dna);
     
-    if (conf->get_bool_config(CONFIG_DEBUG) && conf->get_bool_config(CONFIG_LOG_SIMULATION))
-    {
-        cout << "clocks: " << clocks << endl;
-        cout << "inputs: " << inputs << endl;
-    }
+    LOG("sim_events", "simulation", "clocks: %d", clocks);
+    LOG("sim_events", "simulation", "inputs: %d", inputs);
+
     
     stringstream out;
     out << clocks;
@@ -113,13 +111,10 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     
     ret = sscanf(str_s, "0,%d.0\n1,%d.0\n", (int*)&n_total_faults, (int*)&n_faults);
     if (ret != 2)
-        cout << "parsing error... ret " << ret << endl;
+        LOG("sim_events", "simulation", "parsing error... ret is %d\n", ret);
 
-    if (conf->get_bool_config(CONFIG_LOG_SIMULATION)) // TODO sistemare log
-    {
-        cout << "#total_faults " << n_total_faults << endl;
-        cout << "#faults_detected " << n_faults << endl;
-    }
+    LOG("sim_events", "simulation", "#total_faults       = %d\n", n_total_faults);
+    LOG("sim_events", "simulation", "#faults_detected    = %d\n", n_faults);
 
     remove(get_output_file_path(id).c_str());
     remove(get_input_file_path(id).c_str());
@@ -139,13 +134,11 @@ void simulation::get_results(uint32 id, uint32& n_total_faults, uint32& n_faults
     ret = sscanf(str_s, "0,%d.0\n1,%d.0\n2,%f\n", (int*)&n_total_faults, (int*)&n_faults,(float*)&propagation_f);
     
     if (ret != 3)
-        cout << "parsing error... ret " << ret << endl;
+        LOG("sim_events", "simulation", "parsing error... ret is %d\n", ret);
 
-    if (conf->get_bool_config(CONFIG_LOG_SIMULATION)) // TODO sistemare log
-    {
-        cout << "#total_faults " << n_total_faults << endl;
-        cout << "#faults_detected " << n_faults << endl;
-    }
+    LOG("sim_events", "simulation", "#total_faults       = %d\n", n_total_faults);
+    LOG("sim_events", "simulation", "#faults_detected    = %d\n", n_faults);
+    LOG("sim_events", "simulation", "#propagation_factor = %f\n", propagation_f);
 
     remove(get_output_file_path(id).c_str());
     remove(get_input_file_path(id).c_str());

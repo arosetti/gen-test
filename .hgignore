@@ -64,3 +64,4 @@ src/common/rand/rand_test
 jobs/*
 job_*
 simulator/b02/topological_values.txt
+simulator/b02/output
