@@ -11,6 +11,9 @@
 
 #include "../typedefs.h"
 
+// Se definito usa Mersenne Twister
+// #define USE_MERSENNE_TWISTER
+
 void     init_rand_seed();
 unsigned time_seed();
 uint32   randmm(uint32, uint32);
