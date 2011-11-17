@@ -1,9 +1,15 @@
 #include "rand.h"
 
+#ifdef USE_MERSENNE_TWISTER
+
+#include "MersenneTwister.h"
+MTRand mtrand1;
+
+#endif
+
 // questo rand utilizza i bit più alti della variabile generata da rand.
 // dovrebbero essere migliori.
 // source: http://eternallyconfuzzled.com/arts/jsw_art_rand.aspx
-
 
 unsigned time_seed()
 {
@@ -25,22 +31,42 @@ double uniform_deviate ( int seed )
 
 void init_rand_seed()
 {
+#ifdef USE_MERSENNE_TWISTER
+    MTRand::uint32 seed[ MTRand::N ];
+	for( int n = 0; n < MTRand::N; ++n )
+		seed[n] = 23 * n;  // fill with anything
+	MTRand mtrand3( seed );
+    mtrand1.seed(seed);  
+#else
     srand48(time_seed());
+#endif    
 }
 
 uint32 randmm(uint32 min, uint32 max)
 {
+#ifdef USE_MERSENNE_TWISTER
+    return min + mtrand1.randInt( max - min );  
+#else
     return min + drand48() * (( max - min ) + 1);
+#endif    
 }
 
 double drandmm(double min, double max)
 {
+#ifdef USE_MERSENNE_TWISTER
+    return min + mtrand1.rand( max - min );    
+#else
     return min + drand48() * (( max - min ) + 1);
+#endif
 }
 
 bool randb()
 {
-   return (drand48() >= 0.5f);
+#ifdef USE_MERSENNE_TWISTER
+    return (mtrand1.rand() >= 0.5f);  
+#else
+    return (drand48() >= 0.5f);
+#endif
 }
 
 double rand_gaussian(double eta, double sigma)
@@ -57,8 +83,13 @@ double rand_gaussian(double eta, double sigma)
     
     do
     {
+    #ifdef USE_MERSENNE_TWISTER
+        r1 = 2.0 * mtrand1.rand() - 1.0;
+        r2 = 2.0 * mtrand1.rand() - 1.0;
+    #else
         r1 = 2.0 * drand48() - 1.0;
         r2 = 2.0 * drand48() - 1.0;
+    #endif        
         rsquare = r1*r1 + r2*r2;
     }
     while(rsquare >= 1.0 || rsquare == 0.0);

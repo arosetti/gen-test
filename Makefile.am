@@ -11,7 +11,8 @@ gentest_SOURCES = src/ga/ga_engine.h src/ga/ga_engine.cpp   \
                   src/simulation/general_tests.h src/simulation/general_tests.cpp \
                   src/bitmatrix/bitmatrix.h src/bitmatrix/bitmatrix.cpp \
                   src/common/utility.h src/common/utility.cpp \
-                  src/common/rand/rand.h src/common/rand/rand.cpp \
+                  src/common/rand/rand.h src/common/rand/rand.cpp\
+                  src/common/rand/MersenneTwister.h\
                   src/config.h src/config.cpp \
                   src/common/typedefs.h \
                   src/common/defines.h \
