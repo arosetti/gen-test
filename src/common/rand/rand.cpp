@@ -34,8 +34,7 @@ void init_rand_seed()
 #ifdef USE_MERSENNE_TWISTER
     MTRand::uint32 seed[ MTRand::N ];
 	for( int n = 0; n < MTRand::N; ++n )
-		seed[n] = 23 * n;  // fill with anything
-	MTRand mtrand3( seed );
+		seed[n] = MTRand::uint32((double)time_seed() * mtrand1.rand());
     mtrand1.seed(seed);  
 #else
     srand48(time_seed());
