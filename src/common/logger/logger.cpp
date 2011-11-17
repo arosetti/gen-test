@@ -128,9 +128,10 @@ bool logger::log_static(string profile, string fname, const char *str)
 {
     log_profile *l_profile = get_profile(profile);
 
-    if(!check_profile(l_profile))
+    if (!check_profile(l_profile))
         return false;
-
+    
+    l_profile->lock();
     if (!l_profile->ff.is_open())
     {
         if (l_profile->get_opt(L_APPEND))
@@ -140,18 +141,18 @@ bool logger::log_static(string profile, string fname, const char *str)
     }
 
     if (l_profile->ff.is_open())
-    {
-        l_profile->lock();
+    {        
         l_profile->ff << str << endl;
         if (l_profile->get_opt(L_CLOSE))
-            l_profile->ff.close();
-        l_profile->unlock();
+            l_profile->ff.close();        
     }
     else
     {
         perror("logger");
+        l_profile->unlock();
         return true;
     }
+    l_profile->unlock();
 
     return false;
 }
