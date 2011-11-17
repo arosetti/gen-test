@@ -1,5 +1,10 @@
-changeset:   473:23c9b9276aec
+changeset:   474:91d46d811d45
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Nov 17 12:44:49 2011 +0100
+sommario:    * possibile fix del logger
+
+changeset:   473:23c9b9276aec
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Nov 17 12:25:53 2011 +0100
 sommario:    * fix del MALE nel costruttore di copia di tests
