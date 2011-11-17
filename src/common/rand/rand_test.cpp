@@ -4,14 +4,14 @@
 int main()
 {
     int i;
-    int tests=2000;
+    int tests=4000;
     FILE *ff;
     srand48(time_seed());
 
     ff = fopen("rand.dat", "w");
     for (i = 0 ; i<tests; i++)
     {
-        fprintf(ff, "%f %f\n",(double)drand48(),(double)drand48());
+        fprintf(ff, "%f %f\n",(double)drandmm(0,1),(double)drandmm(0,1));
     }
     fclose(ff);
 

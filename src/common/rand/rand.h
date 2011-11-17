@@ -10,9 +10,7 @@
 #define RAND_H
 
 #include "../typedefs.h"
-
-// Se definito usa Mersenne Twister
-// #define USE_MERSENNE_TWISTER
+#include "../../../config.h"
 
 void     init_rand_seed();
 unsigned time_seed();
