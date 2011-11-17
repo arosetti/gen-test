@@ -1,5 +1,20 @@
-changeset:   468:d563596ce31e
+changeset:   471:236779080378
 tag:         tip
+utente:      Lazzalf
+data:        Thu Nov 17 11:49:25 2011 +0100
+sommario:    * User the autoseed for MTrand
+
+changeset:   470:ef9a4a5eca71
+utente:      Lazzalf
+data:        Thu Nov 17 11:45:09 2011 +0100
+sommario:    * Fixato inizializzazione seed di Mersenne Twister
+
+changeset:   469:c4ca0393a810
+utente:      Lazzalf
+data:        Thu Nov 17 11:21:57 2011 +0100
+sommario:    * Implementato il MersenneTwister (da abilitare da rand.h)
+
+changeset:   468:d563596ce31e
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Nov 16 11:07:25 2011 +0100
 sommario:    * update logs della parte di simulazione
@@ -70,22 +85,22 @@ data:        Fri Oct 07 10:21:15 2011 +0200
 sommario:    Fix Typo
 
 changeset:   454:816cbdc26d75
-genitore:    453:dedb4064e9c5
-genitore:    452:8501dbb81b16
+genitore:    452:dedb4064e9c5
+genitore:    453:8501dbb81b16
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Oct 07 10:01:26 2011 +0200
 sommario:    Merge
 
-changeset:   453:dedb4064e9c5
+changeset:   453:8501dbb81b16
 genitore:    451:52cac4980038
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Fri Oct 07 10:00:56 2011 +0200
-sommario:    * aggiunto mutex_destroy mancante
-
-changeset:   452:8501dbb81b16
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Oct 05 20:57:08 2011 +0200
 sommario:    * aggiornati gli script usati per gestire i job: tarlogs.sh e jobs.sh
+
+changeset:   452:dedb4064e9c5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Oct 07 10:00:56 2011 +0200
+sommario:    * aggiunto mutex_destroy mancante
 
 changeset:   451:52cac4980038
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -249,22 +264,22 @@ data:        Fri Sep 23 00:56:26 2011 +0200
 sommario:    * memory leak: grazie a valgrind e man ho scoperto che la get_current_dir_name
 
 changeset:   420:96dbedec6e78
-genitore:    419:790c61dafa41
-genitore:    418:f3153d13d1e1
+genitore:    418:790c61dafa41
+genitore:    419:f3153d13d1e1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Fri Sep 23 00:51:41 2011 +0200
 sommario:    Merge
 
-changeset:   419:790c61dafa41
+changeset:   419:f3153d13d1e1
 genitore:    417:a6e53ad8b6b2
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Fri Sep 23 00:51:04 2011 +0200
-sommario:    * memory leak trovato con valgrind :)
-
-changeset:   418:f3153d13d1e1
 utente:      Lazzalf
 data:        Fri Sep 23 00:41:57 2011 +0200
 sommario:    * Fix errata numerazione nel config
+
+changeset:   418:790c61dafa41
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 23 00:51:04 2011 +0200
+sommario:    * memory leak trovato con valgrind :)
 
 changeset:   417:a6e53ad8b6b2
 utente:      Lazzalf
@@ -272,7 +287,7 @@ data:        Fri Sep 23 00:26:02 2011 +0200
 sommario:    * Se ga.max_generations è settato a 0 è considerato infinito
 
 changeset:   416:0e13485f225e
-genitore:    407:920ffa477d2e
+genitore:    411:920ffa477d2e
 genitore:    415:f69a289bf529
 utente:      Lazzalf
 data:        Fri Sep 23 00:14:26 2011 +0200
@@ -294,62 +309,65 @@ data:        Thu Sep 22 21:58:08 2011 +0200
 sommario:    * settare la mutation_rate dal costruttore della popolazione e non affidarsi
 
 changeset:   412:44a8ea9dd8e6
+genitore:    410:a24c83f6f337
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 22 21:43:34 2011 +0200
 sommario:    * updated gentest.conf per i nuovi tipi di taglio
 
-changeset:   411:a24c83f6f337
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 22 21:12:39 2011 +0200
-sommario:    * aggiornato gentest.conf
-
-changeset:   410:6e09ef5d316a
-genitore:    409:a8a090dd4fe2
-genitore:    406:14958502c55c
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 22 21:06:08 2011 +0200
-sommario:    Merge
-
-changeset:   409:a8a090dd4fe2
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 22 21:04:41 2011 +0200
-sommario:    * hgignore updated
-
-changeset:   408:b54c546f4a49
-genitore:    401:cbde2fe2dfb8
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 22 18:08:12 2011 +0200
-sommario:    * inseriti enum cut_end_*
-
-changeset:   407:920ffa477d2e
+changeset:   411:920ffa477d2e
+genitore:    407:14958502c55c
 utente:      Lazzalf
 data:        Thu Sep 22 21:05:54 2011 +0200
 sommario:    * Migliorata funzione random
 
-changeset:   406:14958502c55c
+changeset:   410:a24c83f6f337
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 22 21:12:39 2011 +0200
+sommario:    * aggiornato gentest.conf
+
+changeset:   409:6e09ef5d316a
+genitore:    408:a8a090dd4fe2
+genitore:    407:14958502c55c
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 22 21:06:08 2011 +0200
+sommario:    Merge
+
+changeset:   408:a8a090dd4fe2
+genitore:    402:b54c546f4a49
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 22 21:04:41 2011 +0200
+sommario:    * hgignore updated
+
+changeset:   407:14958502c55c
 utente:      Lazzalf
 data:        Thu Sep 22 20:50:38 2011 +0200
 sommario:    Fix random u_wheel
 
-changeset:   405:26a2481674d6
+changeset:   406:26a2481674d6
 utente:      Lazzalf
 data:        Thu Sep 22 20:46:49 2011 +0200
 sommario:    * Migliorate random
 
-changeset:   404:6c8d357f7696
+changeset:   405:6c8d357f7696
 utente:      Lazzalf
 data:        Thu Sep 22 18:20:49 2011 +0200
 sommario:    * Inseriti nuovi tipi di random per il crossover (WIP)
 
-changeset:   403:59d924033011
+changeset:   404:59d924033011
 utente:      Lazzalf
 data:        Thu Sep 22 14:30:33 2011 +0200
 sommario:    * Migliorato precedente commit
 
-changeset:   402:d473d2524987
+changeset:   403:d473d2524987
+genitore:    401:cbde2fe2dfb8
 utente:      Lazzalf
 data:        Thu Sep 22 13:02:50 2011 +0200
 sommario:    * Modificata fitness e sistemi di selezione per evitare il magic number 1
+
+changeset:   402:b54c546f4a49
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 22 18:08:12 2011 +0200
+sommario:    * inseriti enum cut_end_*
 
 changeset:   401:cbde2fe2dfb8
 utente:      Lazzalf
@@ -414,33 +432,33 @@ data:        Wed Sep 21 13:00:11 2011 +0200
 sommario:    Merge
 
 changeset:   389:a11846c55107
-genitore:    386:3044de71c5b1
+genitore:    387:3044de71c5b1
 utente:      Lazzalf
 data:        Wed Sep 21 12:59:54 2011 +0200
 sommario:    Backout eseguito sul changeset: 3044de71c5b1. Il selettore si adatta sempre al numero di quanti individui vai a prendere.
 
 changeset:   388:3a6b1adf54e5
-genitore:    387:fa25434cba68
-genitore:    386:3044de71c5b1
+genitore:    385:fa25434cba68
+genitore:    387:3044de71c5b1
 utente:      Lazzalf
 data:        Wed Sep 21 12:57:42 2011 +0200
 sommario:    Merge
 
-changeset:   387:fa25434cba68
-genitore:    384:ff0912e8ff0a
-utente:      Lazzalf
-data:        Wed Sep 21 12:55:40 2011 +0200
-sommario:    * Fix possible bug se selected_weight è uguale a total_weight
-
-changeset:   386:3044de71c5b1
+changeset:   387:3044de71c5b1
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 21 12:27:10 2011 +0200
 sommario:    * ho capito che non serve ordinato ma mettiamo che la dimensione n che prendi è
 
-changeset:   385:1992d2350b1f
+changeset:   386:1992d2350b1f
+genitore:    384:ff0912e8ff0a
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Wed Sep 21 12:17:10 2011 +0200
 sommario:    * prima eseguire il test e poi incrementare la barra
+
+changeset:   385:fa25434cba68
+utente:      Lazzalf
+data:        Wed Sep 21 12:55:40 2011 +0200
+sommario:    * Fix possible bug se selected_weight è uguale a total_weight
 
 changeset:   384:ff0912e8ff0a
 utente:      Lazzalf
@@ -474,22 +492,22 @@ data:        Tue Sep 20 16:43:39 2011 +0200
 sommario:    * versione 0.2.1
 
 changeset:   378:33cd06ff607e
-genitore:    377:543386b27c8e
-genitore:    376:29e9ca246f72
+genitore:    376:543386b27c8e
+genitore:    377:29e9ca246f72
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Tue Sep 20 16:36:50 2011 +0200
 sommario:    Merge
 
-changeset:   377:543386b27c8e
+changeset:   377:29e9ca246f72
 genitore:    375:463a760536ca
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Tue Sep 20 16:36:01 2011 +0200
-sommario:    * aggiunto enum e_fitness_type
-
-changeset:   376:29e9ca246f72
 utente:      Lazzalf
 data:        Tue Sep 20 16:29:53 2011 +0200
 sommario:    CleanUp
+
+changeset:   376:543386b27c8e
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 20 16:36:01 2011 +0200
+sommario:    * aggiunto enum e_fitness_type
 
 changeset:   375:463a760536ca
 utente:      Lazzalf
@@ -654,29 +672,30 @@ data:        Sat Sep 17 15:10:00 2011 +0200
 sommario:    Individual
 
 changeset:   344:306e2e18f278
-genitore:    343:53751d69f662
-genitore:    341:4917928c6a24
+genitore:    342:53751d69f662
+genitore:    343:4917928c6a24
 utente:      Lazzalf
 data:        Sat Sep 17 13:09:26 2011 +0200
 sommario:    Merge
 
-changeset:   343:53751d69f662
-genitore:    342:01166fba9021
+changeset:   343:4917928c6a24
+genitore:    340:215f17fbccd5
+utente:      Lazzalf
+data:        Sat Sep 17 13:08:29 2011 +0200
+sommario:    * Fix numerazione generation
+
+changeset:   342:53751d69f662
+genitore:    341:01166fba9021
 genitore:    340:215f17fbccd5
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 17 13:07:29 2011 +0200
 sommario:    Merge
 
-changeset:   342:01166fba9021
+changeset:   341:01166fba9021
 genitore:    339:ebe234939429
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Sat Sep 17 13:03:54 2011 +0200
 sommario:    * inserito operatore == negli individual, confronta il dna
-
-changeset:   341:4917928c6a24
-utente:      Lazzalf
-data:        Sat Sep 17 13:08:29 2011 +0200
-sommario:    * Fix numerazione generation
 
 changeset:   340:215f17fbccd5
 utente:      Lazzalf
@@ -905,22 +924,22 @@ data:        Tue Sep 13 23:44:26 2011 +0200
 sommario:    * aggiunta possiblità di eseguire gnuplot a fine generazione, generando gli eps.
 
 changeset:   296:d746fe3e6a3c
-genitore:    294:85d875e04010
-genitore:    295:3d8fc8ae45bd
+genitore:    295:85d875e04010
+genitore:    294:3d8fc8ae45bd
 utente:      Lazzalf
 data:        Tue Sep 13 21:21:07 2011 +0200
 sommario:    Merge
 
-changeset:   295:3d8fc8ae45bd
+changeset:   295:85d875e04010
 genitore:    293:217c283c5f02
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Tue Sep 13 19:05:22 2011 +0200
-sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
-
-changeset:   294:85d875e04010
 utente:      Lazzalf
 data:        Tue Sep 13 15:38:59 2011 +0200
 sommario:    Leggera modifica alla fitness
+
+changeset:   294:3d8fc8ae45bd
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Tue Sep 13 19:05:22 2011 +0200
+sommario:    * log delle migliori fitness/lunghezze di cromosomi/coperture guasti
 
 changeset:   293:217c283c5f02
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -1140,22 +1159,22 @@ data:        Fri Sep 09 21:55:30 2011 +0200
 sommario:    fix lettura piedini del circuito
 
 changeset:   252:af1d4234628a
-genitore:    250:b04b20622638
-genitore:    251:221be332c88a
+genitore:    251:b04b20622638
+genitore:    250:221be332c88a
 utente:      Lazzalf
 data:        Fri Sep 09 20:58:47 2011 +0200
 sommario:    Merge
 
-changeset:   251:221be332c88a
+changeset:   251:b04b20622638
 genitore:    249:b459b3096c4d
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Fri Sep 09 20:35:01 2011 +0200
-sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
-
-changeset:   250:b04b20622638
 utente:      Lazzalf
 data:        Fri Sep 09 20:57:42 2011 +0200
 sommario:    Risolto Hack, ora la classe population ha un membro interno mutation_rate modificabile.
+
+changeset:   250:221be332c88a
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Fri Sep 09 20:35:01 2011 +0200
+sommario:    ora la lettura dei piedini del circutito viene fatta nel config.cpp.
 
 changeset:   249:b459b3096c4d
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
@@ -1277,22 +1296,22 @@ data:        Thu Sep 08 10:24:45 2011 +0200
 sommario:    rinominati i file start e starter in debug e debugger
 
 changeset:   226:10d2258d3b23
-genitore:    224:4264bb94083c
-genitore:    225:c7eb09918d0f
+genitore:    225:4264bb94083c
+genitore:    224:c7eb09918d0f
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Sep 08 10:18:34 2011 +0200
 sommario:    Merge
 
-changeset:   225:c7eb09918d0f
+changeset:   225:4264bb94083c
 genitore:    223:7d7c5b3d3ba4
-utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
-data:        Thu Sep 08 10:17:01 2011 +0200
-sommario:    aggiornato build.sh
-
-changeset:   224:4264bb94083c
 utente:      Lazzalf
 data:        Thu Sep 08 10:03:21 2011 +0200
 sommario:    Inserito starter per GDB debug
+
+changeset:   224:c7eb09918d0f
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Sep 08 10:17:01 2011 +0200
+sommario:    aggiornato build.sh
 
 changeset:   223:7d7c5b3d3ba4
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>

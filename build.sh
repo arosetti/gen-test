@@ -10,16 +10,18 @@ if [ -e gentest ] ; then
     rm -f gentest
 fi
 
+chmod +x configure autogen.sh
 ./autogen.sh
 
+
 if [ "$1" = "release" ]; then
-    ./configure --enable-release
+    ./configure --enable-release --enable-mersenne_twister
 elif [ "$1" = "profile" ]; then
-    ./configure --enable-profile
+    ./configure --enable-profile --enable-mersenne_twister
 elif [ "$1" = "debug" ]; then
-    ./configure --enable-debug
+    ./configure --enable-debug --enable-mersenne_twister
 else
-    ./configure
+    ./configure --enable-mersenne_twister
 fi
 
 count=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //' | wc -l)

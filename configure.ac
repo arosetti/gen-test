@@ -47,13 +47,24 @@ AC_ARG_ENABLE(
 release,
 [--enable-release=ARG enable release version (default=no)],
 [enable_release=$enableval],
-[enable_release=no]
+[enable_release=yes]
 )
 if test "$enable_release" = "yes"; then
 CXXFLAGS="-O3 -mtune=native -march=native -pipe"
 AC_DEFINE(ENABLE_RELEASE,1,[release option])
 else
 AC_DEFINE(ENABLE_RELEASE,0,[release option])
+fi
+
+
+AC_ARG_ENABLE(
+mersenne_twister,
+[--enable-mersenne_twister=ARG enable release version (default=yes)],
+[enable_mersenne_twister=$enableval],
+[enable_mersenne_twister=no]
+)
+if test "$enable_mersenne_twister" = "yes"; then
+    AC_DEFINE(USE_MERSENNE_TWISTER,1,[ Mersenne Twister ])
 fi
 
 #CXXFLAGS="$CXXFLAGS -std=c++0x"
