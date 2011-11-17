@@ -1,5 +1,15 @@
-changeset:   471:236779080378
+changeset:   473:23c9b9276aec
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Nov 17 12:25:53 2011 +0100
+sommario:    * fix del MALE nel costruttore di copia di tests
+
+changeset:   472:f1c10fe56606
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Nov 17 12:18:26 2011 +0100
+sommario:    * inserita opzione per abilitare mersenne_twister in fase di compilazione
+
+changeset:   471:236779080378
 utente:      Lazzalf
 data:        Thu Nov 17 11:49:25 2011 +0100
 sommario:    * User the autoseed for MTrand
