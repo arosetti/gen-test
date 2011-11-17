@@ -32,10 +32,7 @@ double uniform_deviate ( int seed )
 void init_rand_seed()
 {
 #ifdef USE_MERSENNE_TWISTER
-    MTRand::uint32 seed[ MTRand::N ];
-	for( int n = 0; n < MTRand::N; ++n )
-		seed[n] = MTRand::uint32((double)time_seed() * mtrand1.rand());
-    mtrand1.seed(seed);  
+    // Use the autoseed  
 #else
     srand48(time_seed());
 #endif    
