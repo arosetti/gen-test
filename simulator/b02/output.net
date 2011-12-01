@@ -1,24 +1,24 @@
 0 ibuf 0;
 1 ibuf 1;
 
-2 lut_fctn 1100111100111000;
-2 lut 4 0 7 8 6;
+2 lut_fctn 1010000110000011;
+2 lut 4 1 5 4 6;
 
-3 lut_fctn 0010001010001011;
-3 lut 4 0 7 6 8;
+3 lut_fctn 0100;
+3 lut 2 6 5;
 
-4 lut_fctn 1110110011111111;
-4 lut 4 0 7 6 8;
+4 fdp 0 8;
 
-5 lut_fctn 0010;
-5 lut 2 6 8;
+5 fdc 7 0;
 
-6 fdc 2 1;
+6 fdc 2 0;
 
-7 fdc 4 1;
+7 lut_fctn 0011100011111100;
+7 lut 4 1 6 5 4;
 
-8 fdc 3 1;
+8 lut_fctn 1111111110000011;
+8 lut 4 1 4 6 5;
 
-9 fdc 5 1;
+9 fdc 3 0;
 
 10 obuf 9 0;

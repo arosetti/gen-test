@@ -1,5 +1,16 @@
-changeset:   474:91d46d811d45
+changeset:   476:162a077f4c3e
 tag:         tip
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Nov 17 19:59:21 2011 +0100
+sommario:    Inserita l'etichetta 0.2.5 per il changeset e6def0f3fd24
+
+changeset:   475:e6def0f3fd24
+tag:         0.2.5
+utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
+data:        Thu Nov 17 19:58:59 2011 +0100
+sommario:    versione 0.2.5
+
+changeset:   474:91d46d811d45
 utente:      Alessandro Rosetti <alessandro.rosetti@gmail.com>
 data:        Thu Nov 17 12:44:49 2011 +0100
 sommario:    * possibile fix del logger
