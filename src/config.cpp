@@ -168,6 +168,8 @@ void config::init_log_profiles()
 
     if (config_bool[CONFIG_LOG]) // deprecated
         LOG_PTR->set_opt(L_LOG);
+    else 
+        return;
 
     if (config_bool[CONFIG_VERBOSE])
     {
